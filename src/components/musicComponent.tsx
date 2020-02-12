@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Button from '@material-ui/core/Button';
+import LinearProgress from '@material-ui/core/LinearProgress';
 
 const audioElement = new Audio('http://localhost:9999/music');
 
@@ -10,7 +11,7 @@ const MusicComponent: React.FC = () => {
 
     useEffect(() => {
         if (duration !== 0) {
-            setPercent(currentTime / duration);
+            setPercent((currentTime / duration) * 100);
         }
     }, [currentTime, duration]);
 
@@ -58,6 +59,7 @@ const MusicComponent: React.FC = () => {
             <h1>{currentTime}</h1>
             <h1>{duration}</h1>
             <h1>{percent}</h1>
+            <LinearProgress variant="determinate" value={percent} />
         </div>
     );
 };
