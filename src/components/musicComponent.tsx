@@ -1,48 +1,31 @@
 import React, { useState, useEffect } from 'react';
 import Button from '@material-ui/core/Button';
 
-const MusicComponent: React.FC = () => {
-    // const [audioElement] = useState(new Audio('http://localhost:9999/music'));
-    // const [audioEl, setAudio] = useState()
-    const audioElement = new Audio('http://localhost:9999/music');
+const audioElement = new Audio('http://localhost:9999/music');
 
-    // let currentTime = 0;
+const MusicComponent: React.FC = () => {
     const [currentTime, setCurrentTime] = useState(0);
-    // useEffect(() => {
-    //     console.log('change');
-    // }, [currentTime]);
+    const [duration, setDuration] = useState(0);
+    const [percent, setPercent] = useState(0);
+
+    useEffect(() => {
+        if (duration !== 0) {
+            setPercent(currentTime / duration);
+        }
+    }, [currentTime, duration]);
 
     const logMsg = (): void => {
-        // console.log(audioElement.duration);
-        // console.log(audioElement.currentTime);
-        // console.log(audioElement.currentSrc);
         console.log(currentTime + '...' + audioElement.currentTime);
     };
 
-    // let currentSrc = '';
     audioElement.onloadedmetadata = (): void => {
-        // logMsg();
-        // currentSrc = audioElement.currentSrc;
-        // console.log('loaded');
-        // console.log(audioElement.currentSrc);
-        // console.log(currentSrc);
-        // setCurrentTime(audioElement.currentTime);
-    };
-
-    audioElement.ondurationchange = (): void => {
-        // console.log('duration change beg');
-        // console.log(audioElement.duration);
-        // console.log('duration change end');
+        setCurrentTime(audioElement.currentTime);
+        setDuration(audioElement.duration);
     };
 
     audioElement.ontimeupdate = (): void => {
-        // currentTime = audioElement.currentTime;
         setCurrentTime(audioElement.currentTime);
-        // console.log('update');
-        // console.log(audioElement.currentTime);
     };
-
-    // logMsg();
 
     const play = (): void => {
         audioElement.play();
@@ -73,6 +56,8 @@ const MusicComponent: React.FC = () => {
                 log
             </Button>
             <h1>{currentTime}</h1>
+            <h1>{duration}</h1>
+            <h1>{percent}</h1>
         </div>
     );
 };
