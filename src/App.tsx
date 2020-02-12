@@ -5,19 +5,13 @@ import Button from '@material-ui/core/Button';
 
 const App: React.FC = () => {
     return (
-        <div className="App">
-            <header className="App-header">
-                <Button variant="contained" color="primary">
-                    你好，世界
-                </Button>
-                <img src={logo} className="App-logo" alt="logo" />
-                <p>
-                    Edit <code>src/App.tsx</code> and save to reload.
-                </p>
-                <a className="App-link" href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
-                    Learn React
-                </a>
-            </header>
+        <div>
+            <Button variant="contained" color="primary">
+                你好，世界
+            </Button>
+            <audio controls>
+                <source src="http://localhost:9999/music" type="audio/mp3" />
+            </audio>
         </div>
     );
 };
