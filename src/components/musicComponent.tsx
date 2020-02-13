@@ -3,8 +3,8 @@ import Button from '@material-ui/core/Button';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import { makeStyles } from '@material-ui/core/styles';
 import AlbumIcon from '@material-ui/icons/Album';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
+// import Card from '@material-ui/core/Card';
+// import CardContent from '@material-ui/core/CardContent';
 
 const audioElement = new Audio('http://localhost:9999/music');
 
@@ -46,12 +46,6 @@ const MusicComponent: React.FC = () => {
     useEffect(() => {
         setProps({ percent: (musicPercent - 1).toString() + '%' });
     }, [musicPercent]);
-
-    // useEffect(() => {
-    //     if (duration !== 0) {
-    //         setCurrentTime(duration * clickPercent);
-    //     }
-    // }, [clickPercent]);
 
     const logMsg = (): void => {
         // console.log(currentTime + '...' + audioElement.currentTime);
