@@ -65,7 +65,7 @@ const MusicComponent: React.FC = () => {
         setClickPercent(percent);
         if (duration !== 0) {
             audioElement.currentTime = currentTime;
-            setCurrentTime(currentTime);
+            // setCurrentTime(currentTime);
         }
     };
 
