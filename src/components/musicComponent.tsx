@@ -2,40 +2,83 @@ import React, { useState, useEffect } from 'react';
 import Button from '@material-ui/core/Button';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import { makeStyles } from '@material-ui/core/styles';
+import AlbumIcon from '@material-ui/icons/Album';
 
 const audioElement = new Audio('http://localhost:9999/music');
 
+interface StyleProps {
+    percent: string;
+}
+
 const useStyles = makeStyles({
-    root: {
-        height: 300,
+    // one: {
+    //     width: 200,
+    //     height: 200,
+    //     backgroundColor: 'red',
+    //     zIndex: 5000,
+    //     position: 'relative',
+    //     opacity: 0.5,
+    // },
+    // inner: {
+    //     width: 150,
+    //     height: 150,
+    //     backgroundColor: 'pink',
+    //     zIndex: 100,
+    //     position: 'relative',
+    // },
+    // two: {
+    //     width: 150,
+    //     height: 150,
+    //     backgroundColor: 'green',
+    //     marginTop: -20,
+    //     position: 'relative',
+    //     zIndex: 1000,
+    // },
+    // three: {
+    //     width: 100,
+    //     height: 100,
+    //     backgroundColor: 'blue',
+    //     position: 'absolute',
+    //     zIndex: 10000,
+    // },
+    bound: {
+        // padding: 20,
+        // height: 20,
+        // position: 'absolute',
     },
-    icon: {
-        size: 800,
+    progress: {
+        // marginTop: 30,
     },
-    box: {
-        height: 100,
-        color: 'red',
-    },
-    thumbers: {
-        color: 'green',
-    },
-    indicator: {
-        left: '0%',
-    },
+    indicator: (props: StyleProps) => ({
+        // marginTop: -100,
+        // padding: -20,
+        // border: -20,
+        left: props.percent,
+        top: -13,
+        position: 'relative',
+        // position: 'absolute',
+        // optical: 0.5,
+    }),
 });
 
 const MusicComponent: React.FC = () => {
     const [currentTime, setCurrentTime] = useState(0);
     const [duration, setDuration] = useState(0);
-    const [percent, setPercent] = useState(0);
+    const [musicPercent, setMusicPercent] = useState(0);
 
-    const classes = useStyles({});
+    const [props, setProps] = useState({ percent: '90%' });
+    // const props = { percent: '90%' };
+    const classes = useStyles(props);
 
     useEffect(() => {
         if (duration !== 0) {
-            setPercent((currentTime / duration) * 100);
+            setMusicPercent((currentTime / duration) * 100);
         }
     }, [currentTime, duration]);
+
+    useEffect(() => {
+        setProps({ percent: (musicPercent - 1).toString() + '%' });
+    }, [musicPercent]);
 
     const logMsg = (): void => {
         console.log(currentTime + '...' + audioElement.currentTime);
@@ -64,7 +107,7 @@ const MusicComponent: React.FC = () => {
     };
 
     const setTime = (): void => {
-        audioElement.currentTime = 10;
+        audioElement.currentTime = 200;
         setCurrentTime(audioElement.currentTime);
         console.log('set time');
     };
@@ -85,17 +128,26 @@ const MusicComponent: React.FC = () => {
             </Button>
             <h1>{currentTime}</h1>
             <h1>{duration}</h1>
-            <h1>{percent}</h1>
-            <div>
+            <h1>{musicPercent}</h1>
+            <div className={classes.bound}>
                 <LinearProgress
+                    className={classes.progress}
                     variant="determinate"
-                    value={percent}
+                    value={musicPercent}
                     onClick={(e): void => clickProgress(e)}
                 ></LinearProgress>
-                <Button variant="contained" color="primary" className={classes.indicator}>
+                <AlbumIcon className={classes.indicator} color="secondary"></AlbumIcon>
+                {/* <Button variant="contained" color="primary" className={classes.indicator}>
                     icon
-                </Button>
+                </Button> */}
             </div>
+            {/* <div>
+                <div className={classes.one}>
+                    <div className={classes.inner}></div>
+                </div>
+                <div className={classes.two}></div>
+                <div className={classes.three}></div>
+            </div> */}
         </div>
     );
 };
