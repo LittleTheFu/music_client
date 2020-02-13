@@ -3,8 +3,9 @@ import Button from '@material-ui/core/Button';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import { makeStyles } from '@material-ui/core/styles';
 import AlbumIcon from '@material-ui/icons/Album';
-// import Card from '@material-ui/core/Card';
+import Card from '@material-ui/core/Card';
 // import CardContent from '@material-ui/core/CardContent';
+import Grid from '@material-ui/core/Grid';
 
 const audioElement = new Audio('http://localhost:9999/music');
 
@@ -13,9 +14,13 @@ interface StyleProps {
 }
 
 const useStyles = makeStyles({
+    card: {
+        boarder: 'solid',
+        width: 400,
+    },
     bound: {
-        position: 'relative',
-        width: '50%',
+        paddingTop: 30,
+        width: '80%',
         left: 100,
     },
     progress: {},
@@ -110,16 +115,24 @@ const MusicComponent: React.FC = () => {
             <h1>{duration}</h1>
             <h1>musicPercent : {musicPercent}</h1>
             <h1>clickPercent : {clickPercent}</h1>
-            <div className={classes.bound}>
-                <LinearProgress
-                    ref={bar}
-                    className={classes.progress}
-                    variant="determinate"
-                    value={musicPercent}
-                    onClick={(e): void => clickProgress(e)}
-                ></LinearProgress>
-                <AlbumIcon className={classes.indicator} color="secondary"></AlbumIcon>
-            </div>
+            <Card className={classes.card}>
+                <div className={classes.bound}>
+                    <LinearProgress
+                        ref={bar}
+                        className={classes.progress}
+                        variant="determinate"
+                        value={musicPercent}
+                        onClick={(e): void => clickProgress(e)}
+                    ></LinearProgress>
+                    <AlbumIcon className={classes.indicator} color="secondary"></AlbumIcon>
+                </div>
+                <Button variant="contained" color="primary" onClick={play}>
+                    play
+                </Button>
+                <Button variant="contained" color="primary" onClick={pause}>
+                    pause
+                </Button>{' '}
+            </Card>
             <h1>width : {bar.current ? bar.current.offsetWidth : 0}</h1>
         </div>
     );
