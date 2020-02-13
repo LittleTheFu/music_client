@@ -30,6 +30,7 @@ const MusicComponent: React.FC = () => {
     const [currentTime, setCurrentTime] = useState(0);
     const [duration, setDuration] = useState(0);
     const [musicPercent, setMusicPercent] = useState(0);
+    const [clickPercent, setClickPercent] = useState(0);
 
     const [props, setProps] = useState({ percent: '90%' });
     const classes = useStyles(props);
@@ -46,15 +47,32 @@ const MusicComponent: React.FC = () => {
         setProps({ percent: (musicPercent - 1).toString() + '%' });
     }, [musicPercent]);
 
+    // useEffect(() => {
+    //     if (duration !== 0) {
+    //         setCurrentTime(duration * clickPercent);
+    //     }
+    // }, [clickPercent]);
+
     const logMsg = (): void => {
-        console.log(currentTime + '...' + audioElement.currentTime);
+        // console.log(currentTime + '...' + audioElement.currentTime);
+        console.log(bar.current.getBoundingClientRect());
     };
 
     const clickProgress = (e: React.MouseEvent<HTMLElement>): void => {
-        console.log(e.clientX + ' : clientX');
-        console.log(e.pageX + ' : pageX');
-        console.log(e.movementX + ' : movmentX');
-        console.log(e.screenX + ' : screenX');
+        // console.log(e.clientX + ' : clientX');
+        // console.log(e.pageX + ' : pageX');
+        // console.log(e.movementX + ' : movmentX');
+        // console.log(e.screenX + ' : screenX');
+        if (!bar.current) return;
+        const x = bar.current.getBoundingClientRect().x;
+        const width = bar.current.getBoundingClientRect().width;
+        const percent = (e.clientX - x) / width;
+        const currentTime = duration * percent;
+        setClickPercent(percent);
+        if (duration !== 0) {
+            audioElement.currentTime = currentTime;
+            setCurrentTime(currentTime);
+        }
     };
 
     audioElement.onloadedmetadata = (): void => {
@@ -96,7 +114,8 @@ const MusicComponent: React.FC = () => {
             </Button>
             <h1>{currentTime}</h1>
             <h1>{duration}</h1>
-            <h1>{musicPercent}</h1>
+            <h1>musicPercent : {musicPercent}</h1>
+            <h1>clickPercent : {clickPercent}</h1>
             <div className={classes.bound}>
                 <LinearProgress
                     ref={bar}
