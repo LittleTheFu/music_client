@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Button from '@material-ui/core/Button';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import { makeStyles } from '@material-ui/core/styles';
 import AlbumIcon from '@material-ui/icons/Album';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
 
 const audioElement = new Audio('http://localhost:9999/music');
 
@@ -11,53 +13,16 @@ interface StyleProps {
 }
 
 const useStyles = makeStyles({
-    // one: {
-    //     width: 200,
-    //     height: 200,
-    //     backgroundColor: 'red',
-    //     zIndex: 5000,
-    //     position: 'relative',
-    //     opacity: 0.5,
-    // },
-    // inner: {
-    //     width: 150,
-    //     height: 150,
-    //     backgroundColor: 'pink',
-    //     zIndex: 100,
-    //     position: 'relative',
-    // },
-    // two: {
-    //     width: 150,
-    //     height: 150,
-    //     backgroundColor: 'green',
-    //     marginTop: -20,
-    //     position: 'relative',
-    //     zIndex: 1000,
-    // },
-    // three: {
-    //     width: 100,
-    //     height: 100,
-    //     backgroundColor: 'blue',
-    //     position: 'absolute',
-    //     zIndex: 10000,
-    // },
     bound: {
-        // padding: 20,
-        // height: 20,
-        // position: 'absolute',
+        position: 'relative',
+        width: '50%',
+        left: 100,
     },
-    progress: {
-        // marginTop: 30,
-    },
+    progress: {},
     indicator: (props: StyleProps) => ({
-        // marginTop: -100,
-        // padding: -20,
-        // border: -20,
         left: props.percent,
         top: -13,
         position: 'relative',
-        // position: 'absolute',
-        // optical: 0.5,
     }),
 });
 
@@ -67,8 +32,9 @@ const MusicComponent: React.FC = () => {
     const [musicPercent, setMusicPercent] = useState(0);
 
     const [props, setProps] = useState({ percent: '90%' });
-    // const props = { percent: '90%' };
     const classes = useStyles(props);
+
+    const bar = useRef(null);
 
     useEffect(() => {
         if (duration !== 0) {
@@ -84,9 +50,11 @@ const MusicComponent: React.FC = () => {
         console.log(currentTime + '...' + audioElement.currentTime);
     };
 
-    const clickProgress = (e: object): void => {
-        // console.log('progress bar clicked');
-        console.log(e);
+    const clickProgress = (e: React.MouseEvent<HTMLElement>): void => {
+        console.log(e.clientX + ' : clientX');
+        console.log(e.pageX + ' : pageX');
+        console.log(e.movementX + ' : movmentX');
+        console.log(e.screenX + ' : screenX');
     };
 
     audioElement.onloadedmetadata = (): void => {
@@ -131,23 +99,15 @@ const MusicComponent: React.FC = () => {
             <h1>{musicPercent}</h1>
             <div className={classes.bound}>
                 <LinearProgress
+                    ref={bar}
                     className={classes.progress}
                     variant="determinate"
                     value={musicPercent}
                     onClick={(e): void => clickProgress(e)}
                 ></LinearProgress>
                 <AlbumIcon className={classes.indicator} color="secondary"></AlbumIcon>
-                {/* <Button variant="contained" color="primary" className={classes.indicator}>
-                    icon
-                </Button> */}
             </div>
-            {/* <div>
-                <div className={classes.one}>
-                    <div className={classes.inner}></div>
-                </div>
-                <div className={classes.two}></div>
-                <div className={classes.three}></div>
-            </div> */}
+            <h1>width : {bar.current ? bar.current.offsetWidth : 0}</h1>
         </div>
     );
 };
