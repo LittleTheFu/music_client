@@ -5,7 +5,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import AlbumIcon from '@material-ui/icons/Album';
 import Card from '@material-ui/core/Card';
 // import CardContent from '@material-ui/core/CardContent';
-import Grid from '@material-ui/core/Grid';
+import IconButton from '@material-ui/core/IconButton';
+import PlayArrowIcon from '@material-ui/icons/PlayArrow';
+import PauseIcon from '@material-ui/icons/Pause';
 
 const audioElement = new Audio('http://localhost:9999/music');
 
@@ -14,19 +16,31 @@ interface StyleProps {
 }
 
 const useStyles = makeStyles({
+    play: {
+        height: 48,
+        width: 48,
+    },
+    pause: {
+        height: 48,
+        width: 48,
+    },
     card: {
+        display: 'flex',
         boarder: 'solid',
         width: 400,
     },
     bound: {
-        paddingTop: 30,
+        paddingTop: 0,
+        paddingLeft: 10,
         width: '80%',
         left: 100,
     },
-    progress: {},
+    progress: {
+        top: 35,
+    },
     indicator: (props: StyleProps) => ({
         left: props.percent,
-        top: -13,
+        top: 21,
         position: 'relative',
     }),
 });
@@ -42,6 +56,8 @@ const MusicComponent: React.FC = () => {
 
     const bar = useRef(null);
 
+    const [isPlaying, setIsPlaying] = useState(false);
+
     useEffect(() => {
         if (duration !== 0) {
             setMusicPercent((currentTime / duration) * 100);
@@ -53,15 +69,10 @@ const MusicComponent: React.FC = () => {
     }, [musicPercent]);
 
     const logMsg = (): void => {
-        // console.log(currentTime + '...' + audioElement.currentTime);
         console.log(bar.current.getBoundingClientRect());
     };
 
     const clickProgress = (e: React.MouseEvent<HTMLElement>): void => {
-        // console.log(e.clientX + ' : clientX');
-        // console.log(e.pageX + ' : pageX');
-        // console.log(e.movementX + ' : movmentX');
-        // console.log(e.screenX + ' : screenX');
         if (!bar.current) return;
         const x = bar.current.getBoundingClientRect().x;
         const width = bar.current.getBoundingClientRect().width;
@@ -84,10 +95,12 @@ const MusicComponent: React.FC = () => {
     };
 
     const play = (): void => {
+        setIsPlaying(true);
         audioElement.play();
     };
 
     const pause = (): void => {
+        setIsPlaying(false);
         audioElement.pause();
     };
 
@@ -126,12 +139,13 @@ const MusicComponent: React.FC = () => {
                     ></LinearProgress>
                     <AlbumIcon className={classes.indicator} color="secondary"></AlbumIcon>
                 </div>
-                <Button variant="contained" color="primary" onClick={play}>
-                    play
-                </Button>
-                <Button variant="contained" color="primary" onClick={pause}>
-                    pause
-                </Button>{' '}
+                <IconButton aria-label="play/pause">
+                    {isPlaying ? (
+                        <PauseIcon className={classes.pause} onClick={pause}></PauseIcon>
+                    ) : (
+                        <PlayArrowIcon className={classes.play} onClick={play}></PlayArrowIcon>
+                    )}
+                </IconButton>
             </Card>
             <h1>width : {bar.current ? bar.current.offsetWidth : 0}</h1>
         </div>
