@@ -8,6 +8,7 @@ import Card from '@material-ui/core/Card';
 import IconButton from '@material-ui/core/IconButton';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import PauseIcon from '@material-ui/icons/Pause';
+import SkipNextIcon from '@material-ui/icons/SkipNext';
 
 const audioElement = new Audio('http://localhost:9999/music');
 
@@ -16,18 +17,14 @@ interface StyleProps {
 }
 
 const useStyles = makeStyles({
-    play: {
-        height: 48,
-        width: 48,
-    },
-    pause: {
+    musicFunctionIcon: {
         height: 48,
         width: 48,
     },
     card: {
         display: 'flex',
         boarder: 'solid',
-        width: 400,
+        width: 600,
     },
     bound: {
         paddingTop: 0,
@@ -81,7 +78,6 @@ const MusicComponent: React.FC = () => {
         setClickPercent(percent);
         if (duration !== 0) {
             audioElement.currentTime = currentTime;
-            // setCurrentTime(currentTime);
         }
     };
 
@@ -94,14 +90,24 @@ const MusicComponent: React.FC = () => {
         setCurrentTime(audioElement.currentTime);
     };
 
-    const play = (): void => {
-        setIsPlaying(true);
-        audioElement.play();
-    };
+    // const play = (): void => {
+    //     setIsPlaying(true);
+    //     audioElement.play();
+    // };
 
-    const pause = (): void => {
-        setIsPlaying(false);
-        audioElement.pause();
+    // const pause = (): void => {
+    //     setIsPlaying(false);
+    //     audioElement.pause();
+    // };
+
+    const pausePlay = (): void => {
+        if (isPlaying) {
+            audioElement.pause();
+            setIsPlaying(false);
+        } else {
+            audioElement.play();
+            setIsPlaying(true);
+        }
     };
 
     const setTime = (): void => {
@@ -110,14 +116,12 @@ const MusicComponent: React.FC = () => {
         console.log('set time');
     };
 
+    const skipToNext = (): void => {
+        console.log('getNextSong');
+    };
+
     return (
         <div>
-            <Button variant="contained" color="primary" onClick={play}>
-                play
-            </Button>
-            <Button variant="contained" color="primary" onClick={pause}>
-                pause
-            </Button>
             <Button variant="contained" color="primary" onClick={setTime}>
                 set
             </Button>
@@ -139,12 +143,15 @@ const MusicComponent: React.FC = () => {
                     ></LinearProgress>
                     <AlbumIcon className={classes.indicator} color="secondary"></AlbumIcon>
                 </div>
-                <IconButton aria-label="play/pause">
+                <IconButton aria-label="play/pause" onClick={pausePlay}>
                     {isPlaying ? (
-                        <PauseIcon className={classes.pause} onClick={pause}></PauseIcon>
+                        <PauseIcon className={classes.musicFunctionIcon}></PauseIcon>
                     ) : (
-                        <PlayArrowIcon className={classes.play} onClick={play}></PlayArrowIcon>
+                        <PlayArrowIcon className={classes.musicFunctionIcon}></PlayArrowIcon>
                     )}
+                </IconButton>
+                <IconButton aria-label="next" onClick={skipToNext}>
+                    <SkipNextIcon className={classes.musicFunctionIcon}></SkipNextIcon>
                 </IconButton>
             </Card>
             <h1>width : {bar.current ? bar.current.offsetWidth : 0}</h1>
