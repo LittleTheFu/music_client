@@ -14,8 +14,8 @@ async function api<T>(url: string, info: object): Promise<T> {
     return data as T;
 }
 
-export const fetchNextMusic = (resolve: (arg0: string) => void, reject: (arg0: object) => void): void => {
-    api<{ name: string }>(musicUrl, info)
-        .then(({ name }) => resolve(name))
+export const fetchNextMusic = (resolve: (arg0: string, arg1: string) => void, reject: (arg0: object) => void): void => {
+    api<{ name: string; cover: string }>(musicUrl, info)
+        .then(({ name, cover }) => resolve(name, cover))
         .catch(e => reject(e));
 };

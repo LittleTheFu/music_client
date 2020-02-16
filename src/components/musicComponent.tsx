@@ -4,6 +4,7 @@ import LinearProgress from '@material-ui/core/LinearProgress';
 import { makeStyles } from '@material-ui/core/styles';
 import AlbumIcon from '@material-ui/icons/Album';
 import Card from '@material-ui/core/Card';
+import CardMedia from '@material-ui/core/CardMedia';
 // import CardContent from '@material-ui/core/CardContent';
 import IconButton from '@material-ui/core/IconButton';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
@@ -54,6 +55,9 @@ const useStyles = makeStyles({
         top: 21,
         position: 'relative',
     }),
+    cover: {
+        width: 100,
+    },
 });
 
 const MusicComponent: React.FC = () => {
@@ -61,7 +65,7 @@ const MusicComponent: React.FC = () => {
     const [duration, setDuration] = useState(0);
     const [musicPercent, setMusicPercent] = useState(0);
     const [clickPercent, setClickPercent] = useState(0);
-
+    const [cover, setCover] = useState('http://localhost:9999/album/0.png');
     const [props, setProps] = useState({ percent: '90%' });
     const classes = useStyles(props);
 
@@ -135,9 +139,10 @@ const MusicComponent: React.FC = () => {
 
     const skipToNext = (): void => {
         fetchNextMusic(
-            name => {
+            (name, cover) => {
                 audioElement.src = name;
                 audioElement.autoplay = true;
+                setCover(cover);
                 setIsPlaying(true);
             },
             e => console.log(e),
@@ -182,6 +187,7 @@ const MusicComponent: React.FC = () => {
                 <IconButton aria-label="next" onClick={skipToNext}>
                     <SkipNextIcon className={classes.musicFunctionIcon}></SkipNextIcon>
                 </IconButton>
+                <CardMedia image={cover} className={classes.cover}></CardMedia>
             </Card>
             <h1>width : {bar.current ? bar.current.offsetWidth : 0}</h1>
         </div>
