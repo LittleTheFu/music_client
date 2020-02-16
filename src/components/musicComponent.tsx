@@ -56,8 +56,6 @@ const useStyles = makeStyles({
     }),
 });
 
-const index = 0;
-
 const MusicComponent: React.FC = () => {
     const [currentTime, setCurrentTime] = useState(0);
     const [duration, setDuration] = useState(0);
