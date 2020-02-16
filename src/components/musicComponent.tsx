@@ -9,8 +9,22 @@ import IconButton from '@material-ui/core/IconButton';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import PauseIcon from '@material-ui/icons/Pause';
 import SkipNextIcon from '@material-ui/icons/SkipNext';
+import { fetchNextMusic } from '../service';
 
-const audioElement = new Audio('http://localhost:9999/music');
+const audioElement = new Audio();
+audioElement.src = 'http://localhost:9999/1.mp3';
+// audioElement.src = 'https://file-examples.com/wp-content/uploads/2017/11/file_example_MP3_1MG.mp3';
+// audioElement.load();
+// audioElement.muted = true;
+// audioElement
+//     .play()
+//     .then(() => {
+//         console.log('PLAY');
+//     })
+//     .catch(e => {
+//         console.log(e);
+//     });
+audioElement.autoplay = false;
 
 interface StyleProps {
     percent: string;
@@ -41,6 +55,8 @@ const useStyles = makeStyles({
         position: 'relative',
     }),
 });
+
+const index = 0;
 
 const MusicComponent: React.FC = () => {
     const [currentTime, setCurrentTime] = useState(0);
@@ -84,28 +100,31 @@ const MusicComponent: React.FC = () => {
     audioElement.onloadedmetadata = (): void => {
         setCurrentTime(audioElement.currentTime);
         setDuration(audioElement.duration);
+        // setIsPlaying(true);
+        console.log('load finished');
     };
 
     audioElement.ontimeupdate = (): void => {
         setCurrentTime(audioElement.currentTime);
     };
 
-    // const play = (): void => {
-    //     setIsPlaying(true);
-    //     audioElement.play();
-    // };
-
-    // const pause = (): void => {
-    //     setIsPlaying(false);
-    //     audioElement.pause();
-    // };
+    const changeMusic = (): void => {
+        audioElement.src = 'https://file-examples.com/wp-content/uploads/2017/11/file_example_MP3_700KB.mp3';
+    };
 
     const pausePlay = (): void => {
         if (isPlaying) {
             audioElement.pause();
             setIsPlaying(false);
         } else {
-            audioElement.play();
+            audioElement
+                .play()
+                .then(() => {
+                    console.log('PLAY');
+                })
+                .catch(e => {
+                    console.log(e);
+                });
             setIsPlaying(true);
         }
     };
@@ -117,7 +136,14 @@ const MusicComponent: React.FC = () => {
     };
 
     const skipToNext = (): void => {
-        console.log('getNextSong');
+        fetchNextMusic(
+            name => {
+                audioElement.src = name;
+                audioElement.autoplay = true;
+                setIsPlaying(true);
+            },
+            e => console.log(e),
+        );
     };
 
     return (
@@ -127,6 +153,9 @@ const MusicComponent: React.FC = () => {
             </Button>
             <Button variant="contained" color="primary" onClick={logMsg}>
                 log
+            </Button>
+            <Button variant="contained" color="primary" onClick={changeMusic}>
+                change
             </Button>
             <h1>{currentTime}</h1>
             <h1>{duration}</h1>
