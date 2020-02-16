@@ -12,7 +12,7 @@ import SkipNextIcon from '@material-ui/icons/SkipNext';
 import { fetchNextMusic } from '../service';
 
 const audioElement = new Audio();
-audioElement.src = 'http://localhost:9999/1.mp3';
+audioElement.src = 'http://localhost:9999/music/1.mp3';
 // audioElement.src = 'https://file-examples.com/wp-content/uploads/2017/11/file_example_MP3_1MG.mp3';
 // audioElement.load();
 // audioElement.muted = true;
@@ -143,6 +143,8 @@ const MusicComponent: React.FC = () => {
             e => console.log(e),
         );
     };
+
+    audioElement.onended = skipToNext;
 
     return (
         <div>
