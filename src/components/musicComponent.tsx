@@ -206,7 +206,7 @@ const MusicComponent: React.FC = () => {
                     <Slider
                         orientation="vertical"
                         className={classes.volumnSlier}
-                        onChangeCommitted={(event: object, value: any) => {
+                        onChangeCommitted={(event: object, value: any): void => {
                             // console.log('volumn change : ' + value);
                             setVolumn(value / 100.0);
                         }}
