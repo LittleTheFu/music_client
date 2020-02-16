@@ -11,6 +11,7 @@ import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import PauseIcon from '@material-ui/icons/Pause';
 import SkipNextIcon from '@material-ui/icons/SkipNext';
 import { fetchNextMusic } from '../service';
+import Slider from '@material-ui/core/Slider';
 
 const audioElement = new Audio();
 audioElement.src = 'http://localhost:9999/music/1.mp3';
@@ -40,6 +41,7 @@ const useStyles = makeStyles({
         display: 'flex',
         boarder: 'solid',
         width: 600,
+        height: 72,
     },
     bound: {
         paddingTop: 0,
@@ -58,6 +60,8 @@ const useStyles = makeStyles({
     cover: {
         width: 100,
     },
+    volumnRoot: { height: 54, position: 'relative', top: 10 },
+    volumnSlier: {},
 });
 
 const MusicComponent: React.FC = () => {
@@ -68,6 +72,11 @@ const MusicComponent: React.FC = () => {
     const [cover, setCover] = useState('http://localhost:9999/album/0.png');
     const [props, setProps] = useState({ percent: '90%' });
     const classes = useStyles(props);
+
+    const [volumn, setVolumn] = useState(0.5);
+    audioElement.volume = volumn;
+
+    // const volumnBar = useRef(null);
 
     const bar = useRef(null);
 
@@ -82,6 +91,11 @@ const MusicComponent: React.FC = () => {
     useEffect(() => {
         setProps({ percent: (musicPercent - 1).toString() + '%' });
     }, [musicPercent]);
+
+    useEffect(() => {
+        audioElement.volume = volumn;
+        console.log(audioElement.volume);
+    }, [volumn]);
 
     const logMsg = (): void => {
         console.log(bar.current.getBoundingClientRect());
@@ -188,6 +202,16 @@ const MusicComponent: React.FC = () => {
                     <SkipNextIcon className={classes.musicFunctionIcon}></SkipNextIcon>
                 </IconButton>
                 <CardMedia image={cover} className={classes.cover}></CardMedia>
+                <div className={classes.volumnRoot}>
+                    <Slider
+                        orientation="vertical"
+                        className={classes.volumnSlier}
+                        onChangeCommitted={(event: object, value: any) => {
+                            // console.log('volumn change : ' + value);
+                            setVolumn(value / 100.0);
+                        }}
+                    ></Slider>
+                </div>
             </Card>
             <h1>width : {bar.current ? bar.current.offsetWidth : 0}</h1>
         </div>
