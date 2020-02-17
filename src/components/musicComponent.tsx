@@ -11,6 +11,7 @@ import SkipNextIcon from '@material-ui/icons/SkipNext';
 import { fetchNextMusic } from '../service';
 import Slider from '@material-ui/core/Slider';
 import Paper from '@material-ui/core/Paper';
+import MusicInfoComponent from './musicInfoComponent';
 
 const audioElement = new Audio();
 audioElement.src = 'http://localhost:9999/music/1.mp3';
@@ -177,6 +178,7 @@ const MusicComponent: React.FC = () => {
             <h4>{name}</h4>
             <h4>{artist}</h4>
             <h4>{album}</h4>
+            <MusicInfoComponent></MusicInfoComponent>
             <Paper variant="outlined">
                 <Card className={classes.card}>
                     <div className={classes.bound}>
