@@ -14,8 +14,11 @@ async function api<T>(url: string, info: object): Promise<T> {
     return data as T;
 }
 
-export const fetchNextMusic = (resolve: (arg0: string, arg1: string) => void, reject: (arg0: object) => void): void => {
-    api<{ name: string; cover: string }>(musicUrl, info)
-        .then(({ name, cover }) => resolve(name, cover))
+export const fetchNextMusic = (
+    resolve: (arg0: string, arg1: string, arg2: string, arg3: string, arg4: string) => void,
+    reject: (arg0: object) => void,
+): void => {
+    api<{ address: string; cover: string; name: string; artist: string; album: string }>(musicUrl, info)
+        .then(({ address, cover, name, artist, album }) => resolve(address, cover, name, artist, album))
         .catch(e => reject(e));
 };

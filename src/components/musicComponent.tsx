@@ -63,6 +63,9 @@ const MusicComponent: React.FC = () => {
     const [duration, setDuration] = useState(0);
     const [musicPercent, setMusicPercent] = useState(0);
     const [cover, setCover] = useState('http://localhost:9999/album/0.png');
+    const [name, setName] = useState('name');
+    const [artist, setArtist] = useState('artist');
+    const [album, setAlbum] = useState('album');
 
     const classes = useStyles({});
 
@@ -141,8 +144,12 @@ const MusicComponent: React.FC = () => {
 
     const skipToNext = (): void => {
         fetchNextMusic(
-            (name, cover) => {
-                audioElement.src = name;
+            (address, cover, name, artist, album) => {
+                setName(name);
+                setArtist(artist);
+                setAlbum(album);
+
+                audioElement.src = address;
                 audioElement.autoplay = true;
                 setCover(cover);
                 setIsPlaying(true);
@@ -167,8 +174,9 @@ const MusicComponent: React.FC = () => {
             <h1>{currentTime}</h1>
             <h1>{duration}</h1>
             <h1>musicPercent : {musicPercent}</h1>
-            <h4>songName</h4>
-            <h4>artist-album</h4>
+            <h4>{name}</h4>
+            <h4>{artist}</h4>
+            <h4>{album}</h4>
             <Paper variant="outlined">
                 <Card className={classes.card}>
                     <div className={classes.bound}>
