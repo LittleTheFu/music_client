@@ -178,9 +178,12 @@ const MusicComponent: React.FC = () => {
             <h4>{name}</h4>
             <h4>{artist}</h4>
             <h4>{album}</h4>
-            <Card>
-                <MusicInfoComponent></MusicInfoComponent>
-            </Card>
+            <MusicInfoComponent
+                name="good"
+                artist="atst"
+                cover="http://localhost:9999/album/0.png"
+                album="albm"
+            ></MusicInfoComponent>
             <Paper variant="outlined">
                 <Card className={classes.card} raised={true}>
                     <div className={classes.bound}>
