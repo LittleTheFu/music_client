@@ -10,6 +10,7 @@ import PauseIcon from '@material-ui/icons/Pause';
 import SkipNextIcon from '@material-ui/icons/SkipNext';
 import { fetchNextMusic } from '../service';
 import Slider from '@material-ui/core/Slider';
+import Paper from '@material-ui/core/Paper';
 
 const audioElement = new Audio();
 audioElement.src = 'http://localhost:9999/music/1.mp3';
@@ -166,33 +167,37 @@ const MusicComponent: React.FC = () => {
             <h1>{currentTime}</h1>
             <h1>{duration}</h1>
             <h1>musicPercent : {musicPercent}</h1>
-            <Card className={classes.card}>
-                <div className={classes.bound}>
-                    <Slider
-                        className={classes.musicSlider}
-                        value={musicPercent}
-                        onChangeCommitted={changeMusicPercent}
-                    ></Slider>
-                </div>
-                <IconButton aria-label="play/pause" onClick={pausePlay}>
-                    {isPlaying ? (
-                        <PauseIcon className={classes.musicFunctionIcon}></PauseIcon>
-                    ) : (
-                        <PlayArrowIcon className={classes.musicFunctionIcon}></PlayArrowIcon>
-                    )}
-                </IconButton>
-                <IconButton aria-label="next" onClick={skipToNext}>
-                    <SkipNextIcon className={classes.musicFunctionIcon}></SkipNextIcon>
-                </IconButton>
-                <CardMedia image={cover} className={classes.cover}></CardMedia>
-                <div className={classes.volumnRoot}>
-                    <Slider
-                        orientation="vertical"
-                        className={classes.volumnSlier}
-                        onChangeCommitted={changeMusicVolumn}
-                    ></Slider>
-                </div>
-            </Card>
+            <h4>songName</h4>
+            <h4>artist-album</h4>
+            <Paper variant="outlined">
+                <Card className={classes.card}>
+                    <div className={classes.bound}>
+                        <Slider
+                            className={classes.musicSlider}
+                            value={musicPercent}
+                            onChangeCommitted={changeMusicPercent}
+                        ></Slider>
+                    </div>
+                    <IconButton aria-label="play/pause" onClick={pausePlay}>
+                        {isPlaying ? (
+                            <PauseIcon className={classes.musicFunctionIcon}></PauseIcon>
+                        ) : (
+                            <PlayArrowIcon className={classes.musicFunctionIcon}></PlayArrowIcon>
+                        )}
+                    </IconButton>
+                    <IconButton aria-label="next" onClick={skipToNext}>
+                        <SkipNextIcon className={classes.musicFunctionIcon}></SkipNextIcon>
+                    </IconButton>
+                    <CardMedia image={cover} className={classes.cover}></CardMedia>
+                    <div className={classes.volumnRoot}>
+                        <Slider
+                            orientation="vertical"
+                            className={classes.volumnSlier}
+                            onChangeCommitted={changeMusicVolumn}
+                        ></Slider>
+                    </div>
+                </Card>
+            </Paper>
             <h1>width : {bar.current ? bar.current.offsetWidth : 0}</h1>
         </div>
     );
