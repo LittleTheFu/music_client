@@ -11,6 +11,9 @@ interface MusicInfoProps {
 }
 
 const useStyles = makeStyles({
+    card: {
+        width: 600,
+    },
     cover: {
         width: 200,
         height: 200,
@@ -22,12 +25,11 @@ const MusicInfoComponent: React.FC<MusicInfoProps> = (props: MusicInfoProps) => 
     const classes = useStyles({});
 
     return (
-        <Card raised={true}>
+        <Card raised={true} className={classes.card}>
             <h4>
                 {props.name}--
                 {props.artist}--
                 {props.album}--
-                {props.cover}
             </h4>
             <CardMedia image={props.cover} className={classes.cover}></CardMedia>
         </Card>
