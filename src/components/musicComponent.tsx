@@ -1,8 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Button from '@material-ui/core/Button';
-import LinearProgress from '@material-ui/core/LinearProgress';
 import { makeStyles } from '@material-ui/core/styles';
-import AlbumIcon from '@material-ui/icons/Album';
 import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
 // import CardContent from '@material-ui/core/CardContent';
@@ -49,14 +47,9 @@ const useStyles = makeStyles({
         width: '80%',
         left: 100,
     },
-    progress: {
-        top: 35,
+    musicSlider: {
+        top: 24,
     },
-    indicator: (props: StyleProps) => ({
-        left: props.percent,
-        top: 21,
-        position: 'relative',
-    }),
     cover: {
         width: 100,
     },
@@ -68,15 +61,12 @@ const MusicComponent: React.FC = () => {
     const [currentTime, setCurrentTime] = useState(0);
     const [duration, setDuration] = useState(0);
     const [musicPercent, setMusicPercent] = useState(0);
-    const [clickPercent, setClickPercent] = useState(0);
     const [cover, setCover] = useState('http://localhost:9999/album/0.png');
-    const [props, setProps] = useState({ percent: '90%' });
-    const classes = useStyles(props);
+
+    const classes = useStyles({});
 
     const [volumn, setVolumn] = useState(0.5);
     audioElement.volume = volumn;
-
-    // const volumnBar = useRef(null);
 
     const bar = useRef(null);
 
@@ -89,10 +79,6 @@ const MusicComponent: React.FC = () => {
     }, [currentTime, duration]);
 
     useEffect(() => {
-        setProps({ percent: (musicPercent - 1).toString() + '%' });
-    }, [musicPercent]);
-
-    useEffect(() => {
         audioElement.volume = volumn;
         console.log(audioElement.volume);
     }, [volumn]);
@@ -101,16 +87,17 @@ const MusicComponent: React.FC = () => {
         console.log(bar.current.getBoundingClientRect());
     };
 
-    const clickProgress = (e: React.MouseEvent<HTMLElement>): void => {
-        if (!bar.current) return;
-        const x = bar.current.getBoundingClientRect().x;
-        const width = bar.current.getBoundingClientRect().width;
-        const percent = (e.clientX - x) / width;
-        const currentTime = duration * percent;
-        setClickPercent(percent);
+    const changeMusicPercent = (event: object, value: unknown): void => {
+        const percent = value as number;
+        console.log(percent);
+        const currentTime = (duration * percent) / 100.0;
         if (duration !== 0) {
             audioElement.currentTime = currentTime;
         }
+    };
+
+    const changeMusicVolumn = (event: object, value: unknown): void => {
+        setVolumn((value as number) / 100.0);
     };
 
     audioElement.onloadedmetadata = (): void => {
@@ -179,17 +166,13 @@ const MusicComponent: React.FC = () => {
             <h1>{currentTime}</h1>
             <h1>{duration}</h1>
             <h1>musicPercent : {musicPercent}</h1>
-            <h1>clickPercent : {clickPercent}</h1>
             <Card className={classes.card}>
                 <div className={classes.bound}>
-                    <LinearProgress
-                        ref={bar}
-                        className={classes.progress}
-                        variant="determinate"
+                    <Slider
+                        className={classes.musicSlider}
                         value={musicPercent}
-                        onClick={(e): void => clickProgress(e)}
-                    ></LinearProgress>
-                    <AlbumIcon className={classes.indicator} color="secondary"></AlbumIcon>
+                        onChangeCommitted={changeMusicPercent}
+                    ></Slider>
                 </div>
                 <IconButton aria-label="play/pause" onClick={pausePlay}>
                     {isPlaying ? (
@@ -206,10 +189,7 @@ const MusicComponent: React.FC = () => {
                     <Slider
                         orientation="vertical"
                         className={classes.volumnSlier}
-                        onChangeCommitted={(event: object, value: unknown): void => {
-                            // console.log('volumn change : ' + value);
-                            setVolumn((value as number) / 100.0);
-                        }}
+                        onChangeCommitted={changeMusicVolumn}
                     ></Slider>
                 </div>
             </Card>
