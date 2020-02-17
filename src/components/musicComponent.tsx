@@ -208,7 +208,7 @@ const MusicComponent: React.FC = () => {
                         className={classes.volumnSlier}
                         onChangeCommitted={(event: object, value: unknown): void => {
                             // console.log('volumn change : ' + value);
-                            setVolumn(value / 100.0);
+                            setVolumn((value as number) / 100.0);
                         }}
                     ></Slider>
                 </div>
