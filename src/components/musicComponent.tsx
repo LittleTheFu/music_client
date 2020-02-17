@@ -178,9 +178,11 @@ const MusicComponent: React.FC = () => {
             <h4>{name}</h4>
             <h4>{artist}</h4>
             <h4>{album}</h4>
-            <MusicInfoComponent></MusicInfoComponent>
+            <Card>
+                <MusicInfoComponent></MusicInfoComponent>
+            </Card>
             <Paper variant="outlined">
-                <Card className={classes.card}>
+                <Card className={classes.card} raised={true}>
                     <div className={classes.bound}>
                         <Slider
                             className={classes.musicSlider}
