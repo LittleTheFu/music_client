@@ -8,7 +8,7 @@ import IconButton from '@material-ui/core/IconButton';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import PauseIcon from '@material-ui/icons/Pause';
 import SkipNextIcon from '@material-ui/icons/SkipNext';
-import { fetchNextMusic, fetchMusicList } from '../service';
+import { fetchMusicList } from '../service';
 import Slider from '@material-ui/core/Slider';
 import Paper from '@material-ui/core/Paper';
 import MusicInfoComponent from './musicInfoComponent';
@@ -146,6 +146,7 @@ const MusicComponent: React.FC = () => {
     const [name, setName] = useState('name');
     const [artist, setArtist] = useState('artist');
     const [album, setAlbum] = useState('album');
+    const [musicIndex, setMusicIndex] = useState(0);
 
     const classes = useStyles({});
 
@@ -222,23 +223,7 @@ const MusicComponent: React.FC = () => {
         console.log('set time');
     };
 
-    const skipToNext = (): void => {
-        fetchNextMusic(
-            (address, cover, name, artist, album) => {
-                setName(name);
-                setArtist(artist);
-                setAlbum(album);
-
-                audioElement.src = address;
-                audioElement.autoplay = true;
-                setCover(cover);
-                setIsPlaying(true);
-            },
-            e => console.log(e),
-        );
-    };
-
-    const playMusic = (m: Music): void => {
+    const playMusic = (m: Music, index: number): void => {
         setName(m.name);
         setArtist(m.artist);
         setAlbum(m.album);
@@ -248,6 +233,12 @@ const MusicComponent: React.FC = () => {
         audioElement.autoplay = true;
 
         setIsPlaying(true);
+        setMusicIndex(index);
+    };
+
+    const skipToNext = (): void => {
+        const i = (musicIndex + 1) % 8;
+        playMusic(musics[i], i);
     };
 
     audioElement.onended = skipToNext;
@@ -299,10 +290,10 @@ const MusicComponent: React.FC = () => {
                 </Card>
                 <Card className={classes.list} raised={true}>
                     <List component="nav">
-                        {musics.map((item: Music) => {
+                        {musics.map((item: Music, index: number) => {
                             return (
-                                <ListItem button key={item.name} onClick={(): void => playMusic(item)}>
-                                    {item.name}
+                                <ListItem button key={item.name} onClick={(): void => playMusic(item, index)}>
+                                    {index} : {item.name}
                                 </ListItem>
                             );
                         })}
