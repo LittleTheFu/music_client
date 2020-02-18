@@ -12,6 +12,74 @@ import { fetchNextMusic } from '../service';
 import Slider from '@material-ui/core/Slider';
 import Paper from '@material-ui/core/Paper';
 import MusicInfoComponent from './musicInfoComponent';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+
+interface Music {
+    address: string;
+    cover: string;
+    name: string;
+    artist: string;
+    album: string;
+}
+
+const musics: Music[] = [];
+musics.push({
+    address: 'http://localhost:9999/music/0.mp3',
+    cover: 'http://localhost:9999/album/0.png',
+    name: 'Honey Bunny My Love',
+    artist: 'SHAKING PINK',
+    album: 'しぇいきんぐ!SHAKING PINK',
+});
+musics.push({
+    address: 'http://localhost:9999/music/1.mp3',
+    cover: 'http://localhost:9999/album/1.png',
+    name: 'Tasty Carrots',
+    artist: 'Shou (Discandy)',
+    album: 'TastyCarrots',
+});
+musics.push({
+    address: 'http://localhost:9999/music/2.mp3',
+    cover: 'http://localhost:9999/album/2.png',
+    name: '萃梦想歌',
+    artist: 'Silver Forest',
+    album: 'Vermillion Summer',
+});
+musics.push({
+    address: 'http://localhost:9999/music/3.mp3',
+    cover: 'http://localhost:9999/album/3.png',
+    name: 'What’s Love?',
+    artist: 'SKELT 8 BAMBINO',
+    album: 'Whats Love? feat.SoulJa',
+});
+musics.push({
+    address: 'http://localhost:9999/music/4.mp3',
+    cover: 'http://localhost:9999/album/4.png',
+    name: 'Will ( Original Mix )',
+    artist: 'SnoweeD',
+    album: 'Will',
+});
+musics.push({
+    address: 'http://localhost:9999/music/5.mp3',
+    cover: 'http://localhost:9999/album/5.png',
+    name: 'Bubbles',
+    artist: 'SnowFlakez!',
+    album: 'Bubbles',
+});
+musics.push({
+    address: 'http://localhost:9999/music/6.mp3',
+    cover: 'http://localhost:9999/album/6.png',
+    name: 'Grayedout-Antifront- (Soleily Remix)',
+    artist: 'Soleily',
+    album: 'ANTiFRONT GEARS',
+});
+musics.push({
+    address: 'http://localhost:9999/music/7.mp3',
+    cover: 'http://localhost:9999/album/7.png',
+    name: 'Thalidomide Chocolat',
+    artist: 'Sound.AVE',
+    album: 'Reliance',
+});
 
 const audioElement = new Audio();
 audioElement.src = 'http://localhost:9999/music/1.mp3';
@@ -36,6 +104,10 @@ const useStyles = makeStyles({
     musicFunctionIcon: {
         height: 48,
         width: 48,
+    },
+    list: {
+        width: 600,
+        height: 600,
     },
     card: {
         display: 'flex',
@@ -159,6 +231,18 @@ const MusicComponent: React.FC = () => {
         );
     };
 
+    const playMusic = (m: Music): void => {
+        setName(m.name);
+        setArtist(m.artist);
+        setAlbum(m.album);
+        setCover(m.cover);
+
+        audioElement.src = m.address;
+        audioElement.autoplay = true;
+
+        setIsPlaying(true);
+    };
+
     audioElement.onended = skipToNext;
 
     return (
@@ -179,7 +263,6 @@ const MusicComponent: React.FC = () => {
             <h4>{artist}</h4>
             <h4>{album}</h4>
             <Paper variant="outlined">
-                <MusicInfoComponent name={name} artist={artist} cover={cover} album={album}></MusicInfoComponent>
                 <Card className={classes.card} raised={true}>
                     <div className={classes.bound}>
                         <Slider
@@ -207,6 +290,18 @@ const MusicComponent: React.FC = () => {
                         ></Slider>
                     </div>
                 </Card>
+                <Card className={classes.list} raised={true}>
+                    <List component="nav">
+                        {musics.map((item: Music) => {
+                            return (
+                                <ListItem button key={item.name} onClick={(): void => playMusic(item)}>
+                                    {item.name}
+                                </ListItem>
+                            );
+                        })}
+                    </List>
+                </Card>
+                <MusicInfoComponent name={name} artist={artist} cover={cover} album={album}></MusicInfoComponent>
             </Paper>
             <h1>width : {bar.current ? bar.current.offsetWidth : 0}</h1>
         </div>
