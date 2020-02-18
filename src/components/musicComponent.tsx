@@ -8,7 +8,7 @@ import IconButton from '@material-ui/core/IconButton';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import PauseIcon from '@material-ui/icons/Pause';
 import SkipNextIcon from '@material-ui/icons/SkipNext';
-import { fetchNextMusic } from '../service';
+import { fetchNextMusic, fetchMusicList } from '../service';
 import Slider from '@material-ui/core/Slider';
 import Paper from '@material-ui/core/Paper';
 import MusicInfoComponent from './musicInfoComponent';
@@ -23,63 +23,70 @@ interface Music {
     album: string;
 }
 
-const musics: Music[] = [];
-musics.push({
-    address: 'http://localhost:9999/music/0.mp3',
-    cover: 'http://localhost:9999/album/0.png',
-    name: 'Honey Bunny My Love',
-    artist: 'SHAKING PINK',
-    album: 'しぇいきんぐ!SHAKING PINK',
-});
-musics.push({
-    address: 'http://localhost:9999/music/1.mp3',
-    cover: 'http://localhost:9999/album/1.png',
-    name: 'Tasty Carrots',
-    artist: 'Shou (Discandy)',
-    album: 'TastyCarrots',
-});
-musics.push({
-    address: 'http://localhost:9999/music/2.mp3',
-    cover: 'http://localhost:9999/album/2.png',
-    name: '萃梦想歌',
-    artist: 'Silver Forest',
-    album: 'Vermillion Summer',
-});
-musics.push({
-    address: 'http://localhost:9999/music/3.mp3',
-    cover: 'http://localhost:9999/album/3.png',
-    name: 'What’s Love?',
-    artist: 'SKELT 8 BAMBINO',
-    album: 'Whats Love? feat.SoulJa',
-});
-musics.push({
-    address: 'http://localhost:9999/music/4.mp3',
-    cover: 'http://localhost:9999/album/4.png',
-    name: 'Will ( Original Mix )',
-    artist: 'SnoweeD',
-    album: 'Will',
-});
-musics.push({
-    address: 'http://localhost:9999/music/5.mp3',
-    cover: 'http://localhost:9999/album/5.png',
-    name: 'Bubbles',
-    artist: 'SnowFlakez!',
-    album: 'Bubbles',
-});
-musics.push({
-    address: 'http://localhost:9999/music/6.mp3',
-    cover: 'http://localhost:9999/album/6.png',
-    name: 'Grayedout-Antifront- (Soleily Remix)',
-    artist: 'Soleily',
-    album: 'ANTiFRONT GEARS',
-});
-musics.push({
-    address: 'http://localhost:9999/music/7.mp3',
-    cover: 'http://localhost:9999/album/7.png',
-    name: 'Thalidomide Chocolat',
-    artist: 'Sound.AVE',
-    album: 'Reliance',
-});
+let musics: Music[] = [];
+fetchMusicList(
+    musicList => (musics = musicList as Music[]),
+    // musicList => console.log(musicList),
+    e => console.log(e),
+);
+console.log('aaaaaa');
+
+// musics.push({
+//     address: 'http://localhost:9999/music/0.mp3',
+//     cover: 'http://localhost:9999/album/0.png',
+//     name: 'Honey Bunny My Love',
+//     artist: 'SHAKING PINK',
+//     album: 'しぇいきんぐ!SHAKING PINK',
+// });
+// musics.push({
+//     address: 'http://localhost:9999/music/1.mp3',
+//     cover: 'http://localhost:9999/album/1.png',
+//     name: 'Tasty Carrots',
+//     artist: 'Shou (Discandy)',
+//     album: 'TastyCarrots',
+// });
+// musics.push({
+//     address: 'http://localhost:9999/music/2.mp3',
+//     cover: 'http://localhost:9999/album/2.png',
+//     name: '萃梦想歌',
+//     artist: 'Silver Forest',
+//     album: 'Vermillion Summer',
+// });
+// musics.push({
+//     address: 'http://localhost:9999/music/3.mp3',
+//     cover: 'http://localhost:9999/album/3.png',
+//     name: 'What’s Love?',
+//     artist: 'SKELT 8 BAMBINO',
+//     album: 'Whats Love? feat.SoulJa',
+// });
+// musics.push({
+//     address: 'http://localhost:9999/music/4.mp3',
+//     cover: 'http://localhost:9999/album/4.png',
+//     name: 'Will ( Original Mix )',
+//     artist: 'SnoweeD',
+//     album: 'Will',
+// });
+// musics.push({
+//     address: 'http://localhost:9999/music/5.mp3',
+//     cover: 'http://localhost:9999/album/5.png',
+//     name: 'Bubbles',
+//     artist: 'SnowFlakez!',
+//     album: 'Bubbles',
+// });
+// musics.push({
+//     address: 'http://localhost:9999/music/6.mp3',
+//     cover: 'http://localhost:9999/album/6.png',
+//     name: 'Grayedout-Antifront- (Soleily Remix)',
+//     artist: 'Soleily',
+//     album: 'ANTiFRONT GEARS',
+// });
+// musics.push({
+//     address: 'http://localhost:9999/music/7.mp3',
+//     cover: 'http://localhost:9999/album/7.png',
+//     name: 'Thalidomide Chocolat',
+//     artist: 'Sound.AVE',
+//     album: 'Reliance',
+// });
 
 const audioElement = new Audio();
 audioElement.src = 'http://localhost:9999/music/1.mp3';
