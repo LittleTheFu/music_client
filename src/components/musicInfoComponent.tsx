@@ -18,6 +18,7 @@ const useStyles = makeStyles({
         width: 200,
         height: 200,
         borderRadius: '50%',
+        transform: 'rotate(45deg)',
     },
 });
 
