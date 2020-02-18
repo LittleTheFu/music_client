@@ -107,7 +107,7 @@ const useStyles = makeStyles({
     },
     list: {
         width: 600,
-        height: 600,
+        height: 300,
     },
     card: {
         display: 'flex',
