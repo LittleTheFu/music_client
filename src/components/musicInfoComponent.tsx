@@ -14,11 +14,23 @@ const useStyles = makeStyles({
     card: {
         width: 600,
     },
+    '@keyframes spin': {
+        from: {
+            transform: 'rotate(0deg)',
+        },
+        to: {
+            transform: 'rotate(360deg)',
+        },
+    },
     cover: {
         width: 200,
         height: 200,
         borderRadius: '50%',
-        transform: 'rotate(45deg)',
+        animationName: '$spin',
+        animationDuration: '12000ms',
+        animationIterationCount: 'infinite',
+        animationTimingFunction: 'linear',
+        animationPlayState: 'running',
     },
 });
 
