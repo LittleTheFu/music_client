@@ -3,14 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-
-interface Music {
-    address: string;
-    cover: string;
-    name: string;
-    artist: string;
-    album: string;
-}
+import { Music } from '../dataInterfaces/music';
 
 interface MusicList {
     musics: Music[];

@@ -12,18 +12,17 @@ import { fetchMusicList } from '../service';
 import Slider from '@material-ui/core/Slider';
 import Paper from '@material-ui/core/Paper';
 import MusicInfoComponent from './musicInfoComponent';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
 // import { AudioComponent } from './audioComponent';
 import { MusicListComponent } from './musicListComponent';
+import { Music } from '../dataInterfaces/music';
 
-interface Music {
-    address: string;
-    cover: string;
-    name: string;
-    artist: string;
-    album: string;
-}
+// interface Music {
+//     address: string;
+//     cover: string;
+//     name: string;
+//     artist: string;
+//     album: string;
+// }
 
 let musics: Music[] = [];
 fetchMusicList(
