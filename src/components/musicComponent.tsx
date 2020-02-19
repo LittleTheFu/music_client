@@ -195,12 +195,9 @@ const MusicComponent: React.FC = () => {
             <Button variant="contained" color="primary" onClick={changeMusic}>
                 change
             </Button>
-            <h1>{currentTime}</h1>
-            <h1>{duration}</h1>
-            <h1>musicPercent : {musicPercent}</h1>
-            <h4>{name}</h4>
-            <h4>{artist}</h4>
-            <h4>{album}</h4>
+            <h4>{currentTime}</h4>
+            <h4>{duration}</h4>
+            <h4>musicPercent : {musicPercent}</h4>
             <Paper variant="outlined">
                 <PlayBarComponent
                     musicPercent={musicPercent}
