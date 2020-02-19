@@ -3,7 +3,7 @@ import Button from '@material-ui/core/Button';
 // import { makeStyles } from '@material-ui/core/styles';
 import { fetchMusicList } from '../service';
 import Paper from '@material-ui/core/Paper';
-import MusicInfoComponent from './musicInfoComponent';
+import { MusicInfoComponent } from './musicInfoComponent';
 import { MusicListComponent } from './musicListComponent';
 import { Music } from '../dataInterfaces/music';
 import { PlayBarComponent } from './playBarComponent';

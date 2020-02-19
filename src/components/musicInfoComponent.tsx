@@ -34,7 +34,7 @@ const useStyles = makeStyles({
     },
 });
 
-const MusicInfoComponent: React.FC<MusicInfoProps> = (props: MusicInfoProps) => {
+export const MusicInfoComponent: React.FC<MusicInfoProps> = (props: MusicInfoProps) => {
     const classes = useStyles({});
 
     return (
@@ -48,5 +48,3 @@ const MusicInfoComponent: React.FC<MusicInfoProps> = (props: MusicInfoProps) => 
         </Card>
     );
 };
-
-export default MusicInfoComponent;
