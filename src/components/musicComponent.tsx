@@ -14,6 +14,7 @@ import Paper from '@material-ui/core/Paper';
 import MusicInfoComponent from './musicInfoComponent';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
+import AudioComponent from './musicInfoComponent';
 
 interface Music {
     address: string;
@@ -88,6 +89,7 @@ console.log('aaaaaa');
 //     album: 'Reliance',
 // });
 
+// const audioElement: HTMLAudioElement = AudioComponent({});
 const audioElement = new Audio();
 audioElement.src = 'http://localhost:9999/music/1.mp3';
 // audioElement.src = 'https://file-examples.com/wp-content/uploads/2017/11/file_example_MP3_1MG.mp3';
@@ -284,7 +286,7 @@ const MusicComponent: React.FC = () => {
                         <Slider
                             orientation="vertical"
                             className={classes.volumnSlier}
-                            onChangeCommitted={changeMusicVolumn}
+                            onChange={changeMusicVolumn}
                         ></Slider>
                     </div>
                 </Card>
