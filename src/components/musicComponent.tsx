@@ -1,24 +1,16 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Button from '@material-ui/core/Button';
-import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardMedia from '@material-ui/core/CardMedia';
-// import CardContent from '@material-ui/core/CardContent';
-import IconButton from '@material-ui/core/IconButton';
-import PlayArrowIcon from '@material-ui/icons/PlayArrow';
-import PauseIcon from '@material-ui/icons/Pause';
-import SkipNextIcon from '@material-ui/icons/SkipNext';
+// import { makeStyles } from '@material-ui/core/styles';
 import { fetchMusicList } from '../service';
-import Slider from '@material-ui/core/Slider';
 import Paper from '@material-ui/core/Paper';
 import MusicInfoComponent from './musicInfoComponent';
 import { MusicListComponent } from './musicListComponent';
 import { Music } from '../dataInterfaces/music';
+import { PlayBarComponent } from './playBarComponent';
 
 let musics: Music[] = [];
 fetchMusicList(
     musicList => (musics = musicList as Music[]),
-    // musicList => console.log(musicList),
     e => console.log(e),
 );
 console.log('aaaaaa');
@@ -85,36 +77,7 @@ audioElement.src = 'http://localhost:9999/music/1.mp3';
 
 audioElement.autoplay = false;
 
-const useStyles = makeStyles({
-    musicFunctionIcon: {
-        height: 48,
-        width: 48,
-    },
-    list: {
-        width: 600,
-        height: 300,
-    },
-    card: {
-        display: 'flex',
-        boarder: 'solid',
-        width: 600,
-        height: 72,
-    },
-    bound: {
-        paddingTop: 0,
-        paddingLeft: 10,
-        width: '80%',
-        left: 100,
-    },
-    musicSlider: {
-        top: 24,
-    },
-    cover: {
-        width: 100,
-    },
-    volumnRoot: { height: 54, position: 'relative', top: 10 },
-    volumnSlier: {},
-});
+// const useStyles = makeStyles({});
 
 const MusicComponent: React.FC = () => {
     const [currentTime, setCurrentTime] = useState(0);
@@ -126,7 +89,7 @@ const MusicComponent: React.FC = () => {
     const [album, setAlbum] = useState('album');
     const [musicIndex, setMusicIndex] = useState(0);
 
-    const classes = useStyles({});
+    // const classes = useStyles({});
 
     const [volumn, setVolumn] = useState(0.5);
     audioElement.volume = volumn;
@@ -239,33 +202,15 @@ const MusicComponent: React.FC = () => {
             <h4>{artist}</h4>
             <h4>{album}</h4>
             <Paper variant="outlined">
-                <Card className={classes.card} raised={true}>
-                    <div className={classes.bound}>
-                        <Slider
-                            className={classes.musicSlider}
-                            value={musicPercent}
-                            onChangeCommitted={changeMusicPercent}
-                        ></Slider>
-                    </div>
-                    <IconButton aria-label="play/pause" onClick={pausePlay}>
-                        {isPlaying ? (
-                            <PauseIcon className={classes.musicFunctionIcon}></PauseIcon>
-                        ) : (
-                            <PlayArrowIcon className={classes.musicFunctionIcon}></PlayArrowIcon>
-                        )}
-                    </IconButton>
-                    <IconButton aria-label="next" onClick={skipToNext}>
-                        <SkipNextIcon className={classes.musicFunctionIcon}></SkipNextIcon>
-                    </IconButton>
-                    <CardMedia image={cover} className={classes.cover}></CardMedia>
-                    <div className={classes.volumnRoot}>
-                        <Slider
-                            orientation="vertical"
-                            className={classes.volumnSlier}
-                            onChange={changeMusicVolumn}
-                        ></Slider>
-                    </div>
-                </Card>
+                <PlayBarComponent
+                    musicPercent={musicPercent}
+                    isPlaying={isPlaying}
+                    cover={cover}
+                    changeMusicPercent={changeMusicPercent}
+                    pausePlay={pausePlay}
+                    skipToNext={skipToNext}
+                    changeMusicVolumn={changeMusicVolumn}
+                ></PlayBarComponent>
                 <MusicListComponent musics={musics} clickMusic={playMusic} />
                 <MusicInfoComponent name={name} artist={artist} cover={cover} album={album}></MusicInfoComponent>
             </Paper>
