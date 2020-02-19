@@ -15,6 +15,7 @@ import MusicInfoComponent from './musicInfoComponent';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 // import { AudioComponent } from './audioComponent';
+import { MusicListComponent } from './musicListComponent';
 
 interface Music {
     address: string;
@@ -275,17 +276,7 @@ const MusicComponent: React.FC = () => {
                         ></Slider>
                     </div>
                 </Card>
-                <Card className={classes.list} raised={true}>
-                    <List component="nav">
-                        {musics.map((item: Music, index: number) => {
-                            return (
-                                <ListItem button key={item.name} onClick={(): void => playMusic(item, index)}>
-                                    {index} : {item.name}
-                                </ListItem>
-                            );
-                        })}
-                    </List>
-                </Card>
+                <MusicListComponent musics={musics} clickMusic={playMusic} />
                 <MusicInfoComponent name={name} artist={artist} cover={cover} album={album}></MusicInfoComponent>
             </Paper>
             <h1>width : {bar.current ? bar.current.offsetWidth : 0}</h1>
