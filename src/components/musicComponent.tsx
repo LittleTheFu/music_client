@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import Button from '@material-ui/core/Button';
 // import { makeStyles } from '@material-ui/core/styles';
 import { fetchMusicList } from '../service';
@@ -7,6 +7,9 @@ import { MusicInfoComponent } from './musicInfoComponent';
 import { MusicListComponent } from './musicListComponent';
 import { Music } from '../dataInterfaces/music';
 import { PlayBarComponent } from './playBarComponent';
+import { TemporaryDrawer } from './navDrawerComponent';
+
+import { AppBarComponent } from './appBarComponent';
 
 let musics: Music[] = [];
 fetchMusicList(
@@ -88,13 +91,12 @@ const MusicComponent: React.FC = () => {
     const [artist, setArtist] = useState('artist');
     const [album, setAlbum] = useState('album');
     const [musicIndex, setMusicIndex] = useState(0);
+    const [drawerOpen, setDrawerOpen] = useState(false);
 
     // const classes = useStyles({});
 
     const [volumn, setVolumn] = useState(0.3);
     audioElement.volume = volumn;
-
-    const bar = useRef(null);
 
     const [isPlaying, setIsPlaying] = useState(false);
 
@@ -110,7 +112,7 @@ const MusicComponent: React.FC = () => {
     }, [volumn]);
 
     const logMsg = (): void => {
-        console.log(bar.current.getBoundingClientRect());
+        console.log('log');
     };
 
     const changeMusicPercent = (event: object, value: unknown): void => {
@@ -186,6 +188,9 @@ const MusicComponent: React.FC = () => {
 
     return (
         <div>
+            <AppBarComponent menuButtonClick={(): void => setDrawerOpen(true)}></AppBarComponent>
+            <TemporaryDrawer drawerOpen={drawerOpen} closeDrawer={(): void => setDrawerOpen(false)}></TemporaryDrawer>
+
             <Button variant="contained" color="primary" onClick={setTime}>
                 set
             </Button>
@@ -212,7 +217,6 @@ const MusicComponent: React.FC = () => {
                 <MusicListComponent musics={musics} clickMusic={playMusic} />
                 <MusicInfoComponent name={name} artist={artist} cover={cover} album={album}></MusicInfoComponent>
             </Paper>
-            <h1>width : {bar.current ? bar.current.offsetWidth : 0}</h1>
         </div>
     );
 };
