@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Button from '@material-ui/core/Button';
-// import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import { fetchMusicList } from '../service';
 import Paper from '@material-ui/core/Paper';
 import { MusicInfoComponent } from './musicInfoComponent';
@@ -80,7 +80,11 @@ audioElement.src = 'http://localhost:9999/music/1.mp3';
 
 audioElement.autoplay = false;
 
-// const useStyles = makeStyles({});
+const useStyles = makeStyles({
+    paper: {
+        padding: 80,
+    },
+});
 
 const MusicComponent: React.FC = () => {
     const [currentTime, setCurrentTime] = useState(0);
@@ -93,7 +97,7 @@ const MusicComponent: React.FC = () => {
     const [musicIndex, setMusicIndex] = useState(0);
     const [drawerOpen, setDrawerOpen] = useState(false);
 
-    // const classes = useStyles({});
+    const classes = useStyles({});
 
     const [volumn, setVolumn] = useState(0.3);
     audioElement.volume = volumn;
@@ -190,20 +194,7 @@ const MusicComponent: React.FC = () => {
         <div>
             <AppBarComponent menuButtonClick={(): void => setDrawerOpen(true)}></AppBarComponent>
             <TemporaryDrawer drawerOpen={drawerOpen} closeDrawer={(): void => setDrawerOpen(false)}></TemporaryDrawer>
-
-            <Button variant="contained" color="primary" onClick={setTime}>
-                set
-            </Button>
-            <Button variant="contained" color="primary" onClick={logMsg}>
-                log
-            </Button>
-            <Button variant="contained" color="primary" onClick={changeMusic}>
-                change
-            </Button>
-            <h4>{currentTime}</h4>
-            <h4>{duration}</h4>
-            <h4>musicPercent : {musicPercent}</h4>
-            <Paper variant="outlined">
+            <Paper variant="outlined" className={classes.paper}>
                 <PlayBarComponent
                     musicPercent={musicPercent}
                     isPlaying={isPlaying}
@@ -217,6 +208,19 @@ const MusicComponent: React.FC = () => {
                 <MusicListComponent musics={musics} clickMusic={playMusic} />
                 <MusicInfoComponent name={name} artist={artist} cover={cover} album={album}></MusicInfoComponent>
             </Paper>
+
+            {/* <Button variant="contained" color="primary" onClick={setTime}>
+                set
+            </Button>
+            <Button variant="contained" color="primary" onClick={logMsg}>
+                log
+            </Button>
+            <Button variant="contained" color="primary" onClick={changeMusic}>
+                change
+            </Button>
+            <h4>{currentTime}</h4>
+            <h4>{duration}</h4>
+            <h4>musicPercent : {musicPercent}</h4> */}
         </div>
     );
 };
