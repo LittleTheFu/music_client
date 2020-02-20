@@ -39,6 +39,7 @@ interface PlayBarProps {
     musicPercent: number;
     isPlaying: boolean;
     cover: string;
+    volumn: number;
     changeMusicPercent: (event: object, value: unknown) => void;
     pausePlay: () => void;
     skipToNext: () => void;
@@ -47,11 +48,21 @@ interface PlayBarProps {
 
 export const PlayBarComponent: React.FC<PlayBarProps> = (props: PlayBarProps) => {
     const classes = useStyles({});
-    const { musicPercent, isPlaying, cover, changeMusicPercent, pausePlay, skipToNext, changeMusicVolumn } = props;
+    const {
+        musicPercent,
+        isPlaying,
+        cover,
+        volumn,
+        changeMusicPercent,
+        pausePlay,
+        skipToNext,
+        changeMusicVolumn,
+    } = props;
     return (
         <Card className={classes.card} raised={true}>
             <div className={classes.bound}>
                 <Slider
+                    color="secondary"
                     className={classes.musicSlider}
                     value={musicPercent}
                     onChangeCommitted={changeMusicPercent}
@@ -69,7 +80,12 @@ export const PlayBarComponent: React.FC<PlayBarProps> = (props: PlayBarProps) =>
             </IconButton>
             <CardMedia image={cover} className={classes.cover}></CardMedia>
             <div className={classes.volumnRoot}>
-                <Slider orientation="vertical" className={classes.volumnSlier} onChange={changeMusicVolumn}></Slider>
+                <Slider
+                    orientation="vertical"
+                    className={classes.volumnSlier}
+                    onChange={changeMusicVolumn}
+                    value={volumn}
+                ></Slider>
             </div>
         </Card>
     );

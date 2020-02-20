@@ -91,7 +91,7 @@ const MusicComponent: React.FC = () => {
 
     // const classes = useStyles({});
 
-    const [volumn, setVolumn] = useState(0.5);
+    const [volumn, setVolumn] = useState(0.3);
     audioElement.volume = volumn;
 
     const bar = useRef(null);
@@ -203,6 +203,7 @@ const MusicComponent: React.FC = () => {
                     musicPercent={musicPercent}
                     isPlaying={isPlaying}
                     cover={cover}
+                    volumn={volumn * 100}
                     changeMusicPercent={changeMusicPercent}
                     pausePlay={pausePlay}
                     skipToNext={skipToNext}
