@@ -4,6 +4,7 @@ const info = {
 
 const musicUrl = 'http://localhost:9999/music/nextmusic';
 const musicListUrl = 'http://localhost:9999/music/musiclist';
+const musicsUrl = 'http://localhost:9999/music/musics';
 
 async function api<T>(url: string, info: object): Promise<T> {
     const response = await fetch(url, info);
@@ -38,6 +39,14 @@ interface MusicList {
 
 export const fetchMusicList = (resolve: (arg0: object) => void, reject: (arg0: object) => void): void => {
     api<{ musicList: Array<Music> }>(musicListUrl, info)
+        .then(musicList => {
+            resolve(musicList);
+        })
+        .catch(e => reject(e));
+};
+
+export const fetchMusics = (resolve: (arg0: object) => void, reject: (arg0: object) => void): void => {
+    api<{ musicList: Array<Music> }>(musicsUrl, info)
         .then(musicList => {
             resolve(musicList);
         })

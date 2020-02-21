@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { MusicComponent } from './musicComponent';
 import { getAudioPlayer } from './audioPlayer';
 import { Music } from '../dataInterfaces/music';
-import { fetchMusicList } from '../service';
+import { fetchMusicList, fetchMusics } from '../service';
 import Button from '@material-ui/core/Button';
 
 const audioElement = getAudioPlayer();
@@ -20,10 +20,23 @@ export const MusicApp: React.FC = () => {
         );
     };
 
+    const getMusics = (): void => {
+        fetchMusics(
+            musicList => {
+                setMusics(musicList as Music[]);
+                // console.log(musics);
+            },
+            e => console.log(e),
+        );
+    };
+
     return (
         <div>
             <MusicComponent audioElement={audioElement} musics={musics}></MusicComponent>
             <Button variant="contained" color="primary" onClick={loadMusic}>
+                loadMusic
+            </Button>
+            <Button variant="contained" color="primary" onClick={getMusics}>
                 loadMusic
             </Button>
         </div>
