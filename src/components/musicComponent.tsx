@@ -86,7 +86,7 @@ const useStyles = makeStyles({
     },
 });
 
-const MusicComponent: React.FC = () => {
+export const MusicComponent: React.FC = () => {
     const [currentTime, setCurrentTime] = useState(0);
     const [duration, setDuration] = useState(0);
     const [musicPercent, setMusicPercent] = useState(0);
@@ -224,5 +224,3 @@ const MusicComponent: React.FC = () => {
         </div>
     );
 };
-
-export default MusicComponent;
