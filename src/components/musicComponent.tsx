@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
-import { fetchMusicList } from '../service';
 import Paper from '@material-ui/core/Paper';
 import { MusicInfoComponent } from './musicInfoComponent';
 import { MusicListComponent } from './musicListComponent';
@@ -10,80 +9,10 @@ import { PlayBarComponent } from './playBarComponent';
 import { TemporaryDrawer } from './navDrawerComponent';
 
 import { AppBarComponent } from './appBarComponent';
-// import { getAudioPlayer } from './audioPlayer';
-
-let musics: Music[] = [];
-fetchMusicList(
-    musicList => (musics = musicList as Music[]),
-    e => console.log(e),
-);
-console.log('aaaaaa');
-
-// musics.push({
-//     address: 'http://localhost:9999/music/0.mp3',
-//     cover: 'http://localhost:9999/album/0.png',
-//     name: 'Honey Bunny My Love',
-//     artist: 'SHAKING PINK',
-//     album: 'しぇいきんぐ!SHAKING PINK',
-// });
-// musics.push({
-//     address: 'http://localhost:9999/music/1.mp3',
-//     cover: 'http://localhost:9999/album/1.png',
-//     name: 'Tasty Carrots',
-//     artist: 'Shou (Discandy)',
-//     album: 'TastyCarrots',
-// });
-// musics.push({
-//     address: 'http://localhost:9999/music/2.mp3',
-//     cover: 'http://localhost:9999/album/2.png',
-//     name: '萃梦想歌',
-//     artist: 'Silver Forest',
-//     album: 'Vermillion Summer',
-// });
-// musics.push({
-//     address: 'http://localhost:9999/music/3.mp3',
-//     cover: 'http://localhost:9999/album/3.png',
-//     name: 'What’s Love?',
-//     artist: 'SKELT 8 BAMBINO',
-//     album: 'Whats Love? feat.SoulJa',
-// });
-// musics.push({
-//     address: 'http://localhost:9999/music/4.mp3',
-//     cover: 'http://localhost:9999/album/4.png',
-//     name: 'Will ( Original Mix )',
-//     artist: 'SnoweeD',
-//     album: 'Will',
-// });
-// musics.push({
-//     address: 'http://localhost:9999/music/5.mp3',
-//     cover: 'http://localhost:9999/album/5.png',
-//     name: 'Bubbles',
-//     artist: 'SnowFlakez!',
-//     album: 'Bubbles',
-// });
-// musics.push({
-//     address: 'http://localhost:9999/music/6.mp3',
-//     cover: 'http://localhost:9999/album/6.png',
-//     name: 'Grayedout-Antifront- (Soleily Remix)',
-//     artist: 'Soleily',
-//     album: 'ANTiFRONT GEARS',
-// });
-// musics.push({
-//     address: 'http://localhost:9999/music/7.mp3',
-//     cover: 'http://localhost:9999/album/7.png',
-//     name: 'Thalidomide Chocolat',
-//     artist: 'Sound.AVE',
-//     album: 'Reliance',
-// });
-
-// const audioElement = new Audio();
-// const audioElement = getAudioPlayer();
-// audioElement.src = 'http://localhost:9999/music/1.mp3';
-
-// audioElement.autoplay = false;
 
 interface MusicComponentProps {
     audioElement: HTMLAudioElement;
+    musics: Music[];
 }
 
 const useStyles = makeStyles({
@@ -93,7 +22,8 @@ const useStyles = makeStyles({
 });
 
 export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicComponentProps) => {
-    const { audioElement } = props;
+    const { audioElement, musics } = props;
+
     const [currentTime, setCurrentTime] = useState(0);
     const [duration, setDuration] = useState(0);
     const [musicPercent, setMusicPercent] = useState(0);
@@ -119,7 +49,7 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
 
     useEffect(() => {
         audioElement.volume = volumn;
-        console.log(audioElement.volume);
+        // console.log(audioElement.volume);
     }, [volumn]);
 
     const logMsg = (): void => {
@@ -128,7 +58,7 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
 
     const changeMusicPercent = (event: object, value: unknown): void => {
         const percent = value as number;
-        console.log(percent);
+        // console.log(percent);
         const currentTime = (duration * percent) / 100.0;
         if (duration !== 0) {
             audioElement.currentTime = currentTime;
