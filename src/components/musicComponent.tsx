@@ -10,7 +10,7 @@ import { PlayBarComponent } from './playBarComponent';
 import { TemporaryDrawer } from './navDrawerComponent';
 
 import { AppBarComponent } from './appBarComponent';
-import { getAudioPlayer } from './audioPlayer';
+// import { getAudioPlayer } from './audioPlayer';
 
 let musics: Music[] = [];
 fetchMusicList(
@@ -77,10 +77,14 @@ console.log('aaaaaa');
 // });
 
 // const audioElement = new Audio();
-const audioElement = getAudioPlayer();
-audioElement.src = 'http://localhost:9999/music/1.mp3';
+// const audioElement = getAudioPlayer();
+// audioElement.src = 'http://localhost:9999/music/1.mp3';
 
-audioElement.autoplay = false;
+// audioElement.autoplay = false;
+
+interface MusicComponentProps {
+    audioElement: HTMLAudioElement;
+}
 
 const useStyles = makeStyles({
     paper: {
@@ -88,7 +92,8 @@ const useStyles = makeStyles({
     },
 });
 
-export const MusicComponent: React.FC = () => {
+export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicComponentProps) => {
+    const { audioElement } = props;
     const [currentTime, setCurrentTime] = useState(0);
     const [duration, setDuration] = useState(0);
     const [musicPercent, setMusicPercent] = useState(0);
