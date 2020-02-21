@@ -121,8 +121,11 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
     };
 
     const skipToNext = (): void => {
-        const i = (musicIndex + 1) % 8;
-        playMusic(musics[i], i);
+        const musicNum = musics.length;
+        if (musicNum > 0) {
+            const i = (musicIndex + 1) % musicNum;
+            playMusic(musics[i], i);
+        }
     };
 
     audioElement.onended = skipToNext;
