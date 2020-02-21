@@ -10,6 +10,7 @@ import { PlayBarComponent } from './playBarComponent';
 import { TemporaryDrawer } from './navDrawerComponent';
 
 import { AppBarComponent } from './appBarComponent';
+import { getAudioPlayer } from './audioPlayer';
 
 let musics: Music[] = [];
 fetchMusicList(
@@ -75,7 +76,8 @@ console.log('aaaaaa');
 //     album: 'Reliance',
 // });
 
-const audioElement = new Audio();
+// const audioElement = new Audio();
+const audioElement = getAudioPlayer();
 audioElement.src = 'http://localhost:9999/music/1.mp3';
 
 audioElement.autoplay = false;
