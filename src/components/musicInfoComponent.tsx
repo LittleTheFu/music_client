@@ -4,9 +4,9 @@ import Card from '@material-ui/core/Card';
 import { makeStyles } from '@material-ui/core/styles';
 
 interface MusicInfoProps {
-    name?: string;
-    artist?: string;
-    album?: string;
+    name: string;
+    artist: string;
+    album: string;
     cover?: string;
 }
 
@@ -47,4 +47,11 @@ export const MusicInfoComponent: React.FC<MusicInfoProps> = (props: MusicInfoPro
             <CardMedia image={props.cover} className={classes.cover}></CardMedia>
         </Card>
     );
+};
+
+MusicInfoComponent.defaultProps = {
+    name: 'name',
+    artist: 'artist',
+    album: 'album',
+    cover: 'http://localhost:9999/album/3.png',
 };

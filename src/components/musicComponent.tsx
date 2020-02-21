@@ -90,7 +90,7 @@ export const MusicComponent: React.FC = () => {
     const [currentTime, setCurrentTime] = useState(0);
     const [duration, setDuration] = useState(0);
     const [musicPercent, setMusicPercent] = useState(0);
-    const [cover, setCover] = useState('http://localhost:9999/album/0.png');
+    const [cover, setCover] = useState('default.png');
     const [name, setName] = useState('name');
     const [artist, setArtist] = useState('artist');
     const [album, setAlbum] = useState('album');
