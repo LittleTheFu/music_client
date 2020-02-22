@@ -1,3 +1,5 @@
+import { Music } from './dataInterfaces/music';
+
 const info = {
     method: 'GET',
 };
@@ -25,20 +27,20 @@ export const fetchNextMusic = (
         .catch(e => reject(e));
 };
 
-interface Music {
-    address: string;
-    cover: string;
-    name: string;
-    artist: string;
-    album: string;
-}
+// interface Music {
+//     address: string;
+//     cover: string;
+//     name: string;
+//     artist: string;
+//     album: string;
+// }
 
-interface MusicList {
-    musics: Music[];
-}
+// interface MusicList {
+//     musics: Music[];
+// }
 
 export const fetchMusicList = (resolve: (arg0: object) => void, reject: (arg0: object) => void): void => {
-    api<{ musicList: Array<Music> }>(musicListUrl, info)
+    api<{ musicList: Music[] }>(musicListUrl, info)
         .then(musicList => {
             resolve(musicList);
         })
