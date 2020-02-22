@@ -1,4 +1,5 @@
 export interface Music {
+    id: number;
     address: string;
     cover: string;
     name: string;

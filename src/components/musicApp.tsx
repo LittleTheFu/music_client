@@ -14,7 +14,7 @@ export const MusicApp: React.FC = () => {
         fetchMusicList(
             musicList => {
                 setMusics(musicList as Music[]);
-                // console.log(musics);
+                console.log(musics);
             },
             e => console.log(e),
         );
@@ -24,7 +24,7 @@ export const MusicApp: React.FC = () => {
         fetchMusics(
             musicList => {
                 setMusics(musicList as Music[]);
-                // console.log(musics);
+                console.log(musics);
             },
             e => console.log(e),
         );
