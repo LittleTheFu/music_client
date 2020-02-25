@@ -3,6 +3,7 @@ import Modal from '@material-ui/core/Modal';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import { createBlogPost } from '../service';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -38,8 +39,9 @@ export const LoginModal: React.FC<LoginModalProps> = (props: LoginModalProps) =>
 
     function handleSubmit(event: React.FormEvent<HTMLFormElement>): void {
         event.preventDefault();
-        console.log('User:', user, 'Password: ', password);
+        console.log('username: ', user, 'password: ', password);
         console.log('submit');
+        createBlogPost({ username: user, password: password });
         // You should see email and password in console.
         // ..code to submit form to backend here...
     }

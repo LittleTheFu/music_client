@@ -42,3 +42,22 @@ export const fetchMusics = (resolve: (arg0: object) => void, reject: (arg0: obje
         })
         .catch(e => reject(e));
 };
+
+// export const function createBlogPost(data) {
+
+// }
+
+const postUrl = 'http://localhost:9999/auth/login';
+export const createBlogPost = (data: object): Promise<object> => {
+    return fetch(postUrl, {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    })
+        .then(response => {
+            console.log(response);
+        })
+        .catch(err => err);
+};
