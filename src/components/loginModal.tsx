@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Modal from '@material-ui/core/Modal';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -13,6 +15,12 @@ const useStyles = makeStyles((theme: Theme) =>
             boxShadow: theme.shadows[5],
             padding: theme.spacing(2, 4, 3),
         },
+        root: {
+            '& > *': {
+                margin: theme.spacing(1),
+                width: 200,
+            },
+        },
     }),
 );
 
@@ -23,22 +31,28 @@ interface LoginModalProps {
 
 export const LoginModal: React.FC<LoginModalProps> = (props: LoginModalProps) => {
     const classes = useStyles({});
+
     const { modalOpen, handleClose } = props;
 
     return (
         <div>
             <Modal
-                className={classes.paper}
                 aria-labelledby="simple-modal-title"
                 aria-describedby="simple-modal-description"
                 open={modalOpen}
                 onClose={handleClose}
             >
-                <div>
-                    <h2 id="simple-modal-title">Text in a modal</h2>
-                    <p id="simple-modal-description">
-                        Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-                    </p>
+                <div className={classes.paper}>
+                    <form className={classes.root} noValidate autoComplete="off">
+                        <TextField id="standard-basic" label="user" />
+                        <TextField id="standard-basic" label="password" />
+                        <Button variant="contained" color="primary" onClick={handleClose}>
+                            login
+                        </Button>
+                        <Button variant="contained" color="primary" onClick={handleClose}>
+                            close
+                        </Button>
+                    </form>
                 </div>
             </Modal>
         </div>
