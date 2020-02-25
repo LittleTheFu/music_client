@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Modal from '@material-ui/core/Modal';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
@@ -30,9 +30,19 @@ interface LoginModalProps {
 }
 
 export const LoginModal: React.FC<LoginModalProps> = (props: LoginModalProps) => {
-    const classes = useStyles({});
+    const [user, setUser] = useState('');
+    const [password, setPassword] = useState('');
 
+    const classes = useStyles({});
     const { modalOpen, handleClose } = props;
+
+    function handleSubmit(event: React.FormEvent<HTMLFormElement>): void {
+        event.preventDefault();
+        console.log('User:', user, 'Password: ', password);
+        console.log('submit');
+        // You should see email and password in console.
+        // ..code to submit form to backend here...
+    }
 
     return (
         <div>
@@ -43,10 +53,14 @@ export const LoginModal: React.FC<LoginModalProps> = (props: LoginModalProps) =>
                 onClose={handleClose}
             >
                 <div className={classes.paper}>
-                    <form className={classes.root} noValidate autoComplete="off">
-                        <TextField id="standard-basic" label="user" />
-                        <TextField id="standard-basic" label="password" />
-                        <Button variant="contained" color="primary" onClick={handleClose}>
+                    <form onSubmit={handleSubmit} className={classes.root} noValidate autoComplete="off">
+                        <TextField id="standard-basic" label="user" onChange={(e): void => setUser(e.target.value)} />
+                        <TextField
+                            id="standard-basic"
+                            label="password"
+                            onChange={(e): void => setPassword(e.target.value)}
+                        />
+                        <Button type="submit" variant="contained" color="primary">
                             login
                         </Button>
                         <Button variant="contained" color="primary" onClick={handleClose}>
