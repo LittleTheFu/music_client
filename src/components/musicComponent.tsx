@@ -45,12 +45,11 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
 
     useEffect(() => {
         audioElement.volume = volumn;
-        // console.log(audioElement.volume);
     }, [volumn]);
 
-    const logMsg = (): void => {
-        console.log('log');
-    };
+    // const logMsg = (): void => {
+    //     console.log('log');
+    // };
 
     const changeMusicPercent = (event: object, value: unknown): void => {
         const percent = value as number;
@@ -76,9 +75,9 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
         setCurrentTime(audioElement.currentTime);
     };
 
-    const changeMusic = (): void => {
-        audioElement.src = 'https://file-examples.com/wp-content/uploads/2017/11/file_example_MP3_700KB.mp3';
-    };
+    // const changeMusic = (): void => {
+    //     audioElement.src = 'https://file-examples.com/wp-content/uploads/2017/11/file_example_MP3_700KB.mp3';
+    // };
 
     const pausePlay = (): void => {
         if (isPlaying) {
@@ -97,11 +96,11 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
         }
     };
 
-    const setTime = (): void => {
-        audioElement.currentTime = 200;
-        setCurrentTime(audioElement.currentTime);
-        console.log('set time');
-    };
+    // const setTime = (): void => {
+    //     audioElement.currentTime = 200;
+    //     setCurrentTime(audioElement.currentTime);
+    //     console.log('set time');
+    // };
 
     const playMusic = (m: Music, index: number): void => {
         setName(m.name);

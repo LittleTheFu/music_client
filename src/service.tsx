@@ -1,6 +1,6 @@
 import { Music } from './dataInterfaces/music';
 
-const info = {
+const getOption = {
     method: 'GET',
 };
 
@@ -22,25 +22,13 @@ export const fetchNextMusic = (
     resolve: (arg0: string, arg1: string, arg2: string, arg3: string, arg4: string) => void,
     reject: (arg0: object) => void,
 ): void => {
-    api<{ address: string; cover: string; name: string; artist: string; album: string }>(musicUrl, info)
+    api<{ address: string; cover: string; name: string; artist: string; album: string }>(musicUrl, getOption)
         .then(({ address, cover, name, artist, album }) => resolve(address, cover, name, artist, album))
         .catch(e => reject(e));
 };
 
-// interface Music {
-//     address: string;
-//     cover: string;
-//     name: string;
-//     artist: string;
-//     album: string;
-// }
-
-// interface MusicList {
-//     musics: Music[];
-// }
-
 export const fetchMusicList = (resolve: (arg0: object) => void, reject: (arg0: object) => void): void => {
-    api<{ musicList: Music[] }>(musicListUrl, info)
+    api<{ musicList: Music[] }>(musicListUrl, getOption)
         .then(musicList => {
             resolve(musicList);
         })
@@ -48,7 +36,7 @@ export const fetchMusicList = (resolve: (arg0: object) => void, reject: (arg0: o
 };
 
 export const fetchMusics = (resolve: (arg0: object) => void, reject: (arg0: object) => void): void => {
-    api<{ musicList: Array<Music> }>(musicsUrl, info)
+    api<{ musicList: Array<Music> }>(musicsUrl, getOption)
         .then(musicList => {
             resolve(musicList);
         })
