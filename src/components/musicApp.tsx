@@ -4,6 +4,7 @@ import { getAudioPlayer } from './audioPlayer';
 import { Music } from '../dataInterfaces/music';
 import { fetchMusicList, fetchMusics } from '../service';
 import Button from '@material-ui/core/Button';
+import { LoginModal } from './loginModal';
 
 const audioElement = getAudioPlayer();
 
@@ -32,13 +33,14 @@ export const MusicApp: React.FC = () => {
 
     return (
         <div>
-            <MusicComponent audioElement={audioElement} musics={musics}></MusicComponent>
             <Button variant="contained" color="primary" onClick={loadMusic}>
                 loadMusic
             </Button>
             <Button variant="contained" color="primary" onClick={getMusics}>
                 loadMusic
             </Button>
+            <LoginModal></LoginModal>
+            <MusicComponent audioElement={audioElement} musics={musics}></MusicComponent>
         </div>
     );
 };
