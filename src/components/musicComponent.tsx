@@ -6,9 +6,6 @@ import { MusicInfoComponent } from './musicInfoComponent';
 import { MusicListComponent } from './musicListComponent';
 import { Music } from '../dataInterfaces/music';
 import { PlayBarComponent } from './playBarComponent';
-import { TemporaryDrawer } from './navDrawerComponent';
-
-import { AppBarComponent } from './appBarComponent';
 
 interface MusicComponentProps {
     audioElement: HTMLAudioElement;
@@ -32,7 +29,6 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
     const [artist, setArtist] = useState('artist');
     const [album, setAlbum] = useState('album');
     const [musicIndex, setMusicIndex] = useState(0);
-    const [drawerOpen, setDrawerOpen] = useState(false);
 
     const classes = useStyles({});
 
@@ -132,8 +128,6 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
 
     return (
         <div>
-            <AppBarComponent menuButtonClick={(): void => setDrawerOpen(true)}></AppBarComponent>
-            <TemporaryDrawer drawerOpen={drawerOpen} closeDrawer={(): void => setDrawerOpen(false)}></TemporaryDrawer>
             <Paper variant="outlined" className={classes.paper}>
                 <PlayBarComponent
                     musicPercent={musicPercent}

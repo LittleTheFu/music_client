@@ -5,11 +5,15 @@ import { Music } from '../dataInterfaces/music';
 import { fetchMusicList, fetchMusics } from '../service';
 import Button from '@material-ui/core/Button';
 import { LoginModal } from './loginModal';
+import { TemporaryDrawer } from './navDrawerComponent';
+import { AppBarComponent } from './appBarComponent';
 
 const audioElement = getAudioPlayer();
 
 export const MusicApp: React.FC = () => {
     const [musics, setMusics] = useState([]);
+    const [drawerOpen, setDrawerOpen] = useState(false);
+    const [modalOpen, setModalOpen] = useState(false);
 
     const loadMusic = (): void => {
         fetchMusicList(
@@ -33,13 +37,18 @@ export const MusicApp: React.FC = () => {
 
     return (
         <div>
+            <AppBarComponent
+                menuButtonClick={(): void => setDrawerOpen(true)}
+                avatarButtonClick={(): void => setModalOpen(true)}
+            ></AppBarComponent>
+            <TemporaryDrawer drawerOpen={drawerOpen} closeDrawer={(): void => setDrawerOpen(false)}></TemporaryDrawer>
             <Button variant="contained" color="primary" onClick={loadMusic}>
                 loadMusic
             </Button>
             <Button variant="contained" color="primary" onClick={getMusics}>
                 loadMusic
             </Button>
-            <LoginModal></LoginModal>
+            <LoginModal modalOpen={modalOpen} handleClose={(): void => setModalOpen(false)}></LoginModal>
             <MusicComponent audioElement={audioElement} musics={musics}></MusicComponent>
         </div>
     );

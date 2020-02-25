@@ -16,17 +16,14 @@ const useStyles = makeStyles((theme: Theme) =>
     }),
 );
 
-export const LoginModal: React.FC = () => {
-    const [open, setOpen] = useState(true);
+interface LoginModalProps {
+    modalOpen: boolean;
+    handleClose: () => void;
+}
+
+export const LoginModal: React.FC<LoginModalProps> = (props: LoginModalProps) => {
     const classes = useStyles({});
-
-    const handleOpen = (): void => {
-        setOpen(true);
-    };
-
-    const handleClose = (): void => {
-        setOpen(false);
-    };
+    const { modalOpen, handleClose } = props;
 
     return (
         <div>
@@ -34,7 +31,7 @@ export const LoginModal: React.FC = () => {
                 className={classes.paper}
                 aria-labelledby="simple-modal-title"
                 aria-describedby="simple-modal-description"
-                open={open}
+                open={modalOpen}
                 onClose={handleClose}
             >
                 <div>

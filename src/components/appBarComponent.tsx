@@ -5,6 +5,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -22,12 +23,13 @@ const useStyles = makeStyles((theme: Theme) =>
 
 interface AppBarProps {
     menuButtonClick: () => void;
+    avatarButtonClick: () => void;
 }
 
 export const AppBarComponent: React.FC<AppBarProps> = (props: AppBarProps) => {
     const classes = useStyles();
 
-    const { menuButtonClick } = props;
+    const { menuButtonClick, avatarButtonClick } = props;
     return (
         <div className={classes.root}>
             <AppBar position="static">
@@ -44,6 +46,15 @@ export const AppBarComponent: React.FC<AppBarProps> = (props: AppBarProps) => {
                     <Typography variant="h6" className={classes.title}>
                         Welcome
                     </Typography>
+                    <IconButton
+                        edge="start"
+                        className={classes.menuButton}
+                        onClick={avatarButtonClick}
+                        color="inherit"
+                        aria-label="menu"
+                    >
+                        <AccountCircleIcon />
+                    </IconButton>
                 </Toolbar>
             </AppBar>
         </div>
