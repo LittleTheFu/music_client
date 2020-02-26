@@ -6,6 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import { getUserName } from '../global';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -54,6 +55,7 @@ export const AppBarComponent: React.FC<AppBarProps> = (props: AppBarProps) => {
                         aria-label="menu"
                     >
                         <AccountCircleIcon />
+                        {getUserName()}
                     </IconButton>
                 </Toolbar>
             </AppBar>

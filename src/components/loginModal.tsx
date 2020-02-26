@@ -3,7 +3,9 @@ import Modal from '@material-ui/core/Modal';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import { createBlogPost } from '../service';
+import { createObjectPost } from '../service';
+import Snackbar from '@material-ui/core/Snackbar';
+import { setUserName, setToken } from '../global';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -33,15 +35,31 @@ interface LoginModalProps {
 export const LoginModal: React.FC<LoginModalProps> = (props: LoginModalProps) => {
     const [user, setUser] = useState('');
     const [password, setPassword] = useState('');
-
+    const [snackbarOpen, setSnackbarOpen] = useState(false);
+    const [snackbarMsg, setSnackbarMsg] = useState('snackbar-msg');
     const classes = useStyles({});
     const { modalOpen, handleClose } = props;
+
+    const resolveData = (data: any): void => {
+        if ('error' in data) {
+            setSnackbarMsg(data.error);
+            setSnackbarOpen(true);
+            console.log('error : ' + data.error);
+        } else if ('accessToken' in data) {
+            setToken(data.accessToken);
+            setUserName(user);
+            console.log('accessToken : ' + data.accessToken);
+            setSnackbarMsg('success!');
+            setSnackbarOpen(true);
+            handleClose();
+        }
+    };
 
     function handleSubmit(event: React.FormEvent<HTMLFormElement>): void {
         event.preventDefault();
         console.log('username: ', user, 'password: ', password);
         console.log('submit');
-        createBlogPost({ username: user, password: password });
+        createObjectPost({ username: user, password: password }, resolveData);
         // You should see email and password in console.
         // ..code to submit form to backend here...
     }
@@ -71,6 +89,18 @@ export const LoginModal: React.FC<LoginModalProps> = (props: LoginModalProps) =>
                     </form>
                 </div>
             </Modal>
+            <Snackbar
+                anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'left',
+                }}
+                open={snackbarOpen}
+                autoHideDuration={3000}
+                message={snackbarMsg}
+                onClose={(): void => {
+                    setSnackbarOpen(false);
+                }}
+            />
         </div>
     );
 };

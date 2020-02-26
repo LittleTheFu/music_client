@@ -35,6 +35,15 @@ export const MusicApp: React.FC = () => {
         );
     };
 
+    const testFunc = (): void => {
+        const o = { a: 1, b: 2, c: 3 };
+        const { a, b } = o;
+        // if (!(d in o)) console.log('no d');
+        if ('d' in o) console.log('d in o');
+        if ('a' in o) console.log('a in o');
+        console.log('a : ' + a + ' b: ' + b);
+    };
+
     return (
         <div>
             <AppBarComponent
@@ -53,14 +62,21 @@ export const MusicApp: React.FC = () => {
             <Button
                 variant="contained"
                 color="primary"
-                onClick={() => {
+                onClick={(): void => {
                     localStorage.setItem('myData', 'data');
                 }}
             >
                 set local storage
             </Button>
-            <Button variant="contained" color="primary" onClick={() => console.log(localStorage.getItem('myData'))}>
+            <Button
+                variant="contained"
+                color="primary"
+                onClick={(): void => console.log(localStorage.getItem('myData'))}
+            >
                 log local storage
+            </Button>
+            <Button variant="contained" color="primary" onClick={testFunc}>
+                test
             </Button>
         </div>
     );

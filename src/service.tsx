@@ -48,7 +48,7 @@ export const fetchMusics = (resolve: (arg0: object) => void, reject: (arg0: obje
 // }
 
 const postUrl = 'http://localhost:9999/auth/login';
-export const createBlogPost = (data: object): Promise<object> => {
+export const createObjectPost = (data: object, resolve: (data: any) => void): Promise<object> => {
     return fetch(postUrl, {
         method: 'POST',
         body: JSON.stringify(data),
@@ -59,6 +59,6 @@ export const createBlogPost = (data: object): Promise<object> => {
         .then(response => {
             return response.json();
         })
-        .then(data => console.log(data))
+        .then(data => resolve(data))
         .catch(err => err);
 };
