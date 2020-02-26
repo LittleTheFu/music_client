@@ -1,9 +1,15 @@
+import React, { useState, useEffect } from 'react';
+
 let gUser = 'guest';
 export let gIsGuest = true;
 let gToken = '';
 let gIsTokenSetted = false;
 
-// export gIsGuest;
+// export const useGuestState = (): boolean => {
+//     const [isGuestEff, setIsGuestEff] = useState(gIsGuest);
+
+//     return isGuestEff;
+// };
 
 export const setUserName = (user: string): void => {
     gUser = user;
@@ -11,6 +17,7 @@ export const setUserName = (user: string): void => {
 };
 
 export const isGuest = (): boolean => {
+    console.log('call isGuest()');
     return gIsGuest;
 };
 
@@ -38,6 +45,8 @@ const clearUser = (): void => {
 };
 
 export const doLogout = (): void => {
+    console.log('begin logout : ' + gIsGuest);
     clearToken();
     clearUser();
+    console.log('end logout : ' + gIsGuest);
 };
