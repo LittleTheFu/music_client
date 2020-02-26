@@ -1,14 +1,16 @@
 let gUser = 'guest';
-let gIsGuest = true;
+export let gIsGuest = true;
 let gToken = '';
 let gIsTokenSetted = false;
+
+// export gIsGuest;
 
 export const setUserName = (user: string): void => {
     gUser = user;
     gIsGuest = false;
 };
 
-export const IsGuest = (): boolean => {
+export const isGuest = (): boolean => {
     return gIsGuest;
 };
 

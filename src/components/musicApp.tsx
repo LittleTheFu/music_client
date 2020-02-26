@@ -7,7 +7,7 @@ import Button from '@material-ui/core/Button';
 import { LoginModal } from './loginModal';
 import { TemporaryDrawer } from './navDrawerComponent';
 import { AppBarComponent } from './appBarComponent';
-import { IsGuest } from '../global';
+import { isGuest } from '../global';
 
 const audioElement = getAudioPlayer();
 
@@ -46,7 +46,7 @@ export const MusicApp: React.FC = () => {
     };
 
     const avatarButtonClick = (): void => {
-        if (IsGuest()) {
+        if (isGuest()) {
             setModalOpen(true);
         } else {
             console.log('logout');
