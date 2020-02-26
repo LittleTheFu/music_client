@@ -50,6 +50,18 @@ export const MusicApp: React.FC = () => {
             </Button>
             <LoginModal modalOpen={modalOpen} handleClose={(): void => setModalOpen(false)}></LoginModal>
             <MusicComponent audioElement={audioElement} musics={musics}></MusicComponent>
+            <Button
+                variant="contained"
+                color="primary"
+                onClick={() => {
+                    localStorage.setItem('myData', 'data');
+                }}
+            >
+                set local storage
+            </Button>
+            <Button variant="contained" color="primary" onClick={() => console.log(localStorage.getItem('myData'))}>
+                log local storage
+            </Button>
         </div>
     );
 };
