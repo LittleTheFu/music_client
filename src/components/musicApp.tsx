@@ -7,6 +7,7 @@ import Button from '@material-ui/core/Button';
 import { LoginModal } from './loginModal';
 import { TemporaryDrawer } from './navDrawerComponent';
 import { AppBarComponent } from './appBarComponent';
+import { IsGuest } from '../global';
 
 const audioElement = getAudioPlayer();
 
@@ -44,11 +45,19 @@ export const MusicApp: React.FC = () => {
         console.log('a : ' + a + ' b: ' + b);
     };
 
+    const avatarButtonClick = (): void => {
+        if (IsGuest()) {
+            setModalOpen(true);
+        } else {
+            console.log('logout');
+        }
+    };
+
     return (
         <div>
             <AppBarComponent
                 menuButtonClick={(): void => setDrawerOpen(true)}
-                avatarButtonClick={(): void => setModalOpen(true)}
+                avatarButtonClick={avatarButtonClick}
             ></AppBarComponent>
             <TemporaryDrawer drawerOpen={drawerOpen} closeDrawer={(): void => setDrawerOpen(false)}></TemporaryDrawer>
             <Button variant="contained" color="primary" onClick={loadMusic}>
