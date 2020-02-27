@@ -4,6 +4,7 @@
 // setGlobal({
 //     avatar: 'anonymous.png',
 // });
+import { setGlobal } from 'reactn';
 
 let gUser = 'guest';
 export let gIsGuest = true;
@@ -60,3 +61,7 @@ export const doLogout = (): void => {
     console.log(' gIsGuest : ' + gIsGuest);
     console.log('end logout : ' + gIsGuest);
 };
+
+setGlobal({
+    avatar: 'anonymous.png',
+});

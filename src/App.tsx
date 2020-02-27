@@ -4,12 +4,6 @@ import { MusicApp } from './components/musicApp';
 import Button from '@material-ui/core/Button';
 import { useGlobal } from 'reactn';
 
-import { setGlobal } from 'reactn';
-
-setGlobal({
-    avatar: 'anonymous.png',
-});
-
 const App: React.FC = () => {
     const [avatar] = useGlobal('avatar');
 
