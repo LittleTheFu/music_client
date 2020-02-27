@@ -1,4 +1,9 @@
 import React, { useState, useEffect } from 'react';
+// import { setGlobal } from 'reactn';
+
+// setGlobal({
+//     avatar: 'anonymous.png',
+// });
 
 let gUser = 'guest';
 export let gIsGuest = true;
@@ -48,5 +53,6 @@ export const doLogout = (): void => {
     console.log('begin logout : ' + gIsGuest);
     clearToken();
     clearUser();
+    console.log(' gIsGuest : ' + gIsGuest);
     console.log('end logout : ' + gIsGuest);
 };

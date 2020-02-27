@@ -6,6 +6,7 @@ import { MusicInfoComponent } from './musicInfoComponent';
 import { MusicListComponent } from './musicListComponent';
 import { Music } from '../dataInterfaces/music';
 import { PlayBarComponent } from './playBarComponent';
+import { useGlobal } from 'reactn';
 
 interface MusicComponentProps {
     audioElement: HTMLAudioElement;
@@ -21,6 +22,7 @@ const useStyles = makeStyles({
 export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicComponentProps) => {
     const { audioElement, musics } = props;
 
+    const [avatar, setAvatar] = useGlobal('avatar');
     const [currentTime, setCurrentTime] = useState(0);
     const [duration, setDuration] = useState(0);
     const [musicPercent, setMusicPercent] = useState(0);
@@ -141,6 +143,16 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
                 <MusicListComponent musics={musics} clickMusic={playMusic} />
                 <MusicInfoComponent name={name} artist={artist} cover={cover} album={album}></MusicInfoComponent>
             </Paper>
+
+            <Button
+                variant="contained"
+                color="primary"
+                onClick={(): void => {
+                    setAvatar('avt');
+                }}
+            >
+                setAvatar
+            </Button>
 
             {/* <Button variant="contained" color="primary" onClick={setTime}>
                 set

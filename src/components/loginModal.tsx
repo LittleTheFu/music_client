@@ -5,7 +5,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { createObjectPost } from '../service';
 import Snackbar from '@material-ui/core/Snackbar';
-import { setUserName, setToken } from '../global';
+import { setUserName, setToken } from '../globals';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
