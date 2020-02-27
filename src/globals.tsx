@@ -1,21 +1,9 @@
-// import React from 'react';
-// import { setGlobal } from 'reactn';
-
-// setGlobal({
-//     avatar: 'anonymous.png',
-// });
 import { setGlobal } from 'reactn';
 
 let gUser = 'guest';
 export let gIsGuest = true;
 let gToken = '';
 let gIsTokenSetted = false;
-
-// export const useGuestState = (): boolean => {
-//     const [isGuestEff, setIsGuestEff] = useState(gIsGuest);
-
-//     return isGuestEff;
-// };
 
 export const setUserName = (user: string): void => {
     gUser = user;
