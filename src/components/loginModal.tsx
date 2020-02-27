@@ -6,6 +6,7 @@ import Button from '@material-ui/core/Button';
 import { createObjectPost } from '../service';
 import Snackbar from '@material-ui/core/Snackbar';
 import { setUserName, setToken } from '../globals';
+import { useGlobal } from 'reactn';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -33,6 +34,7 @@ interface LoginModalProps {
 }
 
 export const LoginModal: React.FC<LoginModalProps> = (props: LoginModalProps) => {
+    const [isLogin, setIsLogin] = useGlobal('isLogin');
     const [user, setUser] = useState('');
     const [password, setPassword] = useState('');
     const [snackbarOpen, setSnackbarOpen] = useState(false);
@@ -51,6 +53,7 @@ export const LoginModal: React.FC<LoginModalProps> = (props: LoginModalProps) =>
             console.log('accessToken : ' + data.accessToken);
             setSnackbarMsg('success!');
             setSnackbarOpen(true);
+            setIsLogin(true);
             handleClose();
         }
     };

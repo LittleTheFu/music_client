@@ -52,4 +52,5 @@ export const doLogout = (): void => {
 
 setGlobal({
     avatar: 'anonymous.png',
+    isLogin: false,
 });

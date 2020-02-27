@@ -8,6 +8,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import { getUserName, isGuest, doLogout, gIsGuest } from '../globals';
 import Button from '@material-ui/core/Button';
+import { useGlobal } from 'reactn';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -29,6 +30,8 @@ interface AppBarProps {
 }
 
 export const AppBarComponent: React.FC<AppBarProps> = (props: AppBarProps) => {
+    const [isLogin, setIsLogin] = useGlobal('isLogin');
+
     const classes = useStyles();
     const { menuButtonClick, avatarButtonClick } = props;
 
@@ -62,16 +65,22 @@ export const AppBarComponent: React.FC<AppBarProps> = (props: AppBarProps) => {
                         <AccountCircleIcon />
                         {getUserName()}
                     </IconButton>
-                    {isGuest() ? (
-                        <div></div>
-                    ) : (
+                    {isLogin ? (
                         <div>
-                            <Button variant="contained" color="secondary" onClick={logout}>
+                            <Button
+                                variant="contained"
+                                color="secondary"
+                                onClick={(): void => {
+                                    setIsLogin(false);
+                                }}
+                            >
                                 logout
                             </Button>
                         </div>
+                    ) : (
+                        <div></div>
                     )}
-                    {gIsGuest ? <div>gst</div> : <div>noGst</div>}
+                    {isLogin ? <div>user</div> : <div>gst</div>}
                 </Toolbar>
             </AppBar>
         </div>
