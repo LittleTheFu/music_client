@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+// import React from 'react';
 // import { setGlobal } from 'reactn';
 
 // setGlobal({
@@ -42,6 +42,10 @@ export const getToken = (): string => {
 export const clearToken = (): void => {
     gIsTokenSetted = false;
     gToken = '';
+};
+
+export const isTokenSetted = (): boolean => {
+    return gIsTokenSetted;
 };
 
 const clearUser = (): void => {

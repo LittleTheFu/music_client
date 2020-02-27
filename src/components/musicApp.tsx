@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState } from 'react';
 import { MusicComponent } from './musicComponent';
 import { getAudioPlayer } from './audioPlayer';
 import { Music } from '../dataInterfaces/music';
@@ -8,7 +8,6 @@ import { LoginModal } from './loginModal';
 import { TemporaryDrawer } from './navDrawerComponent';
 import { AppBarComponent } from './appBarComponent';
 import { isGuest } from '../globals';
-import { AppContextConsumer, ctxt } from '../globalContext';
 
 const audioElement = getAudioPlayer();
 
@@ -16,13 +15,6 @@ export const MusicApp: React.FC = () => {
     const [musics, setMusics] = useState([]);
     const [drawerOpen, setDrawerOpen] = useState(false);
     const [modalOpen, setModalOpen] = useState(false);
-    const [testStr, setTestStr] = useState('test-str');
-
-    const theme = useContext(ctxt);
-    useEffect(() => {
-        setTestStr(theme.gContextName);
-        console.log('changeddddddd');
-    }, [theme.gContextName]);
 
     const loadMusic = (): void => {
         fetchMusicList(
@@ -63,10 +55,6 @@ export const MusicApp: React.FC = () => {
 
     return (
         <div>
-            {/* <AppContextConsumer>
-                {appContext => appContext && <div>Name: {appContext.gContextName},</div>}
-            </AppContextConsumer> */}
-            <h1>{testStr}</h1>
             <AppBarComponent
                 menuButtonClick={(): void => setDrawerOpen(true)}
                 avatarButtonClick={avatarButtonClick}
