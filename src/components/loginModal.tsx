@@ -28,12 +28,12 @@ const useStyles = makeStyles((theme: Theme) =>
     }),
 );
 
-interface LoginModalProps {
-    modalOpen: boolean;
-    handleClose: () => void;
-}
+// interface LoginModalProps {
+//     modalOpen: boolean;
+//     handleClose: () => void;
+// }
 
-export const LoginModal: React.FC<LoginModalProps> = (props: LoginModalProps) => {
+export const LoginModal: React.FC = () => {
     const [isLogin, setIsLogin] = useGlobal('isLogin');
     const [loginModalOpen, setLoginModalOpen] = useGlobal('loginModalOpen');
 
@@ -42,7 +42,6 @@ export const LoginModal: React.FC<LoginModalProps> = (props: LoginModalProps) =>
     const [snackbarOpen, setSnackbarOpen] = useState(false);
     const [snackbarMsg, setSnackbarMsg] = useState('snackbar-msg');
     const classes = useStyles({});
-    const { modalOpen, handleClose } = props;
 
     const resolveData = (data: any): void => {
         if ('error' in data) {
@@ -56,7 +55,8 @@ export const LoginModal: React.FC<LoginModalProps> = (props: LoginModalProps) =>
             setSnackbarMsg('success!');
             setSnackbarOpen(true);
             setIsLogin(true);
-            handleClose();
+            // handleClose();
+            setLoginModalOpen(false);
         }
     };
 
@@ -90,7 +90,13 @@ export const LoginModal: React.FC<LoginModalProps> = (props: LoginModalProps) =>
                         <Button type="submit" variant="contained" color="primary">
                             login
                         </Button>
-                        <Button variant="contained" color="primary" onClick={handleClose}>
+                        <Button
+                            variant="contained"
+                            color="primary"
+                            onClick={(): void => {
+                                setLoginModalOpen(false);
+                            }}
+                        >
                             close
                         </Button>
                     </form>

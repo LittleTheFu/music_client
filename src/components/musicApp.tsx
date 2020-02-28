@@ -64,7 +64,7 @@ export const MusicApp: React.FC = () => {
             <Button variant="contained" color="primary" onClick={getMusics}>
                 loadMusic
             </Button>
-            <LoginModal modalOpen={modalOpen} handleClose={(): void => setModalOpen(false)}></LoginModal>
+            <LoginModal></LoginModal>
             <MusicComponent audioElement={audioElement} musics={musics}></MusicComponent>
             <Button
                 variant="contained"
