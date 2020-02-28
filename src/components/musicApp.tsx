@@ -15,7 +15,6 @@ export const MusicApp: React.FC = () => {
     const [isLogin] = useGlobal('isLogin');
     // const [drawerOpen, setDrawerOpen] = useGlobal('drawerOpen');
     const [musics, setMusics] = useState([]);
-    const [modalOpen, setModalOpen] = useState(false);
 
     const loadMusic = (): void => {
         fetchMusicList(
@@ -50,7 +49,7 @@ export const MusicApp: React.FC = () => {
         if (isLogin) {
             console.log('logout');
         } else {
-            setModalOpen(true);
+            // setModalOpen(true);
         }
     };
 

@@ -31,7 +31,9 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export const AppBarComponent: React.FC = () => {
     const [isLogin, setIsLogin] = useGlobal('isLogin');
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [drawerOpen, setDrawerOpen] = useGlobal('drawerOpen');
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [loginModalOpen, setLoginModalOpen] = useGlobal('loginModalOpen');
 
     const classes = useStyles();

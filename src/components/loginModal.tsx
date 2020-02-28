@@ -34,6 +34,7 @@ const useStyles = makeStyles((theme: Theme) =>
 // }
 
 export const LoginModal: React.FC = () => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [isLogin, setIsLogin] = useGlobal('isLogin');
     const [loginModalOpen, setLoginModalOpen] = useGlobal('loginModalOpen');
 
