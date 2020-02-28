@@ -7,7 +7,6 @@ import Button from '@material-ui/core/Button';
 import { LoginModal } from './loginModal';
 import { TemporaryDrawer } from './navDrawerComponent';
 import { AppBarComponent } from './appBarComponent';
-import { isGuest } from '../globals';
 import { useGlobal } from 'reactn';
 
 const audioElement = getAudioPlayer();
