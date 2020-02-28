@@ -6,7 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-import { getUserName, isGuest, doLogout, gIsGuest } from '../globals';
+import { getUserName, doLogout } from '../globals';
 import Button from '@material-ui/core/Button';
 import { useGlobal } from 'reactn';
 
@@ -24,16 +24,17 @@ const useStyles = makeStyles((theme: Theme) =>
     }),
 );
 
-interface AppBarProps {
-    menuButtonClick: () => void;
-    avatarButtonClick: () => void;
-}
+// interface AppBarProps {
+//     menuButtonClick: () => void;
+//     avatarButtonClick: () => void;
+// }
 
-export const AppBarComponent: React.FC<AppBarProps> = (props: AppBarProps) => {
+export const AppBarComponent: React.FC = () => {
     const [isLogin, setIsLogin] = useGlobal('isLogin');
+    const [drawerOpen, setDrawerOpen] = useGlobal('drawerOpen');
+    const [loginModalOpen, setLoginModalOpen] = useGlobal('loginModalOpen');
 
     const classes = useStyles();
-    const { menuButtonClick, avatarButtonClick } = props;
 
     const logout = (): void => {
         doLogout();
@@ -46,7 +47,9 @@ export const AppBarComponent: React.FC<AppBarProps> = (props: AppBarProps) => {
                     <IconButton
                         edge="start"
                         className={classes.menuButton}
-                        onClick={menuButtonClick}
+                        onClick={(): void => {
+                            setDrawerOpen(true);
+                        }}
                         color="inherit"
                         aria-label="menu"
                     >
@@ -58,7 +61,9 @@ export const AppBarComponent: React.FC<AppBarProps> = (props: AppBarProps) => {
                     <IconButton
                         edge="start"
                         className={classes.menuButton}
-                        onClick={avatarButtonClick}
+                        onClick={(): void => {
+                            setLoginModalOpen(true);
+                        }}
                         color="inherit"
                         aria-label="menu"
                     >

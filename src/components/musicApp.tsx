@@ -13,8 +13,8 @@ const audioElement = getAudioPlayer();
 
 export const MusicApp: React.FC = () => {
     const [isLogin] = useGlobal('isLogin');
+    // const [drawerOpen, setDrawerOpen] = useGlobal('drawerOpen');
     const [musics, setMusics] = useState([]);
-    const [drawerOpen, setDrawerOpen] = useState(false);
     const [modalOpen, setModalOpen] = useState(false);
 
     const loadMusic = (): void => {
@@ -56,11 +56,8 @@ export const MusicApp: React.FC = () => {
 
     return (
         <div>
-            <AppBarComponent
-                menuButtonClick={(): void => setDrawerOpen(true)}
-                avatarButtonClick={avatarButtonClick}
-            ></AppBarComponent>
-            <TemporaryDrawer drawerOpen={drawerOpen} closeDrawer={(): void => setDrawerOpen(false)}></TemporaryDrawer>
+            <AppBarComponent></AppBarComponent>
+            <TemporaryDrawer></TemporaryDrawer>
             <Button variant="contained" color="primary" onClick={loadMusic}>
                 loadMusic
             </Button>

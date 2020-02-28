@@ -35,6 +35,8 @@ interface LoginModalProps {
 
 export const LoginModal: React.FC<LoginModalProps> = (props: LoginModalProps) => {
     const [isLogin, setIsLogin] = useGlobal('isLogin');
+    const [loginModalOpen, setLoginModalOpen] = useGlobal('loginModalOpen');
+
     const [user, setUser] = useState('');
     const [password, setPassword] = useState('');
     const [snackbarOpen, setSnackbarOpen] = useState(false);
@@ -72,8 +74,10 @@ export const LoginModal: React.FC<LoginModalProps> = (props: LoginModalProps) =>
             <Modal
                 aria-labelledby="simple-modal-title"
                 aria-describedby="simple-modal-description"
-                open={modalOpen}
-                onClose={handleClose}
+                open={loginModalOpen}
+                onClose={(): void => {
+                    setLoginModalOpen(false);
+                }}
             >
                 <div className={classes.paper}>
                     <form onSubmit={handleSubmit} className={classes.root} noValidate autoComplete="off">
