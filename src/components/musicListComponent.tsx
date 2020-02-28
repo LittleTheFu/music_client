@@ -4,6 +4,7 @@ import Card from '@material-ui/core/Card';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import { Music } from '../dataInterfaces/music';
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 
 interface MusicList {
     musics: Music[];
@@ -24,6 +25,12 @@ export const MusicListComponent: React.FC<MusicList> = (props: MusicList) => {
     const musicElements = musics.map((music: Music, index: number) => {
         return (
             <ListItem button key={music.name} onClick={(): void => clickMusic(music, index)}>
+                <FavoriteBorderIcon
+                    onClick={(e): void => {
+                        e.stopPropagation();
+                        console.log('like');
+                    }}
+                ></FavoriteBorderIcon>
                 {index} : {music.name}
             </ListItem>
         );
