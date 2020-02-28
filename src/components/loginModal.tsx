@@ -5,7 +5,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { createObjectPost } from '../service';
 import Snackbar from '@material-ui/core/Snackbar';
-import { setUserName, setToken } from '../globals';
+import { setToken } from '../globals';
 import { useGlobal } from 'reactn';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -37,6 +37,8 @@ export const LoginModal: React.FC = () => {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [isLogin, setIsLogin] = useGlobal('isLogin');
     const [loginModalOpen, setLoginModalOpen] = useGlobal('loginModalOpen');
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const [userId, setUserId] = useGlobal('userId');
 
     const [user, setUser] = useState('');
     const [password, setPassword] = useState('');
@@ -51,12 +53,11 @@ export const LoginModal: React.FC = () => {
             console.log('error : ' + data.error);
         } else if ('accessToken' in data) {
             setToken(data.accessToken);
-            setUserName(user);
+            setUserId(user);
             console.log('accessToken : ' + data.accessToken);
             setSnackbarMsg('success!');
             setSnackbarOpen(true);
             setIsLogin(true);
-            // handleClose();
             setLoginModalOpen(false);
         }
     };

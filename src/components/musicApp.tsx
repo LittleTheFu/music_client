@@ -7,12 +7,11 @@ import Button from '@material-ui/core/Button';
 import { LoginModal } from './loginModal';
 import { TemporaryDrawer } from './navDrawerComponent';
 import { AppBarComponent } from './appBarComponent';
-import { useGlobal } from 'reactn';
+// import { useGlobal } from 'reactn';
 
 const audioElement = getAudioPlayer();
 
 export const MusicApp: React.FC = () => {
-    const [isLogin] = useGlobal('isLogin');
     // const [drawerOpen, setDrawerOpen] = useGlobal('drawerOpen');
     const [musics, setMusics] = useState([]);
 
@@ -43,14 +42,6 @@ export const MusicApp: React.FC = () => {
         if ('d' in o) console.log('d in o');
         if ('a' in o) console.log('a in o');
         console.log('a : ' + a + ' b: ' + b);
-    };
-
-    const avatarButtonClick = (): void => {
-        if (isLogin) {
-            console.log('logout');
-        } else {
-            // setModalOpen(true);
-        }
     };
 
     return (

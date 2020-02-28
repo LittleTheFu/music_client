@@ -6,7 +6,6 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-import { getUserName, doLogout } from '../globals';
 import Button from '@material-ui/core/Button';
 import { useGlobal } from 'reactn';
 
@@ -35,12 +34,13 @@ export const AppBarComponent: React.FC = () => {
     const [drawerOpen, setDrawerOpen] = useGlobal('drawerOpen');
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [loginModalOpen, setLoginModalOpen] = useGlobal('loginModalOpen');
+    const [userId, setUserId] = useGlobal('userId');
 
     const classes = useStyles();
 
-    const logout = (): void => {
-        doLogout();
-    };
+    // const logout = (): void => {
+    //     doLogout();
+    // };
 
     return (
         <div className={classes.root}>
@@ -70,7 +70,7 @@ export const AppBarComponent: React.FC = () => {
                         aria-label="menu"
                     >
                         <AccountCircleIcon />
-                        {getUserName()}
+                        {userId}
                     </IconButton>
                     {isLogin ? (
                         <div>
@@ -79,6 +79,7 @@ export const AppBarComponent: React.FC = () => {
                                 color="secondary"
                                 onClick={(): void => {
                                     setIsLogin(false);
+                                    setUserId('guest');
                                 }}
                             >
                                 logout
