@@ -63,7 +63,7 @@ export const postLogin = (username: string, password: string, resolve: (data: an
     return rawObjectPost(loginUrl, { username: username, password: password }, resolve);
 };
 
-// const likeMusicUrl = '';
-// export const postLikeMusic = (data: object, resolve: (data: any) => void): Promise<object> => {
-//     return rawObjectPost(likeMusicUrl, data, resolve);
-// };
+const likeMusicUrl = 'http://localhost:9999/music/like';
+export const postLikeMusic = (musicId: number, resolve: (data: any) => void): Promise<object> => {
+    return rawObjectPost(likeMusicUrl, { musicId: musicId }, resolve);
+};
