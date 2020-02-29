@@ -3,6 +3,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Card from '@material-ui/core/Card';
 import { makeStyles } from '@material-ui/core/styles';
 import { Music, dummyMusic } from '../dataInterfaces/music';
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 
 interface MusicInfoProps {
     // name: string;
@@ -46,6 +47,7 @@ export const MusicInfoComponent: React.FC<MusicInfoProps> = (props: MusicInfoPro
                 {music.artist}--
                 {music.album}--
             </h4>
+            ---{music.like} <FavoriteBorderIcon></FavoriteBorderIcon>---
             <CardMedia image={music.cover} className={classes.cover}></CardMedia>
         </Card>
     );
