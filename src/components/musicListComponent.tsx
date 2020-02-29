@@ -6,6 +6,7 @@ import ListItem from '@material-ui/core/ListItem';
 import { Music } from '../dataInterfaces/music';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import { postLikeMusic } from '../service';
+import { IconButton } from '@material-ui/core';
 
 interface MusicList {
     musics: Music[];
@@ -27,13 +28,15 @@ export const MusicListComponent: React.FC<MusicList> = (props: MusicList) => {
         return (
             <ListItem button key={music.name} onClick={(): void => clickMusic(music, index)}>
                 {music.like}
-                <FavoriteBorderIcon
+                <IconButton
                     onClick={(e): void => {
                         e.stopPropagation();
                         console.log('like');
-                        postLikeMusic(3, console.log);
+                        postLikeMusic(music.id, console.log);
                     }}
-                ></FavoriteBorderIcon>
+                >
+                    <FavoriteBorderIcon></FavoriteBorderIcon>
+                </IconButton>
                 ---{index} : {music.name}
             </ListItem>
         );
