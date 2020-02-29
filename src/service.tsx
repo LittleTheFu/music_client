@@ -43,10 +43,6 @@ export const fetchMusics = (resolve: (arg0: object) => void, reject: (arg0: obje
         .catch(e => reject(e));
 };
 
-// export const function createBlogPost(data) {
-
-// }
-
 const rawObjectPost = (url: string, data: object, resolve: (data: any) => void): Promise<object> => {
     return fetch(url, {
         method: 'POST',
@@ -62,7 +58,7 @@ const rawObjectPost = (url: string, data: object, resolve: (data: any) => void):
         .catch(err => err);
 };
 
-const postUrl = 'http://localhost:9999/auth/login';
+const loginUrl = 'http://localhost:9999/auth/login';
 export const postLogin = (data: object, resolve: (data: any) => void): Promise<object> => {
-    return rawObjectPost(postUrl, data, resolve);
+    return rawObjectPost(loginUrl, data, resolve);
 };
