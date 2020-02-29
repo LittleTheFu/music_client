@@ -66,7 +66,7 @@ export const LoginModal: React.FC = () => {
         event.preventDefault();
         console.log('username: ', user, 'password: ', password);
         console.log('submit');
-        postLogin({ username: user, password: password }, resolveData);
+        postLogin(user, password, resolveData);
         // You should see email and password in console.
         // ..code to submit form to backend here...
     }

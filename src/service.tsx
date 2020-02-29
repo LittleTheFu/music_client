@@ -59,6 +59,11 @@ const rawObjectPost = (url: string, data: object, resolve: (data: any) => void):
 };
 
 const loginUrl = 'http://localhost:9999/auth/login';
-export const postLogin = (data: object, resolve: (data: any) => void): Promise<object> => {
-    return rawObjectPost(loginUrl, data, resolve);
+export const postLogin = (username: string, password: string, resolve: (data: any) => void): Promise<object> => {
+    return rawObjectPost(loginUrl, { username: username, password: password }, resolve);
 };
+
+// const likeMusicUrl = '';
+// export const postLikeMusic = (data: object, resolve: (data: any) => void): Promise<object> => {
+//     return rawObjectPost(likeMusicUrl, data, resolve);
+// };
