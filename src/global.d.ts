@@ -1,4 +1,5 @@
 import 'reactn';
+import './dataInterfaces/music';
 
 declare module 'reactn/default' {
     export interface State {
@@ -7,6 +8,6 @@ declare module 'reactn/default' {
         isLogin: boolean;
         drawerOpen: boolean;
         loginModalOpen: boolean;
-        // token: string;
+        currentMusic: Music;
     }
 }

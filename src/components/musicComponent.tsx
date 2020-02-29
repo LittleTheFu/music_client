@@ -7,6 +7,7 @@ import { MusicListComponent } from './musicListComponent';
 import { Music, dummyMusic } from '../dataInterfaces/music';
 import { PlayBarComponent } from './playBarComponent';
 import { useGlobal } from 'reactn';
+import { postLikeMusic } from '../service';
 
 interface MusicComponentProps {
     audioElement: HTMLAudioElement;
@@ -22,7 +23,9 @@ const useStyles = makeStyles({
 export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicComponentProps) => {
     const { audioElement, musics } = props;
 
+    const [currentMusic, setCurrentMusic] = useGlobal('currentMusic');
     const [avatar, setAvatar] = useGlobal('avatar');
+
     const [currentTime, setCurrentTime] = useState(0);
     const [duration, setDuration] = useState(0);
     const [musicPercent, setMusicPercent] = useState(0);
@@ -59,6 +62,10 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
         if (duration !== 0) {
             audioElement.currentTime = currentTime;
         }
+    };
+
+    const musicInfoLikeClick = (): void => {
+        postLikeMusic(currentMusic.id, setCurrentMusic);
     };
 
     const changeMusicVolumn = (event: object, value: unknown): void => {
@@ -104,7 +111,8 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
     // };
 
     const playMusic = (m: Music, index: number): void => {
-        setMusic(m);
+        // setMusic(m);
+        setCurrentMusic(m);
 
         audioElement.src = m.address;
         audioElement.autoplay = true;
@@ -129,7 +137,7 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
                 <PlayBarComponent
                     musicPercent={musicPercent}
                     isPlaying={isPlaying}
-                    cover={music.cover}
+                    cover={currentMusic.cover}
                     volumn={volumn * 100}
                     changeMusicPercent={changeMusicPercent}
                     pausePlay={pausePlay}
@@ -137,7 +145,7 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
                     changeMusicVolumn={changeMusicVolumn}
                 ></PlayBarComponent>
                 <MusicListComponent musics={musics} clickMusic={playMusic} />
-                <MusicInfoComponent music={music}></MusicInfoComponent>
+                <MusicInfoComponent music={currentMusic} likeClick={musicInfoLikeClick}></MusicInfoComponent>
             </Paper>
 
             <Button
