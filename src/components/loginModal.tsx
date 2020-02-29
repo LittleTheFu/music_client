@@ -3,7 +3,7 @@ import Modal from '@material-ui/core/Modal';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import { createObjectPost } from '../service';
+import { postLogin } from '../service';
 import Snackbar from '@material-ui/core/Snackbar';
 import { setToken } from '../globals';
 import { useGlobal } from 'reactn';
@@ -66,7 +66,7 @@ export const LoginModal: React.FC = () => {
         event.preventDefault();
         console.log('username: ', user, 'password: ', password);
         console.log('submit');
-        createObjectPost({ username: user, password: password }, resolveData);
+        postLogin({ username: user, password: password }, resolveData);
         // You should see email and password in console.
         // ..code to submit form to backend here...
     }
