@@ -8,10 +8,6 @@ import { postLikeMusic } from '../service';
 import { IconButton } from '@material-ui/core';
 
 interface MusicInfoProps {
-    // name: string;
-    // artist: string;
-    // album: string;
-    // cover?: string;
     music: Music;
 }
 
@@ -64,9 +60,5 @@ export const MusicInfoComponent: React.FC<MusicInfoProps> = (props: MusicInfoPro
 };
 
 MusicInfoComponent.defaultProps = {
-    // name: 'name',
-    // artist: 'artist',
-    // album: 'album',
-    // cover: 'http://localhost:9999/album/3.png',
     music: dummyMusic,
 };
