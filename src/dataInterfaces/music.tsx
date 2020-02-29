@@ -19,4 +19,16 @@ export class Music {
     artist: string;
 
     album: string;
+
+    like: number;
 }
+
+export const dummyMusic: Music = {
+    id: 0,
+    address: 'address',
+    cover: 'default.png',
+    name: 'name',
+    artist: 'artist',
+    album: 'album',
+    like: 0,
+};

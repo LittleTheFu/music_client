@@ -2,12 +2,14 @@ import React from 'react';
 import CardMedia from '@material-ui/core/CardMedia';
 import Card from '@material-ui/core/Card';
 import { makeStyles } from '@material-ui/core/styles';
+import { Music, dummyMusic } from '../dataInterfaces/music';
 
 interface MusicInfoProps {
-    name: string;
-    artist: string;
-    album: string;
-    cover?: string;
+    // name: string;
+    // artist: string;
+    // album: string;
+    // cover?: string;
+    music: Music;
 }
 
 const useStyles = makeStyles({
@@ -36,22 +38,23 @@ const useStyles = makeStyles({
 
 export const MusicInfoComponent: React.FC<MusicInfoProps> = (props: MusicInfoProps) => {
     const classes = useStyles({});
-
+    const { music } = props;
     return (
         <Card raised={true} className={classes.card}>
             <h4>
-                {props.name}--
-                {props.artist}--
-                {props.album}--
+                {music.name}--
+                {music.artist}--
+                {music.album}--
             </h4>
-            <CardMedia image={props.cover} className={classes.cover}></CardMedia>
+            <CardMedia image={music.cover} className={classes.cover}></CardMedia>
         </Card>
     );
 };
 
 MusicInfoComponent.defaultProps = {
-    name: 'name',
-    artist: 'artist',
-    album: 'album',
-    cover: 'http://localhost:9999/album/3.png',
+    // name: 'name',
+    // artist: 'artist',
+    // album: 'album',
+    // cover: 'http://localhost:9999/album/3.png',
+    music: dummyMusic,
 };

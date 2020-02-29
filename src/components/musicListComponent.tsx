@@ -25,13 +25,14 @@ export const MusicListComponent: React.FC<MusicList> = (props: MusicList) => {
     const musicElements = musics.map((music: Music, index: number) => {
         return (
             <ListItem button key={music.name} onClick={(): void => clickMusic(music, index)}>
+                {music.like}
                 <FavoriteBorderIcon
                     onClick={(e): void => {
                         e.stopPropagation();
                         console.log('like');
                     }}
                 ></FavoriteBorderIcon>
-                {index} : {music.name}
+                ---{index} : {music.name}
             </ListItem>
         );
     });

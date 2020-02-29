@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import { MusicInfoComponent } from './musicInfoComponent';
 import { MusicListComponent } from './musicListComponent';
-import { Music } from '../dataInterfaces/music';
+import { Music, dummyMusic } from '../dataInterfaces/music';
 import { PlayBarComponent } from './playBarComponent';
 import { useGlobal } from 'reactn';
 
@@ -26,10 +26,9 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
     const [currentTime, setCurrentTime] = useState(0);
     const [duration, setDuration] = useState(0);
     const [musicPercent, setMusicPercent] = useState(0);
-    const [cover, setCover] = useState('default.png');
-    const [name, setName] = useState('name');
-    const [artist, setArtist] = useState('artist');
-    const [album, setAlbum] = useState('album');
+
+    const [music, setMusic] = useState(dummyMusic);
+
     const [musicIndex, setMusicIndex] = useState(0);
 
     const classes = useStyles({});
@@ -105,10 +104,7 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
     // };
 
     const playMusic = (m: Music, index: number): void => {
-        setName(m.name);
-        setArtist(m.artist);
-        setAlbum(m.album);
-        setCover(m.cover);
+        setMusic(m);
 
         audioElement.src = m.address;
         audioElement.autoplay = true;
@@ -133,7 +129,7 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
                 <PlayBarComponent
                     musicPercent={musicPercent}
                     isPlaying={isPlaying}
-                    cover={cover}
+                    cover={music.cover}
                     volumn={volumn * 100}
                     changeMusicPercent={changeMusicPercent}
                     pausePlay={pausePlay}
@@ -141,7 +137,7 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
                     changeMusicVolumn={changeMusicVolumn}
                 ></PlayBarComponent>
                 <MusicListComponent musics={musics} clickMusic={playMusic} />
-                <MusicInfoComponent name={name} artist={artist} cover={cover} album={album}></MusicInfoComponent>
+                <MusicInfoComponent music={music}></MusicInfoComponent>
             </Paper>
 
             <Button
