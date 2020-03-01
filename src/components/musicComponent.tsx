@@ -8,7 +8,7 @@ import { Music } from '../dataInterfaces/music';
 import { PlayBarComponent } from './playBarComponent';
 import { useGlobal, useDispatch } from 'reactn';
 import { postLikeMusic } from '../service';
-import { updateMusic } from '../globals';
+import { updateMusic, updateCurrentMusic } from '../globals';
 
 interface MusicComponentProps {
     audioElement: HTMLAudioElement;
@@ -25,7 +25,7 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
     const { audioElement, musics } = props;
 
     const updateMusicAfterClickLike = useDispatch(updateMusic);
-    // const [currentMusic] = useGlobal('currentMusic');
+    const updateCurerntMusicInfo = useDispatch(updateCurrentMusic);
     const [currentMusic] = useGlobal('currentMusic');
     const [avatar, setAvatar] = useGlobal('avatar');
 
@@ -70,7 +70,6 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
     };
 
     const currentMusicInfoLikeClick = (): void => {
-        // postLikeMusic(currentMusic.id, setCurrentMusic);
         postLikeMusic(currentMusic.id, updateMusicAfterClickLike);
     };
 
@@ -117,9 +116,7 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
     // };
 
     const playMusic = (m: Music, index: number): void => {
-        // setMusic(m);
-        // setCurrentMusic(m);
-        updateMusicAfterClickLike(m);
+        updateCurerntMusicInfo(m);
 
         audioElement.src = m.address;
         audioElement.autoplay = true;

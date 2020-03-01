@@ -31,7 +31,7 @@ export const updateMusic = (
     dispatch: Dispatch,
     music: Music,
 ): Pick<State, 'currentMusic' | 'musics'> => ({
-    currentMusic: music,
+    currentMusic: global.currentMusic.id === music.id ? music : global.currentMusic,
     musics: global.musics.map(m => {
         if (m.id === music.id) {
             return music;
@@ -39,4 +39,8 @@ export const updateMusic = (
             return m;
         }
     }),
+});
+
+export const updateCurrentMusic = (global: State, dispatch: Dispatch, music: Music): Pick<State, 'currentMusic'> => ({
+    currentMusic: music,
 });
