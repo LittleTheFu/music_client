@@ -7,7 +7,7 @@ import { MusicListComponent } from './musicListComponent';
 import { Music } from '../dataInterfaces/music';
 import { PlayBarComponent } from './playBarComponent';
 import { useGlobal, useDispatch } from 'reactn';
-import { postLikeMusic } from '../service';
+import { postLikeMusic, postDislikeMusic } from '../service';
 import { updateMusic, updateCurrentMusic } from '../globals';
 
 interface MusicComponentProps {
@@ -70,7 +70,7 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
     };
 
     const currentMusicInfoLikeClick = (): void => {
-        postLikeMusic(currentMusic.id, updateMusicAfterClickLike);
+        postDislikeMusic(currentMusic.id, updateMusicAfterClickLike);
     };
 
     const changeMusicVolumn = (event: object, value: unknown): void => {

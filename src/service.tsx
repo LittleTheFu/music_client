@@ -67,3 +67,8 @@ const likeMusicUrl = 'http://localhost:9999/music/like';
 export const postLikeMusic = (musicId: number, resolve: (data: any) => void): Promise<object> => {
     return rawObjectPost(likeMusicUrl, { musicId: musicId }, resolve);
 };
+
+const dislikeMusicUrl = 'http://localhost:9999/music/dislike';
+export const postDislikeMusic = (musicId: number, resolve: (data: any) => void): Promise<object> => {
+    return rawObjectPost(dislikeMusicUrl, { musicId: musicId }, resolve);
+};
