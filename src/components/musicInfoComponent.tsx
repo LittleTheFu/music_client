@@ -10,6 +10,7 @@ import { IconButton } from '@material-ui/core';
 interface MusicInfoProps {
     music: Music;
     likeClick: () => void;
+    dislikeClick: () => void;
 }
 
 const useStyles = makeStyles({
@@ -38,7 +39,7 @@ const useStyles = makeStyles({
 
 export const MusicInfoComponent: React.FC<MusicInfoProps> = (props: MusicInfoProps) => {
     const classes = useStyles({});
-    const { music, likeClick } = props;
+    const { music, likeClick, dislikeClick } = props;
     return (
         <Card raised={true} className={classes.card}>
             <h4>
@@ -48,7 +49,7 @@ export const MusicInfoComponent: React.FC<MusicInfoProps> = (props: MusicInfoPro
             </h4>
             ---{music.like}{' '}
             {music.likedByCurrentUser ? (
-                <IconButton onClick={likeClick}>
+                <IconButton onClick={dislikeClick}>
                     <FavoriteIcon></FavoriteIcon>
                 </IconButton>
             ) : (

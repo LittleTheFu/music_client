@@ -12,6 +12,7 @@ interface MusicList {
     musics: Music[];
     clickMusic: (music: Music, index: number) => void;
     likeClick: (id: number) => void;
+    dislikeClick: (id: number) => void;
 }
 
 const useStyles = makeStyles({
@@ -23,7 +24,7 @@ const useStyles = makeStyles({
 
 export const MusicListComponent: React.FC<MusicList> = (props: MusicList) => {
     const classes = useStyles({});
-    const { musics, clickMusic, likeClick } = props;
+    const { musics, clickMusic, likeClick, dislikeClick } = props;
 
     const musicElements = musics.map((music: Music, index: number) => {
         return (
@@ -33,8 +34,7 @@ export const MusicListComponent: React.FC<MusicList> = (props: MusicList) => {
                     <IconButton
                         onClick={(e): void => {
                             e.stopPropagation();
-                            console.log('like');
-                            likeClick(music.id);
+                            dislikeClick(music.id);
                         }}
                     >
                         <FavoriteIcon></FavoriteIcon>
@@ -43,7 +43,6 @@ export const MusicListComponent: React.FC<MusicList> = (props: MusicList) => {
                     <IconButton
                         onClick={(e): void => {
                             e.stopPropagation();
-                            console.log('like');
                             likeClick(music.id);
                         }}
                     >

@@ -70,6 +70,14 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
     };
 
     const currentMusicInfoLikeClick = (): void => {
+        postLikeMusic(currentMusic.id, updateMusicAfterClickLike);
+    };
+
+    const musicItemDislikeClick = (id: number): void => {
+        postDislikeMusic(id, updateMusicAfterClickLike);
+    };
+
+    const currentMusicInfoDislikeClick = (): void => {
         postDislikeMusic(currentMusic.id, updateMusicAfterClickLike);
     };
 
@@ -148,8 +156,17 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
                     skipToNext={skipToNext}
                     changeMusicVolumn={changeMusicVolumn}
                 ></PlayBarComponent>
-                <MusicListComponent musics={musics} clickMusic={playMusic} likeClick={musicItemLikeClick} />
-                <MusicInfoComponent music={currentMusic} likeClick={currentMusicInfoLikeClick}></MusicInfoComponent>
+                <MusicListComponent
+                    musics={musics}
+                    clickMusic={playMusic}
+                    likeClick={musicItemLikeClick}
+                    dislikeClick={musicItemDislikeClick}
+                />
+                <MusicInfoComponent
+                    music={currentMusic}
+                    likeClick={currentMusicInfoLikeClick}
+                    dislikeClick={currentMusicInfoDislikeClick}
+                ></MusicInfoComponent>
             </Paper>
 
             <Button
