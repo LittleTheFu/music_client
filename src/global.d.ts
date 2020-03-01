@@ -9,5 +9,6 @@ declare module 'reactn/default' {
         drawerOpen: boolean;
         loginModalOpen: boolean;
         currentMusic: Music;
+        musics: Music[];
     }
 }

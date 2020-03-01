@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import { MusicInfoComponent } from './musicInfoComponent';
 import { MusicListComponent } from './musicListComponent';
-import { Music, dummyMusic } from '../dataInterfaces/music';
+import { Music } from '../dataInterfaces/music';
 import { PlayBarComponent } from './playBarComponent';
 import { useGlobal } from 'reactn';
 import { postLikeMusic } from '../service';
@@ -29,8 +29,6 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
     const [currentTime, setCurrentTime] = useState(0);
     const [duration, setDuration] = useState(0);
     const [musicPercent, setMusicPercent] = useState(0);
-
-    const [music, setMusic] = useState(dummyMusic);
 
     const [musicIndex, setMusicIndex] = useState(0);
 

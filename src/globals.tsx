@@ -1,5 +1,5 @@
 import { setGlobal } from 'reactn';
-import { Music, dummyMusic } from './dataInterfaces/music';
+import { dummyMusic } from './dataInterfaces/music';
 
 // let gUser = 'guest';
 // export let gIsGuest = true;
@@ -65,4 +65,5 @@ setGlobal({
     drawerOpen: false,
     loginModalOpen: false,
     currentMusic: dummyMusic,
+    musics: [],
 });

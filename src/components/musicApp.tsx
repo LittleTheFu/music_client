@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { MusicComponent } from './musicComponent';
 import { getAudioPlayer } from './audioPlayer';
 import { Music } from '../dataInterfaces/music';
@@ -7,13 +7,12 @@ import Button from '@material-ui/core/Button';
 import { LoginModal } from './loginModal';
 import { TemporaryDrawer } from './navDrawerComponent';
 import { AppBarComponent } from './appBarComponent';
-// import { useGlobal } from 'reactn';
+import { useGlobal } from 'reactn';
 
 const audioElement = getAudioPlayer();
 
 export const MusicApp: React.FC = () => {
-    // const [drawerOpen, setDrawerOpen] = useGlobal('drawerOpen');
-    const [musics, setMusics] = useState([]);
+    const [musics, setMusics] = useGlobal('musics');
 
     const loadMusic = (): void => {
         fetchMusicList(
