@@ -21,6 +21,8 @@ export class Music {
     album: string;
 
     like: number;
+
+    likedByCurrentUser: boolean;
 }
 
 export const dummyMusic: Music = {
@@ -31,4 +33,5 @@ export const dummyMusic: Music = {
     artist: 'artist',
     album: 'album',
     like: 0,
+    likedByCurrentUser: false,
 };
