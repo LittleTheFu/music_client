@@ -6,8 +6,9 @@ import { MusicInfoComponent } from './musicInfoComponent';
 import { MusicListComponent } from './musicListComponent';
 import { Music } from '../dataInterfaces/music';
 import { PlayBarComponent } from './playBarComponent';
-import { useGlobal } from 'reactn';
+import { useGlobal, useDispatch } from 'reactn';
 import { postLikeMusic } from '../service';
+import { updateMusic } from '../globals';
 
 interface MusicComponentProps {
     audioElement: HTMLAudioElement;
@@ -23,7 +24,9 @@ const useStyles = makeStyles({
 export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicComponentProps) => {
     const { audioElement, musics } = props;
 
-    const [currentMusic, setCurrentMusic] = useGlobal('currentMusic');
+    const updateMusicAfterClickLike = useDispatch(updateMusic);
+    // const [currentMusic] = useGlobal('currentMusic');
+    const [currentMusic] = useGlobal('currentMusic');
     const [avatar, setAvatar] = useGlobal('avatar');
 
     const [currentTime, setCurrentTime] = useState(0);
@@ -62,8 +65,13 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
         }
     };
 
-    const musicInfoLikeClick = (): void => {
-        postLikeMusic(currentMusic.id, setCurrentMusic);
+    const musicItemLikeClick = (id: number): void => {
+        postLikeMusic(id, updateMusicAfterClickLike);
+    };
+
+    const currentMusicInfoLikeClick = (): void => {
+        // postLikeMusic(currentMusic.id, setCurrentMusic);
+        postLikeMusic(currentMusic.id, updateMusicAfterClickLike);
     };
 
     const changeMusicVolumn = (event: object, value: unknown): void => {
@@ -110,7 +118,8 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
 
     const playMusic = (m: Music, index: number): void => {
         // setMusic(m);
-        setCurrentMusic(m);
+        // setCurrentMusic(m);
+        updateMusicAfterClickLike(m);
 
         audioElement.src = m.address;
         audioElement.autoplay = true;
@@ -142,8 +151,8 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
                     skipToNext={skipToNext}
                     changeMusicVolumn={changeMusicVolumn}
                 ></PlayBarComponent>
-                <MusicListComponent musics={musics} clickMusic={playMusic} />
-                <MusicInfoComponent music={currentMusic} likeClick={musicInfoLikeClick}></MusicInfoComponent>
+                <MusicListComponent musics={musics} clickMusic={playMusic} likeClick={musicItemLikeClick} />
+                <MusicInfoComponent music={currentMusic} likeClick={currentMusicInfoLikeClick}></MusicInfoComponent>
             </Paper>
 
             <Button

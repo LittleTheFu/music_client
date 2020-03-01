@@ -5,12 +5,12 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import { Music } from '../dataInterfaces/music';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
-import { postLikeMusic } from '../service';
 import { IconButton } from '@material-ui/core';
 
 interface MusicList {
     musics: Music[];
     clickMusic: (music: Music, index: number) => void;
+    likeClick: (id: number) => void;
 }
 
 const useStyles = makeStyles({
@@ -22,7 +22,7 @@ const useStyles = makeStyles({
 
 export const MusicListComponent: React.FC<MusicList> = (props: MusicList) => {
     const classes = useStyles({});
-    const { musics, clickMusic } = props;
+    const { musics, clickMusic, likeClick } = props;
 
     const musicElements = musics.map((music: Music, index: number) => {
         return (
@@ -32,7 +32,7 @@ export const MusicListComponent: React.FC<MusicList> = (props: MusicList) => {
                     onClick={(e): void => {
                         e.stopPropagation();
                         console.log('like');
-                        postLikeMusic(music.id, console.log);
+                        likeClick(music.id);
                     }}
                 >
                     <FavoriteBorderIcon></FavoriteBorderIcon>

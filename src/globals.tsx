@@ -1,5 +1,6 @@
 import { setGlobal } from 'reactn';
-import { dummyMusic } from './dataInterfaces/music';
+import { Music, dummyMusic } from './dataInterfaces/music';
+import { State, Dispatch } from 'reactn/default';
 
 let gToken = '';
 
@@ -23,4 +24,19 @@ setGlobal({
     loginModalOpen: false,
     currentMusic: dummyMusic,
     musics: [],
+});
+
+export const updateMusic = (
+    global: State,
+    dispatch: Dispatch,
+    music: Music,
+): Pick<State, 'currentMusic' | 'musics'> => ({
+    currentMusic: music,
+    musics: global.musics.map(m => {
+        if (m.id === music.id) {
+            return music;
+        } else {
+            return m;
+        }
+    }),
 });
