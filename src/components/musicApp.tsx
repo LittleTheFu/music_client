@@ -2,7 +2,7 @@ import React from 'react';
 import { MusicComponent } from './musicComponent';
 import { getAudioPlayer } from './audioPlayer';
 import { Music } from '../dataInterfaces/music';
-import { fetchMusicList, fetchMusics } from '../service';
+import { fetchMusicList, fetchMusics, postShowProfile } from '../service';
 import Button from '@material-ui/core/Button';
 import { LoginModal } from './loginModal';
 import { TemporaryDrawer } from './navDrawerComponent';
@@ -52,6 +52,15 @@ export const MusicApp: React.FC = () => {
             </Button>
             <Button variant="contained" color="primary" onClick={getMusics}>
                 loadMusic
+            </Button>
+            <Button
+                variant="contained"
+                color="primary"
+                onClick={(): void => {
+                    postShowProfile(console.log);
+                }}
+            >
+                test-jwt-api
             </Button>
             <LoginModal></LoginModal>
             <MusicComponent audioElement={audioElement} musics={musics}></MusicComponent>
