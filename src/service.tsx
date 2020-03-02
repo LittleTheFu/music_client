@@ -9,8 +9,9 @@ const musicUrl = 'http://localhost:9999/music/nextmusic';
 const musicListUrl = 'http://localhost:9999/music/musiclist';
 const musicsUrl = 'http://localhost:9999/music/musics';
 
-async function api<T>(url: string, info: object): Promise<T> {
-    const response = await fetch(url, info);
+async function api<T>(url: string, headers: object, headersContent: object = {}): Promise<T> {
+    console.log({ ...headers, ...headersContent });
+    const response = await fetch(url, { ...headers, ...headersContent });
     if (!response.ok) {
         console.log(response);
         throw new Error(response.statusText);
@@ -29,7 +30,11 @@ export const fetchNextMusic = (
 };
 
 export const fetchMusicList = (resolve: (arg0: object) => void, reject: (arg0: object) => void): void => {
-    api<{ musicList: Music[] }>(musicListUrl, getOption)
+    api<{ musicList: Music[] }>(musicListUrl, getOption, {
+        headers: {
+            Authorization: 'Bearer ' + getToken(),
+        },
+    })
         .then(musicList => {
             resolve(musicList);
         })
@@ -37,7 +42,11 @@ export const fetchMusicList = (resolve: (arg0: object) => void, reject: (arg0: o
 };
 
 export const fetchMusics = (resolve: (arg0: object) => void, reject: (arg0: object) => void): void => {
-    api<{ musicList: Array<Music> }>(musicsUrl, getOption)
+    api<{ musicList: Array<Music> }>(musicsUrl, getOption, {
+        headers: {
+            Authorization: 'Bearer ' + getToken(),
+        },
+    })
         .then(musicList => {
             resolve(musicList);
         })
@@ -72,12 +81,12 @@ export const postLogin = (username: string, password: string, resolve: (data: an
 
 const likeMusicUrl = 'http://localhost:9999/music/like';
 export const postLikeMusic = (musicId: number, resolve: (data: any) => void): Promise<object> => {
-    return rawObjectPost(likeMusicUrl, { musicId: musicId }, resolve);
+    return rawObjectPost(likeMusicUrl, { musicId: musicId }, resolve, { Authorization: 'Bearer ' + getToken() });
 };
 
 const dislikeMusicUrl = 'http://localhost:9999/music/dislike';
 export const postDislikeMusic = (musicId: number, resolve: (data: any) => void): Promise<object> => {
-    return rawObjectPost(dislikeMusicUrl, { musicId: musicId }, resolve);
+    return rawObjectPost(dislikeMusicUrl, { musicId: musicId }, resolve, { Authorization: 'Bearer ' + getToken() });
 };
 
 const profileUrl = 'http://localhost:9999/profile';
