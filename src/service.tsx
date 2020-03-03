@@ -74,6 +74,11 @@ const rawObjectPost = (
         .catch(err => err);
 };
 
+const registerUrl = 'http://localhost:9999/users/register';
+export const postRegister = (username: string, password: string, resolve: (data: any) => void): Promise<object> => {
+    return rawObjectPost(registerUrl, { username: username, password: password }, resolve);
+};
+
 const loginUrl = 'http://localhost:9999/auth/login';
 export const postLogin = (username: string, password: string, resolve: (data: any) => void): Promise<object> => {
     return rawObjectPost(loginUrl, { username: username, password: password }, resolve);

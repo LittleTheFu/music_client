@@ -5,6 +5,7 @@ import { Music } from '../dataInterfaces/music';
 import { fetchMusicList, fetchMusics, postShowProfile } from '../service';
 import Button from '@material-ui/core/Button';
 import { LoginModal } from './loginModal';
+import { RegModal } from './regModal';
 import { TemporaryDrawer } from './navDrawerComponent';
 import { AppBarComponent } from './appBarComponent';
 import { useGlobal } from 'reactn';
@@ -63,6 +64,7 @@ export const MusicApp: React.FC = () => {
                 test-jwt-api
             </Button>
             <LoginModal></LoginModal>
+            <RegModal></RegModal>
             <MusicComponent audioElement={audioElement} musics={musics}></MusicComponent>
             <Button
                 variant="contained"

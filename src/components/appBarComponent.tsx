@@ -35,11 +35,10 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export const AppBarComponent: React.FC = () => {
     const [isLogin, setIsLogin] = useGlobal('isLogin');
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [drawerOpen, setDrawerOpen] = useGlobal('drawerOpen');
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [loginModalOpen, setLoginModalOpen] = useGlobal('loginModalOpen');
     const [userId, setUserId] = useGlobal('userId');
+    const [regModalOpen, setRegModalOpen] = useGlobal('regModalOpen');
 
     const classes = useStyles();
 
@@ -65,6 +64,15 @@ export const AppBarComponent: React.FC = () => {
                     <Typography variant="h6" className={classes.title}>
                         Welcome
                     </Typography>
+                    <Button
+                        variant="contained"
+                        color="secondary"
+                        onClick={(): void => {
+                            setRegModalOpen(true);
+                        }}
+                    >
+                        reg-user
+                    </Button>
                     <IconButton
                         edge="start"
                         className={classes.menuButton}
