@@ -11,6 +11,7 @@ import VolumeUpIcon from '@material-ui/icons/VolumeUp';
 
 interface MusicList {
     musics: Music[];
+    currentMusic: Music;
     clickMusic: (music: Music, index: number) => void;
     likeClick: (id: number) => void;
     dislikeClick: (id: number) => void;
@@ -31,7 +32,7 @@ const useStyles = makeStyles({
 
 export const MusicListComponent: React.FC<MusicList> = (props: MusicList) => {
     const classes = useStyles({});
-    const { musics, clickMusic, likeClick, dislikeClick } = props;
+    const { musics, currentMusic, clickMusic, likeClick, dislikeClick } = props;
 
     const musicElements = musics.map((music: Music, index: number) => {
         return (
@@ -56,8 +57,12 @@ export const MusicListComponent: React.FC<MusicList> = (props: MusicList) => {
                         <FavoriteBorderIcon className={classes.likeIcon}></FavoriteBorderIcon>
                     </IconButton>
                 )}
-                ---{index} : {music.name}
-                <VolumeUpIcon className={classes.soundIcon}></VolumeUpIcon>
+                ---{index} : {music.name}---
+                {currentMusic.id === music.id ? (
+                    <VolumeUpIcon className={classes.soundIcon}></VolumeUpIcon>
+                ) : (
+                    <div></div>
+                )}
             </ListItem>
         );
     });
