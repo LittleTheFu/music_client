@@ -64,7 +64,7 @@ export const AppBarComponent: React.FC = () => {
                         edge="start"
                         className={classes.menuButton}
                         onClick={(): void => {
-                            setLoginModalOpen(true);
+                            if (!isLogin) setLoginModalOpen(true);
                         }}
                         color="inherit"
                         aria-label="menu"
