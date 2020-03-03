@@ -8,6 +8,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import Button from '@material-ui/core/Button';
 import { useGlobal } from 'reactn';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -15,6 +16,10 @@ const useStyles = makeStyles((theme: Theme) =>
             flexGrow: 1,
         },
         menuButton: {
+            marginRight: theme.spacing(2),
+        },
+        exitButton: {
+            color: 'white',
             marginRight: theme.spacing(2),
         },
         title: {
@@ -74,16 +79,16 @@ export const AppBarComponent: React.FC = () => {
                     </IconButton>
                     {isLogin ? (
                         <div>
-                            <Button
-                                variant="contained"
-                                color="secondary"
+                            <IconButton
+                                edge="start"
+                                className={classes.exitButton}
                                 onClick={(): void => {
                                     setIsLogin(false);
                                     setUserId('guest');
                                 }}
                             >
-                                logout
-                            </Button>
+                                <ExitToAppIcon />
+                            </IconButton>
                         </div>
                     ) : (
                         <div></div>
