@@ -1,4 +1,4 @@
-import { Music } from './dataInterfaces/music';
+import { Music, MusicCollection } from './dataInterfaces/music';
 import { getToken } from './globals';
 
 const getOption = {
@@ -98,4 +98,13 @@ const profileUrl = 'http://localhost:9999/profile';
 export const postShowProfile = (resolve: (data: any) => void): Promise<object> => {
     console.log(getToken());
     return rawObjectPost(profileUrl, {}, resolve, { Authorization: 'Bearer ' + getToken() });
+};
+
+const collectionsUrl = 'http://localhost:9999/music/collections';
+export const getMusicCollections = (resolve: (arg0: object) => void, reject: (arg0: object) => void): void => {
+    api<{ musicCollections: MusicCollection[] }>(collectionsUrl, getOption)
+        .then(collection => {
+            resolve(collection);
+        })
+        .catch(e => reject(e));
 };

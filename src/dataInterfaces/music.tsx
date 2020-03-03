@@ -35,3 +35,9 @@ export const dummyMusic: Music = {
     like: 0,
     likedByCurrentUser: false,
 };
+
+export class MusicCollection {
+    id: number;
+
+    name: string;
+}

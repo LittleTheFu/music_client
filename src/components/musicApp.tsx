@@ -9,6 +9,7 @@ import { RegModal } from './regModal';
 import { TemporaryDrawer } from './navDrawerComponent';
 import { AppBarComponent } from './appBarComponent';
 import { useGlobal } from 'reactn';
+import { getMusicCollections } from '../service';
 
 const audioElement = getAudioPlayer();
 
@@ -48,6 +49,18 @@ export const MusicApp: React.FC = () => {
         <div>
             <AppBarComponent></AppBarComponent>
             <TemporaryDrawer></TemporaryDrawer>
+            <Button
+                variant="contained"
+                color="primary"
+                onClick={() => {
+                    getMusicCollections(
+                        o => console.log(o),
+                        e => console.log(e),
+                    );
+                }}
+            >
+                load-collections
+            </Button>
             <Button variant="contained" color="primary" onClick={loadMusic}>
                 loadMusic
             </Button>
