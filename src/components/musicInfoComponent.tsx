@@ -35,6 +35,9 @@ const useStyles = makeStyles({
         animationTimingFunction: 'linear',
         animationPlayState: 'running',
     },
+    likeIcon: {
+        color: 'red',
+    },
 });
 
 export const MusicInfoComponent: React.FC<MusicInfoProps> = (props: MusicInfoProps) => {
@@ -49,11 +52,11 @@ export const MusicInfoComponent: React.FC<MusicInfoProps> = (props: MusicInfoPro
             </h4>
             ---{music.like}{' '}
             {music.likedByCurrentUser ? (
-                <IconButton onClick={dislikeClick}>
+                <IconButton className={classes.likeIcon} onClick={dislikeClick}>
                     <FavoriteIcon></FavoriteIcon>
                 </IconButton>
             ) : (
-                <IconButton onClick={likeClick}>
+                <IconButton className={classes.likeIcon} onClick={likeClick}>
                     <FavoriteBorderIcon></FavoriteBorderIcon>
                 </IconButton>
             )}

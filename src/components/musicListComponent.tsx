@@ -24,6 +24,9 @@ const useStyles = makeStyles({
     soundIcon: {
         color: 'red',
     },
+    likeIcon: {
+        color: 'red',
+    },
 });
 
 export const MusicListComponent: React.FC<MusicList> = (props: MusicList) => {
@@ -41,7 +44,7 @@ export const MusicListComponent: React.FC<MusicList> = (props: MusicList) => {
                             dislikeClick(music.id);
                         }}
                     >
-                        <FavoriteIcon></FavoriteIcon>
+                        <FavoriteIcon className={classes.likeIcon}></FavoriteIcon>
                     </IconButton>
                 ) : (
                     <IconButton
@@ -50,7 +53,7 @@ export const MusicListComponent: React.FC<MusicList> = (props: MusicList) => {
                             likeClick(music.id);
                         }}
                     >
-                        <FavoriteBorderIcon></FavoriteBorderIcon>
+                        <FavoriteBorderIcon className={classes.likeIcon}></FavoriteBorderIcon>
                     </IconButton>
                 )}
                 ---{index} : {music.name}
