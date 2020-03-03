@@ -3,10 +3,11 @@ import Modal from '@material-ui/core/Modal';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import { postLogin } from '../service';
+import { postLogin, fetchMusicList } from '../service';
 import Snackbar from '@material-ui/core/Snackbar';
 import { setToken } from '../globals';
 import { useGlobal } from 'reactn';
+import { Music } from '../dataInterfaces/music';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -39,12 +40,23 @@ export const LoginModal: React.FC = () => {
     const [loginModalOpen, setLoginModalOpen] = useGlobal('loginModalOpen');
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [userId, setUserId] = useGlobal('userId');
+    const [musics, setMusics] = useGlobal('musics');
 
     const [user, setUser] = useState('');
     const [password, setPassword] = useState('');
     const [snackbarOpen, setSnackbarOpen] = useState(false);
     const [snackbarMsg, setSnackbarMsg] = useState('snackbar-msg');
     const classes = useStyles({});
+
+    const loadMusic = (): void => {
+        fetchMusicList(
+            musicList => {
+                setMusics(musicList as Music[]);
+                console.log(musicList);
+            },
+            e => console.log(e),
+        );
+    };
 
     const resolveData = (data: any): void => {
         if ('error' in data) {
@@ -59,6 +71,8 @@ export const LoginModal: React.FC = () => {
             setSnackbarOpen(true);
             setIsLogin(true);
             setLoginModalOpen(false);
+
+            loadMusic();
         }
     };
 
