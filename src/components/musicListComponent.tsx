@@ -7,6 +7,7 @@ import { Music } from '../dataInterfaces/music';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import { IconButton } from '@material-ui/core';
+import VolumeUpIcon from '@material-ui/icons/VolumeUp';
 
 interface MusicList {
     musics: Music[];
@@ -19,6 +20,9 @@ const useStyles = makeStyles({
     list: {
         width: 600,
         height: 300,
+    },
+    soundIcon: {
+        color: 'red',
     },
 });
 
@@ -50,6 +54,7 @@ export const MusicListComponent: React.FC<MusicList> = (props: MusicList) => {
                     </IconButton>
                 )}
                 ---{index} : {music.name}
+                <VolumeUpIcon className={classes.soundIcon}></VolumeUpIcon>
             </ListItem>
         );
     });
