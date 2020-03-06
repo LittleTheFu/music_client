@@ -1,5 +1,6 @@
 import 'reactn';
 import './dataInterfaces/music';
+import { MusicCollection } from './dataInterfaces/music';
 
 declare module 'reactn/default' {
     export interface Reducers {
@@ -16,5 +17,6 @@ declare module 'reactn/default' {
         regModalOpen: boolean;
         currentMusic: Music;
         musics: Music[];
+        Collections: MusicCollection[];
     }
 }

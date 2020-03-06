@@ -3,11 +3,11 @@ import Modal from '@material-ui/core/Modal';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import { postLogin, fetchMusicList } from '../service';
+import { postLogin, fetchMusicList, getMusicCollections } from '../service';
 import Snackbar from '@material-ui/core/Snackbar';
 import { setToken } from '../globals';
 import { useGlobal } from 'reactn';
-import { Music } from '../dataInterfaces/music';
+import { Music, MusicCollection } from '../dataInterfaces/music';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -41,6 +41,7 @@ export const LoginModal: React.FC = () => {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [userId, setUserId] = useGlobal('userId');
     const [musics, setMusics] = useGlobal('musics');
+    const [musicCollections, setMusicCollections] = useGlobal('Collections');
 
     const [user, setUser] = useState('');
     const [password, setPassword] = useState('');
@@ -58,6 +59,17 @@ export const LoginModal: React.FC = () => {
         );
     };
 
+    const loadCollections = (): void => {
+        getMusicCollections(
+            collections => {
+                setMusicCollections(collections as MusicCollection[]);
+                console.log(collections);
+            },
+            e => console.log(e),
+        );
+        console.log('load collections');
+    };
+
     const resolveData = (data: any): void => {
         if ('error' in data) {
             setSnackbarMsg(data.error);
@@ -73,6 +85,7 @@ export const LoginModal: React.FC = () => {
             setLoginModalOpen(false);
 
             loadMusic();
+            loadCollections();
         }
     };
 

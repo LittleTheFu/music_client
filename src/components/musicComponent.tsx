@@ -9,6 +9,7 @@ import { PlayBarComponent } from './playBarComponent';
 import { useGlobal, useDispatch } from 'reactn';
 import { postLikeMusic, postDislikeMusic } from '../service';
 import { updateMusic, updateCurrentMusic } from '../globals';
+import { MusicCollectionsComponent } from './musicCollectionsComponent';
 
 interface MusicComponentProps {
     audioElement: HTMLAudioElement;
@@ -28,6 +29,7 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
     const updateCurerntMusicInfo = useDispatch(updateCurrentMusic);
     const [currentMusic] = useGlobal('currentMusic');
     const [avatar, setAvatar] = useGlobal('avatar');
+    const [musicCollections, setMusicCollections] = useGlobal('Collections');
 
     const [currentTime, setCurrentTime] = useState(0);
     const [duration, setDuration] = useState(0);
@@ -145,6 +147,7 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
 
     return (
         <div>
+            <MusicCollectionsComponent collections={musicCollections}></MusicCollectionsComponent>
             <Paper variant="outlined" className={classes.paper}>
                 <PlayBarComponent
                     musicPercent={musicPercent}

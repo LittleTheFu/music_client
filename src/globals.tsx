@@ -25,6 +25,7 @@ setGlobal({
     regModalOpen: false,
     currentMusic: dummyMusic,
     musics: [],
+    Collections: [],
 });
 
 export const updateMusic = (
