@@ -63,6 +63,9 @@ export const MusicApp: React.FC = () => {
             keyword,
             musics => {
                 console.log(musics);
+                if (musics.length > 0) {
+                    setMusics(musics);
+                }
             },
             e => console.log(e),
         );
