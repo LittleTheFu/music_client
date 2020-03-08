@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { MusicComponent } from './musicComponent';
 import { getAudioPlayer } from './audioPlayer';
 import { Music } from '../dataInterfaces/music';
@@ -16,6 +16,7 @@ const audioElement = getAudioPlayer();
 
 export const MusicApp: React.FC = () => {
     const [musics, setMusics] = useGlobal('musics');
+    const [keyword, setKeyword] = useState('');
 
     const loadMusic = (): void => {
         fetchMusicList(
@@ -56,12 +57,26 @@ export const MusicApp: React.FC = () => {
         console.log('a : ' + a + ' b: ' + b);
     };
 
+    function handleSubmitSearch(event: React.FormEvent<HTMLFormElement>): void {
+        event.preventDefault();
+        fetchMusicsByKeyword(
+            keyword,
+            musics => {
+                console.log(musics);
+            },
+            e => console.log(e),
+        );
+    }
+
     return (
         <div>
             <AppBarComponent></AppBarComponent>
             <TemporaryDrawer></TemporaryDrawer>
-            <form noValidate autoComplete="off">
-                <TextField id="standard-basic" label="search" />
+            <form noValidate autoComplete="off" onSubmit={handleSubmitSearch}>
+                <TextField id="standard-basic" label="search" onChange={(e): void => setKeyword(e.target.value)} />
+                <Button type="submit" variant="contained" color="primary">
+                    search
+                </Button>
             </form>
             <Button
                 variant="contained"
