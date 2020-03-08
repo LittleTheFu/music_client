@@ -9,6 +9,7 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import Button from '@material-ui/core/Button';
 import { useGlobal } from 'reactn';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import TextField from '@material-ui/core/TextField';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -64,6 +65,9 @@ export const AppBarComponent: React.FC = () => {
                     <Typography variant="h6" className={classes.title}>
                         Welcome
                     </Typography>
+                    <form className={classes.root} noValidate autoComplete="off">
+                        <TextField id="standard-basic" label="search" />
+                    </form>
                     <Button
                         variant="contained"
                         color="secondary"
