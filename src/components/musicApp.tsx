@@ -9,7 +9,7 @@ import { RegModal } from './regModal';
 import { TemporaryDrawer } from './navDrawerComponent';
 import { AppBarComponent } from './appBarComponent';
 import { useGlobal } from 'reactn';
-import { getMusicCollections } from '../service';
+import { getMusicCollections, fetchMusicsByKeyword } from '../service';
 
 const audioElement = getAudioPlayer();
 
@@ -31,6 +31,16 @@ export const MusicApp: React.FC = () => {
             musicList => {
                 setMusics(musicList as Music[]);
                 console.log(musicList);
+            },
+            e => console.log(e),
+        );
+    };
+
+    const searchMusics = (): void => {
+        fetchMusicsByKeyword(
+            'a',
+            musics => {
+                console.log(musics);
             },
             e => console.log(e),
         );
@@ -66,6 +76,9 @@ export const MusicApp: React.FC = () => {
             </Button>
             <Button variant="contained" color="primary" onClick={getMusics}>
                 loadMusic
+            </Button>
+            <Button variant="contained" color="primary" onClick={searchMusics}>
+                search musics
             </Button>
             <Button
                 variant="contained"

@@ -117,3 +117,12 @@ export const fetchMusicsByCollectionName = (
 ): Promise<object> => {
     return rawObjectPost(musicsByCollectionUrl, { name: name }, resolve, { Authorization: 'Bearer ' + getToken() });
 };
+
+const musicsByKeyWord = 'http://localhost:9999/music/GetMusicsByKeyWord';
+export const fetchMusicsByKeyword = (
+    keyword: string,
+    resolve: (data: any) => void,
+    reject: (arg0: object) => void,
+): Promise<object> => {
+    return rawObjectPost(musicsByKeyWord, { keyword: keyword }, resolve, { Authorization: 'Bearer ' + getToken() });
+};
