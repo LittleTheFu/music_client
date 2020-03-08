@@ -10,6 +10,7 @@ import { TemporaryDrawer } from './navDrawerComponent';
 import { AppBarComponent } from './appBarComponent';
 import { useGlobal } from 'reactn';
 import { getMusicCollections, fetchMusicsByKeyword } from '../service';
+import TextField from '@material-ui/core/TextField';
 
 const audioElement = getAudioPlayer();
 
@@ -59,6 +60,9 @@ export const MusicApp: React.FC = () => {
         <div>
             <AppBarComponent></AppBarComponent>
             <TemporaryDrawer></TemporaryDrawer>
+            <form noValidate autoComplete="off">
+                <TextField id="standard-basic" label="search" />
+            </form>
             <Button
                 variant="contained"
                 color="primary"
