@@ -6,6 +6,7 @@ declare module 'reactn/default' {
     export interface Reducers {
         updateMusic: (global: State, dispatch: Dispatch, music: Music) => Pick<State, 'currentMusic' | 'musics'>;
         updateCurrentMusic: (global: State, dispatch: Dispatch, music: Music) => Pick<State, 'currentMusic'>;
+        updateMusics: (global: State, dispatch: Dispatch, musics: Music[]) => Pick<State, 'musics'>;
     }
 
     export interface State {

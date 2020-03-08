@@ -8,8 +8,9 @@ import { Music } from '../dataInterfaces/music';
 import { PlayBarComponent } from './playBarComponent';
 import { useGlobal, useDispatch } from 'reactn';
 import { postLikeMusic, postDislikeMusic } from '../service';
-import { updateMusic, updateCurrentMusic } from '../globals';
+import { updateMusic, updateCurrentMusic, updateMusics } from '../globals';
 import { MusicCollectionsComponent } from './musicCollectionsComponent';
+import { fetchMusicList, fetchMusicsByCollectionName } from '../service';
 
 interface MusicComponentProps {
     audioElement: HTMLAudioElement;
@@ -27,6 +28,7 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
 
     const updateMusicAfterClickLike = useDispatch(updateMusic);
     const updateCurerntMusicInfo = useDispatch(updateCurrentMusic);
+    const updateAllMusics = useDispatch(updateMusics);
     const [currentMusic] = useGlobal('currentMusic');
     const [avatar, setAvatar] = useGlobal('avatar');
     const [musicCollections, setMusicCollections] = useGlobal('Collections');
@@ -57,6 +59,19 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
     // const logMsg = (): void => {
     //     console.log('log');
     // };
+
+    const clickCollectionCover = (name: string): void => {
+        // console.log('click collection cover');
+        fetchMusicsByCollectionName(
+            name,
+            musicList => {
+                // setMusics(musicList as Music[]);
+                updateAllMusics(musicList as Music[]);
+                console.log(musicList);
+            },
+            e => console.log(e),
+        );
+    };
 
     const changeMusicPercent = (event: object, value: unknown): void => {
         const percent = value as number;
@@ -147,7 +162,10 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
 
     return (
         <div>
-            <MusicCollectionsComponent collections={musicCollections}></MusicCollectionsComponent>
+            <MusicCollectionsComponent
+                coverClick={clickCollectionCover}
+                collections={musicCollections}
+            ></MusicCollectionsComponent>
             <Paper variant="outlined" className={classes.paper}>
                 <PlayBarComponent
                     musicPercent={musicPercent}

@@ -108,3 +108,12 @@ export const getMusicCollections = (resolve: (arg0: object) => void, reject: (ar
         })
         .catch(e => reject(e));
 };
+
+const musicsByCollectionUrl = 'http://localhost:9999/music/GetMusicsByCollectionName';
+export const fetchMusicsByCollectionName = (
+    name: string,
+    resolve: (data: any) => void,
+    reject: (arg0: object) => void,
+): Promise<object> => {
+    return rawObjectPost(musicsByCollectionUrl, { name: name }, resolve, { Authorization: 'Bearer ' + getToken() });
+};

@@ -46,3 +46,7 @@ export const updateMusic = (
 export const updateCurrentMusic = (global: State, dispatch: Dispatch, music: Music): Pick<State, 'currentMusic'> => ({
     currentMusic: music,
 });
+
+export const updateMusics = (global: State, dispatch: Dispatch, musics: Music[]): Pick<State, 'musics'> => ({
+    musics: musics,
+});
