@@ -40,4 +40,6 @@ export class MusicCollection {
     id: number;
 
     name: string;
+
+    cover: string;
 }

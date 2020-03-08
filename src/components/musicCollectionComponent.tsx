@@ -8,5 +8,10 @@ interface MusicCollectionProps {
 export const MusicCollectionComponent: React.FC<MusicCollectionProps> = (props: MusicCollectionProps) => {
     const { collection } = props;
 
-    return <h1>{collection.name}</h1>;
+    return (
+        <div>
+            <h1>{collection.name}</h1>
+            <img src={collection.cover}></img>
+        </div>
+    );
 };
