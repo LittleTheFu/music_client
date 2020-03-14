@@ -11,10 +11,10 @@ interface MusicCollectionProps {
 
 const useStyles = makeStyles({
     card: {
-        width: 140,
+        width: 340,
     },
     cover: {
-        width: 100,
+        width: 200,
         height: 100,
     },
 });

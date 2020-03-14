@@ -101,12 +101,16 @@ export const postShowProfile = (resolve: (data: any) => void): Promise<object> =
 };
 
 const collectionsUrl = 'http://localhost:9999/music/collections';
-export const getMusicCollections = (resolve: (arg0: object) => void, reject: (arg0: object) => void): void => {
-    api<{ musicCollections: MusicCollection[] }>(collectionsUrl, getOption)
-        .then(collection => {
-            resolve(collection);
-        })
-        .catch(e => reject(e));
+// export const getMusicCollections = (resolve: (arg0: object) => void, reject: (arg0: object) => void): void => {
+//     api<{ musicCollections: MusicCollection[] }>(collectionsUrl, getOption)
+//         .then(collection => {
+//             resolve(collection);
+//         })
+//         .catch(e => reject(e));
+// };
+
+export const getMusicCollections = (resolve: (data: any) => void, reject: (arg0: object) => void): Promise<object> => {
+    return rawObjectPost(collectionsUrl, {}, resolve, { Authorization: 'Bearer ' + getToken() });
 };
 
 const musicsByCollectionUrl = 'http://localhost:9999/music/GetMusicsByCollectionName';

@@ -8,6 +8,7 @@ import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import { IconButton } from '@material-ui/core';
 import VolumeUpIcon from '@material-ui/icons/VolumeUp';
+import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 
 interface MusicList {
     musics: Music[];
@@ -63,6 +64,7 @@ export const MusicListComponent: React.FC<MusicList> = (props: MusicList) => {
                 ) : (
                     <div></div>
                 )}
+                <AddCircleOutlineIcon></AddCircleOutlineIcon>
             </ListItem>
         );
     });

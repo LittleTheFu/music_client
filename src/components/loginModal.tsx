@@ -62,8 +62,8 @@ export const LoginModal: React.FC = () => {
     const loadCollections = (): void => {
         getMusicCollections(
             collections => {
-                setMusicCollections(collections as MusicCollection[]);
                 console.log(collections);
+                setMusicCollections(collections as MusicCollection[]);
             },
             e => console.log(e),
         );
