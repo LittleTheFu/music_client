@@ -16,6 +16,7 @@ interface MusicList {
     clickMusic: (music: Music, index: number) => void;
     likeClick: (id: number) => void;
     dislikeClick: (id: number) => void;
+    addMusicClick: (id: number) => void;
 }
 
 const useStyles = makeStyles({
@@ -33,7 +34,7 @@ const useStyles = makeStyles({
 
 export const MusicListComponent: React.FC<MusicList> = (props: MusicList) => {
     const classes = useStyles({});
-    const { musics, currentMusic, clickMusic, likeClick, dislikeClick } = props;
+    const { musics, currentMusic, clickMusic, likeClick, dislikeClick, addMusicClick } = props;
 
     const musicElements = musics.map((music: Music, index: number) => {
         return (
@@ -64,7 +65,14 @@ export const MusicListComponent: React.FC<MusicList> = (props: MusicList) => {
                 ) : (
                     <div></div>
                 )}
-                <AddCircleOutlineIcon></AddCircleOutlineIcon>
+                <IconButton
+                    onClick={(e): void => {
+                        e.stopPropagation();
+                        addMusicClick(music.id);
+                    }}
+                >
+                    <AddCircleOutlineIcon></AddCircleOutlineIcon>
+                </IconButton>
             </ListItem>
         );
     });

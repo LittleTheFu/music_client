@@ -7,10 +7,9 @@ import { MusicListComponent } from './musicListComponent';
 import { Music } from '../dataInterfaces/music';
 import { PlayBarComponent } from './playBarComponent';
 import { useGlobal, useDispatch } from 'reactn';
-import { postLikeMusic, postDislikeMusic } from '../service';
+import { postLikeMusic, postDislikeMusic, fetchMusicsByCollectionName, addMusicToPersonalList } from '../service';
 import { updateMusic, updateCurrentMusic, updateMusics } from '../globals';
 import { MusicCollectionsComponent } from './musicCollectionsComponent';
-import { fetchMusicList, fetchMusicsByCollectionName } from '../service';
 
 interface MusicComponentProps {
     audioElement: HTMLAudioElement;
@@ -98,6 +97,10 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
         postDislikeMusic(currentMusic.id, updateMusicAfterClickLike);
     };
 
+    const addMusicToPersonalListClick = (id: number): void => {
+        addMusicToPersonalList(id, console.log, console.log);
+    };
+
     const changeMusicVolumn = (event: object, value: unknown): void => {
         setVolumn((value as number) / 100.0);
     };
@@ -183,6 +186,7 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
                     clickMusic={playMusic}
                     likeClick={musicItemLikeClick}
                     dislikeClick={musicItemDislikeClick}
+                    addMusicClick={addMusicToPersonalListClick}
                 />
                 <MusicInfoComponent
                     music={currentMusic}
