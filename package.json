@@ -19,6 +19,8 @@
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.3.0",
     "reactn": "^2.2.6",
+    "reactn-devtools": "^1.1.0",
+    "redux": "^4.0.5",
     "typescript": "~3.7.2"
   },
   "scripts": {
