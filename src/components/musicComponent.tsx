@@ -7,7 +7,13 @@ import { MusicListComponent } from './musicListComponent';
 import { Music } from '../dataInterfaces/music';
 import { PlayBarComponent } from './playBarComponent';
 import { useGlobal, useDispatch } from 'reactn';
-import { postLikeMusic, postDislikeMusic, fetchMusicsByCollectionName, addMusicToPersonalList } from '../service';
+import {
+    postLikeMusic,
+    postDislikeMusic,
+    fetchMusicsByCollectionName,
+    addMusicToPersonalList,
+    removeMusicFromPersonalList,
+} from '../service';
 import {
     updateMusic,
     updateCurrentMusic,
@@ -106,7 +112,20 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
     };
 
     const addMusicToPersonalListClick = (id: number): void => {
+        console.log('ADD:' + id);
         addMusicToPersonalList(
+            id,
+            personalMusics => {
+                updatePersonalMusics(personalMusics);
+                updateMusicsPersnalState();
+            },
+            console.log,
+        );
+    };
+
+    const removeMusicFromPersonalListClick = (id: number): void => {
+        console.log('REMOVE:' + id);
+        removeMusicFromPersonalList(
             id,
             personalMusics => {
                 updatePersonalMusics(personalMusics);
@@ -202,6 +221,7 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
                     likeClick={musicItemLikeClick}
                     dislikeClick={musicItemDislikeClick}
                     addMusicClick={addMusicToPersonalListClick}
+                    removeMusicClick={removeMusicFromPersonalListClick}
                 />
                 <MusicInfoComponent
                     music={currentMusic}

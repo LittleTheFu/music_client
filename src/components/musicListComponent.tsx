@@ -18,6 +18,7 @@ interface MusicList {
     likeClick: (id: number) => void;
     dislikeClick: (id: number) => void;
     addMusicClick: (id: number) => void;
+    removeMusicClick: (id: number) => void;
 }
 
 const useStyles = makeStyles({
@@ -35,7 +36,7 @@ const useStyles = makeStyles({
 
 export const MusicListComponent: React.FC<MusicList> = (props: MusicList) => {
     const classes = useStyles({});
-    const { musics, currentMusic, clickMusic, likeClick, dislikeClick, addMusicClick } = props;
+    const { musics, currentMusic, clickMusic, likeClick, dislikeClick, addMusicClick, removeMusicClick } = props;
 
     const musicElements = musics.map((music: Music, index: number) => {
         return (
@@ -66,18 +67,25 @@ export const MusicListComponent: React.FC<MusicList> = (props: MusicList) => {
                 ) : (
                     <div></div>
                 )}
-                <IconButton
-                    onClick={(e): void => {
-                        e.stopPropagation();
-                        addMusicClick(music.id);
-                    }}
-                >
-                    {music.isInPlayList ? (
+                {music.isInPlayList ? (
+                    <IconButton
+                        onClick={(e): void => {
+                            e.stopPropagation();
+                            removeMusicClick(music.id);
+                        }}
+                    >
                         <RemoveCircleOutlineOutlinedIcon></RemoveCircleOutlineOutlinedIcon>
-                    ) : (
+                    </IconButton>
+                ) : (
+                    <IconButton
+                        onClick={(e): void => {
+                            e.stopPropagation();
+                            addMusicClick(music.id);
+                        }}
+                    >
                         <AddCircleOutlineIcon></AddCircleOutlineIcon>
-                    )}
-                </IconButton>
+                    </IconButton>
+                )}
             </ListItem>
         );
     });

@@ -133,3 +133,14 @@ export const addMusicToPersonalList = (
         Authorization: 'Bearer ' + getToken(),
     });
 };
+
+const removeMusicToPersonalListUrl = 'http://localhost:9999/music/RemoveMusicFromMyList';
+export const removeMusicFromPersonalList = (
+    musicId: number,
+    resolve: (data: any) => void,
+    reject: (arg0: object) => void,
+): Promise<object> => {
+    return rawObjectPost(removeMusicToPersonalListUrl, { musicId: musicId }, resolve, {
+        Authorization: 'Bearer ' + getToken(),
+    });
+};
