@@ -23,6 +23,8 @@ export class Music {
     like: number;
 
     likedByCurrentUser: boolean;
+
+    isInPlayList: boolean;
 }
 
 export const dummyMusic: Music = {
@@ -34,6 +36,7 @@ export const dummyMusic: Music = {
     album: 'album',
     like: 0,
     likedByCurrentUser: false,
+    isInPlayList: false,
 };
 
 export class MusicCollection {

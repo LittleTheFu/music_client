@@ -2,26 +2,29 @@ import React, { useState } from 'react';
 import { MusicComponent } from './musicComponent';
 import { getAudioPlayer } from './audioPlayer';
 import { Music } from '../dataInterfaces/music';
-import { fetchMusicList, fetchMusics, postShowProfile } from '../service';
+import { fetchPlayListMusicList, fetchMusics, postShowProfile } from '../service';
 import Button from '@material-ui/core/Button';
 import { LoginModal } from './loginModal';
 import { RegModal } from './regModal';
 import { TemporaryDrawer } from './navDrawerComponent';
 import { AppBarComponent } from './appBarComponent';
-import { useGlobal } from 'reactn';
+import { useGlobal, useDispatch } from 'reactn';
 import { getMusicCollections, fetchMusicsByKeyword } from '../service';
+import { updateMusics } from '../globals';
+
 import TextField from '@material-ui/core/TextField';
 
 const audioElement = getAudioPlayer();
 
 export const MusicApp: React.FC = () => {
-    const [musics, setMusics] = useGlobal('musics');
+    const [musics] = useGlobal('musics');
     const [keyword, setKeyword] = useState('');
+    const updateTheMusics = useDispatch(updateMusics);
 
     const loadMusic = (): void => {
-        fetchMusicList(
+        fetchPlayListMusicList(
             musicList => {
-                setMusics(musicList as Music[]);
+                updateTheMusics(musicList as Music[]);
                 console.log(musicList);
             },
             e => console.log(e),
@@ -31,7 +34,7 @@ export const MusicApp: React.FC = () => {
     const getMusics = (): void => {
         fetchMusics(
             musicList => {
-                setMusics(musicList as Music[]);
+                updateTheMusics(musicList as Music[]);
                 console.log(musicList);
             },
             e => console.log(e),
@@ -64,7 +67,7 @@ export const MusicApp: React.FC = () => {
             musics => {
                 console.log(musics);
                 if (musics.length > 0) {
-                    setMusics(musics);
+                    updateTheMusics(musics);
                 }
             },
             e => console.log(e),

@@ -6,7 +6,6 @@ const getOption = {
 };
 
 const musicUrl = 'http://localhost:9999/music/nextmusic';
-const musicListUrl = 'http://localhost:9999/music/musiclist';
 const musicsUrl = 'http://localhost:9999/music/musics';
 
 async function api<T>(url: string, headers: object, headersContent: object = {}): Promise<T> {
@@ -29,8 +28,9 @@ export const fetchNextMusic = (
         .catch(e => reject(e));
 };
 
-export const fetchMusicList = (resolve: (arg0: object) => void, reject: (arg0: object) => void): void => {
-    api<{ musicList: Music[] }>(musicListUrl, getOption, {
+const playListMusicListUrl = 'http://localhost:9999/music/playlistmusiclist';
+export const fetchPlayListMusicList = (resolve: (arg0: object) => void, reject: (arg0: object) => void): void => {
+    api<{ musicList: Music[] }>(playListMusicListUrl, getOption, {
         headers: {
             Authorization: 'Bearer ' + getToken(),
         },

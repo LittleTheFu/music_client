@@ -8,7 +8,13 @@ import { Music } from '../dataInterfaces/music';
 import { PlayBarComponent } from './playBarComponent';
 import { useGlobal, useDispatch } from 'reactn';
 import { postLikeMusic, postDislikeMusic, fetchMusicsByCollectionName, addMusicToPersonalList } from '../service';
-import { updateMusic, updateCurrentMusic, updateMusics } from '../globals';
+import {
+    updateMusic,
+    updateCurrentMusic,
+    updateMusics,
+    updateMusicInPersoalListState,
+    updatePlayListMusics,
+} from '../globals';
 import { MusicCollectionsComponent } from './musicCollectionsComponent';
 
 interface MusicComponentProps {
@@ -28,6 +34,8 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
     const updateMusicAfterClickLike = useDispatch(updateMusic);
     const updateCurerntMusicInfo = useDispatch(updateCurrentMusic);
     const updateAllMusics = useDispatch(updateMusics);
+    const updateMusicsPersnalState = useDispatch(updateMusicInPersoalListState);
+    const updatePersonalMusics = useDispatch(updatePlayListMusics);
     const [currentMusic] = useGlobal('currentMusic');
     const [avatar, setAvatar] = useGlobal('avatar');
     const [musicCollections, setMusicCollections] = useGlobal('Collections');
@@ -98,7 +106,14 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
     };
 
     const addMusicToPersonalListClick = (id: number): void => {
-        addMusicToPersonalList(id, console.log, console.log);
+        addMusicToPersonalList(
+            id,
+            personalMusics => {
+                updatePersonalMusics(personalMusics);
+                updateMusicsPersnalState();
+            },
+            console.log,
+        );
     };
 
     const changeMusicVolumn = (event: object, value: unknown): void => {

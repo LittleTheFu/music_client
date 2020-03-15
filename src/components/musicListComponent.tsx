@@ -9,6 +9,7 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import { IconButton } from '@material-ui/core';
 import VolumeUpIcon from '@material-ui/icons/VolumeUp';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
+import RemoveCircleOutlineOutlinedIcon from '@material-ui/icons/RemoveCircleOutlineOutlined';
 
 interface MusicList {
     musics: Music[];
@@ -71,7 +72,11 @@ export const MusicListComponent: React.FC<MusicList> = (props: MusicList) => {
                         addMusicClick(music.id);
                     }}
                 >
-                    <AddCircleOutlineIcon></AddCircleOutlineIcon>
+                    {music.isInPlayList ? (
+                        <RemoveCircleOutlineOutlinedIcon></RemoveCircleOutlineOutlinedIcon>
+                    ) : (
+                        <AddCircleOutlineIcon></AddCircleOutlineIcon>
+                    )}
                 </IconButton>
             </ListItem>
         );

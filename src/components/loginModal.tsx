@@ -3,10 +3,10 @@ import Modal from '@material-ui/core/Modal';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import { postLogin, fetchMusicList, getMusicCollections } from '../service';
+import { postLogin, fetchPlayListMusicList, getMusicCollections } from '../service';
 import Snackbar from '@material-ui/core/Snackbar';
-import { setToken } from '../globals';
-import { useGlobal } from 'reactn';
+import { setToken, updatePlayListMusics, updateMusics } from '../globals';
+import { useGlobal, useDispatch } from 'reactn';
 import { Music, MusicCollection } from '../dataInterfaces/music';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -40,8 +40,9 @@ export const LoginModal: React.FC = () => {
     const [loginModalOpen, setLoginModalOpen] = useGlobal('loginModalOpen');
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [userId, setUserId] = useGlobal('userId');
-    const [musics, setMusics] = useGlobal('musics');
     const [musicCollections, setMusicCollections] = useGlobal('Collections');
+    const updateUserAddedMusics = useDispatch(updatePlayListMusics);
+    const updateTheMusics = useDispatch(updateMusics);
 
     const [user, setUser] = useState('');
     const [password, setPassword] = useState('');
@@ -50,9 +51,10 @@ export const LoginModal: React.FC = () => {
     const classes = useStyles({});
 
     const loadMusic = (): void => {
-        fetchMusicList(
+        fetchPlayListMusicList(
             musicList => {
-                setMusics(musicList as Music[]);
+                updateUserAddedMusics(musicList as Music[]);
+                updateTheMusics(musicList as Music[]);
                 console.log(musicList);
             },
             e => console.log(e),
