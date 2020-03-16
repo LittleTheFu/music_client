@@ -69,6 +69,13 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
         audioElement.volume = volumn;
     }, [volumn]);
 
+    useEffect(() => {
+        return (): void => {
+            console.log('pause in return useeffect');
+            audioElement.pause();
+        };
+    }, []);
+
     // const logMsg = (): void => {
     //     console.log('log');
     // };
@@ -147,7 +154,9 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
     };
 
     audioElement.ontimeupdate = (): void => {
-        setCurrentTime(audioElement.currentTime);
+        if (!audioElement.paused) {
+            setCurrentTime(audioElement.currentTime);
+        }
     };
 
     // const changeMusic = (): void => {
