@@ -4,7 +4,7 @@ import { useGlobal } from 'reactn';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { postRegister } from '../service';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -57,6 +57,9 @@ export const RegisterComponent: React.FC = () => {
                 <TextField id="standard-basic" label="password" onChange={(e): void => setPassword(e.target.value)} />
                 <Button type="submit" variant="contained" color="primary">
                     register
+                </Button>
+                <Button component={Link} to="/login" type="submit" variant="contained" color="primary">
+                    go login page
                 </Button>
             </form>
         </div>

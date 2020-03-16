@@ -102,7 +102,7 @@ export const LoginComponent: React.FC = () => {
                     login
                 </Button>
                 <Button component={Link} to="/register" type="submit" variant="contained" color="primary">
-                    register
+                    go register page
                 </Button>
             </form>
         </div>
