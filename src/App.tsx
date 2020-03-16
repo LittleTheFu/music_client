@@ -20,10 +20,10 @@ const App: React.FC = () => {
                             <Link to="/">Login</Link>
                         </li>
                         <li>
-                            <Link to="/about">About</Link>
+                            <Link to="/register">Register</Link>
                         </li>
                         <li>
-                            <Link to="/users">Users</Link>
+                            <Link to="/main">Main</Link>
                         </li>
                     </ul>
                 </nav>
@@ -31,11 +31,11 @@ const App: React.FC = () => {
                 {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
                 <Switch>
-                    <Route path="/about">
-                        <About />
+                    <Route path="/register">
+                        <Register />
                     </Route>
-                    <Route path="/users">
-                        <Users />
+                    <Route path="/main">
+                        <Main />
                     </Route>
                     <Route path="/">
                         <Home />
@@ -50,11 +50,11 @@ function Home() {
     return <LoginComponent></LoginComponent>;
 }
 
-function About() {
+function Register() {
     return <RegisterComponent></RegisterComponent>;
 }
 
-function Users() {
+function Main() {
     return (
         <div>
             <MusicApp></MusicApp>

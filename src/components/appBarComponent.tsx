@@ -9,7 +9,7 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import Button from '@material-ui/core/Button';
 import { useGlobal } from 'reactn';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-// import TextField from '@material-ui/core/TextField';
+import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -40,6 +40,8 @@ export const AppBarComponent: React.FC = () => {
     const [loginModalOpen, setLoginModalOpen] = useGlobal('loginModalOpen');
     const [userId, setUserId] = useGlobal('userId');
     const [regModalOpen, setRegModalOpen] = useGlobal('regModalOpen');
+
+    const history = useHistory();
 
     const classes = useStyles();
 
@@ -97,6 +99,8 @@ export const AppBarComponent: React.FC = () => {
                                 onClick={(): void => {
                                     setIsLogin(false);
                                     setUserId('guest');
+
+                                    history.push('/login');
                                 }}
                             >
                                 <ExitToAppIcon />

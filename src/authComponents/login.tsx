@@ -80,7 +80,7 @@ export const LoginComponent: React.FC = () => {
             loadMusic();
             loadCollections();
 
-            history.push('/users');
+            history.push('/main');
         }
     };
 
