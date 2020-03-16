@@ -6,7 +6,7 @@ import { postLogin, fetchPlayListMusicList, getMusicCollections } from '../servi
 import { setToken, updatePlayListMusics, updateMusics } from '../globals';
 import { useGlobal, useDispatch } from 'reactn';
 import { Music, MusicCollection } from '../dataInterfaces/music';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -100,6 +100,9 @@ export const LoginComponent: React.FC = () => {
                 <TextField id="standard-basic" label="password" onChange={(e): void => setPassword(e.target.value)} />
                 <Button type="submit" variant="contained" color="primary">
                     login
+                </Button>
+                <Button component={Link} to="/register" type="submit" variant="contained" color="primary">
+                    register
                 </Button>
             </form>
         </div>
