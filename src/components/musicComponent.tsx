@@ -62,6 +62,7 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
     useEffect(() => {
         if (duration !== 0) {
             setMusicPercent((currentTime / duration) * 100);
+            // console.log('music_percent : ' + (currentTime / duration) * 100);
         }
     }, [currentTime, duration]);
 
@@ -73,6 +74,7 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
         return (): void => {
             console.log('pause in return useeffect');
             audioElement.pause();
+            audioElement.src = '';
         };
     }, []);
 
@@ -154,6 +156,7 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
     };
 
     audioElement.ontimeupdate = (): void => {
+        // console.log('update : ' + audioElement.currentTime + 'duration : ' + duration);
         if (!audioElement.paused) {
             setCurrentTime(audioElement.currentTime);
         }
