@@ -3,6 +3,9 @@ import './App.css';
 import { MusicApp } from './components/musicApp';
 import Button from '@material-ui/core/Button';
 import { useGlobal } from 'reactn';
+import { LoginComponent } from './authComponents/login';
+import { RegisterComponent } from './authComponents/register';
+
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
 const App: React.FC = () => {
@@ -14,7 +17,7 @@ const App: React.FC = () => {
                 <nav>
                     <ul>
                         <li>
-                            <Link to="/">Home</Link>
+                            <Link to="/">Login</Link>
                         </li>
                         <li>
                             <Link to="/about">About</Link>
@@ -44,11 +47,11 @@ const App: React.FC = () => {
 };
 
 function Home() {
-    return <h2>Home</h2>;
+    return <LoginComponent></LoginComponent>;
 }
 
 function About() {
-    return <h2>About</h2>;
+    return <RegisterComponent></RegisterComponent>;
 }
 
 function Users() {
