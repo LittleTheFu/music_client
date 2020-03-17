@@ -23,7 +23,7 @@ interface MusicList {
 
 const useStyles = makeStyles({
     list: {
-        width: 600,
+        // width: 600,
         height: 300,
     },
     soundIcon: {

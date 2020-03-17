@@ -15,7 +15,7 @@ interface MusicInfoProps {
 
 const useStyles = makeStyles({
     card: {
-        width: 600,
+        // width: 600,
     },
     '@keyframes spin': {
         from: {

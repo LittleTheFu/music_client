@@ -16,7 +16,7 @@ const useStyles = makeStyles({
     card: {
         display: 'flex',
         boarder: 'solid',
-        width: 600,
+        // width: 600,
         height: 72,
     },
     bound: {
