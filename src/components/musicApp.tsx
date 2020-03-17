@@ -78,13 +78,13 @@ export const MusicApp: React.FC = () => {
         <div>
             <AppBarComponent></AppBarComponent>
             <TemporaryDrawer></TemporaryDrawer>
-            <form noValidate autoComplete="off" onSubmit={handleSubmitSearch}>
+            {/* <form noValidate autoComplete="off" onSubmit={handleSubmitSearch}>
                 <TextField id="standard-basic" label="search" onChange={(e): void => setKeyword(e.target.value)} />
                 <Button type="submit" variant="contained" color="primary">
                     search
                 </Button>
-            </form>
-            <Button
+            </form> */}
+            {/* <Button
                 variant="contained"
                 color="primary"
                 onClick={() => {
@@ -113,9 +113,9 @@ export const MusicApp: React.FC = () => {
                 }}
             >
                 test-jwt-api
-            </Button>
+            </Button> */}
             <MusicComponent audioElement={audioElement} musics={musics}></MusicComponent>
-            <Button
+            {/* <Button
                 variant="contained"
                 color="primary"
                 onClick={(): void => {
@@ -133,7 +133,7 @@ export const MusicApp: React.FC = () => {
             </Button>
             <Button variant="contained" color="primary" onClick={testFunc}>
                 test
-            </Button>
+            </Button> */}
         </div>
     );
 };

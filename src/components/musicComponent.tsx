@@ -242,7 +242,7 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
                 ></MusicInfoComponent>
             </Paper>
 
-            <Button
+            {/* <Button
                 variant="contained"
                 color="primary"
                 onClick={(): void => {
@@ -250,7 +250,7 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
                 }}
             >
                 setAvatar
-            </Button>
+            </Button> */}
 
             {/* <Button variant="contained" color="primary" onClick={setTime}>
                 set
