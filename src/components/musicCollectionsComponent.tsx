@@ -3,6 +3,7 @@ import { MusicCollection } from '../dataInterfaces/music';
 import { MusicCollectionComponent } from './musicCollectionComponent';
 import { makeStyles } from '@material-ui/core/styles';
 import GridList from '@material-ui/core/GridList';
+import Grid from '@material-ui/core/Grid';
 
 interface MusicCollectionsProps {
     collections: MusicCollection[];
@@ -32,18 +33,20 @@ export const MusicCollectionsComponent: React.FC<MusicCollectionsProps> = (props
     const classes = useStyles({});
 
     return (
-        <div className={classes.root}>
-            <GridList className={classes.gridList} cols={2.5}>
-                {collections.map((c: MusicCollection, index: number) => {
-                    return (
-                        <MusicCollectionComponent
-                            coverClick={coverClick}
-                            key={index}
-                            collection={c}
-                        ></MusicCollectionComponent>
-                    );
-                })}
-            </GridList>
-        </div>
+        <Grid container spacing={1}>
+            <Grid item xs={12} spacing={3}>
+                <GridList className={classes.gridList} cols={2.5}>
+                    {collections.map((c: MusicCollection, index: number) => {
+                        return (
+                            <MusicCollectionComponent
+                                coverClick={coverClick}
+                                key={index}
+                                collection={c}
+                            ></MusicCollectionComponent>
+                        );
+                    })}
+                </GridList>
+            </Grid>
+        </Grid>
     );
 };
