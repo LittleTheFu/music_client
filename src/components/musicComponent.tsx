@@ -31,7 +31,7 @@ interface MusicComponentProps {
 
 const useStyles = makeStyles({
     paper: {
-        padding: 80,
+        padding: 0,
     },
 });
 
