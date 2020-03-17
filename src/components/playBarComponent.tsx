@@ -7,6 +7,7 @@ import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import PauseIcon from '@material-ui/icons/Pause';
 import SkipNextIcon from '@material-ui/icons/SkipNext';
 import Slider from '@material-ui/core/Slider';
+import Hidden from '@material-ui/core/Hidden';
 
 const useStyles = makeStyles({
     musicFunctionIcon: {
@@ -78,7 +79,10 @@ export const PlayBarComponent: React.FC<PlayBarProps> = (props: PlayBarProps) =>
             <IconButton aria-label="next" onClick={skipToNext}>
                 <SkipNextIcon className={classes.musicFunctionIcon}></SkipNextIcon>
             </IconButton>
-            <CardMedia image={cover} className={classes.cover}></CardMedia>
+            <Hidden xsDown>
+                <CardMedia image={cover} className={classes.cover}></CardMedia>
+            </Hidden>
+
             <div className={classes.volumnRoot}>
                 <Slider
                     orientation="vertical"
