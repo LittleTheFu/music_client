@@ -12,7 +12,7 @@ interface MusicCollectionProps {
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         main: {
-            padding: 30,
+            padding: 3,
         },
         card: {
             [theme.breakpoints.down('sm')]: {
