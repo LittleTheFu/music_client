@@ -114,8 +114,6 @@ export const MusicApp: React.FC = () => {
             >
                 test-jwt-api
             </Button>
-            <LoginModal></LoginModal>
-            <RegModal></RegModal>
             <MusicComponent audioElement={audioElement} musics={musics}></MusicComponent>
             <Button
                 variant="contained"

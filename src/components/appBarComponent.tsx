@@ -37,9 +37,7 @@ const useStyles = makeStyles((theme: Theme) =>
 export const AppBarComponent: React.FC = () => {
     const [isLogin, setIsLogin] = useGlobal('isLogin');
     const [drawerOpen, setDrawerOpen] = useGlobal('drawerOpen');
-    const [loginModalOpen, setLoginModalOpen] = useGlobal('loginModalOpen');
     const [userId, setUserId] = useGlobal('userId');
-    const [regModalOpen, setRegModalOpen] = useGlobal('regModalOpen');
 
     const history = useHistory();
 
@@ -70,27 +68,6 @@ export const AppBarComponent: React.FC = () => {
                     {/* <form className={classes.root} noValidate autoComplete="off">
                         <TextField id="standard-basic" label="search" />
                     </form> */}
-                    <Button
-                        variant="contained"
-                        color="secondary"
-                        onClick={(): void => {
-                            setRegModalOpen(true);
-                        }}
-                    >
-                        reg-user
-                    </Button>
-                    <IconButton
-                        edge="start"
-                        className={classes.menuButton}
-                        onClick={(): void => {
-                            if (!isLogin) setLoginModalOpen(true);
-                        }}
-                        color="inherit"
-                        aria-label="menu"
-                    >
-                        <AccountCircleIcon />
-                        {userId}
-                    </IconButton>
                     {isLogin ? (
                         <div>
                             <IconButton
