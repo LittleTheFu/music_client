@@ -7,16 +7,18 @@ import { setToken, updatePlayListMusics, updateMusics } from '../globals';
 import { useGlobal, useDispatch } from 'reactn';
 import { Music, MusicCollection } from '../dataInterfaces/music';
 import { useHistory, Link } from 'react-router-dom';
+import Container from '@material-ui/core/Container';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
+        main: {
+            paddingTop: 200,
+        },
         paper: {
-            position: 'absolute',
-            width: 300,
-            height: 300,
+            width: 230,
+            height: 260,
             backgroundColor: theme.palette.background.paper,
-            border: '2px solid #000',
-            boxShadow: theme.shadows[5],
+            border: '1px solid #000',
             padding: theme.spacing(2, 4, 3),
         },
         root: {
@@ -94,17 +96,23 @@ export const LoginComponent: React.FC = () => {
     }
 
     return (
-        <div>
-            <form onSubmit={handleSubmit} className={classes.root} noValidate autoComplete="off">
-                <TextField id="standard-basic" label="user" onChange={(e): void => setUser(e.target.value)} />
-                <TextField id="standard-basic" label="password" onChange={(e): void => setPassword(e.target.value)} />
-                <Button type="submit" variant="contained" color="primary">
-                    login
-                </Button>
-                <Button component={Link} to="/register" type="submit" variant="contained" color="primary">
-                    go register page
-                </Button>
-            </form>
-        </div>
+        <Container maxWidth="sm" className={classes.main}>
+            <div className={classes.paper}>
+                <form onSubmit={handleSubmit} className={classes.root} noValidate autoComplete="off">
+                    <TextField id="standard-basic" label="user" onChange={(e): void => setUser(e.target.value)} />
+                    <TextField
+                        id="standard-basic"
+                        label="password"
+                        onChange={(e): void => setPassword(e.target.value)}
+                    />
+                    <Button type="submit" variant="contained" color="primary">
+                        login
+                    </Button>
+                    <Button component={Link} to="/register" type="submit" variant="contained" color="primary">
+                        go register page
+                    </Button>
+                </form>
+            </div>
+        </Container>
     );
 };

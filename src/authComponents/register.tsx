@@ -5,16 +5,18 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { postRegister } from '../service';
 import { useHistory, Link } from 'react-router-dom';
+import Container from '@material-ui/core/Container';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
+        main: {
+            paddingTop: 200,
+        },
         paper: {
-            position: 'absolute',
-            width: 300,
-            height: 300,
+            width: 230,
+            height: 260,
             backgroundColor: theme.palette.background.paper,
             border: '2px solid #000',
-            boxShadow: theme.shadows[5],
             padding: theme.spacing(2, 4, 3),
         },
         root: {
@@ -45,23 +47,26 @@ export const RegisterComponent: React.FC = () => {
         console.log('username: ', user, 'password: ', password);
         console.log('submit');
         postRegister(user, password, resolveData);
-        // postLogin(user, password, resolveData);
-        // You should see email and password in console.
-        // ..code to submit form to backend here...
     }
 
     return (
-        <div className={classes.paper}>
-            <form onSubmit={handleSubmit} className={classes.root} noValidate autoComplete="off">
-                <TextField id="standard-basic" label="user" onChange={(e): void => setUser(e.target.value)} />
-                <TextField id="standard-basic" label="password" onChange={(e): void => setPassword(e.target.value)} />
-                <Button type="submit" variant="contained" color="primary">
-                    register
-                </Button>
-                <Button component={Link} to="/login" type="submit" variant="contained" color="primary">
-                    go login page
-                </Button>
-            </form>
-        </div>
+        <Container maxWidth="sm" className={classes.main}>
+            <div className={classes.paper}>
+                <form onSubmit={handleSubmit} className={classes.root} noValidate autoComplete="off">
+                    <TextField id="standard-basic" label="user" onChange={(e): void => setUser(e.target.value)} />
+                    <TextField
+                        id="standard-basic"
+                        label="password"
+                        onChange={(e): void => setPassword(e.target.value)}
+                    />
+                    <Button type="submit" variant="contained" color="primary">
+                        register
+                    </Button>
+                    <Button component={Link} to="/login" type="submit" variant="contained" color="primary">
+                        go login page
+                    </Button>
+                </form>
+            </div>
+        </Container>
     );
 };
