@@ -10,12 +10,16 @@ interface MusicCollectionProps {
 }
 
 const useStyles = makeStyles({
+    main: {
+        padding: 30,
+    },
     card: {
-        width: 340,
+        width: 200,
     },
     cover: {
-        width: 200,
-        height: 100,
+        width: 150,
+        height: 150,
+        borderRadius: '50%',
     },
 });
 
@@ -24,9 +28,9 @@ export const MusicCollectionComponent: React.FC<MusicCollectionProps> = (props: 
     const classes = useStyles({});
 
     return (
-        <div>
+        <div className={classes.main}>
             <Card raised={true} className={classes.card}>
-                <h1>{collection.name}</h1>
+                <h6>{collection.name}</h6>
                 <CardMedia
                     image={collection.cover}
                     className={classes.cover}
