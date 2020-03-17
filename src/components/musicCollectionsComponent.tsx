@@ -34,7 +34,7 @@ export const MusicCollectionsComponent: React.FC<MusicCollectionsProps> = (props
 
     return (
         <Grid container spacing={1}>
-            <Grid item xs={12} spacing={3}>
+            <Grid item xs={12}>
                 <GridList className={classes.gridList} cols={2.5}>
                     {collections.map((c: MusicCollection, index: number) => {
                         return (

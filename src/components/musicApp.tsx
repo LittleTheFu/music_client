@@ -11,6 +11,7 @@ import { AppBarComponent } from './appBarComponent';
 import { useGlobal, useDispatch } from 'reactn';
 import { getMusicCollections, fetchMusicsByKeyword } from '../service';
 import { updateMusics } from '../globals';
+import Grid from '@material-ui/core/Grid';
 
 import TextField from '@material-ui/core/TextField';
 
@@ -78,13 +79,14 @@ export const MusicApp: React.FC = () => {
         <div>
             <AppBarComponent></AppBarComponent>
             <TemporaryDrawer></TemporaryDrawer>
-            {/* <form noValidate autoComplete="off" onSubmit={handleSubmitSearch}>
+            <Grid container spacing={1}>
+                {/* <form noValidate autoComplete="off" onSubmit={handleSubmitSearch}>
                 <TextField id="standard-basic" label="search" onChange={(e): void => setKeyword(e.target.value)} />
                 <Button type="submit" variant="contained" color="primary">
                     search
                 </Button>
             </form> */}
-            {/* <Button
+                {/* <Button
                 variant="contained"
                 color="primary"
                 onClick={() => {
@@ -114,8 +116,8 @@ export const MusicApp: React.FC = () => {
             >
                 test-jwt-api
             </Button> */}
-            <MusicComponent audioElement={audioElement} musics={musics}></MusicComponent>
-            {/* <Button
+                <MusicComponent audioElement={audioElement} musics={musics}></MusicComponent>
+                {/* <Button
                 variant="contained"
                 color="primary"
                 onClick={(): void => {
@@ -134,6 +136,7 @@ export const MusicApp: React.FC = () => {
             <Button variant="contained" color="primary" onClick={testFunc}>
                 test
             </Button> */}
+            </Grid>
         </div>
     );
 };

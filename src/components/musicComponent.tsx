@@ -22,6 +22,7 @@ import {
     updatePlayListMusics,
 } from '../globals';
 import { MusicCollectionsComponent } from './musicCollectionsComponent';
+import Grid from '@material-ui/core/Grid';
 
 interface MusicComponentProps {
     audioElement: HTMLAudioElement;
@@ -210,39 +211,40 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
     audioElement.onended = skipToNext;
 
     return (
-        <div>
-            <MusicCollectionsComponent
-                coverClick={clickCollectionCover}
-                collections={musicCollections}
-            ></MusicCollectionsComponent>
-            <Paper variant="outlined" className={classes.paper}>
-                <PlayBarComponent
-                    musicPercent={musicPercent}
-                    isPlaying={isPlaying}
-                    cover={currentMusic.cover}
-                    volumn={volumn * 100}
-                    changeMusicPercent={changeMusicPercent}
-                    pausePlay={pausePlay}
-                    skipToNext={skipToNext}
-                    changeMusicVolumn={changeMusicVolumn}
-                ></PlayBarComponent>
-                <MusicListComponent
-                    musics={musics}
-                    currentMusic={currentMusic}
-                    clickMusic={playMusic}
-                    likeClick={musicItemLikeClick}
-                    dislikeClick={musicItemDislikeClick}
-                    addMusicClick={addMusicToPersonalListClick}
-                    removeMusicClick={removeMusicFromPersonalListClick}
-                />
-                <MusicInfoComponent
-                    music={currentMusic}
-                    likeClick={currentMusicInfoLikeClick}
-                    dislikeClick={currentMusicInfoDislikeClick}
-                ></MusicInfoComponent>
-            </Paper>
+        <Grid item xs={12}>
+            <div>
+                <MusicCollectionsComponent
+                    coverClick={clickCollectionCover}
+                    collections={musicCollections}
+                ></MusicCollectionsComponent>
+                <Paper variant="outlined" className={classes.paper}>
+                    <PlayBarComponent
+                        musicPercent={musicPercent}
+                        isPlaying={isPlaying}
+                        cover={currentMusic.cover}
+                        volumn={volumn * 100}
+                        changeMusicPercent={changeMusicPercent}
+                        pausePlay={pausePlay}
+                        skipToNext={skipToNext}
+                        changeMusicVolumn={changeMusicVolumn}
+                    ></PlayBarComponent>
+                    <MusicListComponent
+                        musics={musics}
+                        currentMusic={currentMusic}
+                        clickMusic={playMusic}
+                        likeClick={musicItemLikeClick}
+                        dislikeClick={musicItemDislikeClick}
+                        addMusicClick={addMusicToPersonalListClick}
+                        removeMusicClick={removeMusicFromPersonalListClick}
+                    />
+                    <MusicInfoComponent
+                        music={currentMusic}
+                        likeClick={currentMusicInfoLikeClick}
+                        dislikeClick={currentMusicInfoDislikeClick}
+                    ></MusicInfoComponent>
+                </Paper>
 
-            {/* <Button
+                {/* <Button
                 variant="contained"
                 color="primary"
                 onClick={(): void => {
@@ -252,7 +254,7 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
                 setAvatar
             </Button> */}
 
-            {/* <Button variant="contained" color="primary" onClick={setTime}>
+                {/* <Button variant="contained" color="primary" onClick={setTime}>
                 set
             </Button>
             <Button variant="contained" color="primary" onClick={logMsg}>
@@ -264,6 +266,7 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
             <h4>{currentTime}</h4>
             <h4>{duration}</h4>
             <h4>musicPercent : {musicPercent}</h4> */}
-        </div>
+            </div>
+        </Grid>
     );
 };
