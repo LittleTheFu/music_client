@@ -46,20 +46,20 @@ const App: React.FC = () => {
     );
 };
 
-function Home() {
+const Home = (): JSX.Element => {
     return <LoginComponent></LoginComponent>;
-}
+};
 
-function Register() {
+const Register = (): JSX.Element => {
     return <RegisterComponent></RegisterComponent>;
-}
+};
 
-function Main() {
+const Main = (): JSX.Element => {
     return (
         <div>
             <MusicApp></MusicApp>
         </div>
     );
-}
+};
 
 export default App;
