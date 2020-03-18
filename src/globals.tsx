@@ -1,5 +1,5 @@
 import { setGlobal } from 'reactn';
-import { Music, dummyMusic } from './dataInterfaces/music';
+import { Music, dummyMusic, dummyCollection, MusicCollection } from './dataInterfaces/music';
 import { State, Dispatch } from 'reactn/default';
 
 let gToken = '';
@@ -32,6 +32,7 @@ setGlobal({
 
     playListMusics: [],
     Collections: [],
+    currentCollection: dummyCollection,
 
     isPlaying: false,
 });
@@ -105,4 +106,27 @@ export const updateMusicInPersoalListState = (global: State, dispatch: Dispatch)
 export const updateToNextMusic = (global: State, dispatch: Dispatch): Pick<State, 'currentMusic' | 'musicIndex'> => ({
     musicIndex: (global.musicIndex + 1) % global.musics.length,
     currentMusic: global.musics[(global.musicIndex + 1) % global.musics.length],
+});
+
+export const updateCurrentCollection = (
+    global: State,
+    dispatch: Dispatch,
+    name: string,
+): Pick<State, 'currentCollection'> => ({
+    // currentCollection: collection ? collection : dummyCollection,
+    currentCollection: global.Collections.find(c => c.name === name)
+        ? global.Collections.find(c => c.name === name)
+        : dummyCollection,
+});
+
+export const updateCollections = (
+    global: State,
+    dispatch: Dispatch,
+    collections: MusicCollection[],
+): Pick<State, 'Collections'> => ({
+    // Collections: collections.map(c => {
+    //     c.isPlaying = false;
+    //     return c;
+    // }),
+    Collections: collections,
 });

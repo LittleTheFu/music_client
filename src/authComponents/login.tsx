@@ -3,7 +3,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import { postLogin, fetchPlayListMusicList, getMusicCollections } from '../service';
-import { setToken, updatePlayListMusics, updateMusics } from '../globals';
+import { setToken, updatePlayListMusics, updateMusics, updateCollections } from '../globals';
 import { useGlobal, useDispatch } from 'reactn';
 import { Music, MusicCollection } from '../dataInterfaces/music';
 import { useHistory, Link } from 'react-router-dom';
@@ -39,6 +39,7 @@ export const LoginComponent: React.FC = () => {
     const [musicCollections, setMusicCollections] = useGlobal('Collections');
     const updateUserAddedMusics = useDispatch(updatePlayListMusics);
     const updateTheMusics = useDispatch(updateMusics);
+    const updateTheCollections = useDispatch(updateCollections);
 
     const [user, setUser] = useState('');
     const [password, setPassword] = useState('');
@@ -62,7 +63,7 @@ export const LoginComponent: React.FC = () => {
         getMusicCollections(
             collections => {
                 console.log(collections);
-                setMusicCollections(collections as MusicCollection[]);
+                updateTheCollections(collections as MusicCollection[]);
             },
             e => console.log(e),
         );

@@ -56,7 +56,7 @@ export const MusicCollectionComponent: React.FC<MusicCollectionProps> = (props: 
                 <img src={collection.cover} alt={collection.name} />
                 <GridListTileBar
                     title={collection.name}
-                    subtitle={<span>by: {collection.name}</span>}
+                    subtitle={collection.isPlaying ? <span>by: playing</span> : <span></span>}
                     actionIcon={
                         <IconButton
                             onClick={(): void => {

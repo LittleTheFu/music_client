@@ -18,6 +18,12 @@ declare module 'reactn/default' {
         ) => Pick<State, 'musics' | 'musicIndex' | 'musicLength' | 'currentMusic'>;
         updateMusicInPersoalListState: (global: State, dispatch: Dispatch) => Pick<State, 'musics'>;
         updateToNextMusic: (global: State, dispatch: Dispatch) => Pick<State, 'currentMusic' | 'musicIndex'>;
+        // updateCurrentCollection: (global: State, dispatch: Dispatch, name: string) => Pick<State, 'currentCollection'>;
+        updateCollections: (
+            global: State,
+            dispatch: Dispatch,
+            collections: MusicCollection[],
+        ) => Pick<State, 'Collections'>;
     }
 
     export interface State {
@@ -36,6 +42,7 @@ declare module 'reactn/default' {
 
         playListMusics: Music[];
         Collections: MusicCollection[];
+        currentCollection: MusicCollection;
 
         isPlaying: boolean;
     }

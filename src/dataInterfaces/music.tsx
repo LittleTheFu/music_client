@@ -45,4 +45,13 @@ export class MusicCollection {
     name: string;
 
     cover: string;
+
+    isPlaying: boolean;
 }
+
+export const dummyCollection: MusicCollection = {
+    id: 0,
+    name: 'dummy',
+    cover: 'cover',
+    isPlaying: false,
+};

@@ -21,9 +21,11 @@ import {
     updateMusicInPersoalListState,
     updatePlayListMusics,
     updateToNextMusic,
+    updateCollections,
 } from '../globals';
 import { MusicCollectionsComponent } from './musicCollectionsComponent';
 import Grid from '@material-ui/core/Grid';
+import { setCollectionPlayFlag } from '../helper';
 
 interface MusicComponentProps {
     audioElement: HTMLAudioElement;
@@ -45,6 +47,7 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
     const updateMusicsPersnalState = useDispatch(updateMusicInPersoalListState);
     const updatePersonalMusics = useDispatch(updatePlayListMusics);
     const updateToTheNextMusic = useDispatch(updateToNextMusic);
+    const updateTheCollections = useDispatch(updateCollections);
     const [currentTheMusic] = useGlobal('currentMusic');
     const [avatar, setAvatar] = useGlobal('avatar');
     const [musicCollections, setMusicCollections] = useGlobal('Collections');
@@ -214,6 +217,7 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
             musicList => {
                 // setMusics(musicList as Music[]);
                 updateAllMusics(musicList as Music[]);
+                updateTheCollections(setCollectionPlayFlag(musicCollections, name));
             },
             e => console.log(e),
         );
