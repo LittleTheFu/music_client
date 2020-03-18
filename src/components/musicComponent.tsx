@@ -20,6 +20,7 @@ import {
     updateMusics,
     updateMusicInPersoalListState,
     updatePlayListMusics,
+    updateToNextMusic,
 } from '../globals';
 import { MusicCollectionsComponent } from './musicCollectionsComponent';
 import Grid from '@material-ui/core/Grid';
@@ -43,15 +44,19 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
     const updateAllMusics = useDispatch(updateMusics);
     const updateMusicsPersnalState = useDispatch(updateMusicInPersoalListState);
     const updatePersonalMusics = useDispatch(updatePlayListMusics);
-    const [currentMusic] = useGlobal('currentMusic');
+    const updateToTheNextMusic = useDispatch(updateToNextMusic);
+    const [currentTheMusic] = useGlobal('currentMusic');
     const [avatar, setAvatar] = useGlobal('avatar');
     const [musicCollections, setMusicCollections] = useGlobal('Collections');
+    const [musicIndex, setMusicIndex] = useGlobal('musicIndex');
+    const [musicLength] = useGlobal('musicLength');
+    const [currentMusics] = useGlobal('musics');
 
     const [currentTime, setCurrentTime] = useState(0);
     const [duration, setDuration] = useState(0);
     const [musicPercent, setMusicPercent] = useState(0);
 
-    const [musicIndex, setMusicIndex] = useState(0);
+    // const [musicIndex, setMusicIndex] = useState(0);
 
     const classes = useStyles({});
 
@@ -59,6 +64,14 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
     audioElement.volume = volumn;
 
     const [isPlaying, setIsPlaying] = useState(false);
+
+    useEffect(() => {
+        console.log('currentTheMusic:');
+        console.log(currentTheMusic);
+        audioElement.src = currentTheMusic.address;
+        audioElement.autoplay = true;
+        setIsPlaying(true);
+    }, [currentTheMusic]);
 
     useEffect(() => {
         if (duration !== 0) {
@@ -83,19 +96,6 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
     //     console.log('log');
     // };
 
-    const clickCollectionCover = (name: string): void => {
-        // console.log('click collection cover');
-        fetchMusicsByCollectionName(
-            name,
-            musicList => {
-                // setMusics(musicList as Music[]);
-                updateAllMusics(musicList as Music[]);
-                console.log(musicList);
-            },
-            e => console.log(e),
-        );
-    };
-
     const changeMusicPercent = (event: object, value: unknown): void => {
         const percent = value as number;
         // console.log(percent);
@@ -110,7 +110,7 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
     };
 
     const currentMusicInfoLikeClick = (): void => {
-        postLikeMusic(currentMusic.id, updateMusicAfterClickLike);
+        postLikeMusic(currentTheMusic.id, updateMusicAfterClickLike);
     };
 
     const musicItemDislikeClick = (id: number): void => {
@@ -118,7 +118,7 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
     };
 
     const currentMusicInfoDislikeClick = (): void => {
-        postDislikeMusic(currentMusic.id, updateMusicAfterClickLike);
+        postDislikeMusic(currentTheMusic.id, updateMusicAfterClickLike);
     };
 
     const addMusicToPersonalListClick = (id: number): void => {
@@ -193,19 +193,40 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
     const playMusic = (m: Music, index: number): void => {
         updateCurerntMusicInfo(m);
 
-        audioElement.src = m.address;
+        // audioElement.src = m.address;
+        // audioElement.autoplay = true;
+
+        // setIsPlaying(true);
+        // setMusicIndex(index);
+    };
+
+    const playCurrentMusic = (): void => {
+        audioElement.src = currentTheMusic.address;
         audioElement.autoplay = true;
 
         setIsPlaying(true);
-        setMusicIndex(index);
+    };
+
+    const clickCollectionCover = (name: string): void => {
+        // console.log('click collection cover');
+        fetchMusicsByCollectionName(
+            name,
+            musicList => {
+                // setMusics(musicList as Music[]);
+                updateAllMusics(musicList as Music[]);
+            },
+            e => console.log(e),
+        );
     };
 
     const skipToNext = (): void => {
-        const musicNum = musics.length;
-        if (musicNum > 0) {
-            const i = (musicIndex + 1) % musicNum;
-            playMusic(musics[i], i);
-        }
+        updateToTheNextMusic();
+        // if (musicLength > 0) {
+        //     const i = (musicIndex + 1) % musicLength;
+        //     playMusic(musics[i], i);
+        // } else {
+        //     setMusicIndex(-1);
+        // }
     };
 
     audioElement.onended = skipToNext;
@@ -221,7 +242,7 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
                     <PlayBarComponent
                         musicPercent={musicPercent}
                         isPlaying={isPlaying}
-                        cover={currentMusic.cover}
+                        cover={currentTheMusic.cover}
                         volumn={volumn * 100}
                         changeMusicPercent={changeMusicPercent}
                         pausePlay={pausePlay}
@@ -229,8 +250,8 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
                         changeMusicVolumn={changeMusicVolumn}
                     ></PlayBarComponent>
                     <MusicListComponent
-                        musics={musics}
-                        currentMusic={currentMusic}
+                        musics={currentMusics}
+                        currentMusic={currentTheMusic}
                         clickMusic={playMusic}
                         likeClick={musicItemLikeClick}
                         dislikeClick={musicItemDislikeClick}
@@ -238,7 +259,7 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
                         removeMusicClick={removeMusicFromPersonalListClick}
                     />
                     <MusicInfoComponent
-                        music={currentMusic}
+                        music={currentTheMusic}
                         likeClick={currentMusicInfoLikeClick}
                         dislikeClick={currentMusicInfoDislikeClick}
                     ></MusicInfoComponent>
