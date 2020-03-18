@@ -220,6 +220,8 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
     };
 
     const skipToNext = (): void => {
+        console.log('NEXT');
+        console.log(musicIndex);
         updateToTheNextMusic();
         // if (musicLength > 0) {
         //     const i = (musicIndex + 1) % musicLength;

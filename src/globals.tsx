@@ -85,7 +85,7 @@ export const updateMusics = (
         });
         return m;
     }),
-    musicIndex: musics.length > 0 ? 0 : -1,
+    musicIndex: 0,
     musicLength: musics.length,
     currentMusic: musics[0] ? musics[0] : dummyMusic,
 });
@@ -104,5 +104,5 @@ export const updateMusicInPersoalListState = (global: State, dispatch: Dispatch)
 
 export const updateToNextMusic = (global: State, dispatch: Dispatch): Pick<State, 'currentMusic' | 'musicIndex'> => ({
     musicIndex: (global.musicIndex + 1) % global.musics.length,
-    currentMusic: global.musics[global.musicIndex],
+    currentMusic: global.musics[(global.musicIndex + 1) % global.musics.length],
 });
