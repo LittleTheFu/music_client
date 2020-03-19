@@ -144,3 +144,14 @@ export const removeMusicFromPersonalList = (
         Authorization: 'Bearer ' + getToken(),
     });
 };
+
+const getMusicCommentsUrl = 'http://localhost:9999/comment/GetMusicComments';
+export const getMusicComments = (
+    musicId: number,
+    resolve: (data: any) => void,
+    reject: (arg0: object) => void,
+): Promise<object> => {
+    return rawObjectPost(getMusicCommentsUrl, { musicId: musicId }, resolve, {
+        Authorization: 'Bearer ' + getToken(),
+    });
+};

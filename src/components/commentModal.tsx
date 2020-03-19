@@ -4,6 +4,7 @@ import { useGlobal } from 'reactn';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Dialog from '@material-ui/core/Dialog';
 import { blue } from '@material-ui/core/colors';
+import TextField from '@material-ui/core/TextField';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -36,6 +37,7 @@ export const CommentModal: React.FC = () => {
             open={commentModalOpen}
         >
             <DialogTitle id="simple-dialog-title">Comment</DialogTitle>
+            <TextField id="standard-basic" label="comment" />
         </Dialog>
     );
 };

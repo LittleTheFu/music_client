@@ -15,6 +15,7 @@ import {
     fetchMusicsByCollectionName,
     addMusicToPersonalList,
     removeMusicFromPersonalList,
+    getMusicComments,
 } from '../service';
 import {
     updateMusic,
@@ -153,8 +154,14 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
     };
 
     const commentClick = (id: number): void => {
-        setCommentModalOpen(true);
-        console.log(id);
+        getMusicComments(
+            1,
+            o => {
+                console.log(o);
+                setCommentModalOpen(true);
+            },
+            console.log,
+        );
     };
 
     const changeMusicVolumn = (event: object, value: unknown): void => {
