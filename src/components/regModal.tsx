@@ -33,7 +33,7 @@ export const RegModal: React.FC = () => {
 
     const classes = useStyles({});
 
-    const resolveData = (data: any): void => {
+    const resolveData = (): void => {
         setRegModalOpen(false);
         console.log('RESOLVE DATA');
     };

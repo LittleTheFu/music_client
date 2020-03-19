@@ -41,7 +41,7 @@ const useStyles = makeStyles({
 });
 
 export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicComponentProps) => {
-    const { audioElement, musics } = props;
+    const { audioElement } = props;
 
     const updateMusicAfterClickLike = useDispatch(updateMusic);
     const updateCurerntMusicInfo = useDispatch(updateCurrentMusic);
@@ -52,10 +52,8 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
     const updateTheCollections = useDispatch(updateCollections);
     const updateTheCollectionInfoMusics = useDispatch(updateCollectionInfoMusics);
     const [currentTheMusic] = useGlobal('currentMusic');
-    const [avatar, setAvatar] = useGlobal('avatar');
-    const [musicCollections, setMusicCollections] = useGlobal('Collections');
-    const [musicIndex, setMusicIndex] = useGlobal('musicIndex');
-    const [musicLength] = useGlobal('musicLength');
+    const [musicCollections] = useGlobal('Collections');
+    const [musicIndex] = useGlobal('musicIndex');
     const [currentMusics] = useGlobal('musics');
     const [collectionInfoModalOpen, setCollectionInfoModalOpen] = useGlobal('collectionInfoModalOpen');
 
@@ -197,7 +195,7 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
     //     console.log('set time');
     // };
 
-    const playMusic = (m: Music, index: number): void => {
+    const playMusic = (m: Music): void => {
         updateCurerntMusicInfo(m);
 
         // audioElement.src = m.address;

@@ -4,16 +4,12 @@ import { getAudioPlayer } from './audioPlayer';
 import { Music } from '../dataInterfaces/music';
 import { fetchPlayListMusicList, fetchMusics, postShowProfile } from '../service';
 import Button from '@material-ui/core/Button';
-import { LoginModal } from './loginModal';
-import { RegModal } from './regModal';
 import { TemporaryDrawer } from './navDrawerComponent';
 import { AppBarComponent } from './appBarComponent';
 import { useGlobal, useDispatch } from 'reactn';
-import { getMusicCollections, fetchMusicsByKeyword } from '../service';
+import { fetchMusicsByKeyword } from '../service';
 import { updateMusics } from '../globals';
 import Grid from '@material-ui/core/Grid';
-
-import TextField from '@material-ui/core/TextField';
 
 const audioElement = getAudioPlayer();
 

@@ -1,15 +1,10 @@
 import React from 'react';
 import { MusicCollection } from '../dataInterfaces/music';
-import CardMedia from '@material-ui/core/CardMedia';
-import Card from '@material-ui/core/Card';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
-import ListSubheader from '@material-ui/core/ListSubheader';
 import IconButton from '@material-ui/core/IconButton';
-import InfoIcon from '@material-ui/icons/Info';
 import PlayCircleFilledIcon from '@material-ui/icons/PlayCircleFilled';
-import { useGlobal, useDispatch } from 'reactn';
 
 interface MusicCollectionProps {
     collection: MusicCollection;
@@ -25,9 +20,11 @@ const useStyles = makeStyles((theme: Theme) =>
         card: {
             [theme.breakpoints.down('sm')]: {
                 width: 100,
+                height: 100,
             },
             [theme.breakpoints.up('md')]: {
                 width: 200,
+                height: 200,
             },
         },
         cover: {
@@ -48,11 +45,10 @@ const useStyles = makeStyles((theme: Theme) =>
 export const MusicCollectionComponent: React.FC<MusicCollectionProps> = (props: MusicCollectionProps) => {
     const { collection, coverClick, bodyClick } = props;
     const classes = useStyles({});
-    const [collectionInfoModalOpen, setCollectionInfoModalOpen] = useGlobal('collectionInfoModalOpen');
 
     return (
         <div className={classes.main}>
-            <GridListTile>
+            <GridListTile className={classes.card}>
                 <img
                     src={collection.cover}
                     alt={collection.name}
