@@ -6,6 +6,7 @@ import { MusicInfoComponent } from './musicInfoComponent';
 import { MusicListComponent } from './musicListComponent';
 import { Music } from '../dataInterfaces/music';
 import { PlayBarComponent } from './playBarComponent';
+import { CollectionInfoModal } from './collectionInfoModal';
 import { useGlobal, useDispatch } from 'reactn';
 import {
     postLikeMusic,
@@ -22,6 +23,7 @@ import {
     updatePlayListMusics,
     updateToNextMusic,
     updateCollections,
+    updateCollectionInfoMusics,
 } from '../globals';
 import { MusicCollectionsComponent } from './musicCollectionsComponent';
 import Grid from '@material-ui/core/Grid';
@@ -48,12 +50,14 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
     const updatePersonalMusics = useDispatch(updatePlayListMusics);
     const updateToTheNextMusic = useDispatch(updateToNextMusic);
     const updateTheCollections = useDispatch(updateCollections);
+    const updateTheCollectionInfoMusics = useDispatch(updateCollectionInfoMusics);
     const [currentTheMusic] = useGlobal('currentMusic');
     const [avatar, setAvatar] = useGlobal('avatar');
     const [musicCollections, setMusicCollections] = useGlobal('Collections');
     const [musicIndex, setMusicIndex] = useGlobal('musicIndex');
     const [musicLength] = useGlobal('musicLength');
     const [currentMusics] = useGlobal('musics');
+    const [collectionInfoModalOpen, setCollectionInfoModalOpen] = useGlobal('collectionInfoModalOpen');
 
     const [currentTime, setCurrentTime] = useState(0);
     const [duration, setDuration] = useState(0);
@@ -63,7 +67,7 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
 
     const classes = useStyles({});
 
-    const [volumn, setVolumn] = useState(0.3);
+    const [volumn, setVolumn] = useState(0.0);
     audioElement.volume = volumn;
 
     const [isPlaying, setIsPlaying] = useState(false);
@@ -235,43 +239,59 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
         // }
     };
 
+    const bodyClick = (name: string): void => {
+        console.log('BODY CLICK');
+        fetchMusicsByCollectionName(
+            name,
+            musicList => {
+                updateTheCollectionInfoMusics(musicList as Music[]);
+                console.log(musicList);
+                setCollectionInfoModalOpen(true);
+            },
+            e => console.log(e),
+        );
+    };
+
     audioElement.onended = skipToNext;
 
     return (
-        <Grid item xs={12}>
-            <div>
-                <MusicCollectionsComponent
-                    coverClick={clickCollectionCover}
-                    collections={musicCollections}
-                ></MusicCollectionsComponent>
-                <Paper variant="outlined" className={classes.paper}>
-                    <PlayBarComponent
-                        musicPercent={musicPercent}
-                        isPlaying={isPlaying}
-                        cover={currentTheMusic.cover}
-                        volumn={volumn * 100}
-                        changeMusicPercent={changeMusicPercent}
-                        pausePlay={pausePlay}
-                        skipToNext={skipToNext}
-                        changeMusicVolumn={changeMusicVolumn}
-                    ></PlayBarComponent>
-                    <MusicListComponent
-                        musics={currentMusics}
-                        currentMusic={currentTheMusic}
-                        clickMusic={playMusic}
-                        likeClick={musicItemLikeClick}
-                        dislikeClick={musicItemDislikeClick}
-                        addMusicClick={addMusicToPersonalListClick}
-                        removeMusicClick={removeMusicFromPersonalListClick}
-                    />
-                    <MusicInfoComponent
-                        music={currentTheMusic}
-                        likeClick={currentMusicInfoLikeClick}
-                        dislikeClick={currentMusicInfoDislikeClick}
-                    ></MusicInfoComponent>
-                </Paper>
+        <div>
+            <CollectionInfoModal></CollectionInfoModal>
+            <Grid item xs={12}>
+                <div>
+                    <MusicCollectionsComponent
+                        coverClick={clickCollectionCover}
+                        collections={musicCollections}
+                        bodyClick={bodyClick}
+                    ></MusicCollectionsComponent>
+                    <Paper variant="outlined" className={classes.paper}>
+                        <PlayBarComponent
+                            musicPercent={musicPercent}
+                            isPlaying={isPlaying}
+                            cover={currentTheMusic.cover}
+                            volumn={volumn * 100}
+                            changeMusicPercent={changeMusicPercent}
+                            pausePlay={pausePlay}
+                            skipToNext={skipToNext}
+                            changeMusicVolumn={changeMusicVolumn}
+                        ></PlayBarComponent>
+                        <MusicListComponent
+                            musics={currentMusics}
+                            currentMusic={currentTheMusic}
+                            clickMusic={playMusic}
+                            likeClick={musicItemLikeClick}
+                            dislikeClick={musicItemDislikeClick}
+                            addMusicClick={addMusicToPersonalListClick}
+                            removeMusicClick={removeMusicFromPersonalListClick}
+                        />
+                        <MusicInfoComponent
+                            music={currentTheMusic}
+                            likeClick={currentMusicInfoLikeClick}
+                            dislikeClick={currentMusicInfoDislikeClick}
+                        ></MusicInfoComponent>
+                    </Paper>
 
-                {/* <Button
+                    {/* <Button
                 variant="contained"
                 color="primary"
                 onClick={(): void => {
@@ -281,7 +301,7 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
                 setAvatar
             </Button> */}
 
-                {/* <Button variant="contained" color="primary" onClick={setTime}>
+                    {/* <Button variant="contained" color="primary" onClick={setTime}>
                 set
             </Button>
             <Button variant="contained" color="primary" onClick={logMsg}>
@@ -293,7 +313,8 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
             <h4>{currentTime}</h4>
             <h4>{duration}</h4>
             <h4>musicPercent : {musicPercent}</h4> */}
-            </div>
-        </Grid>
+                </div>
+            </Grid>
+        </div>
     );
 };

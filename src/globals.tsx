@@ -34,6 +34,9 @@ setGlobal({
     Collections: [],
     currentCollection: dummyCollection,
 
+    collectionInfoModalOpen: false,
+    collectionInfoData: [],
+
     isPlaying: false,
 });
 
@@ -70,6 +73,14 @@ export const updateCurrentMusic = (
 ): Pick<State, 'currentMusic' | 'musicIndex'> => ({
     currentMusic: music,
     musicIndex: global.musics.indexOf(music),
+});
+
+export const updateCollectionInfoMusics = (
+    global: State,
+    dispatch: Dispatch,
+    musics: Music[],
+): Pick<State, 'collectionInfoData'> => ({
+    collectionInfoData: musics,
 });
 
 export const updateMusics = (

@@ -9,9 +9,12 @@ import ListSubheader from '@material-ui/core/ListSubheader';
 import IconButton from '@material-ui/core/IconButton';
 import InfoIcon from '@material-ui/icons/Info';
 import PlayCircleFilledIcon from '@material-ui/icons/PlayCircleFilled';
+import { useGlobal, useDispatch } from 'reactn';
+
 interface MusicCollectionProps {
     collection: MusicCollection;
     coverClick: (name: string) => void;
+    bodyClick: (name: string) => void;
 }
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -43,23 +46,27 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export const MusicCollectionComponent: React.FC<MusicCollectionProps> = (props: MusicCollectionProps) => {
-    const { collection, coverClick } = props;
+    const { collection, coverClick, bodyClick } = props;
     const classes = useStyles({});
+    const [collectionInfoModalOpen, setCollectionInfoModalOpen] = useGlobal('collectionInfoModalOpen');
 
     return (
         <div className={classes.main}>
-            <GridListTile
-                onClick={(): void => {
-                    console.log('tile clicked');
-                }}
-            >
-                <img src={collection.cover} alt={collection.name} />
+            <GridListTile>
+                <img
+                    src={collection.cover}
+                    alt={collection.name}
+                    onClick={(): void => {
+                        bodyClick(collection.name);
+                    }}
+                />
                 <GridListTileBar
                     title={collection.name}
                     subtitle={collection.isPlaying ? <span>by: playing</span> : <span></span>}
                     actionIcon={
                         <IconButton
-                            onClick={(): void => {
+                            onClick={(event): void => {
+                                event.preventDefault();
                                 coverClick(collection.name);
                             }}
                         >
@@ -68,16 +75,6 @@ export const MusicCollectionComponent: React.FC<MusicCollectionProps> = (props: 
                     }
                 />
             </GridListTile>
-            {/* <Card raised={true} className={classes.card}>
-                <h6>{collection.name}</h6>
-                <CardMedia
-                    image={collection.cover}
-                    className={classes.cover}
-                    onClick={(): void => {
-                        coverClick(collection.name);
-                    }}
-                ></CardMedia>
-            </Card> */}
         </div>
     );
 };

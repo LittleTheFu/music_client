@@ -8,6 +8,7 @@ import Grid from '@material-ui/core/Grid';
 interface MusicCollectionsProps {
     collections: MusicCollection[];
     coverClick: (name: string) => void;
+    bodyClick: (name: string) => void;
 }
 
 const useStyles = makeStyles({
@@ -29,7 +30,7 @@ const useStyles = makeStyles({
 });
 
 export const MusicCollectionsComponent: React.FC<MusicCollectionsProps> = (props: MusicCollectionsProps) => {
-    const { collections, coverClick } = props;
+    const { collections, coverClick, bodyClick } = props;
     const classes = useStyles({});
 
     return (
@@ -39,6 +40,7 @@ export const MusicCollectionsComponent: React.FC<MusicCollectionsProps> = (props
                     {collections.map((c: MusicCollection, index: number) => {
                         return (
                             <MusicCollectionComponent
+                                bodyClick={bodyClick}
                                 coverClick={coverClick}
                                 key={index}
                                 collection={c}
