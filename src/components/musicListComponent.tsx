@@ -10,6 +10,7 @@ import { IconButton } from '@material-ui/core';
 import VolumeUpIcon from '@material-ui/icons/VolumeUp';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import RemoveCircleOutlineOutlinedIcon from '@material-ui/icons/RemoveCircleOutlineOutlined';
+import CommentIcon from '@material-ui/icons/Comment';
 
 interface MusicList {
     musics: Music[];
@@ -19,6 +20,7 @@ interface MusicList {
     dislikeClick: (id: number) => void;
     addMusicClick: (id: number) => void;
     removeMusicClick: (id: number) => void;
+    commentClick: (id: number) => void;
 }
 
 const useStyles = makeStyles({
@@ -36,7 +38,16 @@ const useStyles = makeStyles({
 
 export const MusicListComponent: React.FC<MusicList> = (props: MusicList) => {
     const classes = useStyles({});
-    const { musics, currentMusic, clickMusic, likeClick, dislikeClick, addMusicClick, removeMusicClick } = props;
+    const {
+        musics,
+        currentMusic,
+        clickMusic,
+        likeClick,
+        dislikeClick,
+        addMusicClick,
+        removeMusicClick,
+        commentClick,
+    } = props;
 
     const musicElements = musics.map((music: Music, index: number) => {
         return (
@@ -86,6 +97,14 @@ export const MusicListComponent: React.FC<MusicList> = (props: MusicList) => {
                         <AddCircleOutlineIcon></AddCircleOutlineIcon>
                     </IconButton>
                 )}
+                <IconButton
+                    onClick={(e): void => {
+                        e.stopPropagation();
+                        commentClick(music.id);
+                    }}
+                >
+                    <CommentIcon></CommentIcon>
+                </IconButton>
             </ListItem>
         );
     });

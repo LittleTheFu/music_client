@@ -7,6 +7,7 @@ import { MusicListComponent } from './musicListComponent';
 import { Music } from '../dataInterfaces/music';
 import { PlayBarComponent } from './playBarComponent';
 import { CollectionInfoModal } from './collectionInfoModal';
+import { CommentModal } from './commentModal';
 import { useGlobal, useDispatch } from 'reactn';
 import {
     postLikeMusic,
@@ -56,6 +57,7 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
     const [musicIndex] = useGlobal('musicIndex');
     const [currentMusics] = useGlobal('musics');
     const [collectionInfoModalOpen, setCollectionInfoModalOpen] = useGlobal('collectionInfoModalOpen');
+    const [commentModalOpen, setCommentModalOpen] = useGlobal('commentModalOpen');
 
     const [currentTime, setCurrentTime] = useState(0);
     const [duration, setDuration] = useState(0);
@@ -148,6 +150,11 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
             },
             console.log,
         );
+    };
+
+    const commentClick = (id: number): void => {
+        setCommentModalOpen(true);
+        console.log(id);
     };
 
     const changeMusicVolumn = (event: object, value: unknown): void => {
@@ -255,6 +262,7 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
     return (
         <div>
             <CollectionInfoModal></CollectionInfoModal>
+            <CommentModal></CommentModal>
             <Grid item xs={12}>
                 <div>
                     <MusicCollectionsComponent
@@ -281,6 +289,7 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
                             dislikeClick={musicItemDislikeClick}
                             addMusicClick={addMusicToPersonalListClick}
                             removeMusicClick={removeMusicFromPersonalListClick}
+                            commentClick={commentClick}
                         />
                         <MusicInfoComponent
                             music={currentTheMusic}

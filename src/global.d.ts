@@ -53,6 +53,8 @@ declare module 'reactn/default' {
         collectionInfoModalOpen: boolean;
         collectionInfoData: Music[];
 
+        commentModalOpen: boolean;
+
         isPlaying: boolean;
     }
 }

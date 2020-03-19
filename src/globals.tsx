@@ -37,6 +37,8 @@ setGlobal({
     collectionInfoModalOpen: false,
     collectionInfoData: [],
 
+    commentModalOpen: false,
+
     isPlaying: false,
 });
 
