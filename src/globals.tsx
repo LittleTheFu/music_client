@@ -1,5 +1,5 @@
 import { setGlobal } from 'reactn';
-import { Music, dummyMusic, dummyCollection, MusicCollection } from './dataInterfaces/music';
+import { Music, dummyMusic, dummyCollection, MusicCollection, MusicComment } from './dataInterfaces/music';
 import { State, Dispatch } from 'reactn/default';
 
 let gToken = '';
@@ -38,8 +38,17 @@ setGlobal({
     collectionInfoData: [],
 
     commentModalOpen: false,
+    comments: [],
 
     isPlaying: false,
+});
+
+export const updateComments = (
+    global: State,
+    dispatch: Dispatch,
+    comments: MusicComment[],
+): Pick<State, 'comments'> => ({
+    comments: comments,
 });
 
 export const updatePlayListMusics = (

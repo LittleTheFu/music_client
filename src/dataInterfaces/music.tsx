@@ -55,3 +55,9 @@ export const dummyCollection: MusicCollection = {
     cover: 'cover',
     isPlaying: false,
 };
+
+export class MusicComment {
+    id: number;
+
+    content: string;
+}

@@ -26,6 +26,7 @@ import {
     updateToNextMusic,
     updateCollections,
     updateCollectionInfoMusics,
+    updateComments,
 } from '../globals';
 import { MusicCollectionsComponent } from './musicCollectionsComponent';
 import Grid from '@material-ui/core/Grid';
@@ -53,6 +54,7 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
     const updateToTheNextMusic = useDispatch(updateToNextMusic);
     const updateTheCollections = useDispatch(updateCollections);
     const updateTheCollectionInfoMusics = useDispatch(updateCollectionInfoMusics);
+    const updateTheComments = useDispatch(updateComments);
     const [currentTheMusic] = useGlobal('currentMusic');
     const [musicCollections] = useGlobal('Collections');
     const [musicIndex] = useGlobal('musicIndex');
@@ -156,8 +158,9 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
     const commentClick = (id: number): void => {
         getMusicComments(
             1,
-            o => {
-                console.log(o);
+            comments => {
+                console.log(comments);
+                updateTheComments(comments);
                 setCommentModalOpen(true);
             },
             console.log,

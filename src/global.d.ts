@@ -6,19 +6,24 @@ declare module 'reactn/default' {
     export interface Reducers {
         updatePlayListMusics: (global: State, dispatch: Dispatch, musics: Music[]) => Pick<State, 'playListMusics'>;
         updateMusic: (global: State, dispatch: Dispatch, music: Music) => Pick<State, 'currentMusic' | 'musics'>;
+
         updateCurrentMusic: (
             global: State,
             dispatch: Dispatch,
             music: Music,
         ) => Pick<State, 'currentMusic' | 'musicIndex'>;
+
         updateMusics: (
             global: State,
             dispatch: Dispatch,
             musics: Music[],
         ) => Pick<State, 'musics' | 'musicIndex' | 'musicLength' | 'currentMusic'>;
+
+        updateComments: (global: State, dispatch: Dispatch, comments: MusicComment[]) => Pick<State, 'comments'>;
+
         updateMusicInPersoalListState: (global: State, dispatch: Dispatch) => Pick<State, 'musics'>;
         updateToNextMusic: (global: State, dispatch: Dispatch) => Pick<State, 'currentMusic' | 'musicIndex'>;
-        // updateCurrentCollection: (global: State, dispatch: Dispatch, name: string) => Pick<State, 'currentCollection'>;
+
         updateCollections: (
             global: State,
             dispatch: Dispatch,
@@ -54,6 +59,7 @@ declare module 'reactn/default' {
         collectionInfoData: Music[];
 
         commentModalOpen: boolean;
+        comments: MusicComment[];
 
         isPlaying: boolean;
     }
