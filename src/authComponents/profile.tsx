@@ -1,5 +1,8 @@
 import React from 'react';
+import { useGlobal } from 'reactn';
 
 export const ProfilePage: React.FC = () => {
-    return <h1>Profile</h1>;
+    const [userId] = useGlobal('userId');
+
+    return <h1>Name : {userId}</h1>;
 };
