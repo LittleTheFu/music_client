@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { MusicComponent } from './musicComponent';
 import { getAudioPlayer } from './audioPlayer';
 import { Music } from '../dataInterfaces/music';
-import { fetchPlayListMusicList, fetchMusics, postShowProfile } from '../service';
+// import { fetchPlayListMusicList, fetchMusics, postShowProfile } from '../service';
 import Button from '@material-ui/core/Button';
 import { TemporaryDrawer } from './navDrawerComponent';
 import { AppBarComponent } from './appBarComponent';
@@ -17,26 +17,6 @@ export const MusicApp: React.FC = () => {
     const [musics] = useGlobal('musics');
     const [keyword, setKeyword] = useState('');
     const updateTheMusics = useDispatch(updateMusics);
-
-    const loadMusic = (): void => {
-        fetchPlayListMusicList(
-            musicList => {
-                updateTheMusics(musicList as Music[]);
-                console.log(musicList);
-            },
-            e => console.log(e),
-        );
-    };
-
-    const getMusics = (): void => {
-        fetchMusics(
-            musicList => {
-                updateTheMusics(musicList as Music[]);
-                console.log(musicList);
-            },
-            e => console.log(e),
-        );
-    };
 
     const searchMusics = (): void => {
         fetchMusicsByKeyword(
@@ -82,56 +62,7 @@ export const MusicApp: React.FC = () => {
                     search
                 </Button>
             </form> */}
-                {/* <Button
-                variant="contained"
-                color="primary"
-                onClick={() => {
-                    getMusicCollections(
-                        o => console.log(o),
-                        e => console.log(e),
-                    );
-                }}
-            >
-                load-collections
-            </Button>
-            <Button variant="contained" color="primary" onClick={loadMusic}>
-                loadMusic
-            </Button>
-            <Button variant="contained" color="primary" onClick={getMusics}>
-                loadMusic
-            </Button>
-            <Button variant="contained" color="primary" onClick={searchMusics}>
-                search musics
-            </Button>
-            <Button
-                variant="contained"
-                color="primary"
-                onClick={(): void => {
-                    postShowProfile(console.log);
-                }}
-            >
-                test-jwt-api
-            </Button> */}
                 <MusicComponent audioElement={audioElement} musics={musics}></MusicComponent>
-                {/* <Button
-                variant="contained"
-                color="primary"
-                onClick={(): void => {
-                    localStorage.setItem('myData', 'data');
-                }}
-            >
-                set local storage
-            </Button>
-            <Button
-                variant="contained"
-                color="primary"
-                onClick={(): void => console.log(localStorage.getItem('myData'))}
-            >
-                log local storage
-            </Button>
-            <Button variant="contained" color="primary" onClick={testFunc}>
-                test
-            </Button> */}
             </Grid>
         </div>
     );
