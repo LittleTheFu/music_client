@@ -58,6 +58,6 @@ export const dummyCollection: MusicCollection = {
 
 export class MusicComment {
     id: number;
-
     content: string;
+    username: string;
 }

@@ -36,7 +36,11 @@ export const CommentModal: React.FC = () => {
     const classes = useStyles({});
 
     const infoElements = comments.map((comment: MusicComment, index: number) => {
-        return <ListItem key={index}>{comment.content}</ListItem>;
+        return (
+            <ListItem key={index}>
+                {comment.username} : {comment.content}
+            </ListItem>
+        );
     });
 
     function handleSubmit(event: React.FormEvent<HTMLFormElement>): void {
@@ -47,7 +51,9 @@ export const CommentModal: React.FC = () => {
             currentCommentMusicId,
             content,
             comments => {
-                updateTheComments(comments);
+                updateTheComments(comments as MusicComment[]);
+                console.log('AFTER POST');
+                console.log(comments);
             },
             console.log,
         );
@@ -66,7 +72,7 @@ export const CommentModal: React.FC = () => {
             aria-labelledby="simple-dialog-title"
             open={commentModalOpen}
         >
-            <DialogTitle id="simple-dialog-title">Comment</DialogTitle>
+            <DialogTitle id="simple-dialog-title">Comments</DialogTitle>
             <List>
                 <React.Fragment>{infoElements}</React.Fragment>
             </List>
