@@ -20,6 +20,11 @@ declare module 'reactn/default' {
         ) => Pick<State, 'musics' | 'musicIndex' | 'musicLength' | 'currentMusic'>;
 
         updateComments: (global: State, dispatch: Dispatch, comments: MusicComment[]) => Pick<State, 'comments'>;
+        updateCurrentCommentMusicId: (
+            global: State,
+            dispatch: Dispatch,
+            id: number,
+        ) => Pick<State, 'currentCommentMusicId'>;
 
         updateMusicInPersoalListState: (global: State, dispatch: Dispatch) => Pick<State, 'musics'>;
         updateToNextMusic: (global: State, dispatch: Dispatch) => Pick<State, 'currentMusic' | 'musicIndex'>;
@@ -60,6 +65,7 @@ declare module 'reactn/default' {
 
         commentModalOpen: boolean;
         comments: MusicComment[];
+        currentCommentMusicId: number;
 
         isPlaying: boolean;
     }

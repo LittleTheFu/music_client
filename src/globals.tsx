@@ -39,8 +39,17 @@ setGlobal({
 
     commentModalOpen: false,
     comments: [],
+    currentCommentMusicId: 0,
 
     isPlaying: false,
+});
+
+export const updateCurrentCommentMusicId = (
+    global: State,
+    dispatch: Dispatch,
+    id: number,
+): Pick<State, 'currentCommentMusicId'> => ({
+    currentCommentMusicId: id,
 });
 
 export const updateComments = (

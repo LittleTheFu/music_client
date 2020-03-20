@@ -155,3 +155,15 @@ export const getMusicComments = (
         Authorization: 'Bearer ' + getToken(),
     });
 };
+
+const postMusicCommentsUrl = 'http://localhost:9999/comment/PostMusicComments';
+export const postMusicComments = (
+    musicId: number,
+    content: string,
+    resolve: (data: any) => void,
+    reject: (arg0: object) => void,
+): Promise<object> => {
+    return rawObjectPost(postMusicCommentsUrl, { musicId: musicId, content: content }, resolve, {
+        Authorization: 'Bearer ' + getToken(),
+    });
+};
