@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import { MusicInfoComponent } from './musicInfoComponent';
@@ -224,13 +223,6 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
 
         // setIsPlaying(true);
         // setMusicIndex(index);
-    };
-
-    const playCurrentMusic = (): void => {
-        audioElement.src = currentTheMusic.address;
-        audioElement.autoplay = true;
-
-        setIsPlaying(true);
     };
 
     const clickCollectionCover = (name: string): void => {

@@ -3,7 +3,6 @@ import { MusicCollection } from '../dataInterfaces/music';
 import { MusicCollectionComponent } from './musicCollectionComponent';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import GridList from '@material-ui/core/GridList';
-import Grid from '@material-ui/core/Grid';
 
 interface MusicCollectionsProps {
     collections: MusicCollection[];

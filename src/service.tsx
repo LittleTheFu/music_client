@@ -1,4 +1,4 @@
-import { Music, MusicCollection } from './dataInterfaces/music';
+import { Music } from './dataInterfaces/music';
 import { getToken } from './globals';
 
 const getOption = {
