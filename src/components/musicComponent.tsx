@@ -83,7 +83,7 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
         audioElement.src = currentTheMusic.address;
         audioElement.autoplay = true;
         setIsPlaying(true);
-    }, [currentTheMusic]);
+    }, [currentTheMusic.id]);
 
     useEffect(() => {
         if (duration !== 0) {
