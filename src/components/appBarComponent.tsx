@@ -9,9 +9,10 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import Button from '@material-ui/core/Button';
 import { useGlobal } from 'reactn';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useRouteMatch } from 'react-router-dom';
 import Avatar from '@material-ui/core/Avatar';
 import { deepOrange, deepPurple } from '@material-ui/core/colors';
+import MusicNoteIcon from '@material-ui/icons/MusicNote';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -48,6 +49,7 @@ export const AppBarComponent: React.FC = () => {
     const [userId, setUserId] = useGlobal('userId');
 
     const history = useHistory();
+    const { path, url } = useRouteMatch();
 
     const classes = useStyles();
 
@@ -70,9 +72,15 @@ export const AppBarComponent: React.FC = () => {
                     >
                         <MenuIcon />
                     </IconButton>
-                    <Typography variant="h6" className={classes.title}>
-                        Welcome
-                    </Typography>
+                    <IconButton
+                        className={classes.exitButton}
+                        edge="start"
+                        onClick={(): void => {
+                            history.push(`${url}`);
+                        }}
+                    >
+                        <MusicNoteIcon />
+                    </IconButton>
                     {/* <form className={classes.root} noValidate autoComplete="off">
                         <TextField id="standard-basic" label="search" />
                     </form> */}
@@ -95,7 +103,15 @@ export const AppBarComponent: React.FC = () => {
                         <div></div>
                     )}
                     {isLogin ? (
-                        <Avatar className={classes.userAvatar}>U</Avatar>
+                        <Avatar
+                            className={classes.userAvatar}
+                            onClick={(): void => {
+                                history.push(`${url}/profile`);
+                                console.log('AVATAR CLICK');
+                            }}
+                        >
+                            U
+                        </Avatar>
                     ) : (
                         <Avatar className={classes.guestAvatar}>G</Avatar>
                     )}

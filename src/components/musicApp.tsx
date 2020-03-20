@@ -10,6 +10,8 @@ import { useGlobal, useDispatch } from 'reactn';
 import { fetchMusicsByKeyword } from '../service';
 import { updateMusics } from '../globals';
 import Grid from '@material-ui/core/Grid';
+import { BrowserRouter as Router, Switch, Route, Link, useRouteMatch } from 'react-router-dom';
+import { ProfilePage } from '../authComponents/profile';
 
 const audioElement = getAudioPlayer();
 
@@ -17,6 +19,7 @@ export const MusicApp: React.FC = () => {
     const [musics] = useGlobal('musics');
     const [keyword, setKeyword] = useState('');
     const updateTheMusics = useDispatch(updateMusics);
+    const { path, url } = useRouteMatch();
 
     const searchMusics = (): void => {
         fetchMusicsByKeyword(
@@ -62,7 +65,14 @@ export const MusicApp: React.FC = () => {
                     search
                 </Button>
             </form> */}
-                <MusicComponent audioElement={audioElement} musics={musics}></MusicComponent>
+                <Switch>
+                    <Route exact path={path}>
+                        <MusicComponent audioElement={audioElement} musics={musics}></MusicComponent>
+                    </Route>
+                    <Route path={`${path}/:profile`}>
+                        <ProfilePage></ProfilePage>
+                    </Route>
+                </Switch>
             </Grid>
         </div>
     );
