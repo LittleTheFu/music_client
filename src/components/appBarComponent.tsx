@@ -10,6 +10,8 @@ import Button from '@material-ui/core/Button';
 import { useGlobal } from 'reactn';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { useHistory } from 'react-router-dom';
+import Avatar from '@material-ui/core/Avatar';
+import { deepOrange, deepPurple } from '@material-ui/core/colors';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -25,6 +27,12 @@ const useStyles = makeStyles((theme: Theme) =>
         },
         title: {
             flexGrow: 1,
+        },
+        userAvatar: {
+            backgroundColor: deepOrange[500],
+        },
+        guestAvatar: {
+            backgroundColor: deepPurple[500],
         },
     }),
 );
@@ -86,7 +94,11 @@ export const AppBarComponent: React.FC = () => {
                     ) : (
                         <div></div>
                     )}
-                    {isLogin ? <div>user</div> : <div>gst</div>}
+                    {isLogin ? (
+                        <Avatar className={classes.userAvatar}>U</Avatar>
+                    ) : (
+                        <Avatar className={classes.guestAvatar}>G</Avatar>
+                    )}
                 </Toolbar>
             </AppBar>
         </div>

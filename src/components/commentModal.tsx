@@ -11,6 +11,8 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import { postMusicComments } from '../service';
 import { updateComments } from '../globals';
+import Avatar from '@material-ui/core/Avatar';
+import { deepOrange, deepPurple } from '@material-ui/core/colors';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -22,6 +24,11 @@ const useStyles = makeStyles((theme: Theme) =>
             border: '2px solid #000',
             boxShadow: theme.shadows[5],
             padding: theme.spacing(2, 4, 3),
+        },
+        userAvatar: {
+            backgroundColor: deepOrange[500],
+            height: 20,
+            width: 20,
         },
     }),
 );
@@ -38,7 +45,7 @@ export const CommentModal: React.FC = () => {
     const infoElements = comments.map((comment: MusicComment, index: number) => {
         return (
             <ListItem key={index}>
-                {comment.username} : {comment.content}
+                <Avatar className={classes.userAvatar}>{comment.username}</Avatar> : {comment.content}
             </ListItem>
         );
     });
