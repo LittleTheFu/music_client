@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useGlobal } from 'reactn';
 import Button from '@material-ui/core/Button';
+import { uploadAvatar } from '../service';
 
 export const ProfilePage: React.FC = () => {
     const [userId] = useGlobal('userId');
@@ -30,17 +31,42 @@ export const ProfilePage: React.FC = () => {
         setSelectedFile(e.target.files[0]);
     };
 
+    const uploadFile = (): void => {
+        // if (!e.target.files || e.target.files.length === 0) {
+        //     setSelectedFile(undefined);
+        //     return;
+        // }
+        if (!selectedFile) return;
+
+        const formData = new FormData();
+        formData.append('avatar', selectedFile);
+        console.log(formData.getAll('avatar'));
+        console.log('after append');
+        console.log(formData);
+
+        uploadAvatar(
+            formData,
+            o => {
+                console.log(o);
+            },
+            e => {
+                console.log(e);
+            },
+        );
+        // console.log(selectedFile);
+
+        console.log('UPLOAD FILE');
+    };
+
     return (
         <div>
             <h1>Name : {userId}</h1>
-            <input accept="image/*" id="contained-button-file" type="file" onChange={onSelectFile} />
+            <input accept="image/*" id="contained-button-file" type="file" onChange={onSelectFile} name="avatar" />
             {selectedFile && <img src={preview} />}
 
-            <label htmlFor="contained-button-file">
-                <Button variant="contained" color="primary" component="span">
-                    Upload
-                </Button>
-            </label>
+            <Button variant="contained" color="primary" component="span" onClick={uploadFile}>
+                Upload
+            </Button>
         </div>
     );
 };

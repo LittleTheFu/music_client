@@ -178,3 +178,45 @@ export const getUserAvatar = (
         Authorization: 'Bearer ' + getToken(),
     });
 };
+
+//------------------------------------------------------------
+
+const fileObjectPost = (
+    url: string,
+    data: FormData,
+    resolve: (data: any) => void,
+    headerContent: object = {},
+): Promise<object> => {
+    const options = {
+        method: 'POST',
+        body: data,
+        // body: JSON.stringify(data),
+        headers: {
+            // Accept: 'application/json',
+            'Content-Type': 'form-data',
+            // 'Content-Type': 'multipart/form-data; boundary=---------------------------293582696224464',
+            //     // boundary: 'AaB03x',
+            //     ...headerContent,
+        },
+    };
+    // delete options.headers['Content-Type'];
+
+    return fetch(url, options)
+        .then(response => {
+            return response.json();
+        })
+        .then(data => resolve(data))
+        .catch(err => err);
+};
+
+const uploadAvatarUrl = 'http://localhost:9999/upload';
+export const uploadAvatar = (
+    data: FormData,
+    resolve: (data: any) => void,
+    reject: (arg0: object) => void,
+): Promise<object> => {
+    console.log(data);
+    return fileObjectPost(uploadAvatarUrl, data, resolve, {
+        Authorization: 'Bearer ' + getToken(),
+    });
+};
