@@ -44,6 +44,10 @@ setGlobal({
     isPlaying: false,
 });
 
+export const updateAvatar = (global: State, dispatch: Dispatch, avatar: string): Pick<State, 'avatar'> => ({
+    avatar: avatar,
+});
+
 export const updateCurrentCommentMusicId = (
     global: State,
     dispatch: Dispatch,

@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-import { postLogin, fetchPlayListMusicList, getMusicCollections } from '../service';
-import { setToken, updatePlayListMusics, updateMusics, updateCollections } from '../globals';
+import { postLogin, fetchPlayListMusicList, getMusicCollections, getUserAvatar } from '../service';
+import { setToken, updatePlayListMusics, updateMusics, updateCollections, updateAvatar } from '../globals';
 import { useGlobal, useDispatch } from 'reactn';
 import { Music, MusicCollection } from '../dataInterfaces/music';
 import { useHistory, Link } from 'react-router-dom';
@@ -40,13 +40,29 @@ export const LoginComponent: React.FC = () => {
     const updateUserAddedMusics = useDispatch(updatePlayListMusics);
     const updateTheMusics = useDispatch(updateMusics);
     const updateTheCollections = useDispatch(updateCollections);
+    const updateTheAvatar = useDispatch(updateAvatar);
 
-    const [user, setUser] = useState('');
+    const [username, setUser] = useState('');
     const [password, setPassword] = useState('');
 
     const history = useHistory();
 
     const classes = useStyles({});
+
+    const loadAvatar = (username: string): void => {
+        console.log('BEGIN LOAD AVATAR');
+        getUserAvatar(
+            username,
+            avatarInfo => {
+                console.log('getAvatarUrl');
+                updateTheAvatar(avatarInfo.avatarUrl);
+            },
+            e => {
+                console.log('ERRRRRRR');
+                console.log(e);
+            },
+        );
+    };
 
     const loadMusic = (): void => {
         fetchPlayListMusicList(
@@ -71,15 +87,18 @@ export const LoginComponent: React.FC = () => {
     };
 
     const resolveData = (data: any): void => {
+        console.log('POST LOGIN');
+        console.log(data);
         if ('error' in data) {
             console.log('error : ' + data.error);
         } else if ('accessToken' in data) {
             setToken(data.accessToken);
-            setUserId(user);
+            setUserId(username);
             console.log('accessToken : ' + data.accessToken);
             setIsLogin(true);
             setLoginModalOpen(false);
 
+            loadAvatar(username);
             loadMusic();
             loadCollections();
 
@@ -89,9 +108,9 @@ export const LoginComponent: React.FC = () => {
 
     function handleSubmit(event: React.FormEvent<HTMLFormElement>): void {
         event.preventDefault();
-        console.log('username: ', user, 'password: ', password);
+        console.log('username: ', username, 'password: ', password);
         console.log('submit');
-        postLogin(user, password, resolveData);
+        postLogin(username, password, resolveData);
         // You should see email and password in console.
         // ..code to submit form to backend here...
     }

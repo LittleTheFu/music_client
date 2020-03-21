@@ -167,3 +167,14 @@ export const postMusicComments = (
         Authorization: 'Bearer ' + getToken(),
     });
 };
+
+const getUserAvatarUrl = 'http://localhost:9999/profile/getUserAvatar';
+export const getUserAvatar = (
+    username: string,
+    resolve: (data: any) => void,
+    reject: (arg0: object) => void,
+): Promise<object> => {
+    return rawObjectPost(getUserAvatarUrl, { username: username }, resolve, {
+        Authorization: 'Bearer ' + getToken(),
+    });
+};

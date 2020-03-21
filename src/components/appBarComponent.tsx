@@ -2,10 +2,8 @@ import React from 'react';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import Button from '@material-ui/core/Button';
 import { useGlobal } from 'reactn';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
@@ -47,6 +45,7 @@ export const AppBarComponent: React.FC = () => {
     const [isLogin, setIsLogin] = useGlobal('isLogin');
     const [drawerOpen, setDrawerOpen] = useGlobal('drawerOpen');
     const [userId, setUserId] = useGlobal('userId');
+    const [avatar] = useGlobal('avatar');
 
     const history = useHistory();
     const { path, url } = useRouteMatch();
@@ -104,14 +103,13 @@ export const AppBarComponent: React.FC = () => {
                     )}
                     {isLogin ? (
                         <Avatar
+                            src={avatar}
                             className={classes.userAvatar}
                             onClick={(): void => {
                                 history.push(`${url}/profile`);
                                 console.log('AVATAR CLICK');
                             }}
-                        >
-                            U
-                        </Avatar>
+                        ></Avatar>
                     ) : (
                         <Avatar className={classes.guestAvatar}>G</Avatar>
                     )}
