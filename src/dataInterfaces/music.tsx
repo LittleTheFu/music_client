@@ -60,6 +60,7 @@ export class MusicComment {
     id: number;
     content: string;
     username: string;
+    avatar: string;
 }
 
 export class RetUpdateAvatarDto {

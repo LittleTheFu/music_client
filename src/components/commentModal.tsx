@@ -45,7 +45,10 @@ export const CommentModal: React.FC = () => {
     const infoElements = comments.map((comment: MusicComment, index: number) => {
         return (
             <ListItem key={index}>
-                <Avatar className={classes.userAvatar}>{comment.username}</Avatar> : {comment.content}
+                <Avatar className={classes.userAvatar} src={comment.avatar}>
+                    {comment.username}
+                </Avatar>{' '}
+                : {comment.content}
             </ListItem>
         );
     });
