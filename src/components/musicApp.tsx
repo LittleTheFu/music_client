@@ -8,6 +8,7 @@ import { updateMusics } from '../globals';
 import Grid from '@material-ui/core/Grid';
 import { BrowserRouter as Router, Switch, Route, Link, useRouteMatch } from 'react-router-dom';
 import { ProfilePage } from '../authComponents/profile';
+import { MailPage } from '../mailComponents/mailPage';
 
 const audioElement = getAudioPlayer();
 
@@ -26,8 +27,11 @@ export const MusicApp: React.FC = () => {
                     <Route exact path={path}>
                         <MusicComponent audioElement={audioElement} musics={musics}></MusicComponent>
                     </Route>
-                    <Route path={`${path}/:profile`}>
+                    <Route path={`${path}/profile`}>
                         <ProfilePage></ProfilePage>
+                    </Route>
+                    <Route path={`${path}/mail`}>
+                        <MailPage></MailPage>
                     </Route>
                 </Switch>
             </Grid>

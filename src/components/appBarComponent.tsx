@@ -4,6 +4,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import MailOutlinedIcon from '@material-ui/icons/MailOutlined';
 import Button from '@material-ui/core/Button';
 import { useGlobal } from 'reactn';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
@@ -80,9 +81,16 @@ export const AppBarComponent: React.FC = () => {
                     >
                         <MusicNoteIcon />
                     </IconButton>
-                    {/* <form className={classes.root} noValidate autoComplete="off">
-                        <TextField id="standard-basic" label="search" />
-                    </form> */}
+                    <IconButton
+                        edge="start"
+                        className={classes.exitButton}
+                        onClick={(): void => {
+                            history.push(`${url}/mail`);
+                            console.log('MAIL CLICK');
+                        }}
+                    >
+                        <MailOutlinedIcon />
+                    </IconButton>
                     {isLogin ? (
                         <div>
                             <IconButton
