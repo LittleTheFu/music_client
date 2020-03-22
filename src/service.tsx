@@ -189,14 +189,16 @@ const fileObjectPost = (
 ): Promise<object> => {
     const options = {
         method: 'POST',
+        // body: { avatar: data },
         body: data,
+        // headers: data.
         // body: JSON.stringify(data),
         headers: {
             // Accept: 'application/json',
-            'Content-Type': 'form-data',
+            // 'Content-Type': 'form-data',
             // 'Content-Type': 'multipart/form-data; boundary=---------------------------293582696224464',
             //     // boundary: 'AaB03x',
-            //     ...headerContent,
+            ...headerContent,
         },
     };
     // delete options.headers['Content-Type'];
@@ -209,7 +211,11 @@ const fileObjectPost = (
         .catch(err => err);
 };
 
-const uploadAvatarUrl = 'http://localhost:9999/upload';
+// const request = new XMLHttpRequest();
+// request.open("POST", "http://foo.com/submitform.php");
+// request.send(formData);
+
+const uploadAvatarUrl = 'http://localhost:9999/profile/upload';
 export const uploadAvatar = (
     data: FormData,
     resolve: (data: any) => void,

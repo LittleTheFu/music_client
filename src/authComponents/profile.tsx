@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { useGlobal } from 'reactn';
+import { useGlobal, useDispatch } from 'reactn';
 import Button from '@material-ui/core/Button';
 import { uploadAvatar } from '../service';
+import { updateAvatar } from '../globals';
+import { RetUpdateAvatarDto } from '../dataInterfaces/music';
 
 export const ProfilePage: React.FC = () => {
     const [userId] = useGlobal('userId');
+    const updateTheAvatar = useDispatch(updateAvatar);
     const [selectedFile, setSelectedFile] = useState(null);
     const [preview, setPreview] = useState('');
 
@@ -47,6 +50,8 @@ export const ProfilePage: React.FC = () => {
         uploadAvatar(
             formData,
             o => {
+                const obj = o as RetUpdateAvatarDto;
+                updateTheAvatar(obj.remoteUrl);
                 console.log(o);
             },
             e => {

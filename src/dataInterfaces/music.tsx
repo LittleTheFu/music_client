@@ -61,3 +61,7 @@ export class MusicComment {
     content: string;
     username: string;
 }
+
+export class RetUpdateAvatarDto {
+    remoteUrl: string;
+}
