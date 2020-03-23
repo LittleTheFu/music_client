@@ -179,6 +179,13 @@ export const getUserAvatar = (
     });
 };
 
+const getMailUrl = 'http://localhost:9999/mail/getMails';
+export const getUserMails = (resolve: (data: any) => void, reject: (arg0: object) => void): Promise<object> => {
+    return rawObjectPost(getMailUrl, {}, resolve, {
+        Authorization: 'Bearer ' + getToken(),
+    });
+};
+
 //------------------------------------------------------------
 
 const fileObjectPost = (

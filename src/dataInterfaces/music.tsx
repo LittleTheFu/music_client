@@ -66,3 +66,11 @@ export class MusicComment {
 export class RetUpdateAvatarDto {
     remoteUrl: string;
 }
+
+export class Mail {
+    content: string;
+
+    fromName: string;
+
+    toName: string;
+}
