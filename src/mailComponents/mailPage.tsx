@@ -3,6 +3,8 @@ import { getUserMails } from '../service';
 import { Mail } from '../dataInterfaces/music';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
+import { IconButton } from '@material-ui/core';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 export const MailPage: React.FC = () => {
     const [mails, setMails] = useState<Mail[]>([]);
@@ -17,7 +19,15 @@ export const MailPage: React.FC = () => {
     const mailElements = mails.map((m: Mail, index: number) => {
         return (
             <ListItem button key={index}>
-                {m.fromName}--{m.toName}--{m.content}
+                {m.id}:{m.fromName}--{m.toName}--{m.content}
+                <IconButton
+                    onClick={(e): void => {
+                        e.stopPropagation();
+                        console.log('mail click');
+                    }}
+                >
+                    <DeleteIcon></DeleteIcon>
+                </IconButton>
             </ListItem>
         );
     });

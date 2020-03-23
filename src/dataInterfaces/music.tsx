@@ -68,6 +68,8 @@ export class RetUpdateAvatarDto {
 }
 
 export class Mail {
+    id: number;
+
     content: string;
 
     fromName: string;
