@@ -197,6 +197,18 @@ export const deleteMail = (
     });
 };
 
+const sendMailUrl = 'http://localhost:9999/mail/sendMail';
+export const sendMail = (
+    toId: number,
+    content: string,
+    resolve: (data: any) => void,
+    reject: (arg0: object) => void,
+): Promise<object> => {
+    return rawObjectPost(sendMailUrl, { toId: toId, content: content }, resolve, {
+        Authorization: 'Bearer ' + getToken(),
+    });
+};
+
 //------------------------------------------------------------
 
 const fileObjectPost = (

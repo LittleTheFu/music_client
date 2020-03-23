@@ -41,6 +41,9 @@ setGlobal({
     comments: [],
     currentCommentMusicId: 0,
 
+    userCardModalOpen: false,
+    currentClickUserId: 0,
+
     isPlaying: false,
 });
 

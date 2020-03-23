@@ -69,6 +69,9 @@ declare module 'reactn/default' {
         comments: MusicComment[];
         currentCommentMusicId: number;
 
+        userCardModalOpen: boolean;
+        currentClickUserId: number;
+
         isPlaying: boolean;
     }
 }

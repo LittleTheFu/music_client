@@ -37,6 +37,8 @@ export const CommentModal: React.FC = () => {
     const [commentModalOpen, setCommentModalOpen] = useGlobal('commentModalOpen');
     const [comments] = useGlobal('comments');
     const [currentCommentMusicId] = useGlobal('currentCommentMusicId');
+    const [userCardModalOpen, setUserCardModalOpen] = useGlobal('userCardModalOpen');
+    const [currentClickUserId, setCurrentClickUserId] = useGlobal('currentClickUserId');
     const updateTheComments = useDispatch(updateComments);
     const [content, setContent] = useState('');
 
@@ -45,7 +47,14 @@ export const CommentModal: React.FC = () => {
     const infoElements = comments.map((comment: MusicComment, index: number) => {
         return (
             <ListItem key={index}>
-                <Avatar className={classes.userAvatar} src={comment.avatar}>
+                <Avatar
+                    className={classes.userAvatar}
+                    src={comment.avatar}
+                    onClick={(): void => {
+                        setUserCardModalOpen(true);
+                        setCurrentClickUserId(comment.userId);
+                    }}
+                >
                     {comment.username}
                 </Avatar>{' '}
                 : {comment.content}
@@ -67,11 +76,6 @@ export const CommentModal: React.FC = () => {
             },
             console.log,
         );
-        // console.log('username: ', user, 'password: ', password);
-        // console.log('submit');
-        // postLogin(user, password, resolveData);
-        // You should see email and password in console.
-        // ..code to submit form to backend here...
     }
 
     return (
