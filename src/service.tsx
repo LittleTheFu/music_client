@@ -186,6 +186,17 @@ export const getUserMails = (resolve: (data: any) => void, reject: (arg0: object
     });
 };
 
+const deleteMailUrl = 'http://localhost:9999/mail/deleteMail';
+export const deleteMail = (
+    mailId: number,
+    resolve: (data: any) => void,
+    reject: (arg0: object) => void,
+): Promise<object> => {
+    return rawObjectPost(deleteMailUrl, { mailId: mailId }, resolve, {
+        Authorization: 'Bearer ' + getToken(),
+    });
+};
+
 //------------------------------------------------------------
 
 const fileObjectPost = (
@@ -196,19 +207,11 @@ const fileObjectPost = (
 ): Promise<object> => {
     const options = {
         method: 'POST',
-        // body: { avatar: data },
         body: data,
-        // headers: data.
-        // body: JSON.stringify(data),
         headers: {
-            // Accept: 'application/json',
-            // 'Content-Type': 'form-data',
-            // 'Content-Type': 'multipart/form-data; boundary=---------------------------293582696224464',
-            //     // boundary: 'AaB03x',
             ...headerContent,
         },
     };
-    // delete options.headers['Content-Type'];
 
     return fetch(url, options)
         .then(response => {
@@ -217,10 +220,6 @@ const fileObjectPost = (
         .then(data => resolve(data))
         .catch(err => err);
 };
-
-// const request = new XMLHttpRequest();
-// request.open("POST", "http://foo.com/submitform.php");
-// request.send(formData);
 
 const uploadAvatarUrl = 'http://localhost:9999/profile/upload';
 export const uploadAvatar = (

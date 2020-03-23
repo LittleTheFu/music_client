@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getUserMails } from '../service';
+import { getUserMails, deleteMail } from '../service';
 import { Mail } from '../dataInterfaces/music';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -24,6 +24,15 @@ export const MailPage: React.FC = () => {
                     onClick={(e): void => {
                         e.stopPropagation();
                         console.log('mail click');
+
+                        deleteMail(
+                            m.id,
+                            mails => {
+                                // setMails(mails);
+                                console.log(mails);
+                            },
+                            console.log,
+                        );
                     }}
                 >
                     <DeleteIcon></DeleteIcon>
