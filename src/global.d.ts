@@ -7,6 +7,12 @@ declare module 'reactn/default' {
         updatePlayListMusics: (global: State, dispatch: Dispatch, musics: Music[]) => Pick<State, 'playListMusics'>;
         updateMusic: (global: State, dispatch: Dispatch, music: Music) => Pick<State, 'currentMusic' | 'musics'>;
 
+        updateCommentModalState: (
+            global: State,
+            dispatch: Dispatch,
+            isOpen: boolean,
+        ) => Pick<State, 'commentModalOpen'>;
+
         updateAvatar: (global: State, dispatch: Dispatch, avatar: string) => Pick<State, 'avatar'>;
 
         updateCurrentMusic: (

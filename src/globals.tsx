@@ -47,6 +47,14 @@ setGlobal({
     isPlaying: false,
 });
 
+export const updateCommentModalState = (
+    global: State,
+    dispatch: Dispatch,
+    isOpen: boolean,
+): Pick<State, 'commentModalOpen'> => ({
+    commentModalOpen: isOpen,
+});
+
 export const updateAvatar = (global: State, dispatch: Dispatch, avatar: string): Pick<State, 'avatar'> => ({
     avatar: avatar,
 });
