@@ -209,6 +209,17 @@ export const sendMail = (
     });
 };
 
+const detailUrl = 'http://localhost:9999/users/detail';
+export const getDetail = (
+    username: string,
+    resolve: (data: any) => void,
+    reject: (arg0: object) => void,
+): Promise<object> => {
+    return rawObjectPost(detailUrl, { username: username }, resolve, {
+        Authorization: 'Bearer ' + getToken(),
+    });
+};
+
 //------------------------------------------------------------
 
 const fileObjectPost = (

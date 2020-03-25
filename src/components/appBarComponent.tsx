@@ -12,6 +12,7 @@ import { useHistory, useRouteMatch } from 'react-router-dom';
 import Avatar from '@material-ui/core/Avatar';
 import { deepOrange, deepPurple } from '@material-ui/core/colors';
 import MusicNoteIcon from '@material-ui/icons/MusicNote';
+import { getDetail } from 'service';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -95,8 +96,15 @@ export const AppBarComponent: React.FC = () => {
                         edge="start"
                         className={classes.exitButton}
                         onClick={(): void => {
-                            history.push(`${url}/userdetail`);
-                            console.log('USER Detail CLICK');
+                            getDetail(
+                                'a',
+                                o => {
+                                    console.log(o);
+                                },
+                                console.log,
+                            );
+                            // history.push(`${url}/userdetail`);
+                            // console.log('USER Detail CLICK');
                         }}
                     >
                         <MailOutlinedIcon />

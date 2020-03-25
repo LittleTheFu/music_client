@@ -5,11 +5,18 @@ import Dialog from '@material-ui/core/Dialog';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import { sendMail } from '../service';
+import { useHistory, Link, useRouteMatch } from 'react-router-dom';
 
 export const UserCardModal: React.FC = () => {
     const [userCardModalOpen, setUserCardModalOpen] = useGlobal('userCardModalOpen');
     const [currentClickUserId] = useGlobal('currentClickUserId');
     const [content, setContent] = useState('');
+    const history = useHistory();
+    const { path, url } = useRouteMatch();
+
+    const detailClick = (): void => {
+        history.push(`${url}/userdetail`);
+    };
 
     function handleSubmit(event: React.FormEvent<HTMLFormElement>): void {
         event.preventDefault();
@@ -41,6 +48,9 @@ export const UserCardModal: React.FC = () => {
                     send
                 </Button>
             </form>
+            <Button onClick={detailClick} variant="contained" color="primary">
+                detail
+            </Button>
         </Dialog>
     );
 };
