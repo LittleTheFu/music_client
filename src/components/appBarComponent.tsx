@@ -96,13 +96,13 @@ export const AppBarComponent: React.FC = () => {
                         edge="start"
                         className={classes.exitButton}
                         onClick={(): void => {
-                            getDetail(
-                                'a',
-                                o => {
-                                    console.log(o);
-                                },
-                                console.log,
-                            );
+                            // getDetail(
+                            //     'a',
+                            //     o => {
+                            //         console.log(o);
+                            //     },
+                            //     console.log,
+                            // );
                             // history.push(`${url}/userdetail`);
                             // console.log('USER Detail CLICK');
                         }}

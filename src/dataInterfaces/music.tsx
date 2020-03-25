@@ -77,3 +77,8 @@ export class Mail {
 
     toName: string;
 }
+
+export class UserDetail {
+    name: string;
+    avatarUrl: string;
+}
