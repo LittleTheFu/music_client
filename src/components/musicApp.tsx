@@ -9,6 +9,7 @@ import Grid from '@material-ui/core/Grid';
 import { BrowserRouter as Router, Switch, Route, Link, useRouteMatch } from 'react-router-dom';
 import { ProfilePage } from '../authComponents/profile';
 import { MailPage } from '../mailComponents/mailPage';
+import { UserDetailPage } from '../otherComponents/userDetailPage';
 
 const audioElement = getAudioPlayer();
 
@@ -32,6 +33,9 @@ export const MusicApp: React.FC = () => {
                     </Route>
                     <Route path={`${path}/mail`}>
                         <MailPage></MailPage>
+                    </Route>
+                    <Route path={`${path}/userdetail`}>
+                        <UserDetailPage></UserDetailPage>
                     </Route>
                 </Switch>
             </Grid>

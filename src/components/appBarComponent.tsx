@@ -91,6 +91,16 @@ export const AppBarComponent: React.FC = () => {
                     >
                         <MailOutlinedIcon />
                     </IconButton>
+                    <IconButton
+                        edge="start"
+                        className={classes.exitButton}
+                        onClick={(): void => {
+                            history.push(`${url}/userdetail`);
+                            console.log('USER Detail CLICK');
+                        }}
+                    >
+                        <MailOutlinedIcon />
+                    </IconButton>
                     {isLogin ? (
                         <div>
                             <IconButton
