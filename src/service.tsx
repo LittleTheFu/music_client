@@ -220,6 +220,17 @@ export const getDetail = (
     });
 };
 
+const followUserUrl = 'http://localhost:9999/users/follow';
+export const followUser = (
+    userId: number,
+    resolve: (data: any) => void,
+    reject: (arg0: object) => void,
+): Promise<object> => {
+    return rawObjectPost(followUserUrl, { userId: userId }, resolve, {
+        Authorization: 'Bearer ' + getToken(),
+    });
+};
+
 //------------------------------------------------------------
 
 const fileObjectPost = (
