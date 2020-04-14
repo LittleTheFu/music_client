@@ -22,11 +22,30 @@ export const UserDetailPage: React.FC = () => {
     }, []);
 
     const followClick = (): void => {
-        followUser(currentClickUserId, console.log, console.log);
+        followUser(
+            currentClickUserId,
+            (o): void => {
+                // const d = detail;
+                // d.isFollowed = true;
+                // setDetail(d);
+                setDetail({ ...detail, isFollowed: true });
+                console.log('fl');
+            },
+            console.log,
+        );
     };
 
     const unfollowClick = (): void => {
-        unfollowUser(currentClickUserId, console.log, console.log);
+        unfollowUser(
+            currentClickUserId,
+            (o): void => {
+                // const d = detail;
+                // d.isFollowed = false;
+                setDetail({ ...detail, isFollowed: false });
+                console.log('unfl');
+            },
+            console.log,
+        );
     };
 
     return (
