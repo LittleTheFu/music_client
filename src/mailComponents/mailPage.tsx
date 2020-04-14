@@ -28,8 +28,8 @@ export const MailPage: React.FC = () => {
                         deleteMail(
                             m.id,
                             mails => {
-                                // setMails(mails);
-                                console.log(mails);
+                                setMails(mails);
+                                // console.log(mails);
                             },
                             console.log,
                         );
