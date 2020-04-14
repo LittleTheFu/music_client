@@ -3,7 +3,7 @@ import { useGlobal, useDispatch } from 'reactn';
 import { getDetail } from 'service';
 import { UserDetail } from '../dataInterfaces/music';
 import Button from '@material-ui/core/Button';
-import { followUser } from '../service';
+import { followUser, unfollowUser } from '../service';
 
 export const UserDetailPage: React.FC = () => {
     const [currentClickUserId] = useGlobal('currentClickUserId');
@@ -25,15 +25,25 @@ export const UserDetailPage: React.FC = () => {
         followUser(currentClickUserId, console.log, console.log);
     };
 
+    const unfollowClick = (): void => {
+        unfollowUser(currentClickUserId, console.log, console.log);
+    };
+
     return (
         <div>
             {detail ? (
                 <div>
                     ------{detail.name}--
                     <img src={detail.avatarUrl} alt="avatar" />
-                    <Button onClick={followClick} variant="contained" color="primary">
-                        follow
-                    </Button>
+                    {detail.isFollowed ? (
+                        <Button onClick={unfollowClick} variant="contained" color="primary">
+                            unfollow
+                        </Button>
+                    ) : (
+                        <Button onClick={followClick} variant="contained" color="primary">
+                            follow
+                        </Button>
+                    )}
                 </div>
             ) : (
                 <div></div>

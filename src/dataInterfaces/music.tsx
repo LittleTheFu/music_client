@@ -81,4 +81,5 @@ export class Mail {
 export class UserDetail {
     name: string;
     avatarUrl: string;
+    isFollowed: boolean;
 }
