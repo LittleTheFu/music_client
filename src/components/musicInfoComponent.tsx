@@ -6,9 +6,8 @@ import { Music, dummyMusic } from '../dataInterfaces/music';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import { IconButton } from '@material-ui/core';
-import AutorenewIcon from '@material-ui/icons/Autorenew';
 import { getLyric } from '../service';
-import { testLyric, parseLyric, getLine } from '../lyric/lyricParser';
+import { testLyric, parseLyric, getLine, LyricLine } from '../lyric/lyricParser';
 
 interface MusicInfoProps {
     music: Music;
@@ -48,13 +47,26 @@ export const MusicInfoComponent: React.FC<MusicInfoProps> = (props: MusicInfoPro
     const classes = useStyles({});
     const { music, likeClick, dislikeClick, currentTime } = props;
     const [lyricLine, setLyricLine] = useState('');
-    const lines = parseLyric(testLyric);
+    const [lines, setLines] = useState<LyricLine[]>([]);
+    // const lines = parseLyric(testLyric);
 
     useEffect(() => {
-        // console.log(currentTime);
-        // console.log(getLine(currentTime, lines));
-        setLyricLine(getLine(currentTime, lines));
+        if (lines && lines.length > 0) {
+            setLyricLine(getLine(currentTime, lines));
+        }
     }, [currentTime]);
+
+    useEffect(() => {
+        console.log('music changed');
+        getLyric(
+            music.id,
+            strLyric => {
+                // console.log(strLyric);
+                setLines(parseLyric(strLyric));
+            },
+            console.log,
+        );
+    }, [music.id]);
 
     const lyricClick = (): void => {
         // console.log('lyric');
@@ -84,9 +96,6 @@ export const MusicInfoComponent: React.FC<MusicInfoProps> = (props: MusicInfoPro
                 </IconButton>
             )}
             ---
-            <IconButton className={classes.likeIcon} onClick={lyricClick}>
-                <AutorenewIcon></AutorenewIcon>
-            </IconButton>
             <CardMedia image={music.cover} className={classes.cover}></CardMedia>
         </Card>
     );

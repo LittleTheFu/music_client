@@ -304,6 +304,12 @@ const rawTextObjectPost = (
 };
 
 const getMusicLyricUrl = 'http://localhost:9999/music/getLyric';
-export const getLyric = (resolve: (data: any) => void, reject: (arg0: object) => void): Promise<object> => {
-    return rawTextObjectPost(getMusicLyricUrl, {}, resolve, { Authorization: 'Bearer ' + getToken() });
+export const getLyric = (
+    musicId: number,
+    resolve: (data: any) => void,
+    reject: (arg0: object) => void,
+): Promise<object> => {
+    return rawTextObjectPost(getMusicLyricUrl, { musicId: musicId }, resolve, {
+        Authorization: 'Bearer ' + getToken(),
+    });
 };

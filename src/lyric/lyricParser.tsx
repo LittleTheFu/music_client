@@ -39,7 +39,7 @@ export const testLyric = `[00:00.30]記憶のカケラこの手に集え
 [03:29.46]時を越えて輝きだし この胸を焦がすよ
 [03:36.98]`;
 
-interface LyricLine {
+export interface LyricLine {
     time: number;
     lyric: string;
 }
@@ -57,7 +57,13 @@ const strToTime = (strTime: string): number => {
     const sec = strTime.substr(3, strTime.length - 3);
     // console.log('m:' + min);
     // console.log('s:' + sec);
-    return parseInt(min) * 60 + parseFloat(sec);
+    const m = parseInt(min);
+    const s = parseFloat(sec);
+    if (m === NaN || s === NaN) {
+        return 0;
+    }
+
+    return m * 60 + s;
 };
 
 export const getLine = (time: number, lines: LyricLine[]): string => {
