@@ -300,6 +300,7 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
                             commentClick={commentClick}
                         />
                         <MusicInfoComponent
+                            currentTime={currentTime}
                             music={currentTheMusic}
                             likeClick={currentMusicInfoLikeClick}
                             dislikeClick={currentMusicInfoDislikeClick}

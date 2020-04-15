@@ -70,7 +70,9 @@ const rawObjectPost = (
         .then(response => {
             return response.json();
         })
-        .then(data => resolve(data))
+        .then(data => {
+            resolve(data);
+        })
         .catch(err => err);
 };
 
@@ -276,4 +278,32 @@ export const uploadAvatar = (
     return fileObjectPost(uploadAvatarUrl, data, resolve, {
         Authorization: 'Bearer ' + getToken(),
     });
+};
+
+const rawTextObjectPost = (
+    url: string,
+    data: object,
+    resolve: (data: any) => void,
+    headerContent: object = {},
+): Promise<object> => {
+    return fetch(url, {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: {
+            'Content-Type': 'application/json',
+            ...headerContent,
+        },
+    })
+        .then(response => {
+            return response.text();
+        })
+        .then(data => {
+            resolve(data);
+        })
+        .catch(err => err);
+};
+
+const getMusicLyricUrl = 'http://localhost:9999/music/getLyric';
+export const getLyric = (resolve: (data: any) => void, reject: (arg0: object) => void): Promise<object> => {
+    return rawTextObjectPost(getMusicLyricUrl, {}, resolve, { Authorization: 'Bearer ' + getToken() });
 };
