@@ -10,6 +10,8 @@ import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import { useHistory, useRouteMatch } from 'react-router-dom';
+import MusicNoteIcon from '@material-ui/icons/MusicNote';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
 // const useStyles = makeStyles({
 //     list: {
@@ -51,7 +53,7 @@ export const TemporaryDrawer: React.FC = () => {
                         }}
                     >
                         <ListItemIcon>
-                            <InboxIcon />
+                            <MusicNoteIcon />
                         </ListItemIcon>
                         <ListItemText primary={'music'} />
                     </ListItem>
@@ -64,7 +66,7 @@ export const TemporaryDrawer: React.FC = () => {
                         }}
                     >
                         <ListItemIcon>
-                            <InboxIcon />
+                            <MailIcon />
                         </ListItemIcon>
                         <ListItemText primary={'mail'} />
                     </ListItem>
@@ -92,7 +94,7 @@ export const TemporaryDrawer: React.FC = () => {
                         }}
                     >
                         <ListItemIcon>
-                            <InboxIcon />
+                            <ExitToAppIcon />
                         </ListItemIcon>
                         <ListItemText primary={'logout'} />
                     </ListItem>
