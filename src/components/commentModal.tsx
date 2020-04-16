@@ -13,6 +13,10 @@ import { postMusicComments } from '../service';
 import { updateComments } from '../globals';
 import Avatar from '@material-ui/core/Avatar';
 import { deepOrange, deepPurple } from '@material-ui/core/colors';
+import Divider from '@material-ui/core/Divider';
+import Card from '@material-ui/core/Card';
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -27,8 +31,17 @@ const useStyles = makeStyles((theme: Theme) =>
         },
         userAvatar: {
             backgroundColor: deepOrange[500],
-            height: 20,
-            width: 20,
+            height: 40,
+            width: 40,
+        },
+        card: {
+            width: 500,
+        },
+        date: {
+            color: 'grey',
+        },
+        inputBox: {
+            width: 450,
         },
     }),
 );
@@ -46,19 +59,31 @@ export const CommentModal: React.FC = () => {
 
     const infoElements = comments.map((comment: MusicComment, index: number) => {
         return (
-            <ListItem key={index}>
-                <Avatar
-                    className={classes.userAvatar}
-                    src={comment.avatar}
-                    onClick={(): void => {
-                        setUserCardModalOpen(true);
-                        setCurrentClickUserId(comment.userId);
-                    }}
-                >
-                    {comment.username}
-                </Avatar>{' '}
-                : {comment.content}
-            </ListItem>
+            <div key={index}>
+                <ListItem>
+                    <Card className={classes.card}>
+                        <Grid container>
+                            <Grid item xs={1}>
+                                <Avatar
+                                    className={classes.userAvatar}
+                                    src={comment.avatar}
+                                    onClick={(): void => {
+                                        setUserCardModalOpen(true);
+                                        setCurrentClickUserId(comment.userId);
+                                    }}
+                                ></Avatar>
+                            </Grid>
+                            <Grid container item xs={11}>
+                                {comment.username}: {comment.content}
+                                <Grid item xs={12} className={classes.date}>
+                                    {comment.date.toString()}
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                    </Card>
+                </ListItem>
+                <Divider />
+            </div>
         );
     });
 
@@ -87,16 +112,20 @@ export const CommentModal: React.FC = () => {
             open={commentModalOpen}
         >
             <DialogTitle id="simple-dialog-title">Comments</DialogTitle>
-            <List>
-                <React.Fragment>{infoElements}</React.Fragment>
-            </List>
-
             <form onSubmit={handleSubmit} noValidate autoComplete="off">
-                <TextField id="standard-basic" label="comment" onChange={(e): void => setContent(e.target.value)} />
+                <TextField
+                    className={classes.inputBox}
+                    id="standard-basic"
+                    label="comment"
+                    onChange={(e): void => setContent(e.target.value)}
+                />
                 <Button type="submit" variant="contained" color="primary">
                     post
                 </Button>
             </form>
+            <List>
+                <React.Fragment>{infoElements}</React.Fragment>
+            </List>
         </Dialog>
     );
 };
