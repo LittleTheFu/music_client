@@ -31,6 +31,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export const UserDetailPage: React.FC = () => {
     const [currentClickUserId] = useGlobal('currentClickUserId');
+    const [meId] = useGlobal('meId');
     const [detail, setDetail] = useState<UserDetail>(null);
     const [mailModalOpen, setMailModalOpen] = useState(false);
     const history = useHistory();
@@ -101,6 +102,11 @@ export const UserDetailPage: React.FC = () => {
         );
     };
 
+    const editClick = (): void => {
+        console.log('edit click');
+        history.push(`/main/profile`);
+    };
+
     return (
         <div>
             <WriteMailModal
@@ -138,6 +144,14 @@ export const UserDetailPage: React.FC = () => {
                                         <AddCircleOutlineIcon />
                                         follow
                                     </IconButton>
+                                )}
+                                {currentClickUserId === meId ? (
+                                    <IconButton onClick={editClick}>
+                                        <PeopleIcon />
+                                        edit
+                                    </IconButton>
+                                ) : (
+                                    <div></div>
                                 )}
                             </Grid>
                         </Grid>
