@@ -19,6 +19,7 @@ export const isTokenExsit = (): boolean => {
 setGlobal({
     avatar: 'anonymous.png',
     userId: 'guest',
+    meId: 0,
     isLogin: false,
 
     drawerOpen: false,

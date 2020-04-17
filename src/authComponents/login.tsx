@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-import { postLogin, fetchPlayListMusicList, getMusicCollections, getUserAvatar } from '../service';
+import { postLogin, fetchPlayListMusicList, getMusicCollections, getUserAvatar, getMe } from '../service';
 import { setToken, updatePlayListMusics, updateMusics, updateCollections, updateAvatar } from '../globals';
 import { useGlobal, useDispatch } from 'reactn';
 import { Music, MusicCollection } from '../dataInterfaces/music';
@@ -36,6 +36,7 @@ export const LoginComponent: React.FC = () => {
     const [loginModalOpen, setLoginModalOpen] = useGlobal('loginModalOpen');
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [userId, setUserId] = useGlobal('userId');
+    const [meId, setMeId] = useGlobal('meId');
     const [musicCollections, setMusicCollections] = useGlobal('Collections');
     const updateUserAddedMusics = useDispatch(updatePlayListMusics);
     const updateTheMusics = useDispatch(updateMusics);
@@ -49,13 +50,13 @@ export const LoginComponent: React.FC = () => {
 
     const classes = useStyles({});
 
-    const loadAvatar = (username: string): void => {
-        console.log('BEGIN LOAD AVATAR');
-        getUserAvatar(
-            username,
-            avatarInfo => {
-                console.log('getAvatarUrl');
-                updateTheAvatar(avatarInfo.avatarUrl);
+    const loadAvatarAndId = (): void => {
+        console.log('BEGIN LOAD AVATAR AND ID');
+        getMe(
+            info => {
+                updateTheAvatar(info.avatarUrl);
+                setMeId(info.id);
+                setUserId(info.name);
             },
             e => {
                 console.log('ERRRRRRR');
@@ -94,11 +95,16 @@ export const LoginComponent: React.FC = () => {
         } else if ('accessToken' in data) {
             setToken(data.accessToken);
             setUserId(username);
+
             console.log('accessToken : ' + data.accessToken);
+
+            getMe(console.log, console.log);
+
             setIsLogin(true);
             setLoginModalOpen(false);
 
-            loadAvatar(username);
+            loadAvatarAndId();
+
             loadMusic();
             loadCollections();
 
