@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme: Theme) =>
             width: 40,
         },
         card: {
-            width: 300,
+            width: 500,
             height: 80,
         },
     }),

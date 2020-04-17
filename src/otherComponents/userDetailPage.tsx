@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useGlobal, useDispatch } from 'reactn';
-import { getDetail } from 'service';
+import { getDetail, sendMail } from 'service';
 import { UserDetail } from '../dataInterfaces/music';
 import Button from '@material-ui/core/Button';
 import { followUser, unfollowUser } from '../service';
@@ -15,6 +15,7 @@ import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import PeopleIcon from '@material-ui/icons/People';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import { useHistory, useRouteMatch } from 'react-router-dom';
+import { WriteMailModal } from '../mailComponents/writeMailModal';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -31,6 +32,7 @@ const useStyles = makeStyles((theme: Theme) =>
 export const UserDetailPage: React.FC = () => {
     const [currentClickUserId] = useGlobal('currentClickUserId');
     const [detail, setDetail] = useState<UserDetail>(null);
+    const [mailModalOpen, setMailModalOpen] = useState(false);
     const history = useHistory();
     const { path, url } = useRouteMatch();
     const classes = useStyles({});
@@ -46,6 +48,26 @@ export const UserDetailPage: React.FC = () => {
             console.log,
         );
     }, []);
+
+    const mailClick = (): void => {
+        console.log('mail click');
+        setMailModalOpen(true);
+    };
+
+    const sendMailClick = (content: string): void => {
+        console.log('send mail click');
+        console.log(content);
+
+        sendMail(
+            currentClickUserId,
+            content,
+            o => {
+                console.log(o);
+                setMailModalOpen(false);
+            },
+            console.log,
+        );
+    };
 
     const followerClick = (): void => {
         console.log('followerClick');
@@ -81,6 +103,11 @@ export const UserDetailPage: React.FC = () => {
 
     return (
         <div>
+            <WriteMailModal
+                sendClick={sendMailClick}
+                modalOpen={mailModalOpen}
+                modalClose={(): void => setMailModalOpen(false)}
+            ></WriteMailModal>
             {detail ? (
                 <Card className={classes.card}>
                     <Grid container>
@@ -92,7 +119,7 @@ export const UserDetailPage: React.FC = () => {
                                 {detail.name}
                             </Grid>
                             <Grid item xs={12}>
-                                <IconButton>
+                                <IconButton onClick={mailClick}>
                                     <MailOutlinedIcon />
                                     mail
                                 </IconButton>
