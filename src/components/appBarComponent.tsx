@@ -13,6 +13,7 @@ import Avatar from '@material-ui/core/Avatar';
 import { deepOrange, deepPurple } from '@material-ui/core/colors';
 import MusicNoteIcon from '@material-ui/icons/MusicNote';
 import { getDetail } from 'service';
+import AlbumIcon from '@material-ui/icons/Album';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -98,18 +99,10 @@ export const AppBarComponent: React.FC = () => {
                         edge="start"
                         className={classes.exitButton}
                         onClick={(): void => {
-                            // getDetail(
-                            //     'a',
-                            //     o => {
-                            //         console.log(o);
-                            //     },
-                            //     console.log,
-                            // );
-                            // history.push(`${url}/userdetail`);
-                            // console.log('USER Detail CLICK');
+                            history.push(`${url}/collections`);
                         }}
                     >
-                        <MailOutlinedIcon />
+                        <AlbumIcon />
                     </IconButton>
                     {isLogin ? (
                         <div>
