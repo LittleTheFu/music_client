@@ -47,6 +47,7 @@ export const AppBarComponent: React.FC = () => {
     const [isLogin, setIsLogin] = useGlobal('isLogin');
     const [drawerOpen, setDrawerOpen] = useGlobal('drawerOpen');
     const [userId, setUserId] = useGlobal('userId');
+    const [meId] = useGlobal('meId');
     const [currentClickUserId, setCurrentClickUserId] = useGlobal('currentClickUserId');
     const [avatar] = useGlobal('avatar');
 
@@ -133,11 +134,9 @@ export const AppBarComponent: React.FC = () => {
                             src={avatar}
                             className={classes.userAvatar}
                             onClick={(): void => {
-                                // setCurrentClickUserId(userId).then(() => {
-                                //     history.push(`${url}/userdetail`);
-                                // });
-                                // history.push(`${url}/profile`);
-                                // console.log('AVATAR CLICK');
+                                setCurrentClickUserId(meId).then(() => {
+                                    history.push(`${url}/userdetail`);
+                                });
                             }}
                         ></Avatar>
                     ) : (
