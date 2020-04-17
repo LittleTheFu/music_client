@@ -30,6 +30,9 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 export const TemporaryDrawer: React.FC = () => {
     // const classes = useStyles();
     const [drawerOpen, setDrawerOpen] = useGlobal('drawerOpen');
+    const [currentClickUserId, setCurrentClickUserId] = useGlobal('currentClickUserId');
+    const [meId] = useGlobal('meId');
+
     const history = useHistory();
     const { path, url } = useRouteMatch();
     const [isLogin, setIsLogin] = useGlobal('isLogin');
@@ -81,7 +84,22 @@ export const TemporaryDrawer: React.FC = () => {
                         <ListItemIcon>
                             <InboxIcon />
                         </ListItemIcon>
-                        <ListItemText primary={'profile'} />
+                        <ListItemText primary={'edit'} />
+                    </ListItem>
+
+                    <ListItem
+                        button
+                        key={5}
+                        onClick={(): void => {
+                            setCurrentClickUserId(meId).then(() => {
+                                history.push(`${url}/userdetail`);
+                            });
+                        }}
+                    >
+                        <ListItemIcon>
+                            <InboxIcon />
+                        </ListItemIcon>
+                        <ListItemText primary={'me'} />
                     </ListItem>
                     <ListItem
                         button
