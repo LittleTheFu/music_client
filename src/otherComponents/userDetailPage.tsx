@@ -14,6 +14,7 @@ import RemoveCircleOutlineIcon from '@material-ui/icons/RemoveCircleOutline';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import PeopleIcon from '@material-ui/icons/People';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
+import { useHistory, useRouteMatch } from 'react-router-dom';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -30,7 +31,8 @@ const useStyles = makeStyles((theme: Theme) =>
 export const UserDetailPage: React.FC = () => {
     const [currentClickUserId] = useGlobal('currentClickUserId');
     const [detail, setDetail] = useState<UserDetail>(null);
-
+    const history = useHistory();
+    const { path, url } = useRouteMatch();
     const classes = useStyles({});
 
     useEffect(() => {
@@ -44,6 +46,11 @@ export const UserDetailPage: React.FC = () => {
             console.log,
         );
     }, []);
+
+    const followerClick = (): void => {
+        console.log('followerClick');
+        history.push(`/main/followers`);
+    };
 
     const followClick = (): void => {
         followUser(
@@ -85,28 +92,26 @@ export const UserDetailPage: React.FC = () => {
                                 {detail.name}
                             </Grid>
                             <Grid item xs={12}>
-                                <ButtonGroup color="primary" aria-label="outlined primary button group">
-                                    <IconButton>
-                                        <MailOutlinedIcon />
-                                        mail
-                                    </IconButton>
+                                <IconButton>
+                                    <MailOutlinedIcon />
+                                    mail
+                                </IconButton>
 
-                                    <IconButton>
-                                        <PeopleIcon />
-                                        follower
+                                <IconButton onClick={followerClick}>
+                                    <PeopleIcon />
+                                    follower
+                                </IconButton>
+                                {detail.isFollowed ? (
+                                    <IconButton onClick={unfollowClick}>
+                                        <RemoveCircleOutlineIcon />
+                                        unfollow
                                     </IconButton>
-                                    {detail.isFollowed ? (
-                                        <IconButton onClick={unfollowClick}>
-                                            <RemoveCircleOutlineIcon />
-                                            unfollow
-                                        </IconButton>
-                                    ) : (
-                                        <IconButton onClick={followClick}>
-                                            <AddCircleOutlineIcon />
-                                            follow
-                                        </IconButton>
-                                    )}
-                                </ButtonGroup>
+                                ) : (
+                                    <IconButton onClick={followClick}>
+                                        <AddCircleOutlineIcon />
+                                        follow
+                                    </IconButton>
+                                )}
                             </Grid>
                         </Grid>
                     </Grid>

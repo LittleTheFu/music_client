@@ -244,6 +244,17 @@ export const unfollowUser = (
     });
 };
 
+const getUserFollowersUrl = 'http://localhost:9999/users/getUserFollowers';
+export const getUserFollowers = (
+    userId: number,
+    resolve: (data: any) => void,
+    reject: (arg0: object) => void,
+): Promise<object> => {
+    return rawObjectPost(getUserFollowersUrl, { userId: userId }, resolve, {
+        Authorization: 'Bearer ' + getToken(),
+    });
+};
+
 //------------------------------------------------------------
 
 const fileObjectPost = (

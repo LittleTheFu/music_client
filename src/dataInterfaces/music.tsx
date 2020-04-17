@@ -84,3 +84,10 @@ export class UserDetail {
     avatarUrl: string;
     isFollowed: boolean;
 }
+
+export class Follower {
+    id: number;
+    name: string;
+    avatarUrl: string;
+    isFollowed: boolean;
+}

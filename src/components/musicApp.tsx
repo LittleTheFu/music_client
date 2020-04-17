@@ -10,6 +10,7 @@ import { BrowserRouter as Router, Switch, Route, Link, useRouteMatch } from 'rea
 import { ProfilePage } from '../authComponents/profile';
 import { MailPage } from '../mailComponents/mailPage';
 import { UserDetailPage } from '../otherComponents/userDetailPage';
+import { FollowerListPage } from '../otherComponents/followerListPage';
 
 const audioElement = getAudioPlayer();
 
@@ -36,6 +37,9 @@ export const MusicApp: React.FC = () => {
                     </Route>
                     <Route path={`${path}/userdetail`}>
                         <UserDetailPage></UserDetailPage>
+                    </Route>
+                    <Route path={`${path}/followers`}>
+                        <FollowerListPage></FollowerListPage>
                     </Route>
                 </Switch>
             </Grid>
