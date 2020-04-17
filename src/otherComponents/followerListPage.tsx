@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Button from '@material-ui/core/Button';
-import { getUserFollowers } from '../service';
+import { getUserFollowers, followUser, unfollowUser } from '../service';
 import { Follower } from '../dataInterfaces/music';
 import Card from '@material-ui/core/Card';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
@@ -49,12 +49,40 @@ export const FollowerListPage: React.FC = () => {
     //     getUserFollowers(2, console.log, console.log);
     // };
 
-    const followClick = (): void => {
+    const followClick = (userId: number): void => {
         console.log('unfollowerClick');
+        followUser(
+            userId,
+            (): void => {
+                const thatFollowers = followers;
+                const retFollowers = thatFollowers.map(f => {
+                    if (f.id === userId) {
+                        f.isFollowed = true;
+                    }
+                    return f;
+                });
+                setFollowers(retFollowers);
+            },
+            console.log,
+        );
     };
 
-    const unfollowClick = (): void => {
+    const unfollowClick = (userId: number): void => {
         console.log('followerClick');
+        unfollowUser(
+            userId,
+            (): void => {
+                const thatFollowers = followers;
+                const retFollowers = thatFollowers.map(f => {
+                    if (f.id === userId) {
+                        f.isFollowed = false;
+                    }
+                    return f;
+                });
+                setFollowers(retFollowers);
+            },
+            console.log,
+        );
     };
 
     const avatarClick = (userId: number): void => {
@@ -84,12 +112,20 @@ export const FollowerListPage: React.FC = () => {
                             </Grid>
                             <Grid item xs={10}>
                                 {f.isFollowed ? (
-                                    <IconButton onClick={unfollowClick}>
+                                    <IconButton
+                                        onClick={(): void => {
+                                            unfollowClick(f.id);
+                                        }}
+                                    >
                                         <RemoveCircleOutlineIcon />
                                         unfollow
                                     </IconButton>
                                 ) : (
-                                    <IconButton onClick={followClick}>
+                                    <IconButton
+                                        onClick={(): void => {
+                                            followClick(f.id);
+                                        }}
+                                    >
                                         <AddCircleOutlineIcon />
                                         follow
                                     </IconButton>
