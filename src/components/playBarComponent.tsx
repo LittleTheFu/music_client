@@ -8,6 +8,8 @@ import PauseIcon from '@material-ui/icons/Pause';
 import SkipNextIcon from '@material-ui/icons/SkipNext';
 import Slider from '@material-ui/core/Slider';
 import Hidden from '@material-ui/core/Hidden';
+import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
+import VisibilityIcon from '@material-ui/icons/Visibility';
 
 const useStyles = makeStyles({
     musicFunctionIcon: {
@@ -45,6 +47,9 @@ interface PlayBarProps {
     pausePlay: () => void;
     skipToNext: () => void;
     changeMusicVolumn: (event: object, value: unknown) => void;
+    expand?: () => void;
+    shrink?: () => void;
+    showFullPart: boolean;
 }
 
 export const PlayBarComponent: React.FC<PlayBarProps> = (props: PlayBarProps) => {
@@ -58,6 +63,9 @@ export const PlayBarComponent: React.FC<PlayBarProps> = (props: PlayBarProps) =>
         pausePlay,
         skipToNext,
         changeMusicVolumn,
+        expand,
+        shrink,
+        showFullPart,
     } = props;
     return (
         <Card className={classes.card} raised={true}>
@@ -79,6 +87,15 @@ export const PlayBarComponent: React.FC<PlayBarProps> = (props: PlayBarProps) =>
             <IconButton aria-label="next" onClick={skipToNext}>
                 <SkipNextIcon className={classes.musicFunctionIcon}></SkipNextIcon>
             </IconButton>
+            {showFullPart ? (
+                <IconButton aria-label="next" onClick={shrink}>
+                    <VisibilityOffIcon className={classes.musicFunctionIcon}></VisibilityOffIcon>
+                </IconButton>
+            ) : (
+                <IconButton aria-label="next" onClick={expand}>
+                    <VisibilityIcon className={classes.musicFunctionIcon}></VisibilityIcon>
+                </IconButton>
+            )}
             <Hidden xsDown>
                 <CardMedia image={cover} className={classes.cover}></CardMedia>
             </Hidden>

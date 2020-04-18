@@ -68,6 +68,7 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
     const [currentTime, setCurrentTime] = useState(0);
     const [duration, setDuration] = useState(0);
     const [musicPercent, setMusicPercent] = useState(0);
+    const [showFullPart, setShowFullPart] = useState(true);
 
     // const [musicIndex, setMusicIndex] = useState(0);
 
@@ -116,6 +117,16 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
         if (duration !== 0) {
             audioElement.currentTime = currentTime;
         }
+    };
+
+    const expand = (): void => {
+        console.log('expand');
+        setShowFullPart(true);
+    };
+
+    const shrink = (): void => {
+        console.log('shrink');
+        setShowFullPart(false);
     };
 
     const musicItemLikeClick = (id: number): void => {
@@ -279,16 +290,21 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
                         bodyClick={bodyClick}
                     ></MusicCollectionsComponent> */}
                     <Paper variant="outlined" className={classes.paper}>
-                        <MusicListComponent
-                            musics={currentMusics}
-                            currentMusic={currentTheMusic}
-                            clickMusic={playMusic}
-                            likeClick={musicItemLikeClick}
-                            dislikeClick={musicItemDislikeClick}
-                            addMusicClick={addMusicToPersonalListClick}
-                            removeMusicClick={removeMusicFromPersonalListClick}
-                            commentClick={commentClick}
-                        />
+                        {showFullPart ? (
+                            <MusicListComponent
+                                musics={currentMusics}
+                                currentMusic={currentTheMusic}
+                                clickMusic={playMusic}
+                                likeClick={musicItemLikeClick}
+                                dislikeClick={musicItemDislikeClick}
+                                addMusicClick={addMusicToPersonalListClick}
+                                removeMusicClick={removeMusicFromPersonalListClick}
+                                commentClick={commentClick}
+                            />
+                        ) : (
+                            <div></div>
+                        )}
+
                         <PlayBarComponent
                             musicPercent={musicPercent}
                             isPlaying={isPlaying}
@@ -298,13 +314,20 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
                             pausePlay={pausePlay}
                             skipToNext={skipToNext}
                             changeMusicVolumn={changeMusicVolumn}
+                            expand={expand}
+                            shrink={shrink}
+                            showFullPart={showFullPart}
                         ></PlayBarComponent>
-                        <MusicInfoComponent
-                            currentTime={currentTime}
-                            music={currentTheMusic}
-                            likeClick={currentMusicInfoLikeClick}
-                            dislikeClick={currentMusicInfoDislikeClick}
-                        ></MusicInfoComponent>
+                        {showFullPart ? (
+                            <MusicInfoComponent
+                                currentTime={currentTime}
+                                music={currentTheMusic}
+                                likeClick={currentMusicInfoLikeClick}
+                                dislikeClick={currentMusicInfoDislikeClick}
+                            ></MusicInfoComponent>
+                        ) : (
+                            <div></div>
+                        )}
                     </Paper>
                 </div>
             </Grid>
