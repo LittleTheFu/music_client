@@ -279,16 +279,6 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
                         bodyClick={bodyClick}
                     ></MusicCollectionsComponent>
                     <Paper variant="outlined" className={classes.paper}>
-                        <PlayBarComponent
-                            musicPercent={musicPercent}
-                            isPlaying={isPlaying}
-                            cover={currentTheMusic.cover}
-                            volumn={volumn * 100}
-                            changeMusicPercent={changeMusicPercent}
-                            pausePlay={pausePlay}
-                            skipToNext={skipToNext}
-                            changeMusicVolumn={changeMusicVolumn}
-                        ></PlayBarComponent>
                         <MusicListComponent
                             musics={currentMusics}
                             currentMusic={currentTheMusic}
@@ -299,6 +289,16 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
                             removeMusicClick={removeMusicFromPersonalListClick}
                             commentClick={commentClick}
                         />
+                        <PlayBarComponent
+                            musicPercent={musicPercent}
+                            isPlaying={isPlaying}
+                            cover={currentTheMusic.cover}
+                            volumn={volumn * 100}
+                            changeMusicPercent={changeMusicPercent}
+                            pausePlay={pausePlay}
+                            skipToNext={skipToNext}
+                            changeMusicVolumn={changeMusicVolumn}
+                        ></PlayBarComponent>
                         <MusicInfoComponent
                             currentTime={currentTime}
                             music={currentTheMusic}
@@ -306,29 +306,6 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
                             dislikeClick={currentMusicInfoDislikeClick}
                         ></MusicInfoComponent>
                     </Paper>
-
-                    {/* <Button
-                variant="contained"
-                color="primary"
-                onClick={(): void => {
-                    setAvatar('avt');
-                }}
-            >
-                setAvatar
-            </Button> */}
-
-                    {/* <Button variant="contained" color="primary" onClick={setTime}>
-                set
-            </Button>
-            <Button variant="contained" color="primary" onClick={logMsg}>
-                log
-            </Button>
-            <Button variant="contained" color="primary" onClick={changeMusic}>
-                change
-            </Button>
-            <h4>{currentTime}</h4>
-            <h4>{duration}</h4>
-            <h4>musicPercent : {musicPercent}</h4> */}
                 </div>
             </Grid>
         </div>
