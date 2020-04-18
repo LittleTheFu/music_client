@@ -26,26 +26,31 @@ export const MusicApp: React.FC = () => {
             <AppBarComponent></AppBarComponent>
             <TemporaryDrawer></TemporaryDrawer>
             <Grid container spacing={1}>
-                <Switch>
-                    <Route exact path={path}>
-                        <MusicComponent audioElement={audioElement} musics={musics}></MusicComponent>
-                    </Route>
-                    <Route path={`${path}/profile`}>
-                        <ProfilePage></ProfilePage>
-                    </Route>
-                    <Route path={`${path}/mail`}>
-                        <MailPage></MailPage>
-                    </Route>
-                    <Route path={`${path}/userdetail`}>
-                        <UserDetailPage></UserDetailPage>
-                    </Route>
-                    <Route path={`${path}/followers`}>
-                        <FollowerListPage></FollowerListPage>
-                    </Route>
-                    <Route path={`${path}/collections`}>
-                        <MusicCollectionPage></MusicCollectionPage>
-                    </Route>
-                </Switch>
+                <Grid item xs={12}>
+                    <Switch>
+                        {/* <Route exact path={path}>
+                            <MusicComponent audioElement={audioElement} musics={musics}></MusicComponent>
+                        </Route> */}
+                        <Route path={`${path}/profile`}>
+                            <ProfilePage></ProfilePage>
+                        </Route>
+                        <Route path={`${path}/mail`}>
+                            <MailPage></MailPage>
+                        </Route>
+                        <Route path={`${path}/userdetail`}>
+                            <UserDetailPage></UserDetailPage>
+                        </Route>
+                        <Route path={`${path}/followers`}>
+                            <FollowerListPage></FollowerListPage>
+                        </Route>
+                        <Route path={`${path}/collections`}>
+                            <MusicCollectionPage></MusicCollectionPage>
+                        </Route>
+                    </Switch>
+                </Grid>
+                <Grid item xs={12}>
+                    <MusicComponent audioElement={audioElement} musics={musics}></MusicComponent>
+                </Grid>
             </Grid>
         </div>
     );
