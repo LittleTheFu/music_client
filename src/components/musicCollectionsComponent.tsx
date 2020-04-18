@@ -7,7 +7,7 @@ import GridList from '@material-ui/core/GridList';
 interface MusicCollectionsProps {
     collections: MusicCollection[];
     coverClick: (name: string) => void;
-    bodyClick: (name: string) => void;
+    bodyClick: (name: string, id?: number) => void;
 }
 
 const useStyles = makeStyles((theme: Theme) =>

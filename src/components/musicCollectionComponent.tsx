@@ -9,7 +9,7 @@ import PlayCircleFilledIcon from '@material-ui/icons/PlayCircleFilled';
 interface MusicCollectionProps {
     collection: MusicCollection;
     coverClick: (name: string) => void;
-    bodyClick: (name: string) => void;
+    bodyClick: (name: string, id?: number) => void;
 }
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -53,7 +53,7 @@ export const MusicCollectionComponent: React.FC<MusicCollectionProps> = (props: 
                     src={collection.cover}
                     alt={collection.name}
                     onClick={(): void => {
-                        bodyClick(collection.name);
+                        bodyClick(collection.name, collection.id);
                     }}
                 />
                 <GridListTileBar
