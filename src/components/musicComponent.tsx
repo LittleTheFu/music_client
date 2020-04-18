@@ -32,6 +32,7 @@ import {
 import { MusicCollectionsComponent } from './musicCollectionsComponent';
 import Grid from '@material-ui/core/Grid';
 import { setCollectionPlayFlag } from '../helper';
+import { MusicListDrawer } from './musicListDrawer';
 
 interface MusicComponentProps {
     audioElement: HTMLAudioElement;
@@ -69,6 +70,7 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
     const [duration, setDuration] = useState(0);
     const [musicPercent, setMusicPercent] = useState(0);
     const [showFullPart, setShowFullPart] = useState(true);
+    const [musicListDrawerOpen, setMusicListDrawerOpen] = useState(false);
 
     // const [musicIndex, setMusicIndex] = useState(0);
 
@@ -127,6 +129,11 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
     const shrink = (): void => {
         console.log('shrink');
         setShowFullPart(false);
+    };
+
+    const clickList = (): void => {
+        setMusicListDrawerOpen(true);
+        console.log('click list');
     };
 
     const musicItemLikeClick = (id: number): void => {
@@ -275,6 +282,10 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
         );
     };
 
+    const drawerCloseClick = (): void => {
+        setMusicListDrawerOpen(false);
+    };
+
     audioElement.onended = skipToNext;
 
     return (
@@ -290,20 +301,18 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
                         bodyClick={bodyClick}
                     ></MusicCollectionsComponent> */}
                     <Paper variant="outlined" className={classes.paper}>
-                        {showFullPart ? (
-                            <MusicListComponent
-                                musics={currentMusics}
-                                currentMusic={currentTheMusic}
-                                clickMusic={playMusic}
-                                likeClick={musicItemLikeClick}
-                                dislikeClick={musicItemDislikeClick}
-                                addMusicClick={addMusicToPersonalListClick}
-                                removeMusicClick={removeMusicFromPersonalListClick}
-                                commentClick={commentClick}
-                            />
-                        ) : (
-                            <div></div>
-                        )}
+                        <MusicListDrawer
+                            open={musicListDrawerOpen}
+                            closeClick={drawerCloseClick}
+                            musics={currentMusics}
+                            currentMusic={currentTheMusic}
+                            clickMusic={playMusic}
+                            likeClick={musicItemLikeClick}
+                            dislikeClick={musicItemDislikeClick}
+                            addMusicClick={addMusicToPersonalListClick}
+                            removeMusicClick={removeMusicFromPersonalListClick}
+                            commentClick={commentClick}
+                        ></MusicListDrawer>
 
                         <PlayBarComponent
                             musicPercent={musicPercent}
@@ -317,6 +326,7 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
                             expand={expand}
                             shrink={shrink}
                             showFullPart={showFullPart}
+                            clickList={clickList}
                         ></PlayBarComponent>
                         {showFullPart ? (
                             <MusicInfoComponent

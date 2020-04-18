@@ -10,6 +10,7 @@ import Slider from '@material-ui/core/Slider';
 import Hidden from '@material-ui/core/Hidden';
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
 import VisibilityIcon from '@material-ui/icons/Visibility';
+import ListIcon from '@material-ui/icons/List';
 
 const useStyles = makeStyles({
     musicFunctionIcon: {
@@ -47,9 +48,10 @@ interface PlayBarProps {
     pausePlay: () => void;
     skipToNext: () => void;
     changeMusicVolumn: (event: object, value: unknown) => void;
-    expand?: () => void;
-    shrink?: () => void;
+    expand: () => void;
+    shrink: () => void;
     showFullPart: boolean;
+    clickList: () => void;
 }
 
 export const PlayBarComponent: React.FC<PlayBarProps> = (props: PlayBarProps) => {
@@ -66,6 +68,7 @@ export const PlayBarComponent: React.FC<PlayBarProps> = (props: PlayBarProps) =>
         expand,
         shrink,
         showFullPart,
+        clickList,
     } = props;
     return (
         <Card className={classes.card} raised={true}>
@@ -96,6 +99,9 @@ export const PlayBarComponent: React.FC<PlayBarProps> = (props: PlayBarProps) =>
                     <VisibilityIcon className={classes.musicFunctionIcon}></VisibilityIcon>
                 </IconButton>
             )}
+            <IconButton aria-label="next" onClick={clickList}>
+                <ListIcon className={classes.musicFunctionIcon}></ListIcon>
+            </IconButton>
             <Hidden xsDown>
                 <CardMedia image={cover} className={classes.cover}></CardMedia>
             </Hidden>
