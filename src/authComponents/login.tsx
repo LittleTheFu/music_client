@@ -66,14 +66,14 @@ export const LoginComponent: React.FC = () => {
     };
 
     const loadMusic = (): void => {
-        fetchPlayListMusicList(
-            musicList => {
-                updateUserAddedMusics(musicList as Music[]);
-                updateTheMusics(musicList as Music[]);
-                console.log(musicList);
-            },
-            e => console.log(e),
-        );
+        // fetchPlayListMusicList(
+        //     musicList => {
+        //         updateUserAddedMusics(musicList as Music[]);
+        //         updateTheMusics(musicList as Music[]);
+        //         console.log(musicList);
+        //     },
+        //     e => console.log(e),
+        // );
     };
 
     const loadCollections = (): void => {

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getMusicCollections } from '../service';
+import { getPrivateMusicCollections } from '../service';
 import { MusicCollectionsComponent } from '../components/musicCollectionsComponent';
 import { MusicCollection } from '../dataInterfaces/music';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
@@ -33,7 +33,7 @@ export const MusicCollectionPage: React.FC = () => {
     };
 
     useEffect(() => {
-        getMusicCollections((collections): void => {
+        getPrivateMusicCollections((collections): void => {
             setMusicCollections(collections);
         }, console.log);
     }, []);
