@@ -273,11 +273,11 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
             <UserCardModal></UserCardModal>
             <Grid item xs={12}>
                 <div>
-                    <MusicCollectionsComponent
+                    {/* <MusicCollectionsComponent
                         coverClick={clickCollectionCover}
                         collections={musicCollections}
                         bodyClick={bodyClick}
-                    ></MusicCollectionsComponent>
+                    ></MusicCollectionsComponent> */}
                     <Paper variant="outlined" className={classes.paper}>
                         <MusicListComponent
                             musics={currentMusics}
