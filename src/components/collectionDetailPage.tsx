@@ -4,11 +4,14 @@ import { Music } from '../dataInterfaces/music';
 import { fetchMusicsByCollectionId } from '../service';
 import { MusicListComponent } from './musicListComponent';
 import { useGlobal, useDispatch } from 'reactn';
+import { updateMusics, updateCurrentMusic } from '../globals';
 
 export const CollectionDetailPage: React.FC = () => {
     const { id } = useParams();
     const [musics, setMusics] = useState<Music[]>([]);
     const [currentTheMusic] = useGlobal('currentMusic');
+    const updatePlayingMusics = useDispatch(updateMusics);
+    const updateTheCurrentMusic = useDispatch(updateCurrentMusic);
 
     const intId = parseInt(id);
 
@@ -25,6 +28,8 @@ export const CollectionDetailPage: React.FC = () => {
 
     const clickMusic = (music: Music, index: number): void => {
         console.log('click music');
+        updatePlayingMusics(musics);
+        updateTheCurrentMusic(music);
     };
     const likeClick = (id: number): void => {
         console.log('like');
