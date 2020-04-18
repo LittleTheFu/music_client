@@ -107,6 +107,15 @@ export const getMusicCollections = (resolve: (data: any) => void, reject: (arg0:
     return rawObjectPost(collectionsUrl, {}, resolve, { Authorization: 'Bearer ' + getToken() });
 };
 
+const createCollectionUrl = 'http://localhost:9999/music/createCollection';
+export const createCollection = (
+    name: string,
+    resolve: (data: any) => void,
+    reject: (arg0: object) => void,
+): Promise<object> => {
+    return rawObjectPost(createCollectionUrl, { name: name }, resolve, { Authorization: 'Bearer ' + getToken() });
+};
+
 const musicsByCollectionUrl = 'http://localhost:9999/music/GetMusicsByCollectionName';
 export const fetchMusicsByCollectionName = (
     name: string,

@@ -22,6 +22,10 @@ export const MusicCollectionPage: React.FC = () => {
         setModalOpen(false);
     };
 
+    const addNewCollection = (collection: MusicCollection): void => {
+        setMusicCollections(musicCollections.concat(collection));
+    };
+
     useEffect(() => {
         getMusicCollections((collections): void => {
             setMusicCollections(collections);
@@ -30,7 +34,11 @@ export const MusicCollectionPage: React.FC = () => {
 
     return (
         <div>
-            <CreateCollectionModal modalOpen={modalOpen} modalClose={closeModal}></CreateCollectionModal>
+            <CreateCollectionModal
+                addToCollections={addNewCollection}
+                modalOpen={modalOpen}
+                modalClose={closeModal}
+            ></CreateCollectionModal>
             <IconButton
                 onClick={(e): void => {
                     e.stopPropagation();
