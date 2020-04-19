@@ -115,6 +115,14 @@ export const getPrivateMusicCollections = (
     return rawObjectPost(getPrivateCollectionsUrl, {}, resolve, { Authorization: 'Bearer ' + getToken() });
 };
 
+const getPublicCollectionsUrl = 'http://localhost:9999/music/getPublicMusicCollections';
+export const getPublicMusicCollections = (
+    resolve: (data: any) => void,
+    reject: (arg0: object) => void,
+): Promise<object> => {
+    return rawObjectPost(getPublicCollectionsUrl, {}, resolve, { Authorization: 'Bearer ' + getToken() });
+};
+
 const createCollectionUrl = 'http://localhost:9999/music/createCollection';
 export const createCollection = (
     name: string,
