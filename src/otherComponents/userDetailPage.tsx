@@ -2,18 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { useGlobal, useDispatch } from 'reactn';
 import { getDetail, sendMail } from 'service';
 import { UserDetail } from '../dataInterfaces/music';
-import Button from '@material-ui/core/Button';
 import { followUser, unfollowUser } from '../service';
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
 import MailOutlinedIcon from '@material-ui/icons/MailOutlined';
 import RemoveCircleOutlineIcon from '@material-ui/icons/RemoveCircleOutline';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import PeopleIcon from '@material-ui/icons/People';
-import ButtonGroup from '@material-ui/core/ButtonGroup';
 import { useHistory, useRouteMatch, useParams } from 'react-router-dom';
 import { WriteMailModal } from '../mailComponents/writeMailModal';
 
