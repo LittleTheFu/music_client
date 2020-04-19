@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { getPublicMusicCollections } from '../service';
+import { getPublicMusicCollections, fetchMusicsByCollectionId } from '../service';
 import { MusicCollectionsComponent } from '../components/musicCollectionsComponent';
-import { MusicCollection } from '../dataInterfaces/music';
+import { MusicCollection, Music } from '../dataInterfaces/music';
 import { useHistory, useRouteMatch } from 'react-router-dom';
+import { updateMusics, updateCurrentMusic } from '../globals';
+import { useGlobal, useDispatch } from 'reactn';
 
 export const LobbyPage: React.FC = () => {
     const [musicCollections, setMusicCollections] = useState<MusicCollection[]>([]);
+    const updatePlayingMusics = useDispatch(updateMusics);
+    const updateTheCurrentMusic = useDispatch(updateCurrentMusic);
 
     const history = useHistory();
     const { path, url } = useRouteMatch();
@@ -16,8 +20,20 @@ export const LobbyPage: React.FC = () => {
         }, console.log);
     }, []);
 
-    const clickCollectionCover = (name: string): void => {
+    const clickCollectionCover = (name: string, id: number): void => {
         console.log('cover click');
+
+        fetchMusicsByCollectionId(
+            id,
+            fetchedMusics => {
+                const musics = fetchedMusics as Music[];
+                if (musics && musics.length > 0) {
+                    updatePlayingMusics(musics);
+                    updateTheCurrentMusic(musics[0]);
+                }
+            },
+            console.log,
+        );
     };
 
     const bodyClick = (name: string, id: number): void => {
