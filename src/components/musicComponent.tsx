@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import { MusicInfoComponent } from './musicInfoComponent';
-import { MusicListComponent } from './musicListComponent';
 import { Music } from '../dataInterfaces/music';
 import { PlayBarComponent } from './playBarComponent';
 import { CollectionInfoModal } from './collectionInfoModal';
@@ -72,8 +71,6 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
     const [showFullPart, setShowFullPart] = useState(true);
     const [musicListDrawerOpen, setMusicListDrawerOpen] = useState(false);
 
-    // const [musicIndex, setMusicIndex] = useState(0);
-
     const classes = useStyles({});
 
     const [volumn, setVolumn] = useState(0.0);
@@ -92,7 +89,6 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
     useEffect(() => {
         if (duration !== 0) {
             setMusicPercent((currentTime / duration) * 100);
-            // console.log('music_percent : ' + (currentTime / duration) * 100);
         }
     }, [currentTime, duration]);
 
@@ -108,14 +104,10 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
         };
     }, []);
 
-    // const logMsg = (): void => {
-    //     console.log('log');
-    // };
-
     const changeMusicPercent = (event: object, value: unknown): void => {
         const percent = value as number;
-        // console.log(percent);
         const currentTime = (duration * percent) / 100.0;
+
         if (duration !== 0) {
             audioElement.currentTime = currentTime;
         }
@@ -196,20 +188,13 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
     audioElement.onloadedmetadata = (): void => {
         setCurrentTime(audioElement.currentTime);
         setDuration(audioElement.duration);
-        // setIsPlaying(true);
-        console.log('load finished');
     };
 
     audioElement.ontimeupdate = (): void => {
-        // console.log('update : ' + audioElement.currentTime + 'duration : ' + duration);
         if (!audioElement.paused) {
             setCurrentTime(audioElement.currentTime);
         }
     };
-
-    // const changeMusic = (): void => {
-    //     audioElement.src = 'https://file-examples.com/wp-content/uploads/2017/11/file_example_MP3_700KB.mp3';
-    // };
 
     const pausePlay = (): void => {
         if (isPlaying) {
@@ -228,28 +213,14 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
         }
     };
 
-    // const setTime = (): void => {
-    //     audioElement.currentTime = 200;
-    //     setCurrentTime(audioElement.currentTime);
-    //     console.log('set time');
-    // };
-
     const playMusic = (m: Music): void => {
         updateCurerntMusicInfo(m);
-
-        // audioElement.src = m.address;
-        // audioElement.autoplay = true;
-
-        // setIsPlaying(true);
-        // setMusicIndex(index);
     };
 
     const clickCollectionCover = (name: string): void => {
-        // console.log('click collection cover');
         fetchMusicsByCollectionName(
             name,
             musicList => {
-                // setMusics(musicList as Music[]);
                 updateAllMusics(musicList as Music[]);
                 updateTheCollections(setCollectionPlayFlag(musicCollections, name));
             },
@@ -261,12 +232,6 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
         console.log('NEXT');
         console.log(musicIndex);
         updateToTheNextMusic();
-        // if (musicLength > 0) {
-        //     const i = (musicIndex + 1) % musicLength;
-        //     playMusic(musics[i], i);
-        // } else {
-        //     setMusicIndex(-1);
-        // }
     };
 
     const bodyClick = (name: string): void => {
@@ -295,11 +260,6 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
             <UserCardModal></UserCardModal>
             <Grid item xs={12}>
                 <div>
-                    {/* <MusicCollectionsComponent
-                        coverClick={clickCollectionCover}
-                        collections={musicCollections}
-                        bodyClick={bodyClick}
-                    ></MusicCollectionsComponent> */}
                     <Paper variant="outlined" className={classes.paper}>
                         <MusicListDrawer
                             open={musicListDrawerOpen}

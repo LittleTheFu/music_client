@@ -39,11 +39,6 @@ const useStyles = makeStyles((theme: Theme) =>
     }),
 );
 
-// interface AppBarProps {
-//     menuButtonClick: () => void;
-//     avatarButtonClick: () => void;
-// }
-
 export const AppBarComponent: React.FC = () => {
     const [isLogin, setIsLogin] = useGlobal('isLogin');
     const [drawerOpen, setDrawerOpen] = useGlobal('drawerOpen');
@@ -56,10 +51,6 @@ export const AppBarComponent: React.FC = () => {
     const { path, url } = useRouteMatch();
 
     const classes = useStyles();
-
-    // const logout = (): void => {
-    //     doLogout();
-    // };
 
     return (
         <div className={classes.root}>

@@ -65,27 +65,27 @@ export const LoginComponent: React.FC = () => {
         );
     };
 
-    const loadMusic = (): void => {
-        // fetchPlayListMusicList(
-        //     musicList => {
-        //         updateUserAddedMusics(musicList as Music[]);
-        //         updateTheMusics(musicList as Music[]);
-        //         console.log(musicList);
-        //     },
-        //     e => console.log(e),
-        // );
-    };
+    // const loadMusic = (): void => {
+    //     fetchPlayListMusicList(
+    //         musicList => {
+    //             updateUserAddedMusics(musicList as Music[]);
+    //             updateTheMusics(musicList as Music[]);
+    //             console.log(musicList);
+    //         },
+    //         e => console.log(e),
+    //     );
+    // };
 
-    const loadCollections = (): void => {
-        getMusicCollections(
-            collections => {
-                console.log(collections);
-                updateTheCollections(collections as MusicCollection[]);
-            },
-            e => console.log(e),
-        );
-        console.log('load collections');
-    };
+    // const loadCollections = (): void => {
+    //     getMusicCollections(
+    //         collections => {
+    //             console.log(collections);
+    //             updateTheCollections(collections as MusicCollection[]);
+    //         },
+    //         e => console.log(e),
+    //     );
+    //     console.log('load collections');
+    // };
 
     const resolveData = (data: any): void => {
         console.log('POST LOGIN');
@@ -105,8 +105,8 @@ export const LoginComponent: React.FC = () => {
 
             loadAvatarAndId();
 
-            loadMusic();
-            loadCollections();
+            // loadMusic();
+            // loadCollections();
 
             history.push('/main');
         }
