@@ -14,6 +14,7 @@ import { FollowerListPage } from '../otherComponents/followerListPage';
 import { MusicCollectionPage } from '../components/collectionPage';
 import { CollectionDetailPage } from './collectionDetailPage';
 import { LobbyPage } from '../otherComponents/lobbyPage';
+import { MusicCommentPage } from '../otherComponents/musicCommentPage';
 
 const audioElement = getAudioPlayer();
 
@@ -50,6 +51,9 @@ export const MusicApp: React.FC = () => {
                         </Route>
                         <Route path={`${path}/collection_detail/:id`}>
                             <CollectionDetailPage></CollectionDetailPage>
+                        </Route>
+                        <Route path={`${path}/music_comment/:id`}>
+                            <MusicCommentPage></MusicCommentPage>
                         </Route>
                     </Switch>
                 </Grid>

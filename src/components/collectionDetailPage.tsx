@@ -5,6 +5,7 @@ import { fetchMusicsByCollectionId } from '../service';
 import { MusicListComponent } from './musicListComponent';
 import { useGlobal, useDispatch } from 'reactn';
 import { updateMusics, updateCurrentMusic } from '../globals';
+import { useHistory, useRouteMatch } from 'react-router-dom';
 
 export const CollectionDetailPage: React.FC = () => {
     const { id } = useParams();
@@ -12,6 +13,8 @@ export const CollectionDetailPage: React.FC = () => {
     const [currentTheMusic] = useGlobal('currentMusic');
     const updatePlayingMusics = useDispatch(updateMusics);
     const updateTheCurrentMusic = useDispatch(updateCurrentMusic);
+    const history = useHistory();
+    const { path, url } = useRouteMatch();
 
     const intId = parseInt(id);
 
@@ -44,6 +47,8 @@ export const CollectionDetailPage: React.FC = () => {
         console.log('remove');
     };
     const commentClick = (id: number): void => {
+        history.push(`/main/music_comment/` + id);
+
         console.log('comment click');
     };
 
