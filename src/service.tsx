@@ -141,6 +141,15 @@ export const fetchMusicsByCollectionId = (
     return rawObjectPost(musicsByCollectionIdUrl, { id: id }, resolve, { Authorization: 'Bearer ' + getToken() });
 };
 
+const getCollectionDetailByIdUrl = 'http://localhost:9999/music/GetCollectionDetailById';
+export const getCollectionDetailById = (
+    id: number,
+    resolve: (data: any) => void,
+    reject: (arg0: object) => void,
+): Promise<object> => {
+    return rawObjectPost(getCollectionDetailByIdUrl, { id: id }, resolve, { Authorization: 'Bearer ' + getToken() });
+};
+
 const musicsByCollectionUrl = 'http://localhost:9999/music/GetMusicsByCollectionName';
 export const fetchMusicsByCollectionName = (
     name: string,

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Switch, Route, Link, useParams } from 'react-router-dom';
-import { Music } from '../dataInterfaces/music';
-import { fetchMusicsByCollectionId } from '../service';
+import { Music, CollectionDetail, dummyCollectionDetail } from '../dataInterfaces/music';
+import { fetchMusicsByCollectionId, getCollectionDetailById } from '../service';
 import { MusicListComponent } from './musicListComponent';
 import { useGlobal, useDispatch } from 'reactn';
 import { updateMusics, updateCurrentMusic } from '../globals';
@@ -11,7 +11,8 @@ import DeleteIcon from '@material-ui/icons/Delete';
 
 export const CollectionDetailPage: React.FC = () => {
     const { id } = useParams();
-    const [musics, setMusics] = useState<Music[]>([]);
+    // const [musics, setMusics] = useState<Music[]>([]);
+    const [detail, setDetail] = useState<CollectionDetail>(dummyCollectionDetail);
     const [currentTheMusic] = useGlobal('currentMusic');
     const updatePlayingMusics = useDispatch(updateMusics);
     const updateTheCurrentMusic = useDispatch(updateCurrentMusic);
@@ -21,11 +22,11 @@ export const CollectionDetailPage: React.FC = () => {
     const intId = parseInt(id);
 
     useEffect(() => {
-        fetchMusicsByCollectionId(
+        getCollectionDetailById(
             intId,
-            fetchedMusics => {
-                setMusics(fetchedMusics);
-                console.log(fetchedMusics);
+            detail => {
+                setDetail(detail);
+                console.log(detail);
             },
             console.log,
         );
@@ -33,7 +34,7 @@ export const CollectionDetailPage: React.FC = () => {
 
     const clickMusic = (music: Music, index: number): void => {
         console.log('click music');
-        updatePlayingMusics(musics);
+        updatePlayingMusics(detail.musics);
         updateTheCurrentMusic(music);
     };
     const likeClick = (id: number): void => {
@@ -54,27 +55,23 @@ export const CollectionDetailPage: React.FC = () => {
         console.log('comment click');
     };
 
-    const musicElements = musics.map((m: Music, index: number) => {
-        return (
-            <h3 key={index}>
-                {m.id}--{m.name}--{m.artist}
-            </h3>
-        );
-    });
-
     return (
         <div>
-            <h1>Collection Detail:{id}</h1>
-            <IconButton
-                onClick={(e): void => {
-                    e.stopPropagation();
-                    history.push(`/main/collections/`);
-                }}
-            >
-                <DeleteIcon></DeleteIcon>
-            </IconButton>
+            <h1>{detail.name}</h1>
+            {detail.canBeDeleted ? (
+                <IconButton
+                    onClick={(e): void => {
+                        e.stopPropagation();
+                        history.push(`/main/collections/`);
+                    }}
+                >
+                    <DeleteIcon></DeleteIcon>
+                </IconButton>
+            ) : (
+                <div></div>
+            )}
             <MusicListComponent
-                musics={musics}
+                musics={detail.musics}
                 currentMusic={currentTheMusic}
                 clickMusic={clickMusic}
                 likeClick={likeClick}

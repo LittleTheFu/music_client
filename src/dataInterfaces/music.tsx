@@ -91,3 +91,15 @@ export class Follower {
     avatarUrl: string;
     isFollowed: boolean;
 }
+
+export class CollectionDetail {
+    name: string;
+    canBeDeleted: boolean;
+    musics: Music[];
+}
+
+export const dummyCollectionDetail: CollectionDetail = {
+    name: 'detail_name',
+    canBeDeleted: false,
+    musics: [],
+};
