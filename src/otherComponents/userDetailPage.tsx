@@ -149,7 +149,7 @@ export const UserDetailPage: React.FC = () => {
                                         follow
                                     </IconButton>
                                 )}
-                                {currentClickUserId === meId ? (
+                                {intId === meId ? (
                                     <IconButton onClick={editClick}>
                                         <PeopleIcon />
                                         edit
