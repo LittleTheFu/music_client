@@ -2,16 +2,22 @@ import React from 'react';
 import Drawer from '@material-ui/core/Drawer';
 import { makeStyles } from '@material-ui/core/styles';
 import { Music } from '../dataInterfaces/music';
-import { MusicListComponent } from './musicListComponent';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import VolumeUpIcon from '@material-ui/icons/VolumeUp';
 
-// const useStyles = makeStyles({
-//     list: {
-//         width: 250,
-//     },
-//     fullList: {
-//         width: 'auto',
-//     },
-// });
+const useStyles = makeStyles({
+    list: {
+        // width: 600,
+        // height: 300,
+    },
+    soundIcon: {
+        color: 'red',
+    },
+    likeIcon: {
+        color: 'red',
+    },
+});
 
 interface MusicListDrawerProps {
     open: boolean;
@@ -20,26 +26,25 @@ interface MusicListDrawerProps {
     musics: Music[];
     currentMusic: Music;
     clickMusic: (music: Music, index: number) => void;
-    likeClick: (id: number) => void;
-    dislikeClick: (id: number) => void;
-    addMusicClick: (id: number) => void;
-    removeMusicClick: (id: number) => void;
-    commentClick: (id: number) => void;
 }
 
 export const MusicListDrawer: React.FC<MusicListDrawerProps> = (props: MusicListDrawerProps) => {
-    const {
-        open,
-        closeClick,
-        musics,
-        currentMusic,
-        clickMusic,
-        likeClick,
-        dislikeClick,
-        addMusicClick,
-        removeMusicClick,
-        commentClick,
-    } = props;
+    const { open, closeClick, musics, currentMusic, clickMusic } = props;
+
+    const classes = useStyles({});
+
+    const musicElements = musics.map((music: Music, index: number) => {
+        return (
+            <ListItem button key={music.name} onClick={(): void => clickMusic(music, index)}>
+                {music.name}
+                {currentMusic.id === music.id ? (
+                    <VolumeUpIcon className={classes.soundIcon}></VolumeUpIcon>
+                ) : (
+                    <div></div>
+                )}
+            </ListItem>
+        );
+    });
 
     return (
         <div>
@@ -48,20 +53,11 @@ export const MusicListDrawer: React.FC<MusicListDrawerProps> = (props: MusicList
                 open={open}
                 onClose={(): void => {
                     closeClick();
-                    // setDrawerOpen(false);
-                    // console.log('close');
                 }}
             >
-                <MusicListComponent
-                    musics={musics}
-                    currentMusic={currentMusic}
-                    clickMusic={clickMusic}
-                    likeClick={likeClick}
-                    dislikeClick={dislikeClick}
-                    addMusicClick={addMusicClick}
-                    removeMusicClick={removeMusicClick}
-                    commentClick={commentClick}
-                />
+                <List component="nav">
+                    <React.Fragment>{musicElements}</React.Fragment>{' '}
+                </List>
             </Drawer>
         </div>
     );

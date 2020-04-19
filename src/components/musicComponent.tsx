@@ -307,11 +307,6 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
                             musics={currentMusics}
                             currentMusic={currentTheMusic}
                             clickMusic={playMusic}
-                            likeClick={musicItemLikeClick}
-                            dislikeClick={musicItemDislikeClick}
-                            addMusicClick={addMusicToPersonalListClick}
-                            removeMusicClick={removeMusicFromPersonalListClick}
-                            commentClick={commentClick}
                         ></MusicListDrawer>
 
                         <PlayBarComponent
