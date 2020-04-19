@@ -87,9 +87,10 @@ export const FollowerListPage: React.FC = () => {
 
     const avatarClick = (userId: number): void => {
         console.log('avatar click');
-        setCurrentClickUserId(userId).then(() => {
-            history.push(`/main/userdetail`);
-        });
+        // setCurrentClickUserId(userId).then(() => {
+        //     history.push(`/main/userdetail`);
+        // });
+        history.push(`/main/userdetail/` + userId);
     };
 
     const followerElements = followers.map((f: Follower, index: number) => {

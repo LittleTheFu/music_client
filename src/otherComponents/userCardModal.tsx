@@ -19,7 +19,7 @@ export const UserCardModal: React.FC = () => {
     const detailClick = (): void => {
         updateTheCommentModalState(false);
         setUserCardModalOpen(false);
-        history.push(`${url}/userdetail`);
+        history.push(`/main/userdetail/` + currentClickUserId);
     };
 
     function handleSubmit(event: React.FormEvent<HTMLFormElement>): void {

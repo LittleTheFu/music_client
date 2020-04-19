@@ -64,9 +64,7 @@ export const MusicCommentPage: React.FC = () => {
     }, []);
 
     const detailClick = (userId: number): void => {
-        setCurrentClickUserId(userId).then(() => {
-            history.push(`/main/userdetail`);
-        });
+        history.push(`/main/userdetail/` + userId);
     };
 
     const infoElements = comments.map((comment: MusicComment, index: number) => {

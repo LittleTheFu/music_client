@@ -14,7 +14,7 @@ import RemoveCircleOutlineIcon from '@material-ui/icons/RemoveCircleOutline';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import PeopleIcon from '@material-ui/icons/People';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
-import { useHistory, useRouteMatch } from 'react-router-dom';
+import { useHistory, useRouteMatch, useParams } from 'react-router-dom';
 import { WriteMailModal } from '../mailComponents/writeMailModal';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -36,12 +36,16 @@ export const UserDetailPage: React.FC = () => {
     const [mailModalOpen, setMailModalOpen] = useState(false);
     const history = useHistory();
     const { path, url } = useRouteMatch();
+
+    const { id } = useParams();
+    const intId = parseInt(id);
+
     const classes = useStyles({});
 
     useEffect(() => {
         console.log(detail);
         getDetail(
-            currentClickUserId,
+            intId,
             o => {
                 setDetail(o);
                 console.log(o);

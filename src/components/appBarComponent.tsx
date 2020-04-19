@@ -118,9 +118,10 @@ export const AppBarComponent: React.FC = () => {
                             src={avatar}
                             className={classes.userAvatar}
                             onClick={(): void => {
-                                setCurrentClickUserId(meId).then(() => {
-                                    history.push(`${url}/userdetail`);
-                                });
+                                // setCurrentClickUserId(meId).then(() => {
+                                //     history.push(`/main/userdetail`);
+                                // });
+                                history.push(`/main/userdetail/` + meId);
                             }}
                         ></Avatar>
                     ) : (

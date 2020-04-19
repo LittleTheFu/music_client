@@ -66,7 +66,7 @@ export const CommentModal: React.FC = () => {
         updateTheCommentModalState(false);
         // setUserCardModalOpen(false);
         setCurrentClickUserId(userId).then(() => {
-            history.push(`${url}/userdetail`);
+            history.push(`/main/userdetail/` + userId);
         });
     };
 

@@ -91,9 +91,10 @@ export const TemporaryDrawer: React.FC = () => {
                         button
                         key={5}
                         onClick={(): void => {
-                            setCurrentClickUserId(meId).then(() => {
-                                history.push(`${url}/userdetail`);
-                            });
+                            // setCurrentClickUserId(meId).then(() => {
+                            //     history.push(`/main/userdetail`);
+                            // });
+                            history.push(`/main/userdetail/` + meId);
                         }}
                     >
                         <ListItemIcon>
