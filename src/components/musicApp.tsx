@@ -13,6 +13,7 @@ import { UserDetailPage } from '../otherComponents/userDetailPage';
 import { FollowerListPage } from '../otherComponents/followerListPage';
 import { MusicCollectionPage } from '../components/collectionPage';
 import { CollectionDetailPage } from './collectionDetailPage';
+import { LobbyPage } from '../otherComponents/lobbyPage';
 
 const audioElement = getAudioPlayer();
 
@@ -29,6 +30,9 @@ export const MusicApp: React.FC = () => {
             <Grid container spacing={1}>
                 <Grid item xs={12}>
                     <Switch>
+                        <Route path={`${path}/lobby`}>
+                            <LobbyPage></LobbyPage>
+                        </Route>
                         <Route path={`${path}/profile`}>
                             <ProfilePage></ProfilePage>
                         </Route>

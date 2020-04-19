@@ -71,7 +71,7 @@ export const AppBarComponent: React.FC = () => {
                         className={classes.exitButton}
                         edge="start"
                         onClick={(): void => {
-                            history.push(`${url}`);
+                            history.push(`${url}/lobby`);
                         }}
                     >
                         <MusicNoteIcon />

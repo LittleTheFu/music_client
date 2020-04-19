@@ -52,7 +52,7 @@ export const TemporaryDrawer: React.FC = () => {
                         button
                         key={1}
                         onClick={(): void => {
-                            history.push(`${url}`);
+                            history.push(`${url}/lobby`);
                         }}
                     >
                         <ListItemIcon>

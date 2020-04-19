@@ -108,7 +108,7 @@ export const LoginComponent: React.FC = () => {
             // loadMusic();
             // loadCollections();
 
-            history.push('/main');
+            history.push('/main/lobby');
         }
     };
 
