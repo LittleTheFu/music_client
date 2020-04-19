@@ -6,6 +6,8 @@ import { MusicListComponent } from './musicListComponent';
 import { useGlobal, useDispatch } from 'reactn';
 import { updateMusics, updateCurrentMusic } from '../globals';
 import { useHistory, useRouteMatch } from 'react-router-dom';
+import { IconButton } from '@material-ui/core';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 export const CollectionDetailPage: React.FC = () => {
     const { id } = useParams();
@@ -63,7 +65,14 @@ export const CollectionDetailPage: React.FC = () => {
     return (
         <div>
             <h1>Collection Detail:{id}</h1>
-            {/* {musics && musics.length > 0 ? <React.Fragment>{musicElements}</React.Fragment> : <div></div>} */}
+            <IconButton
+                onClick={(e): void => {
+                    e.stopPropagation();
+                    history.push(`/main/collections/`);
+                }}
+            >
+                <DeleteIcon></DeleteIcon>
+            </IconButton>
             <MusicListComponent
                 musics={musics}
                 currentMusic={currentTheMusic}
