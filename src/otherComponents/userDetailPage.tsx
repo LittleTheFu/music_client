@@ -76,12 +76,12 @@ export const UserDetailPage: React.FC = () => {
 
     const followerClick = (): void => {
         console.log('followerClick');
-        history.push(`/main/followers`);
+        history.push(`/main/followers/` + id);
     };
 
     const followClick = (): void => {
         followUser(
-            currentClickUserId,
+            intId,
             (o): void => {
                 // const d = detail;
                 // d.isFollowed = true;

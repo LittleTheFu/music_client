@@ -43,7 +43,7 @@ export const MusicApp: React.FC = () => {
                         <Route path={`${path}/userdetail/:id`}>
                             <UserDetailPage></UserDetailPage>
                         </Route>
-                        <Route path={`${path}/followers`}>
+                        <Route path={`${path}/followers/:id`}>
                             <FollowerListPage></FollowerListPage>
                         </Route>
                         <Route path={`${path}/collections`}>

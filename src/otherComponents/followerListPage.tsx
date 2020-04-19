@@ -10,7 +10,7 @@ import IconButton from '@material-ui/core/IconButton';
 import RemoveCircleOutlineIcon from '@material-ui/icons/RemoveCircleOutline';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import { useGlobal, useDispatch } from 'reactn';
-import { useHistory, Link, useRouteMatch } from 'react-router-dom';
+import { useHistory, useParams, useRouteMatch } from 'react-router-dom';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -33,9 +33,12 @@ export const FollowerListPage: React.FC = () => {
 
     const classes = useStyles({});
 
+    const { id } = useParams();
+    const intId = parseInt(id);
+
     useEffect(() => {
         getUserFollowers(
-            currentClickUserId,
+            intId,
             (o): void => {
                 console.log(o);
                 setFollowers(o);
