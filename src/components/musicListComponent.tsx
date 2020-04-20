@@ -52,7 +52,7 @@ export const MusicListComponent: React.FC<MusicList> = (props: MusicList) => {
     const musicElements = musics.map((music: Music, index: number) => {
         return (
             <ListItem button key={music.name} onClick={(): void => clickMusic(music, index)}>
-                {music.like}
+                {/* {music.like}
                 {music.likedByCurrentUser ? (
                     <IconButton
                         onClick={(e): void => {
@@ -71,7 +71,7 @@ export const MusicListComponent: React.FC<MusicList> = (props: MusicList) => {
                     >
                         <FavoriteBorderIcon className={classes.likeIcon}></FavoriteBorderIcon>
                     </IconButton>
-                )}
+                )} */}
                 ---{index} : {music.name}---
                 {currentMusic.id === music.id ? (
                     <VolumeUpIcon className={classes.soundIcon}></VolumeUpIcon>
