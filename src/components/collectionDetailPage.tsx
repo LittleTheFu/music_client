@@ -13,6 +13,7 @@ import { MyCollectionsModal } from './myCollectionsModal';
 export const CollectionDetailPage: React.FC = () => {
     const { id } = useParams();
 
+    const [wantAddMusicId, setWantAddMusicId] = useState(1);
     const [modalOpen, setModalOpen] = useState(false);
     const [detail, setDetail] = useState<CollectionDetail>(dummyCollectionDetail);
     const [currentTheMusic] = useGlobal('currentMusic');
@@ -47,6 +48,7 @@ export const CollectionDetailPage: React.FC = () => {
     };
     const addMusicClick = (id: number): void => {
         console.log('add music');
+        setWantAddMusicId(id);
         setModalOpen(true);
     };
     const removeMusicClick = (id: number): void => {
@@ -65,6 +67,7 @@ export const CollectionDetailPage: React.FC = () => {
                 modalClose={(): void => {
                     setModalOpen(false);
                 }}
+                musicId={wantAddMusicId}
             ></MyCollectionsModal>
             <h1>{detail.name}</h1>
             {detail.canBeDeleted ? (
