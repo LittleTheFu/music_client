@@ -8,10 +8,12 @@ import { updateMusics, updateCurrentMusic } from '../globals';
 import { useHistory, useRouteMatch } from 'react-router-dom';
 import { IconButton } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
+import { MyCollectionsModal } from './myCollectionsModal';
 
 export const CollectionDetailPage: React.FC = () => {
     const { id } = useParams();
-    // const [musics, setMusics] = useState<Music[]>([]);
+
+    const [modalOpen, setModalOpen] = useState(false);
     const [detail, setDetail] = useState<CollectionDetail>(dummyCollectionDetail);
     const [currentTheMusic] = useGlobal('currentMusic');
     const updatePlayingMusics = useDispatch(updateMusics);
@@ -45,6 +47,7 @@ export const CollectionDetailPage: React.FC = () => {
     };
     const addMusicClick = (id: number): void => {
         console.log('add music');
+        setModalOpen(true);
     };
     const removeMusicClick = (id: number): void => {
         console.log('remove');
@@ -57,6 +60,12 @@ export const CollectionDetailPage: React.FC = () => {
 
     return (
         <div>
+            <MyCollectionsModal
+                modalOpen={modalOpen}
+                modalClose={(): void => {
+                    setModalOpen(false);
+                }}
+            ></MyCollectionsModal>
             <h1>{detail.name}</h1>
             {detail.canBeDeleted ? (
                 <IconButton
