@@ -61,7 +61,7 @@ export const UserDetailPage: React.FC = () => {
         console.log(content);
 
         sendMail(
-            currentClickUserId,
+            intId,
             content,
             o => {
                 console.log(o);
