@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Switch, Route, Link, useParams } from 'react-router-dom';
 import { Music, CollectionDetail, dummyCollectionDetail } from '../dataInterfaces/music';
-import { fetchMusicsByCollectionId, getCollectionDetailById } from '../service';
+import { deleteCollection, getCollectionDetailById } from '../service';
 import { MusicListComponent } from './musicListComponent';
 import { useGlobal, useDispatch } from 'reactn';
 import { updateMusics, updateCurrentMusic } from '../globals';
@@ -62,6 +62,7 @@ export const CollectionDetailPage: React.FC = () => {
                 <IconButton
                     onClick={(e): void => {
                         e.stopPropagation();
+                        deleteCollection(intId, console.log, console.log);
                         history.push(`/main/collections/`);
                     }}
                 >
