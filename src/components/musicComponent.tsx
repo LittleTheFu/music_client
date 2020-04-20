@@ -8,6 +8,7 @@ import { CollectionInfoModal } from './collectionInfoModal';
 import { CommentModal } from './commentModal';
 import { UserCardModal } from '../otherComponents/userCardModal';
 import { useGlobal, useDispatch } from 'reactn';
+import { useHistory } from 'react-router-dom';
 import {
     postLikeMusic,
     postDislikeMusic,
@@ -70,6 +71,8 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
     const [musicPercent, setMusicPercent] = useState(0);
     const [showFullPart, setShowFullPart] = useState(true);
     const [musicListDrawerOpen, setMusicListDrawerOpen] = useState(false);
+
+    const history = useHistory();
 
     const classes = useStyles({});
 
@@ -142,6 +145,10 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
 
     const currentMusicInfoDislikeClick = (): void => {
         postDislikeMusic(currentTheMusic.id, updateMusicAfterClickLike);
+    };
+
+    const currentMusicCommentClick = (): void => {
+        history.push(`/main/music_comment/` + currentTheMusic.id);
     };
 
     const addMusicToPersonalListClick = (id: number): void => {
@@ -289,6 +296,7 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
                                 music={currentTheMusic}
                                 likeClick={currentMusicInfoLikeClick}
                                 dislikeClick={currentMusicInfoDislikeClick}
+                                commentClick={currentMusicCommentClick}
                             ></MusicInfoComponent>
                         ) : (
                             <div></div>

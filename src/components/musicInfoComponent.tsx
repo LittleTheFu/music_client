@@ -8,12 +8,14 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import { IconButton } from '@material-ui/core';
 import { getLyric } from '../service';
 import { testLyric, parseLyric, getLine, LyricLine } from '../lyric/lyricParser';
+import CommentIcon from '@material-ui/icons/Comment';
 
 interface MusicInfoProps {
     music: Music;
     currentTime: number;
     likeClick: () => void;
     dislikeClick: () => void;
+    commentClick: () => void;
 }
 
 const useStyles = makeStyles({
@@ -45,7 +47,7 @@ const useStyles = makeStyles({
 
 export const MusicInfoComponent: React.FC<MusicInfoProps> = (props: MusicInfoProps) => {
     const classes = useStyles({});
-    const { music, likeClick, dislikeClick, currentTime } = props;
+    const { music, likeClick, dislikeClick, currentTime, commentClick } = props;
     const [lyricLine, setLyricLine] = useState('');
     const [lines, setLines] = useState<LyricLine[]>([]);
     // const lines = parseLyric(testLyric);
@@ -68,14 +70,6 @@ export const MusicInfoComponent: React.FC<MusicInfoProps> = (props: MusicInfoPro
         );
     }, [music.id]);
 
-    const lyricClick = (): void => {
-        // console.log('lyric');
-        // getLyric(o => {
-        //     console.log(o);
-        // }, console.log);
-        console.log(parseLyric(testLyric));
-    };
-
     return (
         <Card raised={true} className={classes.card}>
             <h4>
@@ -95,6 +89,9 @@ export const MusicInfoComponent: React.FC<MusicInfoProps> = (props: MusicInfoPro
                     <FavoriteBorderIcon></FavoriteBorderIcon>
                 </IconButton>
             )}
+            <IconButton className={classes.likeIcon} onClick={commentClick}>
+                <CommentIcon></CommentIcon>
+            </IconButton>
             ---
             <CardMedia image={music.cover} className={classes.cover}></CardMedia>
         </Card>

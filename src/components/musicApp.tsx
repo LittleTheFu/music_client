@@ -28,6 +28,9 @@ export const MusicApp: React.FC = () => {
         <div>
             <AppBarComponent></AppBarComponent>
             <TemporaryDrawer></TemporaryDrawer>
+            <Grid item xs={12}>
+                <MusicComponent audioElement={audioElement} musics={musics}></MusicComponent>
+            </Grid>
             <Grid container spacing={1}>
                 <Grid item xs={12}>
                     <Switch>
@@ -56,9 +59,6 @@ export const MusicApp: React.FC = () => {
                             <MusicCommentPage></MusicCommentPage>
                         </Route>
                     </Switch>
-                </Grid>
-                <Grid item xs={12}>
-                    <MusicComponent audioElement={audioElement} musics={musics}></MusicComponent>
                 </Grid>
             </Grid>
         </div>
