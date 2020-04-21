@@ -9,6 +9,7 @@ import { useHistory, useRouteMatch } from 'react-router-dom';
 import { IconButton } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { MyCollectionsModal } from './myCollectionsModal';
+import Grid from '@material-ui/core/Grid';
 
 export const CollectionDetailPage: React.FC = () => {
     const { id } = useParams();
@@ -62,37 +63,45 @@ export const CollectionDetailPage: React.FC = () => {
 
     return (
         <div>
-            <MyCollectionsModal
-                modalOpen={modalOpen}
-                modalClose={(): void => {
-                    setModalOpen(false);
-                }}
-                musicId={wantAddMusicId}
-            ></MyCollectionsModal>
-            <h1>{detail.name}</h1>
-            {detail.canBeDeleted ? (
-                <IconButton
-                    onClick={(e): void => {
-                        e.stopPropagation();
-                        deleteCollection(intId, console.log, console.log);
-                        history.push(`/main/collections/`);
-                    }}
-                >
-                    <DeleteIcon></DeleteIcon>
-                </IconButton>
-            ) : (
-                <div></div>
-            )}
-            <MusicListComponent
-                musics={detail.musics}
-                currentMusic={currentTheMusic}
-                clickMusic={clickMusic}
-                likeClick={likeClick}
-                dislikeClick={dislikeClick}
-                addMusicClick={addMusicClick}
-                removeMusicClick={removeMusicClick}
-                commentClick={commentClick}
-            ></MusicListComponent>
+            <Grid container spacing={1}>
+                <Grid item xs={12}>
+                    <MyCollectionsModal
+                        modalOpen={modalOpen}
+                        modalClose={(): void => {
+                            setModalOpen(false);
+                        }}
+                        musicId={wantAddMusicId}
+                    ></MyCollectionsModal>
+                </Grid>
+                <Grid item xs={12}>
+                    {detail.name}
+                    {detail.canBeDeleted ? (
+                        <IconButton
+                            onClick={(e): void => {
+                                e.stopPropagation();
+                                deleteCollection(intId, console.log, console.log);
+                                history.push(`/main/collections/`);
+                            }}
+                        >
+                            <DeleteIcon></DeleteIcon>
+                        </IconButton>
+                    ) : (
+                        <div></div>
+                    )}
+                </Grid>
+                <Grid item xs={12}>
+                    <MusicListComponent
+                        musics={detail.musics}
+                        currentMusic={currentTheMusic}
+                        clickMusic={clickMusic}
+                        likeClick={likeClick}
+                        dislikeClick={dislikeClick}
+                        addMusicClick={addMusicClick}
+                        removeMusicClick={removeMusicClick}
+                        commentClick={commentClick}
+                    ></MusicListComponent>
+                </Grid>
+            </Grid>
         </div>
     );
 };

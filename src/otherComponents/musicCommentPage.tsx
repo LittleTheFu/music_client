@@ -17,8 +17,8 @@ const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         paper: {
             position: 'absolute',
-            width: 300,
-            height: 300,
+            // width: 300,
+            // height: 300,
             backgroundColor: theme.palette.background.paper,
             border: '2px solid #000',
             boxShadow: theme.shadows[5],
@@ -29,13 +29,13 @@ const useStyles = makeStyles((theme: Theme) =>
             width: 40,
         },
         card: {
-            width: 500,
+            // width: 500,
         },
         date: {
             color: 'grey',
         },
         inputBox: {
-            width: 450,
+            // width: 450,
         },
     }),
 );

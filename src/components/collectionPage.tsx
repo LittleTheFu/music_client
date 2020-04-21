@@ -8,6 +8,17 @@ import { CreateCollectionModal } from './createCollectionModal';
 import { useHistory, useRouteMatch } from 'react-router-dom';
 import { useGlobal, useDispatch } from 'reactn';
 import { updateMusics, updateCurrentMusic } from '../globals';
+import Grid from '@material-ui/core/Grid';
+import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme: Theme) =>
+    createStyles({
+        addIcon: {
+            height: 150,
+            width: 150,
+        },
+    }),
+);
 
 export const MusicCollectionPage: React.FC = () => {
     const [musicCollections, setMusicCollections] = useState<MusicCollection[]>([]);
@@ -17,6 +28,8 @@ export const MusicCollectionPage: React.FC = () => {
 
     const history = useHistory();
     const { path, url } = useRouteMatch();
+
+    const classes = useStyles({});
 
     const clickCollectionCover = (name: string, id: number): void => {
         console.log('cover click');
@@ -56,26 +69,34 @@ export const MusicCollectionPage: React.FC = () => {
 
     return (
         <div>
-            <CreateCollectionModal
-                addToCollections={addNewCollection}
-                modalOpen={modalOpen}
-                modalClose={closeModal}
-            ></CreateCollectionModal>
-            <IconButton
-                onClick={(e): void => {
-                    e.stopPropagation();
-                    setModalOpen(true);
+            <Grid container spacing={1}>
+                <Grid item xs={12}>
+                    <CreateCollectionModal
+                        addToCollections={addNewCollection}
+                        modalOpen={modalOpen}
+                        modalClose={closeModal}
+                    ></CreateCollectionModal>
+                </Grid>
+                <Grid item xs={12}>
+                    <IconButton
+                        onClick={(e): void => {
+                            e.stopPropagation();
+                            setModalOpen(true);
 
-                    console.log('ADD COLLECTION');
-                }}
-            >
-                <AddCircleOutlineIcon></AddCircleOutlineIcon>
-            </IconButton>
-            <MusicCollectionsComponent
-                coverClick={clickCollectionCover}
-                collections={musicCollections}
-                bodyClick={bodyClick}
-            ></MusicCollectionsComponent>
+                            console.log('ADD COLLECTION');
+                        }}
+                    >
+                        <AddCircleOutlineIcon className={classes.addIcon}></AddCircleOutlineIcon>
+                    </IconButton>
+                </Grid>
+                <Grid item xs={12}>
+                    <MusicCollectionsComponent
+                        coverClick={clickCollectionCover}
+                        collections={musicCollections}
+                        bodyClick={bodyClick}
+                    ></MusicCollectionsComponent>
+                </Grid>
+            </Grid>
         </div>
     );
 };
