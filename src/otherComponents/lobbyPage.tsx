@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { getPublicMusicCollections, fetchMusicsByCollectionId } from '../service';
 import { MusicCollectionsComponent } from '../components/musicCollectionsComponent';
 import { MusicCollection, Music } from '../dataInterfaces/music';
-import { useHistory, useRouteMatch } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { updateMusics, updateCurrentMusic } from '../globals';
-import { useGlobal, useDispatch } from 'reactn';
+import { useDispatch } from 'reactn';
 
 export const LobbyPage: React.FC = () => {
     const [musicCollections, setMusicCollections] = useState<MusicCollection[]>([]);
@@ -12,7 +12,7 @@ export const LobbyPage: React.FC = () => {
     const updateTheCurrentMusic = useDispatch(updateCurrentMusic);
 
     const history = useHistory();
-    const { path, url } = useRouteMatch();
+    // const { path, url } = useRouteMatch();
 
     useEffect(() => {
         getPublicMusicCollections(collections => {

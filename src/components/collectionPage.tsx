@@ -6,7 +6,7 @@ import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import { IconButton } from '@material-ui/core';
 import { CreateCollectionModal } from './createCollectionModal';
 import { useHistory, useRouteMatch } from 'react-router-dom';
-import { useGlobal, useDispatch } from 'reactn';
+import { useDispatch } from 'reactn';
 import { updateMusics, updateCurrentMusic } from '../globals';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
@@ -27,7 +27,7 @@ export const MusicCollectionPage: React.FC = () => {
     const updateTheCurrentMusic = useDispatch(updateCurrentMusic);
 
     const history = useHistory();
-    const { path, url } = useRouteMatch();
+    // const { path, url } = useRouteMatch();
 
     const classes = useStyles({});
 

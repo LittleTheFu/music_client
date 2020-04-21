@@ -8,7 +8,7 @@ import Grid from '@material-ui/core/Grid';
 import IconButton from '@material-ui/core/IconButton';
 import RemoveCircleOutlineIcon from '@material-ui/icons/RemoveCircleOutline';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
-import { useGlobal } from 'reactn';
+// import { useGlobal } from 'reactn';
 import { useHistory, useParams, useRouteMatch } from 'react-router-dom';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -28,7 +28,7 @@ export const FollowerListPage: React.FC = () => {
     const [followers, setFollowers] = useState<Follower[]>([]);
     // const [currentClickUserId, setCurrentClickUserId] = useGlobal('currentClickUserId');
     const history = useHistory();
-    const { path, url } = useRouteMatch();
+    // const { path, url } = useRouteMatch();
 
     const classes = useStyles({});
 

@@ -58,7 +58,7 @@ export const CommentModal: React.FC = () => {
     const updateTheComments = useDispatch(updateComments);
     const [content, setContent] = useState('');
     const history = useHistory();
-    const { path, url } = useRouteMatch();
+    // const { path, url } = useRouteMatch();
 
     const classes = useStyles({});
 

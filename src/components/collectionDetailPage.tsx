@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Switch, Route, Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { Music, CollectionDetail, dummyCollectionDetail } from '../dataInterfaces/music';
 import { deleteCollection, getCollectionDetailById } from '../service';
 import { MusicListComponent } from './musicListComponent';
 import { useGlobal, useDispatch } from 'reactn';
 import { updateMusics, updateCurrentMusic } from '../globals';
-import { useHistory, useRouteMatch } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { IconButton } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { MyCollectionsModal } from './myCollectionsModal';
@@ -21,7 +21,7 @@ export const CollectionDetailPage: React.FC = () => {
     const updatePlayingMusics = useDispatch(updateMusics);
     const updateTheCurrentMusic = useDispatch(updateCurrentMusic);
     const history = useHistory();
-    const { path, url } = useRouteMatch();
+    // const { path, url } = useRouteMatch();
 
     const intId = parseInt(id);
 

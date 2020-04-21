@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-import { useGlobal } from 'reactn';
+// import { useGlobal } from 'reactn';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { postRegister } from '../service';
@@ -39,7 +39,7 @@ export const RegisterComponent: React.FC = () => {
 
     const resolveData = (data: any): void => {
         console.log('RESOLVE DATA');
-
+        console.log(data);
         history.push('/login');
     };
 

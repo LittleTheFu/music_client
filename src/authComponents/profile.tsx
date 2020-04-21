@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { useGlobal, useDispatch } from 'reactn';
+import { useGlobal } from 'reactn';
 import Button from '@material-ui/core/Button';
 import { uploadAvatar } from '../service';
-import { updateAvatar, setMeAvatar } from '../globals';
+import { setMeAvatar } from '../globals';
 import { RetUpdateAvatarDto } from '../dataInterfaces/music';
 
 export const ProfilePage: React.FC = () => {
     const [userId] = useGlobal('userId');
-    const updateTheAvatar = useDispatch(updateAvatar);
+    // const updateTheAvatar = useDispatch(updateAvatar);
     const [selectedFile, setSelectedFile] = useState(null);
     const [preview, setPreview] = useState('');
 

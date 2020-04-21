@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useGlobal, useDispatch } from 'reactn';
+import { useGlobal } from 'reactn';
 import { getDetail, sendMail } from 'service';
 import { UserDetail } from '../dataInterfaces/music';
 import { followUser, unfollowUser } from '../service';
@@ -33,7 +33,7 @@ export const UserDetailPage: React.FC = () => {
     const [detail, setDetail] = useState<UserDetail>(null);
     const [mailModalOpen, setMailModalOpen] = useState(false);
     const history = useHistory();
-    const { path, url } = useRouteMatch();
+    // const { path, url } = useRouteMatch();
 
     const { id } = useParams();
     const intId = parseInt(id);
@@ -98,7 +98,7 @@ export const UserDetailPage: React.FC = () => {
                 // const d = detail;
                 // d.isFollowed = false;
                 setDetail({ ...detail, isFollowed: false });
-                console.log('unfl');
+                console.log(o);
             },
             console.log,
         );
