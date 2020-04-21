@@ -15,29 +15,17 @@ interface MusicCollectionProps {
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         main: {
-            padding: 3,
+            padding: 0,
         },
         card: {
-            [theme.breakpoints.down('sm')]: {
-                width: 100,
-                height: 100,
-            },
-            [theme.breakpoints.up('md')]: {
-                width: 200,
-                height: 200,
-            },
+            width: 160,
+            height: 160,
+            marginLeft: 'auto',
+            marginRight: 'auto',
         },
         cover: {
-            [theme.breakpoints.down('sm')]: {
-                width: 75,
-                height: 75,
-            },
-            [theme.breakpoints.up('md')]: {
-                width: 150,
-                height: 150,
-            },
-
-            // borderRadius: '50%',
+            width: 120,
+            height: 120,
         },
     }),
 );
@@ -50,6 +38,7 @@ export const MusicCollectionComponent: React.FC<MusicCollectionProps> = (props: 
         <div className={classes.main}>
             <GridListTile className={classes.card}>
                 <img
+                    className={classes.card}
                     src={collection.cover}
                     alt={collection.name}
                     onClick={(): void => {
