@@ -29,13 +29,18 @@ const useStyles = makeStyles((theme: Theme) =>
             width: 40,
         },
         card: {
-            // width: 500,
+            width: '98%',
+            marginLeft: 10,
+            // marginRight: 'auto',
         },
         date: {
             color: 'grey',
         },
         inputBox: {
-            // width: 450,
+            width: '80%',
+        },
+        postForm: {
+            marginLeft: 10,
         },
     }),
 );
@@ -117,17 +122,19 @@ export const MusicCommentPage: React.FC = () => {
     return (
         <div>
             {' '}
-            <form onSubmit={handleSubmit} noValidate autoComplete="off">
-                <TextField
-                    className={classes.inputBox}
-                    id="standard-basic"
-                    label="comment"
-                    onChange={(e): void => setContent(e.target.value)}
-                />
-                <Button type="submit" variant="contained" color="primary">
-                    post
-                </Button>
-            </form>
+            <div className={classes.postForm}>
+                <form onSubmit={handleSubmit} noValidate autoComplete="off">
+                    <TextField
+                        className={classes.inputBox}
+                        id="standard-basic"
+                        label="comment"
+                        onChange={(e): void => setContent(e.target.value)}
+                    />
+                    <Button type="submit" variant="contained" color="primary">
+                        post
+                    </Button>
+                </form>
+            </div>
             <List>
                 <React.Fragment>{infoElements}</React.Fragment>
             </List>

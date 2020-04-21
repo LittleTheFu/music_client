@@ -15,6 +15,7 @@ import { MusicCollectionPage } from '../components/collectionPage';
 import { CollectionDetailPage } from './collectionDetailPage';
 import { LobbyPage } from '../otherComponents/lobbyPage';
 import { MusicCommentPage } from '../otherComponents/musicCommentPage';
+import { MainDivider } from '../otherComponents/mainDivider';
 
 const audioElement = getAudioPlayer();
 
@@ -31,6 +32,7 @@ export const MusicApp: React.FC = () => {
             <Grid item xs={12}>
                 <MusicComponent audioElement={audioElement} musics={musics}></MusicComponent>
             </Grid>
+            <MainDivider></MainDivider>
             <Grid container spacing={1}>
                 <Grid item xs={12}>
                     <Switch>
