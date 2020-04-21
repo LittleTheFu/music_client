@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export const UserDetailPage: React.FC = () => {
     const [currentClickUserId] = useGlobal('currentClickUserId');
-    const [meId] = useGlobal('meId');
+    // const [meId] = useGlobal('meId');
     const [detail, setDetail] = useState<UserDetail>(null);
     const [mailModalOpen, setMailModalOpen] = useState(false);
     const history = useHistory();
@@ -85,7 +85,7 @@ export const UserDetailPage: React.FC = () => {
                 // d.isFollowed = true;
                 // setDetail(d);
                 setDetail({ ...detail, isFollowed: true });
-                console.log('fl');
+                console.log(o);
             },
             console.log,
         );

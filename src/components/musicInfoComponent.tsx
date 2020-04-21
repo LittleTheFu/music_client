@@ -7,7 +7,7 @@ import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import { IconButton } from '@material-ui/core';
 import { getLyric } from '../service';
-import { testLyric, parseLyric, getLine, LyricLine } from '../lyric/lyricParser';
+import { parseLyric, getLine, LyricLine } from '../lyric/lyricParser';
 import CommentIcon from '@material-ui/icons/Comment';
 
 interface MusicInfoProps {

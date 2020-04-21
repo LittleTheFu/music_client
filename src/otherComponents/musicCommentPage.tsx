@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useRouteMatch, useParams, useHistory } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import { getMusicComments, postMusicComments } from '../service';
 import { MusicComment } from '../dataInterfaces/music';
 import Button from '@material-ui/core/Button';
@@ -11,7 +11,7 @@ import Grid from '@material-ui/core/Grid';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import Avatar from '@material-ui/core/Avatar';
-import { useGlobal, useDispatch } from 'reactn';
+import { useGlobal } from 'reactn';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -48,7 +48,7 @@ const useStyles = makeStyles((theme: Theme) =>
 export const MusicCommentPage: React.FC = () => {
     const [comments, setComments] = useState<MusicComment[]>([]);
     const [content, setContent] = useState('');
-    const [currentClickUserId, setCurrentClickUserId] = useGlobal('currentClickUserId');
+    // const [currentClickUserId, setCurrentClickUserId] = useGlobal('currentClickUserId');
 
     const history = useHistory();
 

@@ -4,7 +4,7 @@ import { useGlobal, useDispatch } from 'reactn';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Dialog from '@material-ui/core/Dialog';
 import Button from '@material-ui/core/Button';
-import { blue } from '@material-ui/core/colors';
+// import { blue } from '@material-ui/core/colors';
 import TextField from '@material-ui/core/TextField';
 import { MusicComment } from '../dataInterfaces/music';
 import List from '@material-ui/core/List';
@@ -12,12 +12,12 @@ import ListItem from '@material-ui/core/ListItem';
 import { postMusicComments } from '../service';
 import { updateComments } from '../globals';
 import Avatar from '@material-ui/core/Avatar';
-import { deepOrange, deepPurple } from '@material-ui/core/colors';
+import { deepOrange } from '@material-ui/core/colors';
 import Divider from '@material-ui/core/Divider';
 import Card from '@material-ui/core/Card';
 import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import { useHistory, Link, useRouteMatch } from 'react-router-dom';
+// import Typography from '@material-ui/core/Typography';
+import { useHistory, useRouteMatch } from 'react-router-dom';
 import { updateCommentModalState } from '../globals';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -53,7 +53,7 @@ export const CommentModal: React.FC = () => {
     const [comments] = useGlobal('comments');
     const updateTheCommentModalState = useDispatch(updateCommentModalState);
     const [currentCommentMusicId] = useGlobal('currentCommentMusicId');
-    const [userCardModalOpen, setUserCardModalOpen] = useGlobal('userCardModalOpen');
+    // const [userCardModalOpen, setUserCardModalOpen] = useGlobal('userCardModalOpen');
     const [currentClickUserId, setCurrentClickUserId] = useGlobal('currentClickUserId');
     const updateTheComments = useDispatch(updateComments);
     const [content, setContent] = useState('');

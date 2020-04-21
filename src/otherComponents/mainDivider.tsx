@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import Divider from '@material-ui/core/Divider';
+import React from 'react';
+// import Divider from '@material-ui/core/Divider';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme: Theme) =>

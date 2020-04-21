@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { MusicComponent } from './musicComponent';
 import { getAudioPlayer } from './audioPlayer';
 import { TemporaryDrawer } from './navDrawerComponent';
 import { AppBarComponent } from './appBarComponent';
-import { useGlobal, useDispatch } from 'reactn';
-import { updateMusics } from '../globals';
+import { useGlobal } from 'reactn';
+// import { updateMusics } from '../globals';
 import Grid from '@material-ui/core/Grid';
-import { BrowserRouter as Router, Switch, Route, Link, useRouteMatch } from 'react-router-dom';
+import { Switch, Route, useRouteMatch } from 'react-router-dom';
 import { ProfilePage } from '../authComponents/profile';
 import { MailPage } from '../mailComponents/mailPage';
 import { UserDetailPage } from '../otherComponents/userDetailPage';
@@ -21,9 +21,9 @@ const audioElement = getAudioPlayer();
 
 export const MusicApp: React.FC = () => {
     const [musics] = useGlobal('musics');
-    const [keyword] = useState('');
-    const updateTheMusics = useDispatch(updateMusics);
-    const { path, url } = useRouteMatch();
+    // const [keyword] = useState('');
+    // const updateTheMusics = useDispatch(updateMusics);
+    const { path } = useRouteMatch();
 
     return (
         <div>

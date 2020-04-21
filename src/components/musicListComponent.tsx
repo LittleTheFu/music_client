@@ -4,8 +4,8 @@ import Card from '@material-ui/core/Card';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import { Music } from '../dataInterfaces/music';
-import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
-import FavoriteIcon from '@material-ui/icons/Favorite';
+// import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+// import FavoriteIcon from '@material-ui/icons/Favorite';
 import { IconButton } from '@material-ui/core';
 import VolumeUpIcon from '@material-ui/icons/VolumeUp';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
@@ -42,8 +42,8 @@ export const MusicListComponent: React.FC<MusicList> = (props: MusicList) => {
         musics,
         currentMusic,
         clickMusic,
-        likeClick,
-        dislikeClick,
+        // likeClick,
+        // dislikeClick,
         addMusicClick,
         removeMusicClick,
         commentClick,

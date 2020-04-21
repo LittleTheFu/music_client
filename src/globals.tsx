@@ -62,8 +62,6 @@ setGlobal({
     isLogin: false,
 
     drawerOpen: false,
-    loginModalOpen: false,
-    regModalOpen: false,
 
     currentMusic: dummyMusic,
     musics: [],

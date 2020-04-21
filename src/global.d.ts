@@ -57,8 +57,6 @@ declare module 'reactn/default' {
         isLogin: boolean;
 
         drawerOpen: boolean;
-        loginModalOpen: boolean;
-        regModalOpen: boolean;
 
         currentMusic: Music;
         musics: Music[];

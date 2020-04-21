@@ -1,9 +1,7 @@
 import React from 'react';
-// import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import { useGlobal } from 'reactn';
 import List from '@material-ui/core/List';
-import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -30,11 +28,11 @@ import { getMeId, setLoginFlag } from '../globals';
 export const TemporaryDrawer: React.FC = () => {
     // const classes = useStyles();
     const [drawerOpen, setDrawerOpen] = useGlobal('drawerOpen');
-    const [currentClickUserId, setCurrentClickUserId] = useGlobal('currentClickUserId');
+    // const [currentClickUserId, setCurrentClickUserId] = useGlobal('currentClickUserId');
 
     const history = useHistory();
     const { path, url } = useRouteMatch();
-    const [isLogin, setIsLogin] = useGlobal('isLogin');
+    // const [isLogin, setIsLogin] = useGlobal('isLogin');
     const [userId, setUserId] = useGlobal('userId');
 
     return (

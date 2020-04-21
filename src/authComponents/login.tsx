@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-import { postLogin, fetchPlayListMusicList, getMusicCollections, getUserAvatar, getMe } from '../service';
-import { setToken, updatePlayListMusics, updateMusics, updateCollections, updateAvatar, setMeId } from '../globals';
-import { useGlobal, useDispatch } from 'reactn';
-import { Music, MusicCollection } from '../dataInterfaces/music';
+import { postLogin, getMe } from '../service';
+import { setToken, setMeId } from '../globals';
+import { useGlobal } from 'reactn';
+// import { Music, MusicCollection } from '../dataInterfaces/music';
 import { useHistory, Link } from 'react-router-dom';
 import Container from '@material-ui/core/Container';
 import { setLoginFlag, setMeAvatar } from '../globals';
@@ -37,14 +37,13 @@ const useStyles = makeStyles((theme: Theme) =>
 export const LoginComponent: React.FC = () => {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [isLogin, setIsLogin] = useGlobal('isLogin');
-    const [loginModalOpen, setLoginModalOpen] = useGlobal('loginModalOpen');
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [userId, setUserId] = useGlobal('userId');
-    const [musicCollections, setMusicCollections] = useGlobal('Collections');
-    const updateUserAddedMusics = useDispatch(updatePlayListMusics);
-    const updateTheMusics = useDispatch(updateMusics);
-    const updateTheCollections = useDispatch(updateCollections);
-    const updateTheAvatar = useDispatch(updateAvatar);
+    // const [musicCollections, setMusicCollections] = useGlobal('Collections');
+    // const updateUserAddedMusics = useDispatch(updatePlayListMusics);
+    // const updateTheMusics = useDispatch(updateMusics);
+    // const updateTheCollections = useDispatch(updateCollections);
+    // const updateTheAvatar = useDispatch(updateAvatar);
 
     const [username, setUser] = useState('');
     const [password, setPassword] = useState('');
@@ -104,7 +103,6 @@ export const LoginComponent: React.FC = () => {
             getMe(console.log, console.log);
 
             setLoginFlag(true);
-            setLoginModalOpen(false);
 
             loadAvatarAndId();
 

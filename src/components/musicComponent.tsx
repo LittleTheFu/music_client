@@ -12,26 +12,26 @@ import { useHistory } from 'react-router-dom';
 import {
     postLikeMusic,
     postDislikeMusic,
-    fetchMusicsByCollectionName,
-    addMusicToPersonalList,
-    removeMusicFromPersonalList,
-    getMusicComments,
+    // fetchMusicsByCollectionName,
+    // addMusicToPersonalList,
+    // removeMusicFromPersonalList,
+    // getMusicComments,
 } from '../service';
 import {
     updateMusic,
     updateCurrentMusic,
-    updateMusics,
-    updateMusicInPersoalListState,
-    updatePlayListMusics,
+    // updateMusics,
+    // updateMusicInPersoalListState,
+    // updatePlayListMusics,
     updateToNextMusic,
-    updateCollections,
-    updateCollectionInfoMusics,
-    updateComments,
-    updateCurrentCommentMusicId,
+    // updateCollections,
+    // updateCollectionInfoMusics,
+    // updateComments,
+    // updateCurrentCommentMusicId,
 } from '../globals';
-import { MusicCollectionsComponent } from './musicCollectionsComponent';
+// import { MusicCollectionsComponent } from './musicCollectionsComponent';
 import Grid from '@material-ui/core/Grid';
-import { setCollectionPlayFlag } from '../helper';
+// import { setCollectionPlayFlag } from '../helper';
 import { MusicListDrawer } from './musicListDrawer';
 
 interface MusicComponentProps {
@@ -50,21 +50,21 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
 
     const updateMusicAfterClickLike = useDispatch(updateMusic);
     const updateCurerntMusicInfo = useDispatch(updateCurrentMusic);
-    const updateAllMusics = useDispatch(updateMusics);
-    const updateMusicsPersnalState = useDispatch(updateMusicInPersoalListState);
-    const updatePersonalMusics = useDispatch(updatePlayListMusics);
+    // const updateAllMusics = useDispatch(updateMusics);
+    // const updateMusicsPersnalState = useDispatch(updateMusicInPersoalListState);
+    // const updatePersonalMusics = useDispatch(updatePlayListMusics);
     const updateToTheNextMusic = useDispatch(updateToNextMusic);
-    const updateTheCollections = useDispatch(updateCollections);
-    const updateTheCollectionInfoMusics = useDispatch(updateCollectionInfoMusics);
-    const updateTheComments = useDispatch(updateComments);
-    const updateTheCurrentCommentMusicId = useDispatch(updateCurrentCommentMusicId);
+    // const updateTheCollections = useDispatch(updateCollections);
+    // const updateTheCollectionInfoMusics = useDispatch(updateCollectionInfoMusics);
+    // const updateTheComments = useDispatch(updateComments);
+    // const updateTheCurrentCommentMusicId = useDispatch(updateCurrentCommentMusicId);
 
     const [currentTheMusic] = useGlobal('currentMusic');
-    const [musicCollections] = useGlobal('Collections');
+    // const [musicCollections] = useGlobal('Collections');
     const [musicIndex] = useGlobal('musicIndex');
     const [currentMusics] = useGlobal('musics');
-    const [collectionInfoModalOpen, setCollectionInfoModalOpen] = useGlobal('collectionInfoModalOpen');
-    const [commentModalOpen, setCommentModalOpen] = useGlobal('commentModalOpen');
+    // const [collectionInfoModalOpen, setCollectionInfoModalOpen] = useGlobal('collectionInfoModalOpen');
+    // const [commentModalOpen, setCommentModalOpen] = useGlobal('commentModalOpen');
 
     const [currentTime, setCurrentTime] = useState(0);
     const [duration, setDuration] = useState(0);
@@ -131,17 +131,17 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
         console.log('click list');
     };
 
-    const musicItemLikeClick = (id: number): void => {
-        postLikeMusic(id, updateMusicAfterClickLike, console.log);
-    };
+    // const musicItemLikeClick = (id: number): void => {
+    //     postLikeMusic(id, updateMusicAfterClickLike, console.log);
+    // };
 
     const currentMusicInfoLikeClick = (): void => {
         postLikeMusic(currentTheMusic.id, updateMusicAfterClickLike, console.log);
     };
 
-    const musicItemDislikeClick = (id: number): void => {
-        postDislikeMusic(id, updateMusicAfterClickLike);
-    };
+    // const musicItemDislikeClick = (id: number): void => {
+    //     postDislikeMusic(id, updateMusicAfterClickLike);
+    // };
 
     const currentMusicInfoDislikeClick = (): void => {
         postDislikeMusic(currentTheMusic.id, updateMusicAfterClickLike);
@@ -151,42 +151,42 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
         history.push(`/main/music_comment/` + currentTheMusic.id);
     };
 
-    const addMusicToPersonalListClick = (id: number): void => {
-        console.log('ADD:' + id);
-        addMusicToPersonalList(
-            id,
-            personalMusics => {
-                updatePersonalMusics(personalMusics);
-                updateMusicsPersnalState();
-            },
-            console.log,
-        );
-    };
+    // const addMusicToPersonalListClick = (id: number): void => {
+    //     console.log('ADD:' + id);
+    //     addMusicToPersonalList(
+    //         id,
+    //         personalMusics => {
+    //             updatePersonalMusics(personalMusics);
+    //             updateMusicsPersnalState();
+    //         },
+    //         console.log,
+    //     );
+    // };
 
-    const removeMusicFromPersonalListClick = (id: number): void => {
-        console.log('REMOVE:' + id);
-        removeMusicFromPersonalList(
-            id,
-            personalMusics => {
-                updatePersonalMusics(personalMusics);
-                updateMusicsPersnalState();
-            },
-            console.log,
-        );
-    };
+    // const removeMusicFromPersonalListClick = (id: number): void => {
+    //     console.log('REMOVE:' + id);
+    //     removeMusicFromPersonalList(
+    //         id,
+    //         personalMusics => {
+    //             updatePersonalMusics(personalMusics);
+    //             updateMusicsPersnalState();
+    //         },
+    //         console.log,
+    //     );
+    // };
 
-    const commentClick = (id: number): void => {
-        updateTheCurrentCommentMusicId(id);
-        getMusicComments(
-            id,
-            comments => {
-                console.log(comments);
-                updateTheComments(comments);
-                setCommentModalOpen(true);
-            },
-            console.log,
-        );
-    };
+    // const commentClick = (id: number): void => {
+    //     updateTheCurrentCommentMusicId(id);
+    //     getMusicComments(
+    //         id,
+    //         comments => {
+    //             console.log(comments);
+    //             updateTheComments(comments);
+    //             setCommentModalOpen(true);
+    //         },
+    //         console.log,
+    //     );
+    // };
 
     const changeMusicVolumn = (event: object, value: unknown): void => {
         setVolumn((value as number) / 100.0);
@@ -224,16 +224,16 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
         updateCurerntMusicInfo(m);
     };
 
-    const clickCollectionCover = (name: string): void => {
-        fetchMusicsByCollectionName(
-            name,
-            musicList => {
-                updateAllMusics(musicList as Music[]);
-                updateTheCollections(setCollectionPlayFlag(musicCollections, name));
-            },
-            e => console.log(e),
-        );
-    };
+    // const clickCollectionCover = (name: string): void => {
+    //     fetchMusicsByCollectionName(
+    //         name,
+    //         musicList => {
+    //             updateAllMusics(musicList as Music[]);
+    //             updateTheCollections(setCollectionPlayFlag(musicCollections, name));
+    //         },
+    //         e => console.log(e),
+    //     );
+    // };
 
     const skipToNext = (): void => {
         console.log('NEXT');
@@ -241,18 +241,18 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
         updateToTheNextMusic();
     };
 
-    const bodyClick = (name: string): void => {
-        console.log('BODY CLICK');
-        fetchMusicsByCollectionName(
-            name,
-            musicList => {
-                updateTheCollectionInfoMusics(musicList as Music[]);
-                console.log(musicList);
-                setCollectionInfoModalOpen(true);
-            },
-            e => console.log(e),
-        );
-    };
+    // const bodyClick = (name: string): void => {
+    //     console.log('BODY CLICK');
+    //     fetchMusicsByCollectionName(
+    //         name,
+    //         musicList => {
+    //             updateTheCollectionInfoMusics(musicList as Music[]);
+    //             console.log(musicList);
+    //             setCollectionInfoModalOpen(true);
+    //         },
+    //         e => console.log(e),
+    //     );
+    // };
 
     const drawerCloseClick = (): void => {
         setMusicListDrawerOpen(false);

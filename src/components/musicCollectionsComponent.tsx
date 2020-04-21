@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export const MusicCollectionsComponent: React.FC<MusicCollectionsProps> = (props: MusicCollectionsProps) => {
     const { collections, coverClick, bodyClick } = props;
-    const classes = useStyles({});
+    // const classes = useStyles({});
 
     return (
         <div>
