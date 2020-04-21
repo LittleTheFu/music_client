@@ -55,6 +55,7 @@ export const MusicListDrawer: React.FC<MusicListDrawerProps> = (props: MusicList
                     closeClick();
                 }}
             >
+                Play List
                 <List component="nav">
                     <React.Fragment>{musicElements}</React.Fragment>{' '}
                 </List>
