@@ -16,6 +16,10 @@ export const isTokenExsit = (): boolean => {
     return gToken.length > 0;
 };
 
+export const isLogin = (): boolean => {
+    return gToken.length > 0;
+};
+
 setGlobal({
     avatar: 'anonymous.png',
     userId: 'guest',

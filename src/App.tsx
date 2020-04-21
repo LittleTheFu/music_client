@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { Component, ReactNode } from 'react';
 import './App.css';
 import { MusicApp } from './components/musicApp';
 import Button from '@material-ui/core/Button';
 import { useGlobal } from 'reactn';
 import { LoginComponent } from './authComponents/login';
 import { RegisterComponent } from './authComponents/register';
-
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
+import { isLogin } from './globals';
 
 const App: React.FC = () => {
     const [avatar] = useGlobal('avatar');
@@ -18,15 +18,39 @@ const App: React.FC = () => {
                     <Route path="/register">
                         <Register />
                     </Route>
-                    <Route path="/main">
+                    <PrivateRoute path="/main">
                         <Main />
-                    </Route>
+                    </PrivateRoute>
                     <Route path="/">
                         <Home />
                     </Route>
                 </Switch>
             </div>
         </Router>
+    );
+};
+
+interface PrivateRouteProps {
+    children: ReactNode;
+    path: string;
+}
+
+const PrivateRoute = ({ children, ...rest }: PrivateRouteProps): JSX.Element => {
+    return (
+        <Route
+            {...rest}
+            render={({ location }) =>
+                isLogin() ? (
+                    children
+                ) : (
+                    <Redirect
+                        to={{
+                            pathname: '/login',
+                        }}
+                    />
+                )
+            }
+        />
     );
 };
 
