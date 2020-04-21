@@ -3,11 +3,12 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import { postLogin, fetchPlayListMusicList, getMusicCollections, getUserAvatar, getMe } from '../service';
-import { setToken, updatePlayListMusics, updateMusics, updateCollections, updateAvatar } from '../globals';
+import { setToken, updatePlayListMusics, updateMusics, updateCollections, updateAvatar, setMeId } from '../globals';
 import { useGlobal, useDispatch } from 'reactn';
 import { Music, MusicCollection } from '../dataInterfaces/music';
 import { useHistory, Link } from 'react-router-dom';
 import Container from '@material-ui/core/Container';
+import { setLoginFlag, setMeAvatar } from '../globals';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -39,7 +40,6 @@ export const LoginComponent: React.FC = () => {
     const [loginModalOpen, setLoginModalOpen] = useGlobal('loginModalOpen');
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [userId, setUserId] = useGlobal('userId');
-    const [meId, setMeId] = useGlobal('meId');
     const [musicCollections, setMusicCollections] = useGlobal('Collections');
     const updateUserAddedMusics = useDispatch(updatePlayListMusics);
     const updateTheMusics = useDispatch(updateMusics);
@@ -57,7 +57,7 @@ export const LoginComponent: React.FC = () => {
         console.log('BEGIN LOAD AVATAR AND ID');
         getMe(
             info => {
-                updateTheAvatar(info.avatarUrl);
+                setMeAvatar(info.avatarUrl);
                 setMeId(info.id);
                 setUserId(info.name);
             },
@@ -103,7 +103,7 @@ export const LoginComponent: React.FC = () => {
 
             getMe(console.log, console.log);
 
-            setIsLogin(true);
+            setLoginFlag(true);
             setLoginModalOpen(false);
 
             loadAvatarAndId();

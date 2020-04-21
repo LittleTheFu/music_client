@@ -12,7 +12,7 @@ import MailIcon from '@material-ui/icons/Mail';
 import { useHistory, useRouteMatch } from 'react-router-dom';
 import MusicNoteIcon from '@material-ui/icons/MusicNote';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-
+import { getMeId, setLoginFlag } from '../globals';
 // const useStyles = makeStyles({
 //     list: {
 //         width: 250,
@@ -31,7 +31,6 @@ export const TemporaryDrawer: React.FC = () => {
     // const classes = useStyles();
     const [drawerOpen, setDrawerOpen] = useGlobal('drawerOpen');
     const [currentClickUserId, setCurrentClickUserId] = useGlobal('currentClickUserId');
-    const [meId] = useGlobal('meId');
 
     const history = useHistory();
     const { path, url } = useRouteMatch();
@@ -94,7 +93,7 @@ export const TemporaryDrawer: React.FC = () => {
                             // setCurrentClickUserId(meId).then(() => {
                             //     history.push(`/main/userdetail`);
                             // });
-                            history.push(`/main/userdetail/` + meId);
+                            history.push(`/main/userdetail/` + getMeId());
                         }}
                     >
                         <ListItemIcon>
@@ -106,7 +105,7 @@ export const TemporaryDrawer: React.FC = () => {
                         button
                         key={4}
                         onClick={(): void => {
-                            setIsLogin(false);
+                            setLoginFlag(false);
                             setUserId('guest');
 
                             history.push('/login');

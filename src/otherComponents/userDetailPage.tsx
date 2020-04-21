@@ -13,6 +13,7 @@ import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import PeopleIcon from '@material-ui/icons/People';
 import { useHistory, useRouteMatch, useParams } from 'react-router-dom';
 import { WriteMailModal } from '../mailComponents/writeMailModal';
+import { getMeId } from '../globals';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -146,7 +147,7 @@ export const UserDetailPage: React.FC = () => {
                                         follow
                                     </IconButton>
                                 )}
-                                {intId === meId ? (
+                                {intId === getMeId() ? (
                                     <IconButton onClick={editClick}>
                                         <PeopleIcon />
                                         edit

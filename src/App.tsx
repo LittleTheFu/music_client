@@ -6,7 +6,7 @@ import { useGlobal } from 'reactn';
 import { LoginComponent } from './authComponents/login';
 import { RegisterComponent } from './authComponents/register';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
-import { isLogin } from './globals';
+import { getLoginFlag } from './globals';
 
 const App: React.FC = () => {
     const [avatar] = useGlobal('avatar');
@@ -40,7 +40,7 @@ const PrivateRoute = ({ children, ...rest }: PrivateRouteProps): JSX.Element => 
         <Route
             {...rest}
             render={({ location }) =>
-                isLogin() ? (
+                getLoginFlag() ? (
                     children
                 ) : (
                     <Redirect

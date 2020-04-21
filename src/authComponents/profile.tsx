@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useGlobal, useDispatch } from 'reactn';
 import Button from '@material-ui/core/Button';
 import { uploadAvatar } from '../service';
-import { updateAvatar } from '../globals';
+import { updateAvatar, setMeAvatar } from '../globals';
 import { RetUpdateAvatarDto } from '../dataInterfaces/music';
 
 export const ProfilePage: React.FC = () => {
@@ -51,7 +51,7 @@ export const ProfilePage: React.FC = () => {
             formData,
             o => {
                 const obj = o as RetUpdateAvatarDto;
-                updateTheAvatar(obj.remoteUrl);
+                setMeAvatar(obj.remoteUrl);
                 console.log(o);
             },
             e => {

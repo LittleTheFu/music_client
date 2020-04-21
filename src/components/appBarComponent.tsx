@@ -14,6 +14,7 @@ import { deepOrange, deepPurple } from '@material-ui/core/colors';
 import MusicNoteIcon from '@material-ui/icons/MusicNote';
 import { getDetail } from 'service';
 import AlbumIcon from '@material-ui/icons/Album';
+import { getMeId, getLoginFlag, setLoginFlag, getMeAvatar } from '../globals';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -43,7 +44,6 @@ export const AppBarComponent: React.FC = () => {
     const [isLogin, setIsLogin] = useGlobal('isLogin');
     const [drawerOpen, setDrawerOpen] = useGlobal('drawerOpen');
     const [userId, setUserId] = useGlobal('userId');
-    const [meId] = useGlobal('meId');
     const [currentClickUserId, setCurrentClickUserId] = useGlobal('currentClickUserId');
     const [avatar] = useGlobal('avatar');
 
@@ -95,13 +95,13 @@ export const AppBarComponent: React.FC = () => {
                     >
                         <AlbumIcon />
                     </IconButton>
-                    {isLogin ? (
+                    {getLoginFlag() ? (
                         <div>
                             <IconButton
                                 edge="start"
                                 className={classes.exitButton}
                                 onClick={(): void => {
-                                    setIsLogin(false);
+                                    setLoginFlag(false);
                                     setUserId('guest');
 
                                     history.push('/login');
@@ -113,15 +113,15 @@ export const AppBarComponent: React.FC = () => {
                     ) : (
                         <div></div>
                     )}
-                    {isLogin ? (
+                    {getLoginFlag() ? (
                         <Avatar
-                            src={avatar}
+                            src={getMeAvatar()}
                             className={classes.userAvatar}
                             onClick={(): void => {
                                 // setCurrentClickUserId(meId).then(() => {
                                 //     history.push(`/main/userdetail`);
                                 // });
-                                history.push(`/main/userdetail/` + meId);
+                                history.push(`/main/userdetail/` + getMeId());
                             }}
                         ></Avatar>
                     ) : (

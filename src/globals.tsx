@@ -6,9 +6,11 @@ let gToken = '';
 
 export const setToken = (token: string): void => {
     gToken = token;
+    sessionStorage.setItem('jwtToken', token);
 };
 
 export const getToken = (): string => {
+    return sessionStorage.getItem('jwtToken') || '';
     return gToken;
 };
 
@@ -17,7 +19,40 @@ export const isTokenExsit = (): boolean => {
 };
 
 export const isLogin = (): boolean => {
-    return gToken.length > 0;
+    return getToken().length > 0;
+};
+
+export const setLoginFlag = (isLogin: boolean): void => {
+    const flag = isLogin ? 1 : 0;
+    sessionStorage.setItem('isLogin', flag.toString());
+};
+
+export const getLoginFlag = (): boolean => {
+    const flag = sessionStorage.getItem('isLogin') || '';
+    return flag === '1' ? true : false;
+};
+
+export const setMeAvatar = (avatar: string): void => {
+    sessionStorage.setItem('avatar', avatar);
+};
+
+export const getMeAvatar = (): string => {
+    return sessionStorage.getItem('avatar') || '';
+};
+
+export const setMeId = (id: number): void => {
+    sessionStorage.setItem('meId', id.toString());
+};
+
+export const getMeId = (): number => {
+    const strId = sessionStorage.getItem('meId') || '';
+    const id = parseInt(strId);
+
+    if (id === NaN) {
+        return 0;
+    }
+
+    return id;
 };
 
 setGlobal({
