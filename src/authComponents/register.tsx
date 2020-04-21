@@ -10,13 +10,14 @@ import Container from '@material-ui/core/Container';
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         main: {
-            paddingTop: 200,
+            paddingTop: 250,
         },
         paper: {
             width: 230,
-            height: 260,
+            marginLeft: 'auto',
+            marginRight: 'auto',
             backgroundColor: theme.palette.background.paper,
-            border: '2px solid #000',
+            border: '1px solid #000',
             padding: theme.spacing(2, 4, 3),
         },
         root: {

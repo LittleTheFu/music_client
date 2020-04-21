@@ -12,11 +12,14 @@ import Container from '@material-ui/core/Container';
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         main: {
-            paddingTop: 200,
+            paddingTop: 250,
+            alignItems: 'center',
         },
         paper: {
             width: 230,
-            height: 260,
+            verticalAlign: 'middle',
+            marginLeft: 'auto',
+            marginRight: 'auto',
             backgroundColor: theme.palette.background.paper,
             border: '1px solid #000',
             padding: theme.spacing(2, 4, 3),
