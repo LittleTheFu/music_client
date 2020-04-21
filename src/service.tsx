@@ -58,6 +58,7 @@ const rawObjectPost = (
     data: object,
     resolve: (data: any) => void,
     headerContent: object = {},
+    reject?: (error: any) => void,
 ): Promise<object> => {
     return fetch(url, {
         method: 'POST',
@@ -68,12 +69,30 @@ const rawObjectPost = (
         },
     })
         .then(response => {
+            if (!response.ok) {
+                // console.log(response);
+                throw new Error(response.statusText);
+            }
+
+            // console.log('response :');
+            // console.log(response);
             return response.json();
         })
         .then(data => {
+            // console.log('data : ');
+            // console.log(data);
+            // console.log(data.statusText);
             resolve(data);
         })
-        .catch(err => err);
+        .catch(err => {
+            // if (reject) {
+            //     reject(err);
+            //     return err;
+            // }
+            console.log('err');
+            console.log(err);
+            return err;
+        });
 };
 
 const registerUrl = 'http://localhost:9999/users/register';
@@ -87,8 +106,18 @@ export const postLogin = (username: string, password: string, resolve: (data: an
 };
 
 const likeMusicUrl = 'http://localhost:9999/music/like';
-export const postLikeMusic = (musicId: number, resolve: (data: any) => void): Promise<object> => {
-    return rawObjectPost(likeMusicUrl, { musicId: musicId }, resolve, { Authorization: 'Bearer ' + getToken() });
+export const postLikeMusic = (
+    musicId: number,
+    resolve: (data: any) => void,
+    reject?: (data: any) => void,
+): Promise<object> => {
+    return rawObjectPost(
+        likeMusicUrl,
+        { musicId: musicId },
+        resolve,
+        { Authorization: 'Bearer ' + getToken() },
+        reject,
+    );
 };
 
 const dislikeMusicUrl = 'http://localhost:9999/music/dislike';

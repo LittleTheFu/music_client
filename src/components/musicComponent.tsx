@@ -132,11 +132,11 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
     };
 
     const musicItemLikeClick = (id: number): void => {
-        postLikeMusic(id, updateMusicAfterClickLike);
+        postLikeMusic(id, updateMusicAfterClickLike, console.log);
     };
 
     const currentMusicInfoLikeClick = (): void => {
-        postLikeMusic(currentTheMusic.id, updateMusicAfterClickLike);
+        postLikeMusic(currentTheMusic.id, updateMusicAfterClickLike, console.log);
     };
 
     const musicItemDislikeClick = (id: number): void => {
