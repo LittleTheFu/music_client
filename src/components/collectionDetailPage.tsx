@@ -7,6 +7,7 @@ import { useGlobal, useDispatch } from 'reactn';
 import { updateMusics, updateCurrentMusic } from '../globals';
 import { useHistory } from 'react-router-dom';
 import { IconButton } from '@material-ui/core';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { MyCollectionsModal } from './myCollectionsModal';
 import Grid from '@material-ui/core/Grid';
@@ -35,6 +36,21 @@ export const CollectionDetailPage: React.FC = () => {
             console.log,
         );
     }, []);
+
+    const backClick = (): void => {
+        history.push(`/main/collections/`);
+    };
+
+    const deleteClick = (): void => {
+        deleteCollection(
+            intId,
+            (o): void => {
+                console.log(o);
+                history.push(`/main/collections/`);
+            },
+            console.log,
+        );
+    };
 
     const clickMusic = (music: Music, index: number): void => {
         console.log('click music');
@@ -76,15 +92,22 @@ export const CollectionDetailPage: React.FC = () => {
                 <Grid item xs={12}>
                     {detail.name}
                     {detail.canBeDeleted ? (
-                        <IconButton
-                            onClick={(e): void => {
-                                e.stopPropagation();
-                                deleteCollection(intId, console.log, console.log);
-                                history.push(`/main/collections/`);
-                            }}
-                        >
-                            <DeleteIcon></DeleteIcon>
-                        </IconButton>
+                        <div>
+                            <IconButton
+                                onClick={(): void => {
+                                    deleteClick();
+                                }}
+                            >
+                                <DeleteIcon></DeleteIcon>
+                            </IconButton>
+                            <IconButton
+                                onClick={(): void => {
+                                    backClick();
+                                }}
+                            >
+                                <ArrowBackIcon></ArrowBackIcon>
+                            </IconButton>
+                        </div>
                     ) : (
                         <div></div>
                     )}
