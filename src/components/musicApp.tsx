@@ -9,6 +9,7 @@ import Grid from '@material-ui/core/Grid';
 import { Switch, Route, useRouteMatch } from 'react-router-dom';
 import { ProfilePage } from '../authComponents/profile';
 import { MailPage } from '../mailComponents/mailPage';
+import { MailDetailPage } from '../mailComponents/mailDetailPage';
 import { UserDetailPage } from '../otherComponents/userDetailPage';
 import { FollowerListPage } from '../otherComponents/followerListPage';
 import { MusicCollectionPage } from '../components/collectionPage';
@@ -44,6 +45,9 @@ export const MusicApp: React.FC = () => {
                         </Route>
                         <Route path={`${path}/mail`}>
                             <MailPage></MailPage>
+                        </Route>
+                        <Route path={`${path}/mail_detail/:id`}>
+                            <MailDetailPage></MailDetailPage>
                         </Route>
                         <Route path={`${path}/userdetail/:id`}>
                             <UserDetailPage></UserDetailPage>

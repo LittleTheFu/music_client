@@ -288,6 +288,17 @@ export const getUserMails = (resolve: (data: any) => void, reject: (arg0: object
     });
 };
 
+const getMailDetailUrl = 'http://localhost:9999/mail/getMail';
+export const getMailDetail = (
+    mailId: number,
+    resolve: (data: any) => void,
+    reject: (arg0: object) => void,
+): Promise<object> => {
+    return rawObjectPost(getMailDetailUrl, { mailId: mailId }, resolve, {
+        Authorization: 'Bearer ' + getToken(),
+    });
+};
+
 const deleteMailUrl = 'http://localhost:9999/mail/deleteMail';
 export const deleteMail = (
     mailId: number,

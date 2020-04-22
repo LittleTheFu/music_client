@@ -5,9 +5,12 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import { IconButton } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
+import { useHistory } from 'react-router-dom';
 
 export const MailPage: React.FC = () => {
     const [mails, setMails] = useState<Mail[]>([]);
+
+    const history = useHistory();
 
     useEffect(() => {
         getUserMails(m => {
@@ -16,9 +19,20 @@ export const MailPage: React.FC = () => {
         }, console.log);
     }, []);
 
+    const mailClick = (id: number): void => {
+        console.log('mail click');
+        history.push(`/main/mail_detail/` + id);
+    };
+
     const mailElements = mails.map((m: Mail, index: number) => {
         return (
-            <ListItem button key={index}>
+            <ListItem
+                button
+                key={index}
+                onClick={(): void => {
+                    mailClick(m.id);
+                }}
+            >
                 {m.id}:{m.fromName}--{m.toName}--{m.content}
                 <IconButton
                     onClick={(e): void => {

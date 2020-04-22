@@ -77,6 +77,8 @@ export class Mail {
     fromName: string;
 
     toName: string;
+
+    fromId: number;
 }
 
 export class UserDetail {
@@ -102,4 +104,12 @@ export const dummyCollectionDetail: CollectionDetail = {
     name: 'detail_name',
     canBeDeleted: false,
     musics: [],
+};
+
+export const dummyMail: Mail = {
+    id: 0,
+    fromName: 'dummyFrom',
+    toName: 'dummyTo',
+    content: 'dummyContent',
+    fromId: 0,
 };
