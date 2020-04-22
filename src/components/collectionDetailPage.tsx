@@ -90,6 +90,7 @@ export const CollectionDetailPage: React.FC = () => {
                     ></MyCollectionsModal>
                 </Grid>
                 <Grid item xs={12}>
+                    <BackButton></BackButton>
                     {detail.name}
                     {detail.canBeDeleted ? (
                         <div>
@@ -100,7 +101,6 @@ export const CollectionDetailPage: React.FC = () => {
                             >
                                 <DeleteIcon></DeleteIcon>
                             </IconButton>
-                            <BackButton></BackButton>
                         </div>
                     ) : (
                         <div></div>
