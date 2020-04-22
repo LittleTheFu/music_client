@@ -4,6 +4,7 @@ import { Mail } from '../dataInterfaces/music';
 import { getMailDetail, deleteMail, sendMail } from '../service';
 import { IconButton } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import { useHistory } from 'react-router-dom';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
@@ -41,6 +42,22 @@ export const MailDetailPage: React.FC = () => {
         );
     }, []);
 
+    const deleteClick = (): void => {
+        deleteMail(
+            intId,
+            mails => {
+                console.log(mails);
+                history.push(`/main/mail/`);
+                // console.log(mails);
+            },
+            console.log,
+        );
+    };
+
+    const backClick = (): void => {
+        history.push(`/main/mail/`);
+    };
+
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
         event.preventDefault();
         sendMail(mail.fromId, content, console.log, console.log);
@@ -53,22 +70,18 @@ export const MailDetailPage: React.FC = () => {
                     <Grid container>
                         <Grid item xs={12}>
                             <IconButton
-                                onClick={(e): void => {
-                                    e.stopPropagation();
-                                    console.log('mail click');
-
-                                    deleteMail(
-                                        intId,
-                                        mails => {
-                                            console.log(mails);
-                                            history.push(`/main/mail/`);
-                                            // console.log(mails);
-                                        },
-                                        console.log,
-                                    );
+                                onClick={(): void => {
+                                    deleteClick();
                                 }}
                             >
                                 <DeleteIcon></DeleteIcon>
+                            </IconButton>
+                            <IconButton
+                                onClick={(): void => {
+                                    backClick();
+                                }}
+                            >
+                                <ArrowBackIcon></ArrowBackIcon>
                             </IconButton>
                         </Grid>
 
