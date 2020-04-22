@@ -4,12 +4,12 @@ import { Mail } from '../dataInterfaces/music';
 import { getMailDetail, deleteMail, sendMail } from '../service';
 import { IconButton } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
-import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import { useHistory } from 'react-router-dom';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
+import { BackButton } from '../otherComponents/backButton';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -55,7 +55,8 @@ export const MailDetailPage: React.FC = () => {
     };
 
     const backClick = (): void => {
-        history.push(`/main/mail/`);
+        // history.push(`/main/mail/`);
+        history.goBack();
     };
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
@@ -76,13 +77,7 @@ export const MailDetailPage: React.FC = () => {
                             >
                                 <DeleteIcon></DeleteIcon>
                             </IconButton>
-                            <IconButton
-                                onClick={(): void => {
-                                    backClick();
-                                }}
-                            >
-                                <ArrowBackIcon></ArrowBackIcon>
-                            </IconButton>
+                            <BackButton></BackButton>
                         </Grid>
 
                         <Grid item xs={12}>

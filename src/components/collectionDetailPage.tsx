@@ -11,6 +11,7 @@ import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { MyCollectionsModal } from './myCollectionsModal';
 import Grid from '@material-ui/core/Grid';
+import { BackButton } from '../otherComponents/backButton';
 
 export const CollectionDetailPage: React.FC = () => {
     const { id } = useParams();
@@ -22,7 +23,6 @@ export const CollectionDetailPage: React.FC = () => {
     const updatePlayingMusics = useDispatch(updateMusics);
     const updateTheCurrentMusic = useDispatch(updateCurrentMusic);
     const history = useHistory();
-    // const { path, url } = useRouteMatch();
 
     const intId = parseInt(id);
 
@@ -100,13 +100,7 @@ export const CollectionDetailPage: React.FC = () => {
                             >
                                 <DeleteIcon></DeleteIcon>
                             </IconButton>
-                            <IconButton
-                                onClick={(): void => {
-                                    backClick();
-                                }}
-                            >
-                                <ArrowBackIcon></ArrowBackIcon>
-                            </IconButton>
+                            <BackButton></BackButton>
                         </div>
                     ) : (
                         <div></div>

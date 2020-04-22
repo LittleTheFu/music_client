@@ -10,6 +10,7 @@ import RemoveCircleOutlineIcon from '@material-ui/icons/RemoveCircleOutline';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 // import { useGlobal } from 'reactn';
 import { useHistory, useParams, useRouteMatch } from 'react-router-dom';
+import { BackButton } from '../otherComponents/backButton';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -143,6 +144,7 @@ export const FollowerListPage: React.FC = () => {
 
     return (
         <div>
+            <BackButton></BackButton>
             {followers && followers.length > 0 ? <React.Fragment>{followerElements}</React.Fragment> : <div></div>}
         </div>
     );

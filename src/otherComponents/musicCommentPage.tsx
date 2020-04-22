@@ -12,6 +12,7 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import Avatar from '@material-ui/core/Avatar';
 import { useGlobal } from 'reactn';
+import { BackButton } from '../otherComponents/backButton';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -121,7 +122,7 @@ export const MusicCommentPage: React.FC = () => {
 
     return (
         <div>
-            {' '}
+            <BackButton></BackButton>
             <div className={classes.postForm}>
                 <form onSubmit={handleSubmit} noValidate autoComplete="off">
                     <TextField
