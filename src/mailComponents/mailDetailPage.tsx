@@ -13,10 +13,10 @@ import Grid from '@material-ui/core/Grid';
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         content: {
-            width: '96%',
+            width: '100%',
         },
         reply: {
-            width: '96%',
+            width: '100%',
         },
     }),
 );
@@ -50,7 +50,7 @@ export const MailDetailPage: React.FC = () => {
         <div>
             {mail != null ? (
                 <div>
-                    <Grid container spacing={1}>
+                    <Grid container>
                         <Grid item xs={12}>
                             <IconButton
                                 onClick={(e): void => {
