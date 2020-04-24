@@ -240,6 +240,18 @@ export const removeMusicFromPersonalList = (
     });
 };
 
+const removeMusicFromCollectionUrl = 'http://localhost:9999/music/removeMusicFromCollection';
+export const removeMusicFromCollection = (
+    musicId: number,
+    collectionId: number,
+    resolve: (data: any) => void,
+    reject: (arg0: object) => void,
+): Promise<object> => {
+    return rawObjectPost(removeMusicFromCollectionUrl, { musicId: musicId, collectionId: collectionId }, resolve, {
+        Authorization: 'Bearer ' + getToken(),
+    });
+};
+
 const getMusicCommentsUrl = 'http://localhost:9999/comment/GetMusicComments';
 export const getMusicComments = (
     musicId: number,

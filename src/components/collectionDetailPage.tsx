@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Music, CollectionDetail, dummyCollectionDetail } from '../dataInterfaces/music';
-import { deleteCollection, getCollectionDetailById } from '../service';
+import { deleteCollection, getCollectionDetailById, removeMusicFromCollection } from '../service';
 import { MusicListComponent } from './musicListComponent';
 import { useGlobal, useDispatch } from 'reactn';
 import { updateMusics, updateCurrentMusic } from '../globals';
 import { useHistory } from 'react-router-dom';
 import { IconButton } from '@material-ui/core';
-import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { MyCollectionsModal } from './myCollectionsModal';
 import Grid from '@material-ui/core/Grid';
@@ -37,10 +36,6 @@ export const CollectionDetailPage: React.FC = () => {
         );
     }, []);
 
-    const backClick = (): void => {
-        history.push(`/main/collections/`);
-    };
-
     const deleteClick = (): void => {
         deleteCollection(
             intId,
@@ -68,8 +63,21 @@ export const CollectionDetailPage: React.FC = () => {
         setWantAddMusicId(id);
         setModalOpen(true);
     };
-    const removeMusicClick = (id: number): void => {
+    const removeMusicClick = (musicId: number): void => {
         console.log('remove');
+        removeMusicFromCollection(
+            musicId,
+            intId,
+            o => {
+                setDetail({
+                    ...detail,
+                    musics: detail.musics.filter(m => {
+                        return m.id !== musicId;
+                    }),
+                });
+            },
+            console.log,
+        );
     };
     const commentClick = (id: number): void => {
         history.push(`/main/music_comment/` + id);
@@ -114,7 +122,7 @@ export const CollectionDetailPage: React.FC = () => {
                         likeClick={likeClick}
                         dislikeClick={dislikeClick}
                         addMusicClick={addMusicClick}
-                        removeMusicClick={removeMusicClick}
+                        removeMusicClick={detail.canBeDeleted ? removeMusicClick : null}
                         commentClick={commentClick}
                     ></MusicListComponent>
                 </Grid>
