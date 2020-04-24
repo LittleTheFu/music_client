@@ -1,14 +1,25 @@
 import React, { useState, useEffect } from 'react';
-import { useGlobal } from 'reactn';
 import Button from '@material-ui/core/Button';
 import { uploadAvatar } from '../service';
 import { setMeAvatar } from '../globals';
 import { RetUpdateAvatarDto } from '../dataInterfaces/music';
+import CloudUploadIcon from '@material-ui/icons/CloudUpload';
+import IconButton from '@material-ui/core/IconButton';
+import { makeStyles, createStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles(() =>
+    createStyles({
+        btnGroup: {
+            display: 'block',
+        },
+    }),
+);
 
 export const ProfilePage: React.FC = () => {
-    const [userId] = useGlobal('userId');
     const [selectedFile, setSelectedFile] = useState(null);
     const [preview, setPreview] = useState('');
+
+    const classes = useStyles({});
 
     useEffect(() => {
         if (!selectedFile) {
@@ -49,12 +60,24 @@ export const ProfilePage: React.FC = () => {
 
     return (
         <div>
-            <h1>Name : {userId}</h1>
-            <input accept="image/*" id="contained-button-file" type="file" onChange={onSelectFile} name="avatar" />
+            <h1>Choose a img</h1>
             {selectedFile && <img src={preview} />}
+            <div className={classes.btnGroup}>
+                <IconButton component="label">
+                    <input
+                        accept="image/*"
+                        id="contained-button-file"
+                        type="file"
+                        onChange={onSelectFile}
+                        name="avatar"
+                        style={{ display: 'none' }}
+                    />
+                    <CloudUploadIcon></CloudUploadIcon>
+                </IconButton>
+            </div>
 
             <Button variant="contained" color="primary" component="span" onClick={uploadFile}>
-                Upload
+                OK
             </Button>
         </div>
     );
