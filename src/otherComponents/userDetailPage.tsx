@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useGlobal } from 'reactn';
-import { getDetail, sendMail } from 'service';
-import { UserDetail } from '../dataInterfaces/music';
+import { getDetail, sendMail, fetchMusicsByCollectionId } from 'service';
+import { UserDetail, Music } from '../dataInterfaces/music';
 import { followUser, unfollowUser } from '../service';
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
@@ -15,6 +15,9 @@ import { useHistory, useRouteMatch, useParams } from 'react-router-dom';
 import { WriteMailModal } from '../mailComponents/writeMailModal';
 import { getMeId } from '../globals';
 import { BackButton } from '../otherComponents/backButton';
+import { MusicCollectionsComponent } from '../components/musicCollectionsComponent';
+import { updateMusics, updateCurrentMusic } from '../globals';
+import { useDispatch } from 'reactn';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -35,6 +38,8 @@ export const UserDetailPage: React.FC = () => {
     const [mailModalOpen, setMailModalOpen] = useState(false);
     const history = useHistory();
     // const { path, url } = useRouteMatch();
+    const updatePlayingMusics = useDispatch(updateMusics);
+    const updateTheCurrentMusic = useDispatch(updateCurrentMusic);
 
     const { id } = useParams();
     const intId = parseInt(id);
@@ -110,6 +115,28 @@ export const UserDetailPage: React.FC = () => {
         history.push(`/main/profile`);
     };
 
+    const clickCollectionCover = (name: string, id: number): void => {
+        console.log('cover click');
+
+        fetchMusicsByCollectionId(
+            id,
+            fetchedMusics => {
+                const musics = fetchedMusics as Music[];
+                if (musics && musics.length > 0) {
+                    updatePlayingMusics(musics);
+                    updateTheCurrentMusic(musics[0]);
+                }
+            },
+            console.log,
+        );
+    };
+
+    const bodyClick = (name: string, id: number): void => {
+        history.push(`/main/collection_detail/` + id);
+
+        console.log('body click');
+    };
+
     return (
         <div>
             <WriteMailModal
@@ -119,8 +146,8 @@ export const UserDetailPage: React.FC = () => {
             ></WriteMailModal>
             <BackButton></BackButton>
             {detail ? (
-                <Card className={classes.card}>
-                    <Grid container>
+                <Grid container>
+                    <Card className={classes.card}>
                         <Grid item xs={2}>
                             <img src={detail.avatarUrl} alt="avatar" className={classes.avatar} />
                         </Grid>
@@ -159,8 +186,15 @@ export const UserDetailPage: React.FC = () => {
                                 )}
                             </Grid>
                         </Grid>
+                    </Card>
+                    <Grid item xs={12}>
+                        <MusicCollectionsComponent
+                            coverClick={clickCollectionCover}
+                            collections={detail.collections}
+                            bodyClick={bodyClick}
+                        ></MusicCollectionsComponent>
                     </Grid>
-                </Card>
+                </Grid>
             ) : (
                 <div></div>
             )}

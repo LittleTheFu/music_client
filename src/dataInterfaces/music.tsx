@@ -85,6 +85,7 @@ export class UserDetail {
     name: string;
     avatarUrl: string;
     isFollowed: boolean;
+    collections: MusicCollection[];
 }
 
 export class Follower {
