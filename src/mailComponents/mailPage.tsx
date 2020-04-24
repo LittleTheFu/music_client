@@ -25,6 +25,7 @@ export const MailPage: React.FC = () => {
     const mailElements = mails.map((m: Mail, index: number) => {
         return (
             <ListItem
+                divider
                 button
                 key={index}
                 onClick={(): void => {
