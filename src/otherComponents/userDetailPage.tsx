@@ -24,9 +24,21 @@ const useStyles = makeStyles((theme: Theme) =>
         avatar: {
             height: 80,
             width: 80,
+
+            display: 'block',
+            marginLeft: 'auto',
+            marginRight: 'auto',
+        },
+        name: {
+            textAlign: 'center',
         },
         card: {
-            width: 600,
+            width: '100%',
+        },
+        item: {
+            display: 'block',
+            marginLeft: 'auto',
+            marginRight: 'auto',
         },
     }),
 );
@@ -125,46 +137,57 @@ export const UserDetailPage: React.FC = () => {
             <BackButton></BackButton>
             {detail ? (
                 <Grid container>
-                    <Card className={classes.card}>
-                        <Grid item xs={2}>
-                            <img src={detail.avatarUrl} alt="avatar" className={classes.avatar} />
-                        </Grid>
-                        <Grid container item xs={10}>
-                            <Grid item xs={12}>
-                                {detail.name}
+                    <Grid container item xs={12}>
+                        <Card className={classes.card}>
+                            <Grid container item xs={12}>
+                                <Grid container item xs={3}>
+                                    <Grid item xs={12}>
+                                        <img src={detail.avatarUrl} alt="avatar" className={classes.avatar} />
+                                    </Grid>
+                                    <Grid item xs={12}>
+                                        <div className={classes.name}>{detail.name}</div>
+                                    </Grid>
+                                </Grid>
+                                <Grid container item xs={9}>
+                                    <Grid item sm={3} xs={6}>
+                                        <IconButton onClick={mailClick} className={classes.item}>
+                                            <MailOutlinedIcon />
+                                            mail
+                                        </IconButton>
+                                    </Grid>
+                                    <Grid item sm={3} xs={6} className={classes.item}>
+                                        <IconButton onClick={followerClick}>
+                                            <PeopleIcon />
+                                            follower
+                                        </IconButton>
+                                    </Grid>
+                                    <Grid item sm={3} xs={6}>
+                                        {detail.isFollowed ? (
+                                            <IconButton onClick={unfollowClick} className={classes.item}>
+                                                <RemoveCircleOutlineIcon />
+                                                unfollow
+                                            </IconButton>
+                                        ) : (
+                                            <IconButton onClick={followClick} className={classes.item}>
+                                                <AddCircleOutlineIcon />
+                                                follow
+                                            </IconButton>
+                                        )}
+                                    </Grid>
+                                    <Grid item sm={3} xs={6} className={classes.item}>
+                                        {intId === getMeId() ? (
+                                            <IconButton onClick={editClick}>
+                                                <PeopleIcon />
+                                                edit
+                                            </IconButton>
+                                        ) : (
+                                            <div></div>
+                                        )}
+                                    </Grid>
+                                </Grid>
                             </Grid>
-                            <Grid item xs={12}>
-                                <IconButton onClick={mailClick}>
-                                    <MailOutlinedIcon />
-                                    mail
-                                </IconButton>
-
-                                <IconButton onClick={followerClick}>
-                                    <PeopleIcon />
-                                    follower
-                                </IconButton>
-                                {detail.isFollowed ? (
-                                    <IconButton onClick={unfollowClick}>
-                                        <RemoveCircleOutlineIcon />
-                                        unfollow
-                                    </IconButton>
-                                ) : (
-                                    <IconButton onClick={followClick}>
-                                        <AddCircleOutlineIcon />
-                                        follow
-                                    </IconButton>
-                                )}
-                                {intId === getMeId() ? (
-                                    <IconButton onClick={editClick}>
-                                        <PeopleIcon />
-                                        edit
-                                    </IconButton>
-                                ) : (
-                                    <div></div>
-                                )}
-                            </Grid>
-                        </Grid>
-                    </Card>
+                        </Card>
+                    </Grid>
                     <Grid item xs={12}>
                         <MusicCollectionsComponent
                             coverClick={clickCollectionCover}
