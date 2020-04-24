@@ -14,6 +14,9 @@ const useStyles = makeStyles({
     likeIcon: {
         color: 'red',
     },
+    header: {
+        textAlign: 'center',
+    },
 });
 
 interface MusicListDrawerProps {
@@ -52,7 +55,7 @@ export const MusicListDrawer: React.FC<MusicListDrawerProps> = (props: MusicList
                     closeClick();
                 }}
             >
-                Play List
+                <h3 className={classes.header}>Play List</h3>
                 <List component="nav">
                     <React.Fragment>{musicElements}</React.Fragment>{' '}
                 </List>
