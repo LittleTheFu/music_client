@@ -37,15 +37,15 @@ const useStyles = makeStyles({
     cover: {
         width: 100,
     },
-    volumnRoot: { height: 54, position: 'relative', top: 10 },
-    volumnSlier: {},
+    volumeRoot: { height: 54, position: 'relative', top: 10 },
+    volumeSlier: {},
 });
 
 interface PlayBarProps {
     musicPercent: number;
     isPlaying: boolean;
     cover: string;
-    volumn: number;
+    volume: number;
     changeMusicPercent: (event: object, value: unknown) => void;
     pausePlay: () => void;
     skipToNext: () => void;
@@ -54,8 +54,8 @@ interface PlayBarProps {
     shrink: () => void;
     showFullPart: boolean;
     clickList: () => void;
-    volumnUpClick?: () => void;
-    volumnDownClick?: () => void;
+    volumeUpClick?: () => void;
+    volumeDownClick?: () => void;
 }
 
 export const PlayBarComponent: React.FC<PlayBarProps> = (props: PlayBarProps) => {
@@ -64,7 +64,7 @@ export const PlayBarComponent: React.FC<PlayBarProps> = (props: PlayBarProps) =>
         musicPercent,
         isPlaying,
         cover,
-        volumn,
+        volume,
         changeMusicPercent,
         pausePlay,
         skipToNext,
@@ -73,8 +73,8 @@ export const PlayBarComponent: React.FC<PlayBarProps> = (props: PlayBarProps) =>
         shrink,
         showFullPart,
         clickList,
-        volumnUpClick,
-        volumnDownClick,
+        volumeUpClick,
+        volumeDownClick,
     } = props;
     return (
         <Card className={classes.card} raised={true}>
@@ -103,12 +103,12 @@ export const PlayBarComponent: React.FC<PlayBarProps> = (props: PlayBarProps) =>
                         </IconButton>
                     </Grid>
                     <Grid item xs={2} md={1}>
-                        <IconButton aria-label="volumnup" onClick={volumnUpClick}>
+                        <IconButton aria-label="volumeup" onClick={volumeUpClick}>
                             <AddIcon className={classes.musicFunctionIcon}></AddIcon>
                         </IconButton>
                     </Grid>
                     <Grid item xs={2} md={1}>
-                        <IconButton aria-label="volumndown" onClick={volumnDownClick}>
+                        <IconButton aria-label="volumedown" onClick={volumeDownClick}>
                             <RemoveIcon className={classes.musicFunctionIcon}></RemoveIcon>
                         </IconButton>
                     </Grid>
@@ -133,12 +133,12 @@ export const PlayBarComponent: React.FC<PlayBarProps> = (props: PlayBarProps) =>
                         <CardMedia image={cover} className={classes.cover}></CardMedia>
                     </Hidden> */}
 
-                {/* <div className={classes.volumnRoot}>
+                {/* <div className={classes.volumeRoot}>
                     <Slider
                         orientation="vertical"
-                        className={classes.volumnSlier}
+                        className={classes.volumeSlier}
                         onChange={changeMusicVolumn}
-                        value={volumn}
+                        value={volume}
                     ></Slider>
                 </div> */}
             </Grid>

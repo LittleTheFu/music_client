@@ -45,8 +45,8 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
 
     const classes = useStyles({});
 
-    const [volumn, setVolumn] = useState(0.5);
-    audioElement.volume = volumn;
+    const [volume, setVolumn] = useState(0.5);
+    audioElement.volume = volume;
 
     const [isPlaying, setIsPlaying] = useState(false);
 
@@ -63,8 +63,8 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
     }, [currentTime, duration]);
 
     useEffect(() => {
-        audioElement.volume = volumn;
-    }, [volumn]);
+        audioElement.volume = volume;
+    }, [volume]);
 
     useEffect(() => {
         return (): void => {
@@ -131,12 +131,12 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
         }
     };
 
-    const volumnUp = (): void => {
-        setVolumn(Math.min(1, volumn + 0.05));
+    const volumeUp = (): void => {
+        setVolumn(Math.min(1, volume + 0.05));
     };
 
-    const volumnDown = (): void => {
-        setVolumn(Math.max(0.0, volumn - 0.05));
+    const volumeDown = (): void => {
+        setVolumn(Math.max(0.0, volume - 0.05));
     };
 
     const playMusic = (m: Music): void => {
@@ -173,7 +173,7 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
                             musicPercent={musicPercent}
                             isPlaying={isPlaying}
                             cover={currentTheMusic.cover}
-                            volumn={volumn}
+                            volume={volume}
                             changeMusicPercent={changeMusicPercent}
                             pausePlay={pausePlay}
                             skipToNext={skipToNext}
@@ -182,8 +182,8 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
                             shrink={shrink}
                             showFullPart={showFullPart}
                             clickList={clickList}
-                            volumnUpClick={volumnUp}
-                            volumnDownClick={volumnDown}
+                            volumeUpClick={volumeUp}
+                            volumeDownClick={volumeDown}
                         ></PlayBarComponent>
                         {showFullPart ? (
                             <MusicInfoComponent
