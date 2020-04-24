@@ -14,8 +14,6 @@ interface MusicList {
     musics: Music[];
     currentMusic: Music;
     clickMusic: (music: Music, index: number) => void;
-    likeClick: (id: number) => void;
-    dislikeClick: (id: number) => void;
     addMusicClick: (id: number) => void;
     removeMusicClick?: (id: number) => void;
     commentClick: (id: number) => void;

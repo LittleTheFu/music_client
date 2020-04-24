@@ -49,8 +49,6 @@ export const CollectionDetailPage: React.FC = () => {
         updatePlayingMusics(detail.musics);
         updateTheCurrentMusic(music);
     };
-    const likeClick = (id: number): void => {};
-    const dislikeClick = (id: number): void => {};
     const addMusicClick = (id: number): void => {
         setWantAddMusicId(id);
         setModalOpen(true);
@@ -108,8 +106,6 @@ export const CollectionDetailPage: React.FC = () => {
                         musics={detail.musics}
                         currentMusic={currentTheMusic}
                         clickMusic={clickMusic}
-                        likeClick={likeClick}
-                        dislikeClick={dislikeClick}
                         addMusicClick={addMusicClick}
                         removeMusicClick={detail.canBeDeleted ? removeMusicClick : null}
                         commentClick={commentClick}

@@ -44,8 +44,6 @@ export interface LyricLine {
     lyric: string;
 }
 
-const lyric: LyricLine[] = [];
-
 enum ParseState {
     NullState = 1,
     ParseTimeState,

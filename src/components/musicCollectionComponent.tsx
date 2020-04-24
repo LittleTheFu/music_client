@@ -12,7 +12,7 @@ interface MusicCollectionProps {
     bodyClick: (name: string, id?: number) => void;
 }
 
-const useStyles = makeStyles((theme: Theme) =>
+const useStyles = makeStyles(() =>
     createStyles({
         main: {
             padding: 0,

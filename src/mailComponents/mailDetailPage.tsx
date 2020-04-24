@@ -7,11 +7,11 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import { useHistory } from 'react-router-dom';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import { makeStyles, createStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import { BackButton } from '../otherComponents/backButton';
 
-const useStyles = makeStyles((theme: Theme) =>
+const useStyles = makeStyles(() =>
     createStyles({
         content: {
             width: '100%',
@@ -50,10 +50,6 @@ export const MailDetailPage: React.FC = () => {
             },
             console.log,
         );
-    };
-
-    const backClick = (): void => {
-        history.goBack();
     };
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {

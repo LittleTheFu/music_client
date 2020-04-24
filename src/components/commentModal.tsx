@@ -16,8 +16,7 @@ import { deepOrange } from '@material-ui/core/colors';
 import Divider from '@material-ui/core/Divider';
 import Card from '@material-ui/core/Card';
 import Grid from '@material-ui/core/Grid';
-// import Typography from '@material-ui/core/Typography';
-import { useHistory, useRouteMatch } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { updateCommentModalState } from '../globals';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -53,18 +52,15 @@ export const CommentModal: React.FC = () => {
     const [comments] = useGlobal('comments');
     const updateTheCommentModalState = useDispatch(updateCommentModalState);
     const [currentCommentMusicId] = useGlobal('currentCommentMusicId');
-    // const [userCardModalOpen, setUserCardModalOpen] = useGlobal('userCardModalOpen');
     const [currentClickUserId, setCurrentClickUserId] = useGlobal('currentClickUserId');
     const updateTheComments = useDispatch(updateComments);
     const [content, setContent] = useState('');
     const history = useHistory();
-    // const { path, url } = useRouteMatch();
 
     const classes = useStyles({});
 
     const detailClick = (userId: number): void => {
         updateTheCommentModalState(false);
-        // setUserCardModalOpen(false);
         setCurrentClickUserId(userId).then(() => {
             history.push(`/main/userdetail/` + userId);
         });
@@ -81,8 +77,6 @@ export const CommentModal: React.FC = () => {
                                     className={classes.userAvatar}
                                     src={comment.avatar}
                                     onClick={(): void => {
-                                        // setUserCardModalOpen(true);
-                                        // setCurrentClickUserId(comment.userId);
                                         detailClick(comment.userId);
                                     }}
                                 ></Avatar>

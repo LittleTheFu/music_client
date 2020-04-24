@@ -5,7 +5,7 @@ import Dialog from '@material-ui/core/Dialog';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import { sendMail } from '../service';
-import { useHistory, Link, useRouteMatch } from 'react-router-dom';
+import { useHistory, useRouteMatch } from 'react-router-dom';
 import { updateCommentModalState } from '../globals';
 
 export const UserCardModal: React.FC = () => {

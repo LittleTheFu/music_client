@@ -5,13 +5,13 @@ import { MusicCollection, Music } from '../dataInterfaces/music';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import { IconButton } from '@material-ui/core';
 import { CreateCollectionModal } from './createCollectionModal';
-import { useHistory, useRouteMatch } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'reactn';
 import { updateMusics, updateCurrentMusic } from '../globals';
 import Grid from '@material-ui/core/Grid';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import { makeStyles, createStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles((theme: Theme) =>
+const useStyles = makeStyles(() =>
     createStyles({
         addIcon: {
             height: 150,

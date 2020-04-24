@@ -30,21 +30,10 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
 
     const updateMusicAfterClickLike = useDispatch(updateMusic);
     const updateCurerntMusicInfo = useDispatch(updateCurrentMusic);
-    // const updateAllMusics = useDispatch(updateMusics);
-    // const updateMusicsPersnalState = useDispatch(updateMusicInPersoalListState);
-    // const updatePersonalMusics = useDispatch(updatePlayListMusics);
     const updateToTheNextMusic = useDispatch(updateToNextMusic);
-    // const updateTheCollections = useDispatch(updateCollections);
-    // const updateTheCollectionInfoMusics = useDispatch(updateCollectionInfoMusics);
-    // const updateTheComments = useDispatch(updateComments);
-    // const updateTheCurrentCommentMusicId = useDispatch(updateCurrentCommentMusicId);
 
     const [currentTheMusic] = useGlobal('currentMusic');
-    // const [musicCollections] = useGlobal('Collections');
-    const [musicIndex] = useGlobal('musicIndex');
     const [currentMusics] = useGlobal('musics');
-    // const [collectionInfoModalOpen, setCollectionInfoModalOpen] = useGlobal('collectionInfoModalOpen');
-    // const [commentModalOpen, setCommentModalOpen] = useGlobal('commentModalOpen');
 
     const [currentTime, setCurrentTime] = useState(0);
     const [duration, setDuration] = useState(0);
@@ -137,10 +126,7 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
             audioElement.pause();
             setIsPlaying(false);
         } else {
-            audioElement
-                .play()
-                .then(() => {})
-                .catch(e => {});
+            audioElement.play();
             setIsPlaying(true);
         }
     };

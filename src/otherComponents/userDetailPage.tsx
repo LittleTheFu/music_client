@@ -11,7 +11,7 @@ import MailOutlinedIcon from '@material-ui/icons/MailOutlined';
 import RemoveCircleOutlineIcon from '@material-ui/icons/RemoveCircleOutline';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import PeopleIcon from '@material-ui/icons/People';
-import { useHistory, useRouteMatch, useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { WriteMailModal } from '../mailComponents/writeMailModal';
 import { getMeId } from '../globals';
 import { BackButton } from '../otherComponents/backButton';

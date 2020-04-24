@@ -2,17 +2,16 @@ import React, { useState, useEffect } from 'react';
 import { getUserFollowers, followUser, unfollowUser } from '../service';
 import { Follower } from '../dataInterfaces/music';
 import Card from '@material-ui/core/Card';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import { makeStyles, createStyles } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
 import Grid from '@material-ui/core/Grid';
 import IconButton from '@material-ui/core/IconButton';
 import RemoveCircleOutlineIcon from '@material-ui/icons/RemoveCircleOutline';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
-// import { useGlobal } from 'reactn';
-import { useHistory, useParams, useRouteMatch } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { BackButton } from '../otherComponents/backButton';
 
-const useStyles = makeStyles((theme: Theme) =>
+const useStyles = makeStyles(() =>
     createStyles({
         avatar: {
             height: 40,

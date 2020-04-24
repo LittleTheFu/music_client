@@ -5,14 +5,12 @@ import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import MailOutlinedIcon from '@material-ui/icons/MailOutlined';
-// import Button from '@material-ui/core/Button';
 import { useGlobal } from 'reactn';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { useHistory, useRouteMatch } from 'react-router-dom';
 import Avatar from '@material-ui/core/Avatar';
 import { deepOrange, deepPurple } from '@material-ui/core/colors';
 import MusicNoteIcon from '@material-ui/icons/MusicNote';
-// import { getDetail } from 'service';
 import AlbumIcon from '@material-ui/icons/Album';
 import { getMeId, getLoginFlag, setLoginFlag, getMeAvatar } from '../globals';
 
@@ -41,11 +39,8 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export const AppBarComponent: React.FC = () => {
-    // const [isLogin, setIsLogin] = useGlobal('isLogin');
     const [drawerOpen, setDrawerOpen] = useGlobal('drawerOpen');
     const [userId, setUserId] = useGlobal('userId');
-    // const [currentClickUserId, setCurrentClickUserId] = useGlobal('currentClickUserId');
-    // const [avatar] = useGlobal('avatar');
 
     const history = useHistory();
     const { path, url } = useRouteMatch();
@@ -117,9 +112,6 @@ export const AppBarComponent: React.FC = () => {
                             src={getMeAvatar()}
                             className={classes.userAvatar}
                             onClick={(): void => {
-                                // setCurrentClickUserId(meId).then(() => {
-                                //     history.push(`/main/userdetail`);
-                                // });
                                 history.push(`/main/userdetail/` + getMeId());
                             }}
                         ></Avatar>
