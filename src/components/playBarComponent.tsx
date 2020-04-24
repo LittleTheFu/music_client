@@ -49,7 +49,7 @@ interface PlayBarProps {
     changeMusicPercent: (event: object, value: unknown) => void;
     pausePlay: () => void;
     skipToNext: () => void;
-    changeMusicVolumn: (event: object, value: unknown) => void;
+    changeMusicVolume: (event: object, value: unknown) => void;
     expand: () => void;
     shrink: () => void;
     showFullPart: boolean;
@@ -68,7 +68,7 @@ export const PlayBarComponent: React.FC<PlayBarProps> = (props: PlayBarProps) =>
         changeMusicPercent,
         pausePlay,
         skipToNext,
-        changeMusicVolumn,
+        changeMusicVolume,
         expand,
         shrink,
         showFullPart,
@@ -137,7 +137,7 @@ export const PlayBarComponent: React.FC<PlayBarProps> = (props: PlayBarProps) =>
                     <Slider
                         orientation="vertical"
                         className={classes.volumeSlier}
-                        onChange={changeMusicVolumn}
+                        onChange={changeMusicVolume}
                         value={volume}
                     ></Slider>
                 </div> */}

@@ -45,7 +45,7 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
 
     const classes = useStyles({});
 
-    const [volume, setVolumn] = useState(0.5);
+    const [volume, setVolume] = useState(0.5);
     audioElement.volume = volume;
 
     const [isPlaying, setIsPlaying] = useState(false);
@@ -106,8 +106,8 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
         history.push(`/main/music_comment/` + currentTheMusic.id);
     };
 
-    const changeMusicVolumn = (event: object, value: unknown): void => {
-        setVolumn((value as number) / 100.0);
+    const changeMusicVolume = (event: object, value: unknown): void => {
+        setVolume((value as number) / 100.0);
     };
 
     audioElement.onloadedmetadata = (): void => {
@@ -132,11 +132,11 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
     };
 
     const volumeUp = (): void => {
-        setVolumn(Math.min(1, volume + 0.05));
+        setVolume(Math.min(1, volume + 0.05));
     };
 
     const volumeDown = (): void => {
-        setVolumn(Math.max(0.0, volume - 0.05));
+        setVolume(Math.max(0.0, volume - 0.05));
     };
 
     const playMusic = (m: Music): void => {
@@ -177,7 +177,7 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
                             changeMusicPercent={changeMusicPercent}
                             pausePlay={pausePlay}
                             skipToNext={skipToNext}
-                            changeMusicVolumn={changeMusicVolumn}
+                            changeMusicVolume={changeMusicVolume}
                             expand={expand}
                             shrink={shrink}
                             showFullPart={showFullPart}
