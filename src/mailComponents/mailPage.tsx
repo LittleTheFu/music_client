@@ -31,7 +31,7 @@ export const MailPage: React.FC = () => {
                     mailClick(m.id);
                 }}
             >
-                {m.id}:{m.fromName}--{m.toName}--{m.content}
+                from {m.fromName} : {m.content}
                 <IconButton
                     onClick={(e): void => {
                         e.stopPropagation();
