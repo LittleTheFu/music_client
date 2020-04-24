@@ -5,6 +5,16 @@ import { getPrivateMusicCollections } from '../service';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import { addMusicToCollection } from '../service';
+import { makeStyles, createStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles(() =>
+    createStyles({
+        cover: {
+            padding: 5,
+            height: 30,
+        },
+    }),
+);
 
 interface MyCollectionsModalProps {
     modalOpen: boolean;
@@ -14,8 +24,9 @@ interface MyCollectionsModalProps {
 
 export const MyCollectionsModal: React.FC<MyCollectionsModalProps> = (props: MyCollectionsModalProps) => {
     const [musicCollections, setMusicCollections] = useState<MusicCollection[]>([]);
-
     const { modalOpen, modalClose, musicId } = props;
+
+    const classes = useStyles({});
 
     useEffect(() => {
         getPrivateMusicCollections(collections => {
@@ -36,7 +47,8 @@ export const MyCollectionsModal: React.FC<MyCollectionsModalProps> = (props: MyC
 
     const collectionElements = musicCollections.map((c: MusicCollection, index: number) => {
         return (
-            <ListItem button key={index} onClick={(): void => clickCollection(c.id)}>
+            <ListItem divider button key={index} onClick={(): void => clickCollection(c.id)}>
+                <img className={classes.cover} src={c.cover} alt="cover" />
                 {c.name}
             </ListItem>
         );
