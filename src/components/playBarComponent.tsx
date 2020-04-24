@@ -1,13 +1,11 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import CardMedia from '@material-ui/core/CardMedia';
 import IconButton from '@material-ui/core/IconButton';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import PauseIcon from '@material-ui/icons/Pause';
 import SkipNextIcon from '@material-ui/icons/SkipNext';
 import Slider from '@material-ui/core/Slider';
-import Hidden from '@material-ui/core/Hidden';
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import ListIcon from '@material-ui/icons/List';
@@ -20,25 +18,6 @@ const useStyles = makeStyles({
         height: '100%',
         width: '100%',
     },
-    card: {
-        // display: 'flex',
-        // boarder: 'solid',
-        // height: 72,
-    },
-    bound: {
-        paddingTop: 0,
-        paddingLeft: 10,
-        width: '100%',
-        left: 100,
-    },
-    musicSlider: {
-        top: 24,
-    },
-    cover: {
-        width: 100,
-    },
-    volumeRoot: { height: 54, position: 'relative', top: 10 },
-    volumeSlier: {},
 });
 
 interface PlayBarProps {
@@ -63,12 +42,9 @@ export const PlayBarComponent: React.FC<PlayBarProps> = (props: PlayBarProps) =>
     const {
         musicPercent,
         isPlaying,
-        cover,
-        volume,
         changeMusicPercent,
         pausePlay,
         skipToNext,
-        changeMusicVolume,
         expand,
         shrink,
         showFullPart,
@@ -77,15 +53,10 @@ export const PlayBarComponent: React.FC<PlayBarProps> = (props: PlayBarProps) =>
         volumeDownClick,
     } = props;
     return (
-        <Card className={classes.card} raised={true}>
+        <Card raised={true}>
             <Grid container>
                 <Grid item xs={12}>
-                    <Slider
-                        color="secondary"
-                        className={classes.musicSlider}
-                        value={musicPercent}
-                        onChangeCommitted={changeMusicPercent}
-                    ></Slider>
+                    <Slider color="secondary" value={musicPercent} onChangeCommitted={changeMusicPercent}></Slider>
                 </Grid>
                 <Grid item container xs={12}>
                     <Grid item xs={2} md={1}>
@@ -129,18 +100,6 @@ export const PlayBarComponent: React.FC<PlayBarProps> = (props: PlayBarProps) =>
                         </IconButton>
                     </Grid>
                 </Grid>
-                {/* <Hidden xsDown>
-                        <CardMedia image={cover} className={classes.cover}></CardMedia>
-                    </Hidden> */}
-
-                {/* <div className={classes.volumeRoot}>
-                    <Slider
-                        orientation="vertical"
-                        className={classes.volumeSlier}
-                        onChange={changeMusicVolume}
-                        value={volume}
-                    ></Slider>
-                </div> */}
             </Grid>
         </Card>
     );
