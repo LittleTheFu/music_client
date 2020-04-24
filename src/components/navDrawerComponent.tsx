@@ -11,6 +11,9 @@ import { useHistory, useRouteMatch } from 'react-router-dom';
 import MusicNoteIcon from '@material-ui/icons/MusicNote';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { getMeId, setLoginFlag } from '../globals';
+import AlbumIcon from '@material-ui/icons/Album';
+import EditIcon from '@material-ui/icons/Edit';
+import PersonIcon from '@material-ui/icons/Person';
 
 export const TemporaryDrawer: React.FC = () => {
     const [drawerOpen, setDrawerOpen] = useGlobal('drawerOpen');
@@ -53,6 +56,20 @@ export const TemporaryDrawer: React.FC = () => {
                         </ListItemIcon>
                         <ListItemText primary={'mail'} />
                     </ListItem>
+
+                    <ListItem
+                        button
+                        key={8}
+                        onClick={(): void => {
+                            history.push(`${url}/collections`);
+                        }}
+                    >
+                        <ListItemIcon>
+                            <AlbumIcon />
+                        </ListItemIcon>
+                        <ListItemText primary={'collections'} />
+                    </ListItem>
+
                     <ListItem
                         button
                         key={3}
@@ -61,7 +78,7 @@ export const TemporaryDrawer: React.FC = () => {
                         }}
                     >
                         <ListItemIcon>
-                            <InboxIcon />
+                            <EditIcon />
                         </ListItemIcon>
                         <ListItemText primary={'edit'} />
                     </ListItem>
@@ -74,7 +91,7 @@ export const TemporaryDrawer: React.FC = () => {
                         }}
                     >
                         <ListItemIcon>
-                            <InboxIcon />
+                            <PersonIcon />
                         </ListItemIcon>
                         <ListItemText primary={'me'} />
                     </ListItem>
