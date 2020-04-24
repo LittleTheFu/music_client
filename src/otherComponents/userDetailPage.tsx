@@ -53,17 +53,13 @@ export const UserDetailPage: React.FC = () => {
 
     const { id } = useParams();
     const intId = parseInt(id);
-    console.log('CHANGEEEEEEE:' + id);
-    const [refreshFlag] = useState(intId);
 
     const classes = useStyles({});
 
     useEffect(() => {
-        console.log('INT ID: ' + intId);
         getDetail(
             intId,
             o => {
-                console.log(o);
                 setDetail(o);
             },
             console.log,
