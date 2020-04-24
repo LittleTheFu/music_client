@@ -37,7 +37,7 @@ export const MusicListComponent: React.FC<MusicList> = (props: MusicList) => {
 
     const musicElements = musics.map((music: Music, index: number) => {
         return (
-            <ListItem button key={index} onClick={(): void => clickMusic(music, index)}>
+            <ListItem divider button key={index} onClick={(): void => clickMusic(music, index)}>
                 {music.name}
                 {currentMusic.id === music.id ? (
                     <VolumeUpIcon className={classes.soundIcon}></VolumeUpIcon>
