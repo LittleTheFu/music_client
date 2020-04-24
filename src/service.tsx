@@ -127,7 +127,6 @@ export const postDislikeMusic = (musicId: number, resolve: (data: any) => void):
 
 const profileUrl = 'http://localhost:9999/profile';
 export const postShowProfile = (resolve: (data: any) => void): Promise<object> => {
-    console.log(getToken());
     return rawObjectPost(profileUrl, {}, resolve, { Authorization: 'Bearer ' + getToken() });
 };
 
@@ -408,7 +407,6 @@ export const uploadAvatar = (
     resolve: (data: any) => void,
     reject: (arg0: object) => void,
 ): Promise<object> => {
-    console.log(data);
     return fileObjectPost(uploadAvatarUrl, data, resolve, {
         Authorization: 'Bearer ' + getToken(),
     });

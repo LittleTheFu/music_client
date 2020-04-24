@@ -46,16 +46,13 @@ export const MailDetailPage: React.FC = () => {
         deleteMail(
             intId,
             mails => {
-                console.log(mails);
                 history.push(`/main/mail/`);
-                // console.log(mails);
             },
             console.log,
         );
     };
 
     const backClick = (): void => {
-        // history.push(`/main/mail/`);
         history.goBack();
     };
 

@@ -24,7 +24,6 @@ export const WriteMailModal: React.FC<WriteMailModalProps> = (props: WriteMailMo
         <Dialog
             onClose={(): void => {
                 modalClose();
-                console.log('close');
             }}
             aria-labelledby="simple-dialog-title"
             open={modalOpen}

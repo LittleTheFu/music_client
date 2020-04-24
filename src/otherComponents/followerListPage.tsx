@@ -40,20 +40,13 @@ export const FollowerListPage: React.FC = () => {
         getUserFollowers(
             intId,
             (o): void => {
-                console.log(o);
                 setFollowers(o);
             },
             console.log,
         );
     }, []);
 
-    // const getFollower = (): void => {
-    //     console.log('get followers');
-    //     getUserFollowers(2, console.log, console.log);
-    // };
-
     const followClick = (userId: number): void => {
-        console.log('unfollowerClick');
         followUser(
             userId,
             (): void => {
@@ -71,7 +64,6 @@ export const FollowerListPage: React.FC = () => {
     };
 
     const unfollowClick = (userId: number): void => {
-        console.log('followerClick');
         unfollowUser(
             userId,
             (): void => {
@@ -89,10 +81,6 @@ export const FollowerListPage: React.FC = () => {
     };
 
     const avatarClick = (userId: number): void => {
-        console.log('avatar click');
-        // setCurrentClickUserId(userId).then(() => {
-        //     history.push(`/main/userdetail`);
-        // });
         history.push(`/main/userdetail/` + userId);
     };
 

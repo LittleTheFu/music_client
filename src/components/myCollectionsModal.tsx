@@ -21,7 +21,6 @@ export const MyCollectionsModal: React.FC<MyCollectionsModalProps> = (props: MyC
     useEffect(() => {
         getPrivateMusicCollections(collections => {
             setMusicCollections(collections);
-            console.log(collections);
         }, console.log);
     }, []);
 
@@ -30,13 +29,10 @@ export const MyCollectionsModal: React.FC<MyCollectionsModalProps> = (props: MyC
             collectionId,
             musicId,
             (o): void => {
-                console.log(o);
                 modalClose();
             },
             console.log,
         );
-
-        console.log('click collection');
     };
 
     const collectionElements = musicCollections.map((c: MusicCollection, index: number) => {
@@ -51,7 +47,6 @@ export const MyCollectionsModal: React.FC<MyCollectionsModalProps> = (props: MyC
         <Dialog
             onClose={(): void => {
                 modalClose();
-                console.log('close');
             }}
             aria-labelledby="simple-dialog-title"
             open={modalOpen}

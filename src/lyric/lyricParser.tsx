@@ -55,8 +55,7 @@ enum ParseState {
 const strToTime = (strTime: string): number => {
     const min = strTime.substr(0, 2);
     const sec = strTime.substr(3, strTime.length - 3);
-    // console.log('m:' + min);
-    // console.log('s:' + sec);
+
     const m = parseInt(min);
     const s = parseFloat(sec);
     if (m === NaN || s === NaN) {

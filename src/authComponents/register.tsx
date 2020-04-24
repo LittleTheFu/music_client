@@ -38,15 +38,11 @@ export const RegisterComponent: React.FC = () => {
     const classes = useStyles({});
 
     const resolveData = (data: any): void => {
-        console.log('RESOLVE DATA');
-        console.log(data);
         history.push('/login');
     };
 
     function handleSubmit(event: React.FormEvent<HTMLFormElement>): void {
         event.preventDefault();
-        console.log('username: ', user, 'password: ', password);
-        console.log('submit');
         postRegister(user, password, resolveData);
     }
 

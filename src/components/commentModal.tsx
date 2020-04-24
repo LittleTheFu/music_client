@@ -103,15 +103,12 @@ export const CommentModal: React.FC = () => {
 
     function handleSubmit(event: React.FormEvent<HTMLFormElement>): void {
         event.preventDefault();
-        console.log('post');
 
         postMusicComments(
             currentCommentMusicId,
             content,
             comments => {
                 updateTheComments(comments as MusicComment[]);
-                console.log('AFTER POST');
-                console.log(comments);
             },
             console.log,
         );

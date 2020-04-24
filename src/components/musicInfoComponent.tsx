@@ -59,11 +59,9 @@ export const MusicInfoComponent: React.FC<MusicInfoProps> = (props: MusicInfoPro
     }, [currentTime]);
 
     useEffect(() => {
-        console.log('music changed');
         getLyric(
             music.id,
             strLyric => {
-                // console.log(strLyric);
                 setLines(parseLyric(strLyric));
             },
             console.log,

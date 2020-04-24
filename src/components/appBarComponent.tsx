@@ -81,7 +81,6 @@ export const AppBarComponent: React.FC = () => {
                         className={classes.exitButton}
                         onClick={(): void => {
                             history.push(`${url}/mail`);
-                            console.log('MAIL CLICK');
                         }}
                     >
                         <MailOutlinedIcon />

@@ -53,52 +53,22 @@ export const LoginComponent: React.FC = () => {
     const classes = useStyles({});
 
     const loadAvatarAndId = (): void => {
-        console.log('BEGIN LOAD AVATAR AND ID');
         getMe(
             info => {
                 setMeAvatar(info.avatarUrl);
                 setMeId(info.id);
                 setUserId(info.name);
             },
-            e => {
-                console.log('ERRRRRRR');
-                console.log(e);
-            },
+            e => {},
         );
     };
 
-    // const loadMusic = (): void => {
-    //     fetchPlayListMusicList(
-    //         musicList => {
-    //             updateUserAddedMusics(musicList as Music[]);
-    //             updateTheMusics(musicList as Music[]);
-    //             console.log(musicList);
-    //         },
-    //         e => console.log(e),
-    //     );
-    // };
-
-    // const loadCollections = (): void => {
-    //     getMusicCollections(
-    //         collections => {
-    //             console.log(collections);
-    //             updateTheCollections(collections as MusicCollection[]);
-    //         },
-    //         e => console.log(e),
-    //     );
-    //     console.log('load collections');
-    // };
-
     const resolveData = (data: any): void => {
-        console.log('POST LOGIN');
-        console.log(data);
         if ('error' in data) {
             console.log('error : ' + data.error);
         } else if ('accessToken' in data) {
             setToken(data.accessToken);
             setUserId(username);
-
-            console.log('accessToken : ' + data.accessToken);
 
             getMe(console.log, console.log);
 
@@ -115,8 +85,6 @@ export const LoginComponent: React.FC = () => {
 
     function handleSubmit(event: React.FormEvent<HTMLFormElement>): void {
         event.preventDefault();
-        console.log('username: ', username, 'password: ', password);
-        console.log('submit');
         postLogin(username, password, resolveData);
         // You should see email and password in console.
         // ..code to submit form to backend here...

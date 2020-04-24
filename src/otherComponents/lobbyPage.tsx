@@ -21,8 +21,6 @@ export const LobbyPage: React.FC = () => {
     }, []);
 
     const clickCollectionCover = (name: string, id: number): void => {
-        console.log('cover click');
-
         fetchMusicsByCollectionId(
             id,
             fetchedMusics => {
@@ -38,8 +36,6 @@ export const LobbyPage: React.FC = () => {
 
     const bodyClick = (name: string, id: number): void => {
         history.push(`/main/collection_detail/` + id);
-
-        console.log('body click');
     };
 
     return (

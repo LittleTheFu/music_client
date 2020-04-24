@@ -62,7 +62,6 @@ export const TemporaryDrawer: React.FC = () => {
                         key={2}
                         onClick={(): void => {
                             history.push(`${url}/mail`);
-                            console.log('MAIL CLICK');
                         }}
                     >
                         <ListItemIcon>
@@ -75,7 +74,6 @@ export const TemporaryDrawer: React.FC = () => {
                         key={3}
                         onClick={(): void => {
                             history.push(`${url}/profile`);
-                            console.log('AVATAR CLICK');
                         }}
                     >
                         <ListItemIcon>

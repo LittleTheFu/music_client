@@ -32,8 +32,6 @@ export const MusicCollectionPage: React.FC = () => {
     const classes = useStyles({});
 
     const clickCollectionCover = (name: string, id: number): void => {
-        console.log('cover click');
-
         fetchMusicsByCollectionId(
             id,
             fetchedMusics => {
@@ -49,8 +47,6 @@ export const MusicCollectionPage: React.FC = () => {
 
     const bodyClick = (name: string, id: number): void => {
         history.push(`/main/collection_detail/` + id);
-
-        console.log('body click');
     };
 
     const closeModal = (): void => {
@@ -82,8 +78,6 @@ export const MusicCollectionPage: React.FC = () => {
                         onClick={(e): void => {
                             e.stopPropagation();
                             setModalOpen(true);
-
-                            console.log('ADD COLLECTION');
                         }}
                     >
                         <AddCircleOutlineIcon className={classes.addIcon}></AddCircleOutlineIcon>

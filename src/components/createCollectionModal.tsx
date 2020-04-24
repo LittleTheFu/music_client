@@ -23,13 +23,11 @@ export const CreateCollectionModal: React.FC<CreateCollectionModalProps> = (prop
         createCollection(
             content,
             o => {
-                console.log(o);
                 addToCollections(o);
             },
             console.log,
         );
         modalClose();
-        console.log(content);
     };
 
     return (
@@ -37,7 +35,6 @@ export const CreateCollectionModal: React.FC<CreateCollectionModalProps> = (prop
             aria-labelledby="simple-dialog-title"
             onClose={(): void => {
                 modalClose();
-                console.log('close');
             }}
             open={modalOpen}
         >

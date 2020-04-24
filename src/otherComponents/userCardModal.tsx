@@ -24,13 +24,11 @@ export const UserCardModal: React.FC = () => {
 
     function handleSubmit(event: React.FormEvent<HTMLFormElement>): void {
         event.preventDefault();
-        console.log('post');
 
         sendMail(
             currentClickUserId,
             content,
             o => {
-                console.log(o);
                 setUserCardModalOpen(false);
             },
             console.log,

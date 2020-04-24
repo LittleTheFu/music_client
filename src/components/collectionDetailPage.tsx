@@ -30,7 +30,6 @@ export const CollectionDetailPage: React.FC = () => {
             intId,
             detail => {
                 setDetail(detail);
-                console.log(detail);
             },
             console.log,
         );
@@ -40,7 +39,6 @@ export const CollectionDetailPage: React.FC = () => {
         deleteCollection(
             intId,
             (o): void => {
-                console.log(o);
                 history.push(`/main/collections/`);
             },
             console.log,
@@ -48,23 +46,16 @@ export const CollectionDetailPage: React.FC = () => {
     };
 
     const clickMusic = (music: Music, index: number): void => {
-        console.log('click music');
         updatePlayingMusics(detail.musics);
         updateTheCurrentMusic(music);
     };
-    const likeClick = (id: number): void => {
-        console.log('like');
-    };
-    const dislikeClick = (id: number): void => {
-        console.log('dislike');
-    };
+    const likeClick = (id: number): void => {};
+    const dislikeClick = (id: number): void => {};
     const addMusicClick = (id: number): void => {
-        console.log('add music');
         setWantAddMusicId(id);
         setModalOpen(true);
     };
     const removeMusicClick = (musicId: number): void => {
-        console.log('remove');
         removeMusicFromCollection(
             musicId,
             intId,
@@ -81,8 +72,6 @@ export const CollectionDetailPage: React.FC = () => {
     };
     const commentClick = (id: number): void => {
         history.push(`/main/music_comment/` + id);
-
-        console.log('comment click');
     };
 
     return (

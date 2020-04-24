@@ -63,7 +63,6 @@ export const MusicCommentPage: React.FC = () => {
             intId,
             retComments => {
                 setComments(retComments);
-                console.log(retComments);
             },
             console.log,
         );
@@ -106,15 +105,12 @@ export const MusicCommentPage: React.FC = () => {
 
     function handleSubmit(event: React.FormEvent<HTMLFormElement>): void {
         event.preventDefault();
-        console.log('post');
 
         postMusicComments(
             intId,
             content,
             comments => {
                 setComments(comments);
-                // console.log('AFTER POST');
-                // console.log(comments);
             },
             console.log,
         );

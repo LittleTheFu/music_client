@@ -43,24 +43,15 @@ export const ProfilePage: React.FC = () => {
 
         const formData = new FormData();
         formData.append('avatar', selectedFile);
-        console.log(formData.getAll('avatar'));
-        console.log('after append');
-        console.log(formData);
 
         uploadAvatar(
             formData,
             o => {
                 const obj = o as RetUpdateAvatarDto;
                 setMeAvatar(obj.remoteUrl);
-                console.log(o);
             },
-            e => {
-                console.log(e);
-            },
+            e => {},
         );
-        // console.log(selectedFile);
-
-        console.log('UPLOAD FILE');
     };
 
     return (

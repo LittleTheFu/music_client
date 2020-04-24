@@ -47,31 +47,24 @@ export const UserDetailPage: React.FC = () => {
     const classes = useStyles({});
 
     useEffect(() => {
-        console.log(detail);
         getDetail(
             intId,
             o => {
                 setDetail(o);
-                console.log(o);
             },
             console.log,
         );
     }, []);
 
     const mailClick = (): void => {
-        console.log('mail click');
         setMailModalOpen(true);
     };
 
     const sendMailClick = (content: string): void => {
-        console.log('send mail click');
-        console.log(content);
-
         sendMail(
             intId,
             content,
             o => {
-                console.log(o);
                 setMailModalOpen(false);
             },
             console.log,
@@ -79,7 +72,6 @@ export const UserDetailPage: React.FC = () => {
     };
 
     const followerClick = (): void => {
-        console.log('followerClick');
         history.push(`/main/followers/` + id);
     };
 
@@ -87,11 +79,7 @@ export const UserDetailPage: React.FC = () => {
         followUser(
             intId,
             (o): void => {
-                // const d = detail;
-                // d.isFollowed = true;
-                // setDetail(d);
                 setDetail({ ...detail, isFollowed: true });
-                console.log(o);
             },
             console.log,
         );
@@ -101,23 +89,17 @@ export const UserDetailPage: React.FC = () => {
         unfollowUser(
             currentClickUserId,
             (o): void => {
-                // const d = detail;
-                // d.isFollowed = false;
                 setDetail({ ...detail, isFollowed: false });
-                console.log(o);
             },
             console.log,
         );
     };
 
     const editClick = (): void => {
-        console.log('edit click');
         history.push(`/main/profile`);
     };
 
     const clickCollectionCover = (name: string, id: number): void => {
-        console.log('cover click');
-
         fetchMusicsByCollectionId(
             id,
             fetchedMusics => {
@@ -133,8 +115,6 @@ export const UserDetailPage: React.FC = () => {
 
     const bodyClick = (name: string, id: number): void => {
         history.push(`/main/collection_detail/` + id);
-
-        console.log('body click');
     };
 
     return (

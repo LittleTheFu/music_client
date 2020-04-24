@@ -15,12 +15,10 @@ export const MailPage: React.FC = () => {
     useEffect(() => {
         getUserMails(m => {
             setMails(m);
-            console.log(m);
         }, console.log);
     }, []);
 
     const mailClick = (id: number): void => {
-        console.log('mail click');
         history.push(`/main/mail_detail/` + id);
     };
 
@@ -37,13 +35,11 @@ export const MailPage: React.FC = () => {
                 <IconButton
                     onClick={(e): void => {
                         e.stopPropagation();
-                        console.log('mail click');
 
                         deleteMail(
                             m.id,
                             mails => {
                                 setMails(mails);
-                                // console.log(mails);
                             },
                             console.log,
                         );
