@@ -19,7 +19,9 @@ interface MusicInfoProps {
 }
 
 const useStyles = makeStyles({
-    card: {},
+    card: {
+        height: 350,
+    },
     '@keyframes spin': {
         from: {
             transform: 'rotate(0deg)',
@@ -59,7 +61,8 @@ export const MusicInfoComponent: React.FC<MusicInfoProps> = (props: MusicInfoPro
         getLyric(
             music.id,
             strLyric => {
-                setLines(parseLyric(strLyric));
+                const lines = parseLyric(strLyric);
+                setLines(lines);
             },
             console.log,
         );
@@ -73,7 +76,6 @@ export const MusicInfoComponent: React.FC<MusicInfoProps> = (props: MusicInfoPro
                 {music.album}--
                 {currentTime}--
             </h4>
-            <h4>{lyricLine}</h4>
             ---{music.like}{' '}
             {music.likedByCurrentUser ? (
                 <IconButton className={classes.likeIcon} onClick={dislikeClick}>
@@ -89,6 +91,7 @@ export const MusicInfoComponent: React.FC<MusicInfoProps> = (props: MusicInfoPro
             </IconButton>
             ---
             <CardMedia image={music.cover} className={classes.cover}></CardMedia>
+            <h4>{lyricLine}</h4>
         </Card>
     );
 };
