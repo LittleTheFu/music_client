@@ -65,7 +65,6 @@ export const MusicInfoComponent: React.FC<MusicInfoProps> = (props: MusicInfoPro
             music.id,
             strLyric => {
                 const lines = parseLyric(strLyric);
-                console.log(lines);
                 setLines(lines);
             },
             console.log,
