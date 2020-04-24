@@ -17,6 +17,9 @@ const useStyles = makeStyles(() =>
         main: {
             padding: 0,
         },
+        playButton: {
+            color: 'red',
+        },
         card: {
             width: 160,
             height: 160,
@@ -55,7 +58,7 @@ export const MusicCollectionComponent: React.FC<MusicCollectionProps> = (props: 
                                 coverClick(collection.name, collection.id);
                             }}
                         >
-                            <PlayCircleFilledIcon />
+                            <PlayCircleFilledIcon className={classes.playButton} />
                         </IconButton>
                     }
                 />
