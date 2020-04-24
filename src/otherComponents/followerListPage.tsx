@@ -4,22 +4,36 @@ import { Follower } from '../dataInterfaces/music';
 import Card from '@material-ui/core/Card';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
-import Grid from '@material-ui/core/Grid';
 import IconButton from '@material-ui/core/IconButton';
 import RemoveCircleOutlineIcon from '@material-ui/icons/RemoveCircleOutline';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import { useHistory, useParams } from 'react-router-dom';
 import { BackButton } from '../otherComponents/backButton';
+import Grid from '@material-ui/core/Grid';
 
 const useStyles = makeStyles(() =>
     createStyles({
+        avatarContainer: {
+            display: 'tableCell',
+            verticalAlign: 'middle',
+        },
         avatar: {
             height: 40,
             width: 40,
+            // display: 'block',
+            // margin: 'auto',
         },
         card: {
-            width: 500,
-            height: 80,
+            height: '80%',
+            width: '80%',
+        },
+        name: {
+            textAlign: 'center',
+        },
+        button: {
+            display: 'block',
+            marginLeft: 'auto',
+            marginRight: 'auto',
         },
     }),
 );
@@ -83,10 +97,10 @@ export const FollowerListPage: React.FC = () => {
 
     const followerElements = followers.map((f: Follower, index: number) => {
         return (
-            <div key={index}>
+            <Grid item xs={6} sm={4} md={3} key={index}>
                 <Card className={classes.card}>
                     <Grid container>
-                        <Grid item xs={2}>
+                        <Grid item xs={2} className={classes.avatarContainer}>
                             <Avatar
                                 className={classes.avatar}
                                 src={f.avatarUrl}
@@ -96,12 +110,13 @@ export const FollowerListPage: React.FC = () => {
                             ></Avatar>
                         </Grid>
                         <Grid container item xs={10}>
-                            <Grid item xs={2}>
-                                {f.name}
+                            <Grid item xs={12}>
+                                <div className={classes.name}> {f.name}</div>
                             </Grid>
-                            <Grid item xs={10}>
+                            <Grid item xs={12}>
                                 {f.isFollowed ? (
                                     <IconButton
+                                        className={classes.button}
                                         onClick={(): void => {
                                             unfollowClick(f.id);
                                         }}
@@ -111,6 +126,7 @@ export const FollowerListPage: React.FC = () => {
                                     </IconButton>
                                 ) : (
                                     <IconButton
+                                        className={classes.button}
                                         onClick={(): void => {
                                             followClick(f.id);
                                         }}
@@ -123,14 +139,16 @@ export const FollowerListPage: React.FC = () => {
                         </Grid>
                     </Grid>
                 </Card>
-            </div>
+            </Grid>
         );
     });
 
     return (
         <div>
             <BackButton></BackButton>
-            {followers && followers.length > 0 ? <React.Fragment>{followerElements}</React.Fragment> : <div></div>}
+            <Grid container>
+                {followers && followers.length > 0 ? <React.Fragment>{followerElements}</React.Fragment> : <div></div>}
+            </Grid>
         </div>
     );
 };
