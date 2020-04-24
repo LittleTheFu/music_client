@@ -45,7 +45,7 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
 
     const classes = useStyles({});
 
-    const [volumn, setVolumn] = useState(0.0);
+    const [volumn, setVolumn] = useState(0.5);
     audioElement.volume = volumn;
 
     const [isPlaying, setIsPlaying] = useState(false);
@@ -131,6 +131,14 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
         }
     };
 
+    const volumnUp = (): void => {
+        setVolumn(Math.min(1, volumn + 0.05));
+    };
+
+    const volumnDown = (): void => {
+        setVolumn(Math.max(0.0, volumn - 0.05));
+    };
+
     const playMusic = (m: Music): void => {
         updateCurerntMusicInfo(m);
     };
@@ -165,7 +173,7 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
                             musicPercent={musicPercent}
                             isPlaying={isPlaying}
                             cover={currentTheMusic.cover}
-                            volumn={volumn * 100}
+                            volumn={volumn}
                             changeMusicPercent={changeMusicPercent}
                             pausePlay={pausePlay}
                             skipToNext={skipToNext}
@@ -174,6 +182,8 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
                             shrink={shrink}
                             showFullPart={showFullPart}
                             clickList={clickList}
+                            volumnUpClick={volumnUp}
+                            volumnDownClick={volumnDown}
                         ></PlayBarComponent>
                         {showFullPart ? (
                             <MusicInfoComponent

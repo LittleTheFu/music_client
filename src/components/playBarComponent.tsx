@@ -1,6 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
+import Grid from '@material-ui/core/Grid';
 import CardMedia from '@material-ui/core/CardMedia';
 import IconButton from '@material-ui/core/IconButton';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
@@ -11,21 +11,24 @@ import Hidden from '@material-ui/core/Hidden';
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import ListIcon from '@material-ui/icons/List';
+import Card from '@material-ui/core/Card';
+import AddIcon from '@material-ui/icons/Add';
+import RemoveIcon from '@material-ui/icons/Remove';
 
 const useStyles = makeStyles({
     musicFunctionIcon: {
-        height: 48,
-        width: 48,
+        height: '100%',
+        width: '100%',
     },
     card: {
-        display: 'flex',
-        boarder: 'solid',
-        height: 72,
+        // display: 'flex',
+        // boarder: 'solid',
+        // height: 72,
     },
     bound: {
         paddingTop: 0,
         paddingLeft: 10,
-        width: '80%',
+        width: '100%',
         left: 100,
     },
     musicSlider: {
@@ -51,6 +54,8 @@ interface PlayBarProps {
     shrink: () => void;
     showFullPart: boolean;
     clickList: () => void;
+    volumnUpClick?: () => void;
+    volumnDownClick?: () => void;
 }
 
 export const PlayBarComponent: React.FC<PlayBarProps> = (props: PlayBarProps) => {
@@ -68,51 +73,75 @@ export const PlayBarComponent: React.FC<PlayBarProps> = (props: PlayBarProps) =>
         shrink,
         showFullPart,
         clickList,
+        volumnUpClick,
+        volumnDownClick,
     } = props;
     return (
         <Card className={classes.card} raised={true}>
-            <div className={classes.bound}>
-                <Slider
-                    color="secondary"
-                    className={classes.musicSlider}
-                    value={musicPercent}
-                    onChangeCommitted={changeMusicPercent}
-                ></Slider>
-            </div>
-            <IconButton aria-label="play/pause" onClick={pausePlay}>
-                {isPlaying ? (
-                    <PauseIcon className={classes.musicFunctionIcon}></PauseIcon>
-                ) : (
-                    <PlayArrowIcon className={classes.musicFunctionIcon}></PlayArrowIcon>
-                )}
-            </IconButton>
-            <IconButton aria-label="next" onClick={skipToNext}>
-                <SkipNextIcon className={classes.musicFunctionIcon}></SkipNextIcon>
-            </IconButton>
-            {showFullPart ? (
-                <IconButton aria-label="next" onClick={shrink}>
-                    <VisibilityOffIcon className={classes.musicFunctionIcon}></VisibilityOffIcon>
-                </IconButton>
-            ) : (
-                <IconButton aria-label="next" onClick={expand}>
-                    <VisibilityIcon className={classes.musicFunctionIcon}></VisibilityIcon>
-                </IconButton>
-            )}
-            <IconButton aria-label="next" onClick={clickList}>
-                <ListIcon className={classes.musicFunctionIcon}></ListIcon>
-            </IconButton>
-            <Hidden xsDown>
-                <CardMedia image={cover} className={classes.cover}></CardMedia>
-            </Hidden>
+            <Grid container>
+                <Grid item xs={12}>
+                    <Slider
+                        color="secondary"
+                        className={classes.musicSlider}
+                        value={musicPercent}
+                        onChangeCommitted={changeMusicPercent}
+                    ></Slider>
+                </Grid>
+                <Grid item container xs={12}>
+                    <Grid item xs={2} md={1}>
+                        <IconButton aria-label="play/pause" onClick={pausePlay}>
+                            {isPlaying ? (
+                                <PauseIcon className={classes.musicFunctionIcon}></PauseIcon>
+                            ) : (
+                                <PlayArrowIcon className={classes.musicFunctionIcon}></PlayArrowIcon>
+                            )}
+                        </IconButton>
+                    </Grid>
+                    <Grid item xs={2} md={1}>
+                        <IconButton aria-label="next" onClick={skipToNext}>
+                            <SkipNextIcon className={classes.musicFunctionIcon}></SkipNextIcon>
+                        </IconButton>
+                    </Grid>
+                    <Grid item xs={2} md={1}>
+                        <IconButton aria-label="volumnup" onClick={volumnUpClick}>
+                            <AddIcon className={classes.musicFunctionIcon}></AddIcon>
+                        </IconButton>
+                    </Grid>
+                    <Grid item xs={2} md={1}>
+                        <IconButton aria-label="volumndown" onClick={volumnDownClick}>
+                            <RemoveIcon className={classes.musicFunctionIcon}></RemoveIcon>
+                        </IconButton>
+                    </Grid>
+                    <Grid item xs={2} md={1}>
+                        {showFullPart ? (
+                            <IconButton aria-label="shrink" onClick={shrink}>
+                                <VisibilityOffIcon className={classes.musicFunctionIcon}></VisibilityOffIcon>
+                            </IconButton>
+                        ) : (
+                            <IconButton aria-label="expand" onClick={expand}>
+                                <VisibilityIcon className={classes.musicFunctionIcon}></VisibilityIcon>
+                            </IconButton>
+                        )}
+                    </Grid>
+                    <Grid item xs={2} md={1}>
+                        <IconButton aria-label="musics" onClick={clickList}>
+                            <ListIcon className={classes.musicFunctionIcon}></ListIcon>
+                        </IconButton>
+                    </Grid>
+                </Grid>
+                {/* <Hidden xsDown>
+                        <CardMedia image={cover} className={classes.cover}></CardMedia>
+                    </Hidden> */}
 
-            <div className={classes.volumnRoot}>
-                <Slider
-                    orientation="vertical"
-                    className={classes.volumnSlier}
-                    onChange={changeMusicVolumn}
-                    value={volumn}
-                ></Slider>
-            </div>
+                {/* <div className={classes.volumnRoot}>
+                    <Slider
+                        orientation="vertical"
+                        className={classes.volumnSlier}
+                        onChange={changeMusicVolumn}
+                        value={volumn}
+                    ></Slider>
+                </div> */}
+            </Grid>
         </Card>
     );
 };
