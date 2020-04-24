@@ -155,8 +155,8 @@ export const UserDetailPage: React.FC = () => {
                                             mail
                                         </IconButton>
                                     </Grid>
-                                    <Grid item sm={3} xs={6} className={classes.item}>
-                                        <IconButton onClick={followerClick}>
+                                    <Grid item sm={3} xs={6}>
+                                        <IconButton onClick={followerClick} className={classes.item}>
                                             <PeopleIcon />
                                             follower
                                         </IconButton>
@@ -174,9 +174,9 @@ export const UserDetailPage: React.FC = () => {
                                             </IconButton>
                                         )}
                                     </Grid>
-                                    <Grid item sm={3} xs={6} className={classes.item}>
+                                    <Grid item sm={3} xs={6}>
                                         {intId === getMeId() ? (
-                                            <IconButton onClick={editClick}>
+                                            <IconButton onClick={editClick} className={classes.item}>
                                                 <PeopleIcon />
                                                 edit
                                             </IconButton>
