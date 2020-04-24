@@ -5,7 +5,6 @@ import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import { postLogin, getMe } from '../service';
 import { setToken, setMeId } from '../globals';
 import { useGlobal } from 'reactn';
-// import { Music, MusicCollection } from '../dataInterfaces/music';
 import { useHistory, Link } from 'react-router-dom';
 import Container from '@material-ui/core/Container';
 import { setLoginFlag, setMeAvatar } from '../globals';
@@ -35,15 +34,8 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export const LoginComponent: React.FC = () => {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [isLogin, setIsLogin] = useGlobal('isLogin');
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [userId, setUserId] = useGlobal('userId');
-    // const [musicCollections, setMusicCollections] = useGlobal('Collections');
-    // const updateUserAddedMusics = useDispatch(updatePlayListMusics);
-    // const updateTheMusics = useDispatch(updateMusics);
-    // const updateTheCollections = useDispatch(updateCollections);
-    // const updateTheAvatar = useDispatch(updateAvatar);
 
     const [username, setUser] = useState('');
     const [password, setPassword] = useState('');
@@ -75,9 +67,6 @@ export const LoginComponent: React.FC = () => {
             setLoginFlag(true);
 
             loadAvatarAndId();
-
-            // loadMusic();
-            // loadCollections();
 
             history.push('/main/lobby');
         }

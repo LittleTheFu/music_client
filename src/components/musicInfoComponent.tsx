@@ -19,9 +19,7 @@ interface MusicInfoProps {
 }
 
 const useStyles = makeStyles({
-    card: {
-        // width: 600,
-    },
+    card: {},
     '@keyframes spin': {
         from: {
             transform: 'rotate(0deg)',
@@ -50,7 +48,6 @@ export const MusicInfoComponent: React.FC<MusicInfoProps> = (props: MusicInfoPro
     const { music, likeClick, dislikeClick, currentTime, commentClick } = props;
     const [lyricLine, setLyricLine] = useState('');
     const [lines, setLines] = useState<LyricLine[]>([]);
-    // const lines = parseLyric(testLyric);
 
     useEffect(() => {
         if (lines && lines.length > 0) {

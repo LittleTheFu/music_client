@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-// import DialogTitle from '@material-ui/core/DialogTitle';
 import Dialog from '@material-ui/core/Dialog';
 import { MusicCollection } from '../dataInterfaces/music';
 import { getPrivateMusicCollections } from '../service';

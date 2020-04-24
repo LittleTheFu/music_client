@@ -197,7 +197,6 @@ export const updateCurrentCollection = (
     dispatch: Dispatch,
     name: string,
 ): Pick<State, 'currentCollection'> => ({
-    // currentCollection: collection ? collection : dummyCollection,
     currentCollection: global.Collections.find(c => c.name === name)
         ? global.Collections.find(c => c.name === name)
         : dummyCollection,
@@ -208,9 +207,5 @@ export const updateCollections = (
     dispatch: Dispatch,
     collections: MusicCollection[],
 ): Pick<State, 'Collections'> => ({
-    // Collections: collections.map(c => {
-    //     c.isPlaying = false;
-    //     return c;
-    // }),
     Collections: collections,
 });

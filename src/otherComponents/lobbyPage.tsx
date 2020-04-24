@@ -12,7 +12,6 @@ export const LobbyPage: React.FC = () => {
     const updateTheCurrentMusic = useDispatch(updateCurrentMusic);
 
     const history = useHistory();
-    // const { path, url } = useRouteMatch();
 
     useEffect(() => {
         getPublicMusicCollections(collections => {

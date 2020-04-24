@@ -7,10 +7,7 @@ import ListItem from '@material-ui/core/ListItem';
 import VolumeUpIcon from '@material-ui/icons/VolumeUp';
 
 const useStyles = makeStyles({
-    list: {
-        // width: 600,
-        // height: 300,
-    },
+    list: {},
     soundIcon: {
         color: 'red',
     },

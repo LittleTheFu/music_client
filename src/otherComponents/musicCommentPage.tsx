@@ -29,7 +29,6 @@ const useStyles = makeStyles((theme: Theme) =>
         card: {
             width: '98%',
             marginLeft: 10,
-            // marginRight: 'auto',
         },
         date: {
             color: 'grey',
@@ -46,7 +45,6 @@ const useStyles = makeStyles((theme: Theme) =>
 export const MusicCommentPage: React.FC = () => {
     const [comments, setComments] = useState<MusicComment[]>([]);
     const [content, setContent] = useState('');
-    // const [currentClickUserId, setCurrentClickUserId] = useGlobal('currentClickUserId');
 
     const history = useHistory();
 
@@ -80,8 +78,6 @@ export const MusicCommentPage: React.FC = () => {
                                     className={classes.userAvatar}
                                     src={comment.avatar}
                                     onClick={(): void => {
-                                        // setUserCardModalOpen(true);
-                                        // setCurrentClickUserId(comment.userId);
                                         detailClick(comment.userId);
                                     }}
                                 ></Avatar>

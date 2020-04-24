@@ -10,7 +10,6 @@ interface CreateCollectionModalProps {
     modalOpen: boolean;
     modalClose: () => void;
     addToCollections: (collection: MusicCollection) => void;
-    // sendClick: (content: string) => void;
 }
 
 export const CreateCollectionModal: React.FC<CreateCollectionModalProps> = (props: CreateCollectionModalProps) => {

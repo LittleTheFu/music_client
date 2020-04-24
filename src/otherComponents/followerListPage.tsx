@@ -26,9 +26,7 @@ const useStyles = makeStyles(() =>
 
 export const FollowerListPage: React.FC = () => {
     const [followers, setFollowers] = useState<Follower[]>([]);
-    // const [currentClickUserId, setCurrentClickUserId] = useGlobal('currentClickUserId');
     const history = useHistory();
-    // const { path, url } = useRouteMatch();
 
     const classes = useStyles({});
 

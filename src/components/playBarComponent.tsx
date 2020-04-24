@@ -20,7 +20,6 @@ const useStyles = makeStyles({
     card: {
         display: 'flex',
         boarder: 'solid',
-        // width: 600,
         height: 72,
     },
     bound: {
@@ -117,5 +116,3 @@ export const PlayBarComponent: React.FC<PlayBarProps> = (props: PlayBarProps) =>
         </Card>
     );
 };
-
-// export default PlayBarComponent;

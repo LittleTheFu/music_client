@@ -27,7 +27,6 @@ export const MusicCollectionPage: React.FC = () => {
     const updateTheCurrentMusic = useDispatch(updateCurrentMusic);
 
     const history = useHistory();
-    // const { path, url } = useRouteMatch();
 
     const classes = useStyles({});
 

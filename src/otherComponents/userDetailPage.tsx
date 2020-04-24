@@ -33,11 +33,9 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export const UserDetailPage: React.FC = () => {
     const [currentClickUserId] = useGlobal('currentClickUserId');
-    // const [meId] = useGlobal('meId');
     const [detail, setDetail] = useState<UserDetail>(null);
     const [mailModalOpen, setMailModalOpen] = useState(false);
     const history = useHistory();
-    // const { path, url } = useRouteMatch();
     const updatePlayingMusics = useDispatch(updateMusics);
     const updateTheCurrentMusic = useDispatch(updateCurrentMusic);
 

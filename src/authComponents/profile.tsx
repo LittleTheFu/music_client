@@ -7,7 +7,6 @@ import { RetUpdateAvatarDto } from '../dataInterfaces/music';
 
 export const ProfilePage: React.FC = () => {
     const [userId] = useGlobal('userId');
-    // const updateTheAvatar = useDispatch(updateAvatar);
     const [selectedFile, setSelectedFile] = useState(null);
     const [preview, setPreview] = useState('');
 
@@ -20,7 +19,6 @@ export const ProfilePage: React.FC = () => {
         const objectUrl = URL.createObjectURL(selectedFile);
         setPreview(objectUrl);
 
-        // free memory when ever this component is unmounted
         return (): void => URL.revokeObjectURL(objectUrl);
     }, [selectedFile]);
 
@@ -30,15 +28,10 @@ export const ProfilePage: React.FC = () => {
             return;
         }
 
-        // I've kept this example simple by using the first image instead of multiple
         setSelectedFile(e.target.files[0]);
     };
 
     const uploadFile = (): void => {
-        // if (!e.target.files || e.target.files.length === 0) {
-        //     setSelectedFile(undefined);
-        //     return;
-        // }
         if (!selectedFile) return;
 
         const formData = new FormData();

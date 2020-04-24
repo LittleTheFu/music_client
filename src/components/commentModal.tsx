@@ -4,7 +4,6 @@ import { useGlobal, useDispatch } from 'reactn';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Dialog from '@material-ui/core/Dialog';
 import Button from '@material-ui/core/Button';
-// import { blue } from '@material-ui/core/colors';
 import TextField from '@material-ui/core/TextField';
 import { MusicComment } from '../dataInterfaces/music';
 import List from '@material-ui/core/List';

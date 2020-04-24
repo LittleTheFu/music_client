@@ -11,28 +11,12 @@ import { useHistory, useRouteMatch } from 'react-router-dom';
 import MusicNoteIcon from '@material-ui/icons/MusicNote';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { getMeId, setLoginFlag } from '../globals';
-// const useStyles = makeStyles({
-//     list: {
-//         width: 250,
-//     },
-//     fullList: {
-//         width: 'auto',
-//     },
-// });
-
-// interface DrawerProps {
-//     drawerOpen: boolean;
-//     closeDrawer: () => void;
-// }
 
 export const TemporaryDrawer: React.FC = () => {
-    // const classes = useStyles();
     const [drawerOpen, setDrawerOpen] = useGlobal('drawerOpen');
-    // const [currentClickUserId, setCurrentClickUserId] = useGlobal('currentClickUserId');
 
     const history = useHistory();
     const { path, url } = useRouteMatch();
-    // const [isLogin, setIsLogin] = useGlobal('isLogin');
     const [userId, setUserId] = useGlobal('userId');
 
     return (
@@ -86,9 +70,6 @@ export const TemporaryDrawer: React.FC = () => {
                         button
                         key={5}
                         onClick={(): void => {
-                            // setCurrentClickUserId(meId).then(() => {
-                            //     history.push(`/main/userdetail`);
-                            // });
                             history.push(`/main/userdetail/` + getMeId());
                         }}
                     >

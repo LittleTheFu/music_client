@@ -70,18 +70,12 @@ const rawObjectPost = (
     })
         .then(response => {
             if (!response.ok) {
-                // console.log(response);
                 throw new Error(response.statusText);
             }
 
-            // console.log('response :');
-            // console.log(response);
             return response.json();
         })
         .then(data => {
-            // console.log('data : ');
-            // console.log(data);
-            // console.log(data.statusText);
             resolve(data);
         })
         .catch(err => {
