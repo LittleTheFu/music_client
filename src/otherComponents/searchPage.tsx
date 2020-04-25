@@ -14,6 +14,7 @@ const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         inputRoot: {
             paddingTop: 30,
+            paddingBottom: 30,
         },
         inputBox: {
             border: '1px solid grey',
