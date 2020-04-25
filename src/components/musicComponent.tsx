@@ -180,43 +180,41 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
             <UserCardModal></UserCardModal>
             <Grid item xs={12}>
                 <div>
-                    <Paper variant="outlined" className={classes.paper}>
-                        <MusicListDrawer
-                            open={musicListDrawerOpen}
-                            closeClick={drawerCloseClick}
-                            musics={currentMusics}
-                            currentMusic={currentTheMusic}
-                            clickMusic={playMusic}
-                        ></MusicListDrawer>
+                    <MusicListDrawer
+                        open={musicListDrawerOpen}
+                        closeClick={drawerCloseClick}
+                        musics={currentMusics}
+                        currentMusic={currentTheMusic}
+                        clickMusic={playMusic}
+                    ></MusicListDrawer>
 
-                        <PlayBarComponent
-                            musicPercent={musicPercent}
-                            isPlaying={isPlaying}
-                            cover={currentTheMusic.cover}
-                            volume={volume}
-                            changeMusicPercent={changeMusicPercent}
-                            pausePlay={pausePlay}
-                            skipToNext={skipToNext}
-                            changeMusicVolume={changeMusicVolume}
-                            expand={expand}
-                            shrink={shrink}
-                            showFullPart={showFullPart}
-                            clickList={clickList}
-                            volumeUpClick={volumeUp}
-                            volumeDownClick={volumeDown}
-                        ></PlayBarComponent>
-                        {showFullPart ? (
-                            <MusicInfoComponent
-                                currentTime={currentTime}
-                                music={currentTheMusic}
-                                likeClick={currentMusicInfoLikeClick}
-                                dislikeClick={currentMusicInfoDislikeClick}
-                                commentClick={currentMusicCommentClick}
-                            ></MusicInfoComponent>
-                        ) : (
-                            <div></div>
-                        )}
-                    </Paper>
+                    <PlayBarComponent
+                        musicPercent={musicPercent}
+                        isPlaying={isPlaying}
+                        cover={currentTheMusic.cover}
+                        volume={volume}
+                        changeMusicPercent={changeMusicPercent}
+                        pausePlay={pausePlay}
+                        skipToNext={skipToNext}
+                        changeMusicVolume={changeMusicVolume}
+                        expand={expand}
+                        shrink={shrink}
+                        showFullPart={showFullPart}
+                        clickList={clickList}
+                        volumeUpClick={volumeUp}
+                        volumeDownClick={volumeDown}
+                    ></PlayBarComponent>
+                    {showFullPart ? (
+                        <MusicInfoComponent
+                            currentTime={currentTime}
+                            music={currentTheMusic}
+                            likeClick={currentMusicInfoLikeClick}
+                            dislikeClick={currentMusicInfoDislikeClick}
+                            commentClick={currentMusicCommentClick}
+                        ></MusicInfoComponent>
+                    ) : (
+                        <div></div>
+                    )}
                 </div>
             </Grid>
         </div>
