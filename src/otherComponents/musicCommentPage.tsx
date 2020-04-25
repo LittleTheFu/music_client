@@ -34,10 +34,10 @@ const useStyles = makeStyles((theme: Theme) =>
             color: 'grey',
         },
         inputBox: {
-            width: '80%',
+            width: '100%',
         },
-        postForm: {
-            marginLeft: 10,
+        postButton: {
+            width: '100%',
         },
     }),
 );
@@ -110,9 +110,11 @@ export const MusicCommentPage: React.FC = () => {
     }
 
     return (
-        <div>
-            <BackButton></BackButton>
-            <div className={classes.postForm}>
+        <Grid container>
+            <Grid item xs={12}>
+                <BackButton></BackButton>
+            </Grid>
+            <Grid item xs={12}>
                 <form onSubmit={handleSubmit} noValidate autoComplete="off">
                     <TextField
                         className={classes.inputBox}
@@ -120,14 +122,14 @@ export const MusicCommentPage: React.FC = () => {
                         label="comment"
                         onChange={(e): void => setContent(e.target.value)}
                     />
-                    <Button type="submit" variant="contained" color="primary">
+                    <Button type="submit" variant="contained" color="primary" className={classes.postButton}>
                         post
                     </Button>
                 </form>
-            </div>
+            </Grid>
             <List>
                 <React.Fragment>{infoElements}</React.Fragment>
             </List>
-        </div>
+        </Grid>
     );
 };
