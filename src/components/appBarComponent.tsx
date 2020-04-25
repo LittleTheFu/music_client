@@ -10,7 +10,8 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { useHistory, useRouteMatch } from 'react-router-dom';
 import MusicNoteIcon from '@material-ui/icons/MusicNote';
 import AlbumIcon from '@material-ui/icons/Album';
-import { getLoginFlag, setLoginFlag } from '../globals';
+import { setLoginFlag } from '../globals';
+import SearchIcon from '@material-ui/icons/Search';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -80,6 +81,15 @@ export const AppBarComponent: React.FC = () => {
                         }}
                     >
                         <AlbumIcon />
+                    </IconButton>
+                    <IconButton
+                        edge="start"
+                        className={classes.appButton}
+                        onClick={(): void => {
+                            history.push(`${url}/collections`);
+                        }}
+                    >
+                        <SearchIcon />
                     </IconButton>
                     <IconButton
                         edge="start"

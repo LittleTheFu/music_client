@@ -5,7 +5,6 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import { useHistory, useRouteMatch } from 'react-router-dom';
 import MusicNoteIcon from '@material-ui/icons/MusicNote';
@@ -14,6 +13,7 @@ import { getMeId, setLoginFlag } from '../globals';
 import AlbumIcon from '@material-ui/icons/Album';
 import EditIcon from '@material-ui/icons/Edit';
 import PersonIcon from '@material-ui/icons/Person';
+import SearchIcon from '@material-ui/icons/Search';
 
 export const TemporaryDrawer: React.FC = () => {
     const [drawerOpen, setDrawerOpen] = useGlobal('drawerOpen');
@@ -68,6 +68,19 @@ export const TemporaryDrawer: React.FC = () => {
                             <AlbumIcon />
                         </ListItemIcon>
                         <ListItemText primary={'collections'} />
+                    </ListItem>
+
+                    <ListItem
+                        button
+                        key={12}
+                        onClick={(): void => {
+                            history.push(`${url}/profile`);
+                        }}
+                    >
+                        <ListItemIcon>
+                            <SearchIcon />
+                        </ListItemIcon>
+                        <ListItemText primary={'search'} />
                     </ListItem>
 
                     <ListItem
