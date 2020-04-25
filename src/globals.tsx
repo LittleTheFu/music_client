@@ -2,20 +2,12 @@ import { setGlobal } from 'reactn';
 import { Music, dummyMusic, dummyCollection, MusicCollection, MusicComment } from './dataInterfaces/music';
 import { State, Dispatch } from 'reactn/default';
 
-let gToken = '';
-
 export const setToken = (token: string): void => {
-    gToken = token;
     sessionStorage.setItem('jwtToken', token);
 };
 
 export const getToken = (): string => {
     return sessionStorage.getItem('jwtToken') || '';
-    return gToken;
-};
-
-export const isTokenExsit = (): boolean => {
-    return gToken.length > 0;
 };
 
 export const isLogin = (): boolean => {
