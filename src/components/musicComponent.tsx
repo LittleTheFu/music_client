@@ -13,6 +13,7 @@ import { postLikeMusic, postDislikeMusic } from '../service';
 import { updateMusic, updateCurrentMusic, updateToNextMusic } from '../globals';
 import Grid from '@material-ui/core/Grid';
 import { MusicListDrawer } from './musicListDrawer';
+import Snackbar from '@material-ui/core/Snackbar';
 
 interface MusicComponentProps {
     audioElement: HTMLAudioElement;
@@ -37,9 +38,12 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
 
     const [currentTime, setCurrentTime] = useState(0);
     const [duration, setDuration] = useState(0);
+
     const [musicPercent, setMusicPercent] = useState(0);
     const [showFullPart, setShowFullPart] = useState(true);
+
     const [musicListDrawerOpen, setMusicListDrawerOpen] = useState(false);
+    const [snackOpen, setSnackOpen] = useState(false);
 
     const history = useHistory();
 
@@ -133,10 +137,12 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
 
     const volumeUp = (): void => {
         setVolume(Math.min(1, volume + 0.05));
+        setSnackOpen(true);
     };
 
     const volumeDown = (): void => {
         setVolume(Math.max(0.0, volume - 0.05));
+        setSnackOpen(true);
     };
 
     const playMusic = (m: Music): void => {
@@ -151,10 +157,24 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
         setMusicListDrawerOpen(false);
     };
 
+    const setSnackClose = (): void => {
+        setSnackOpen(false);
+    };
+
     audioElement.onended = skipToNext;
 
     return (
         <div>
+            <Snackbar
+                anchorOrigin={{
+                    vertical: 'top',
+                    horizontal: 'center',
+                }}
+                open={snackOpen}
+                autoHideDuration={700}
+                onClose={setSnackClose}
+                message={'volume : ' + Math.round(volume * 100) + '%'}
+            />
             <CollectionInfoModal></CollectionInfoModal>
             <CommentModal></CommentModal>
             <UserCardModal></UserCardModal>
