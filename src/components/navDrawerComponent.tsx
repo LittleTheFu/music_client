@@ -74,7 +74,7 @@ export const TemporaryDrawer: React.FC = () => {
                         button
                         key={12}
                         onClick={(): void => {
-                            history.push(`${url}/profile`);
+                            history.push(`${url}/search`);
                         }}
                     >
                         <ListItemIcon>

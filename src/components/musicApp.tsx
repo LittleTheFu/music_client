@@ -10,6 +10,7 @@ import { ProfilePage } from '../authComponents/profile';
 import { MailPage } from '../mailComponents/mailPage';
 import { MailDetailPage } from '../mailComponents/mailDetailPage';
 import { UserDetailPage } from '../otherComponents/userDetailPage';
+import { SearchPage } from '../otherComponents/searchPage';
 import { FollowerListPage } from '../otherComponents/followerListPage';
 import { MusicCollectionPage } from '../components/collectionPage';
 import { CollectionDetailPage } from './collectionDetailPage';
@@ -48,6 +49,9 @@ export const MusicApp: React.FC = () => {
                         </Route>
                         <Route path={`${path}/userdetail/:id`}>
                             <UserDetailPage></UserDetailPage>
+                        </Route>
+                        <Route path={`${path}/search`}>
+                            <SearchPage></SearchPage>
                         </Route>
                         <Route path={`${path}/followers/:id`}>
                             <FollowerListPage></FollowerListPage>

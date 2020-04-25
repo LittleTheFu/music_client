@@ -86,7 +86,7 @@ export const AppBarComponent: React.FC = () => {
                         edge="start"
                         className={classes.appButton}
                         onClick={(): void => {
-                            history.push(`${url}/collections`);
+                            history.push(`${url}/search`);
                         }}
                     >
                         <SearchIcon />
