@@ -81,24 +81,6 @@ export const AppBarComponent: React.FC = () => {
                     >
                         <AlbumIcon />
                     </IconButton>
-                    {getLoginFlag() ? (
-                        <div>
-                            <IconButton
-                                edge="start"
-                                className={classes.exitButton}
-                                onClick={(): void => {
-                                    setLoginFlag(false);
-                                    setUserId('guest');
-
-                                    history.push('/login');
-                                }}
-                            >
-                                <ExitToAppIcon />
-                            </IconButton>
-                        </div>
-                    ) : (
-                        <div></div>
-                    )}
                 </Toolbar>
             </AppBar>
         </div>
