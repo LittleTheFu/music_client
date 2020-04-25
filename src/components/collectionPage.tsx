@@ -14,8 +14,8 @@ import { makeStyles, createStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles(() =>
     createStyles({
         addIcon: {
-            height: 150,
-            width: 150,
+            // height: 60,
+            // width: 60,
         },
     }),
 );
