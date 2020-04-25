@@ -55,7 +55,7 @@ const useStyles = makeStyles(() =>
         },
         buttonBox: {
             position: 'absolute',
-            top: 90,
+            top: 110,
             left: 90,
         },
         imageBox: {},
