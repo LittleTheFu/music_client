@@ -8,10 +8,9 @@ import MailOutlinedIcon from '@material-ui/icons/MailOutlined';
 import { useGlobal } from 'reactn';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { useHistory, useRouteMatch } from 'react-router-dom';
-import { deepOrange, deepPurple } from '@material-ui/core/colors';
 import MusicNoteIcon from '@material-ui/icons/MusicNote';
 import AlbumIcon from '@material-ui/icons/Album';
-import { getMeId, getLoginFlag, setLoginFlag } from '../globals';
+import { getLoginFlag, setLoginFlag } from '../globals';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
