@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme: Theme) =>
         menuButton: {
             marginRight: theme.spacing(2),
         },
-        exitButton: {
+        appButton: {
             color: 'white',
             marginRight: theme.spacing(2),
         },
@@ -55,7 +55,7 @@ export const AppBarComponent: React.FC = () => {
                         <MenuIcon />
                     </IconButton>
                     <IconButton
-                        className={classes.exitButton}
+                        className={classes.appButton}
                         edge="start"
                         onClick={(): void => {
                             history.push(`${url}/lobby`);
@@ -65,7 +65,7 @@ export const AppBarComponent: React.FC = () => {
                     </IconButton>
                     <IconButton
                         edge="start"
-                        className={classes.exitButton}
+                        className={classes.appButton}
                         onClick={(): void => {
                             history.push(`${url}/mail`);
                         }}
@@ -74,7 +74,7 @@ export const AppBarComponent: React.FC = () => {
                     </IconButton>
                     <IconButton
                         edge="start"
-                        className={classes.exitButton}
+                        className={classes.appButton}
                         onClick={(): void => {
                             history.push(`${url}/collections`);
                         }}
@@ -83,7 +83,7 @@ export const AppBarComponent: React.FC = () => {
                     </IconButton>
                     <IconButton
                         edge="start"
-                        className={classes.exitButton}
+                        className={classes.appButton}
                         onClick={(): void => {
                             setLoginFlag(false);
                             setUserId('guest');
