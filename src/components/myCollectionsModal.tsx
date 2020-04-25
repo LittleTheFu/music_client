@@ -13,6 +13,9 @@ const useStyles = makeStyles(() =>
             padding: 5,
             height: 30,
         },
+        paper: {
+            width: 400,
+        },
     }),
 );
 
@@ -62,9 +65,11 @@ export const MyCollectionsModal: React.FC<MyCollectionsModalProps> = (props: MyC
             aria-labelledby="simple-dialog-title"
             open={modalOpen}
         >
-            <List component="nav">
-                <React.Fragment>{collectionElements}</React.Fragment>{' '}
-            </List>
+            <div className={classes.paper}>
+                <List component="nav">
+                    <React.Fragment>{collectionElements}</React.Fragment>{' '}
+                </List>
+            </div>
         </Dialog>
     );
 };

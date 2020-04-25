@@ -16,7 +16,7 @@ interface MusicList {
     clickMusic: (music: Music, index: number) => void;
     addMusicClick: (id: number) => void;
     removeMusicClick?: (id: number) => void;
-    commentClick: (id: number) => void;
+    commentClick?: (id: number) => void;
 }
 
 const useStyles = makeStyles({
@@ -64,14 +64,18 @@ export const MusicListComponent: React.FC<MusicList> = (props: MusicList) => {
                 ) : (
                     <div></div>
                 )}
-                <IconButton
-                    onClick={(e): void => {
-                        e.stopPropagation();
-                        commentClick(music.id);
-                    }}
-                >
-                    <CommentIcon></CommentIcon>
-                </IconButton>
+                {commentClick ? (
+                    <IconButton
+                        onClick={(e): void => {
+                            e.stopPropagation();
+                            commentClick(music.id);
+                        }}
+                    >
+                        <CommentIcon></CommentIcon>
+                    </IconButton>
+                ) : (
+                    <div></div>
+                )}
             </ListItem>
         );
     });
