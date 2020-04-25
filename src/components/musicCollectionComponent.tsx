@@ -31,6 +31,8 @@ const useStyles = makeStyles(() =>
             marginRight: 'auto',
 
             position: 'relative',
+
+            paddingTop: 30,
         },
         mask: {
             position: 'absolute',
