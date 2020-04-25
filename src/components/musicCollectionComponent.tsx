@@ -12,28 +12,25 @@ interface MusicCollectionProps {
 
 const useStyles = makeStyles(() =>
     createStyles({
-        main: {
-            padding: 0,
-        },
-        gridList: {},
         playButton: {
             color: 'red',
             width: 48,
             height: 48,
         },
-        card: {
+        image: {
             width: 160,
             height: 160,
+        },
+
+        container: {
+            width: 160,
+            height: 160,
+
+            display: 'block',
             marginLeft: 'auto',
             marginRight: 'auto',
-        },
-        cover: {
-            width: 120,
-            height: 120,
-        },
-        root: {
+
             position: 'relative',
-            // height: 400,
         },
         mask: {
             position: 'absolute',
@@ -58,8 +55,8 @@ const useStyles = makeStyles(() =>
             position: 'absolute',
             top: 90,
             left: 90,
-            // zInde: 100,
         },
+        imageBox: {},
     }),
 );
 
@@ -68,9 +65,9 @@ export const MusicCollectionComponent: React.FC<MusicCollectionProps> = (props: 
     const classes = useStyles({});
 
     return (
-        <div className={classes.root}>
+        <div className={classes.container}>
             <img
-                className={classes.card}
+                className={classes.image}
                 src={collection.cover}
                 alt={collection.name}
                 onClick={(): void => {
