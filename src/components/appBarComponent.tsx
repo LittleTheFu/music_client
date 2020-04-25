@@ -8,11 +8,10 @@ import MailOutlinedIcon from '@material-ui/icons/MailOutlined';
 import { useGlobal } from 'reactn';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { useHistory, useRouteMatch } from 'react-router-dom';
-import Avatar from '@material-ui/core/Avatar';
 import { deepOrange, deepPurple } from '@material-ui/core/colors';
 import MusicNoteIcon from '@material-ui/icons/MusicNote';
 import AlbumIcon from '@material-ui/icons/Album';
-import { getMeId, getLoginFlag, setLoginFlag, getMeAvatar } from '../globals';
+import { getMeId, getLoginFlag, setLoginFlag } from '../globals';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -28,12 +27,6 @@ const useStyles = makeStyles((theme: Theme) =>
         },
         title: {
             flexGrow: 1,
-        },
-        userAvatar: {
-            backgroundColor: deepOrange[500],
-        },
-        guestAvatar: {
-            backgroundColor: deepPurple[500],
         },
     }),
 );
@@ -106,17 +99,6 @@ export const AppBarComponent: React.FC = () => {
                         </div>
                     ) : (
                         <div></div>
-                    )}
-                    {getLoginFlag() ? (
-                        <Avatar
-                            src={getMeAvatar()}
-                            className={classes.userAvatar}
-                            onClick={(): void => {
-                                history.push(`/main/userdetail/` + getMeId());
-                            }}
-                        ></Avatar>
-                    ) : (
-                        <Avatar className={classes.guestAvatar}>G</Avatar>
                     )}
                 </Toolbar>
             </AppBar>
