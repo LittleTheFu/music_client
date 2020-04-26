@@ -1,5 +1,5 @@
 import { setGlobal } from 'reactn';
-import { Music, dummyMusic, dummyCollection, MusicCollection, MusicComment } from './dataInterfaces/music';
+import { Music, dummyMusic, MusicCollection, MusicComment } from './dataInterfaces/music';
 import { State, Dispatch } from 'reactn/default';
 
 export const setToken = (token: string): void => {

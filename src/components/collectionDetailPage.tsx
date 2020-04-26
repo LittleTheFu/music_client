@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { Music, CollectionDetail, dummyCollectionDetail } from '../dataInterfaces/music';
+import { Music, CollectionDetail } from '../dataInterfaces/music';
 import { deleteCollection, getCollectionDetailById, removeMusicFromCollection } from '../service';
 import { MusicListComponent } from './musicListComponent';
 import { useGlobal, useDispatch } from 'reactn';
