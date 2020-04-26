@@ -2,15 +2,11 @@ import React from 'react';
 import Drawer from '@material-ui/core/Drawer';
 import { useGlobal } from 'reactn';
 import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
 import MailIcon from '@material-ui/icons/Mail';
-import { useHistory, useRouteMatch } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import MusicNoteIcon from '@material-ui/icons/MusicNote';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { getMeId, setLoginFlag } from '../globals';
-import AlbumIcon from '@material-ui/icons/Album';
 import EditIcon from '@material-ui/icons/Edit';
 import PersonIcon from '@material-ui/icons/Person';
 import SearchIcon from '@material-ui/icons/Search';
@@ -20,7 +16,6 @@ export const TemporaryDrawer: React.FC = () => {
     const [drawerOpen, setDrawerOpen] = useGlobal('drawerOpen');
 
     const history = useHistory();
-    const { path, url } = useRouteMatch();
 
     const logoutClick = (): void => {
         setLoginFlag(false);
@@ -32,23 +27,23 @@ export const TemporaryDrawer: React.FC = () => {
     };
 
     const editClick = (): void => {
-        history.push(`${url}/profile`);
+        history.push(`/main/profile`);
     };
 
     const searchClick = (): void => {
-        history.push(`${url}/search`);
+        history.push(`/main/search`);
     };
 
     const collectionsClick = (): void => {
-        history.push(`${url}/collections`);
+        history.push(`/main/collections`);
     };
 
     const mailClick = (): void => {
-        history.push(`${url}/mail`);
+        history.push(`/main/mail`);
     };
 
     const musicClick = (): void => {
-        history.push(`${url}/lobby`);
+        history.push(`/main/lobby`);
     };
 
     return (
