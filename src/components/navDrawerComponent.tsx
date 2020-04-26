@@ -14,12 +14,42 @@ import AlbumIcon from '@material-ui/icons/Album';
 import EditIcon from '@material-ui/icons/Edit';
 import PersonIcon from '@material-ui/icons/Person';
 import SearchIcon from '@material-ui/icons/Search';
+import { NavListIconButton } from '../otherComponents/NavListIconButton';
 
 export const TemporaryDrawer: React.FC = () => {
     const [drawerOpen, setDrawerOpen] = useGlobal('drawerOpen');
 
     const history = useHistory();
     const { path, url } = useRouteMatch();
+
+    const logoutClick = (): void => {
+        setLoginFlag(false);
+        history.push('/login');
+    };
+
+    const meClick = (): void => {
+        history.push(`/main/userdetail/` + getMeId());
+    };
+
+    const editClick = (): void => {
+        history.push(`${url}/profile`);
+    };
+
+    const searchClick = (): void => {
+        history.push(`${url}/search`);
+    };
+
+    const collectionsClick = (): void => {
+        history.push(`${url}/collections`);
+    };
+
+    const mailClick = (): void => {
+        history.push(`${url}/mail`);
+    };
+
+    const musicClick = (): void => {
+        history.push(`${url}/lobby`);
+    };
 
     return (
         <div>
@@ -31,96 +61,33 @@ export const TemporaryDrawer: React.FC = () => {
                 }}
             >
                 <List>
-                    <ListItem
-                        button
-                        key={1}
-                        onClick={(): void => {
-                            history.push(`${url}/lobby`);
-                        }}
-                    >
-                        <ListItemIcon>
-                            <MusicNoteIcon />
-                        </ListItemIcon>
-                        <ListItemText primary={'music'} />
-                    </ListItem>
-                    <ListItem
-                        button
-                        key={2}
-                        onClick={(): void => {
-                            history.push(`${url}/mail`);
-                        }}
-                    >
-                        <ListItemIcon>
-                            <MailIcon />
-                        </ListItemIcon>
-                        <ListItemText primary={'mail'} />
-                    </ListItem>
+                    <NavListIconButton msg={'music'} iconClick={musicClick}>
+                        <MusicNoteIcon />
+                    </NavListIconButton>
 
-                    <ListItem
-                        button
-                        key={8}
-                        onClick={(): void => {
-                            history.push(`${url}/collections`);
-                        }}
-                    >
-                        <ListItemIcon>
-                            <AlbumIcon />
-                        </ListItemIcon>
-                        <ListItemText primary={'collections'} />
-                    </ListItem>
+                    <NavListIconButton msg={'mail'} iconClick={mailClick}>
+                        <MailIcon />
+                    </NavListIconButton>
 
-                    <ListItem
-                        button
-                        key={12}
-                        onClick={(): void => {
-                            history.push(`${url}/search`);
-                        }}
-                    >
-                        <ListItemIcon>
-                            <SearchIcon />
-                        </ListItemIcon>
-                        <ListItemText primary={'search'} />
-                    </ListItem>
+                    <NavListIconButton msg={'collections'} iconClick={collectionsClick}>
+                        <SearchIcon />
+                    </NavListIconButton>
 
-                    <ListItem
-                        button
-                        key={3}
-                        onClick={(): void => {
-                            history.push(`${url}/profile`);
-                        }}
-                    >
-                        <ListItemIcon>
-                            <EditIcon />
-                        </ListItemIcon>
-                        <ListItemText primary={'edit'} />
-                    </ListItem>
+                    <NavListIconButton msg={'search'} iconClick={searchClick}>
+                        <SearchIcon />
+                    </NavListIconButton>
 
-                    <ListItem
-                        button
-                        key={5}
-                        onClick={(): void => {
-                            history.push(`/main/userdetail/` + getMeId());
-                        }}
-                    >
-                        <ListItemIcon>
-                            <PersonIcon />
-                        </ListItemIcon>
-                        <ListItemText primary={'me'} />
-                    </ListItem>
-                    <ListItem
-                        button
-                        key={4}
-                        onClick={(): void => {
-                            setLoginFlag(false);
+                    <NavListIconButton msg={'edit'} iconClick={editClick}>
+                        <EditIcon />
+                    </NavListIconButton>
 
-                            history.push('/login');
-                        }}
-                    >
-                        <ListItemIcon>
-                            <ExitToAppIcon />
-                        </ListItemIcon>
-                        <ListItemText primary={'logout'} />
-                    </ListItem>
+                    <NavListIconButton msg={'me'} iconClick={meClick}>
+                        <PersonIcon />
+                    </NavListIconButton>
+
+                    <NavListIconButton msg={'logout'} iconClick={logoutClick}>
+                        <ExitToAppIcon />
+                    </NavListIconButton>
                 </List>
             </Drawer>
         </div>
