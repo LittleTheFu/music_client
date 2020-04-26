@@ -11,6 +11,15 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import { MyCollectionsModal } from './myCollectionsModal';
 import Grid from '@material-ui/core/Grid';
 import { BackButton } from '../otherComponents/backButton';
+import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme: Theme) =>
+    createStyles({
+        removeButton: {
+            // display: 'inline',
+        },
+    }),
+);
 
 export const CollectionDetailPage: React.FC = () => {
     const { id } = useParams();
@@ -24,6 +33,8 @@ export const CollectionDetailPage: React.FC = () => {
     const history = useHistory();
 
     const intId = parseInt(id);
+
+    const classes = useStyles();
 
     useEffect(() => {
         getCollectionDetailById(
@@ -86,20 +97,24 @@ export const CollectionDetailPage: React.FC = () => {
                 </Grid>
                 <Grid item xs={12}>
                     <BackButton></BackButton>
-                    {detail.name}
                     {detail.canBeDeleted ? (
-                        <div>
-                            <IconButton
-                                onClick={(): void => {
-                                    deleteClick();
-                                }}
-                            >
-                                <DeleteIcon></DeleteIcon>
-                            </IconButton>
-                        </div>
+                        <IconButton
+                            className={classes.removeButton}
+                            onClick={(): void => {
+                                deleteClick();
+                            }}
+                        >
+                            <DeleteIcon></DeleteIcon>
+                        </IconButton>
                     ) : (
                         <div></div>
                     )}
+                </Grid>
+                <Grid item xs={6} md={3}>
+                    <img src={detail.cover} alt="cover" />
+                </Grid>
+                <Grid item xs={6} md={9}>
+                    <h1>{detail.name}</h1>
                 </Grid>
                 <Grid item xs={12}>
                     <MusicListComponent

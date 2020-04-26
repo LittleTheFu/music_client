@@ -87,12 +87,14 @@ export class Follower {
 }
 
 export class CollectionDetail {
+    cover: string;
     name: string;
     canBeDeleted: boolean;
     musics: Music[];
 }
 
 export const dummyCollectionDetail: CollectionDetail = {
+    cover: 'http://localhost:9999/album/3.png',
     name: 'detail_name',
     canBeDeleted: false,
     musics: [],
