@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export const LoginComponent: React.FC = () => {
     const [isLogin, setIsLogin] = useGlobal('isLogin');
-    const [userId, setUserId] = useGlobal('userId');
+    // const [userId, setUserId] = useGlobal('userId');
 
     const [username, setUser] = useState('');
     const [password, setPassword] = useState('');
@@ -49,7 +49,7 @@ export const LoginComponent: React.FC = () => {
             info => {
                 setMeAvatar(info.avatarUrl);
                 setMeId(info.id);
-                setUserId(info.name);
+                // setUserId(info.name);
             },
             e => {},
         );
@@ -60,7 +60,7 @@ export const LoginComponent: React.FC = () => {
             console.log('error : ' + data.error);
         } else if ('accessToken' in data) {
             setToken(data.accessToken);
-            setUserId(username);
+            // setUserId(username);
 
             getMe(console.log, console.log);
 

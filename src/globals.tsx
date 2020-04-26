@@ -49,7 +49,7 @@ export const getMeId = (): number => {
 
 setGlobal({
     avatar: 'anonymous.png',
-    userId: 'guest',
+    // userId: 'guest',
     meId: 0,
     isLogin: false,
 

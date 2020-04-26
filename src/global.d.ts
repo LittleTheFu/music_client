@@ -52,7 +52,7 @@ declare module 'reactn/default' {
 
     export interface State {
         avatar: string;
-        userId: string;
+        // userId: string;
         meId: number;
         isLogin: boolean;
 
@@ -65,7 +65,7 @@ declare module 'reactn/default' {
 
         playListMusics: Music[];
         Collections: MusicCollection[];
-        // currentCollection: MusicCollection;
+        currentCollection: MusicCollection;
 
         collectionInfoModalOpen: boolean;
         collectionInfoData: Music[];
