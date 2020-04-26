@@ -35,7 +35,6 @@ export const AppBarComponent: React.FC = () => {
     const [drawerOpen, setDrawerOpen] = useGlobal('drawerOpen');
 
     const history = useHistory();
-    const { path, url } = useRouteMatch();
 
     const classes = useStyles();
 
