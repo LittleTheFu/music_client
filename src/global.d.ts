@@ -54,7 +54,6 @@ declare module 'reactn/default' {
         avatar: string;
         // userId: string;
         meId: number;
-        isLogin: boolean;
 
         drawerOpen: boolean;
 

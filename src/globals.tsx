@@ -10,10 +10,6 @@ export const getToken = (): string => {
     return sessionStorage.getItem('jwtToken') || '';
 };
 
-export const isLogin = (): boolean => {
-    return getToken().length > 0;
-};
-
 export const setLoginFlag = (isLogin: boolean): void => {
     const flag = isLogin ? 1 : 0;
     sessionStorage.setItem('isLogin', flag.toString());
@@ -51,7 +47,6 @@ setGlobal({
     avatar: 'anonymous.png',
     // userId: 'guest',
     meId: 0,
-    isLogin: false,
 
     drawerOpen: false,
 

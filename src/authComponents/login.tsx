@@ -34,9 +34,6 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export const LoginComponent: React.FC = () => {
-    const [isLogin, setIsLogin] = useGlobal('isLogin');
-    // const [userId, setUserId] = useGlobal('userId');
-
     const [username, setUser] = useState('');
     const [password, setPassword] = useState('');
 
