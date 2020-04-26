@@ -26,7 +26,8 @@ export const CollectionDetailPage: React.FC = () => {
 
     const [wantAddMusicId, setWantAddMusicId] = useState(1);
     const [modalOpen, setModalOpen] = useState(false);
-    const [detail, setDetail] = useState<CollectionDetail>(dummyCollectionDetail);
+    // const [detail, setDetail] = useState<CollectionDetail>(dummyCollectionDetail);
+    const [detail, setDetail] = useState<CollectionDetail>(null);
     const [currentTheMusic] = useGlobal('currentMusic');
     const updatePlayingMusics = useDispatch(updateMusics);
     const updateTheCurrentMusic = useDispatch(updateCurrentMusic);
@@ -85,48 +86,52 @@ export const CollectionDetailPage: React.FC = () => {
 
     return (
         <div>
-            <Grid container spacing={1}>
-                <Grid item xs={12}>
-                    <MyCollectionsModal
-                        modalOpen={modalOpen}
-                        modalClose={(): void => {
-                            setModalOpen(false);
-                        }}
-                        musicId={wantAddMusicId}
-                    ></MyCollectionsModal>
-                </Grid>
-                <Grid item xs={12}>
-                    <BackButton></BackButton>
-                    {detail.canBeDeleted ? (
-                        <IconButton
-                            className={classes.removeButton}
-                            onClick={(): void => {
-                                deleteClick();
+            {detail ? (
+                <Grid container spacing={1}>
+                    <Grid item xs={12}>
+                        <MyCollectionsModal
+                            modalOpen={modalOpen}
+                            modalClose={(): void => {
+                                setModalOpen(false);
                             }}
-                        >
-                            <DeleteIcon></DeleteIcon>
-                        </IconButton>
-                    ) : (
-                        <div></div>
-                    )}
+                            musicId={wantAddMusicId}
+                        ></MyCollectionsModal>
+                    </Grid>
+                    <Grid item xs={12}>
+                        <BackButton></BackButton>
+                        {detail.canBeDeleted ? (
+                            <IconButton
+                                className={classes.removeButton}
+                                onClick={(): void => {
+                                    deleteClick();
+                                }}
+                            >
+                                <DeleteIcon></DeleteIcon>
+                            </IconButton>
+                        ) : (
+                            <div></div>
+                        )}
+                    </Grid>
+                    <Grid item xs={6} md={3}>
+                        <img src={detail.cover} alt="cover" />
+                    </Grid>
+                    <Grid item xs={6} md={9}>
+                        <h1>{detail.name}</h1>
+                    </Grid>
+                    <Grid item xs={12}>
+                        <MusicListComponent
+                            musics={detail.musics}
+                            currentMusic={currentTheMusic}
+                            clickMusic={clickMusic}
+                            addMusicClick={addMusicClick}
+                            removeMusicClick={detail.canBeDeleted ? removeMusicClick : null}
+                            commentClick={commentClick}
+                        ></MusicListComponent>
+                    </Grid>
                 </Grid>
-                <Grid item xs={6} md={3}>
-                    <img src={detail.cover} alt="cover" />
-                </Grid>
-                <Grid item xs={6} md={9}>
-                    <h1>{detail.name}</h1>
-                </Grid>
-                <Grid item xs={12}>
-                    <MusicListComponent
-                        musics={detail.musics}
-                        currentMusic={currentTheMusic}
-                        clickMusic={clickMusic}
-                        addMusicClick={addMusicClick}
-                        removeMusicClick={detail.canBeDeleted ? removeMusicClick : null}
-                        commentClick={commentClick}
-                    ></MusicListComponent>
-                </Grid>
-            </Grid>
+            ) : (
+                <div></div>
+            )}
         </div>
     );
 };
