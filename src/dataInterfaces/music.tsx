@@ -40,13 +40,6 @@ export class MusicCollection {
     isPlaying: boolean;
 }
 
-// export const dummyCollection: MusicCollection = {
-//     id: 0,
-//     name: 'dummy',
-//     cover: 'cover',
-//     isPlaying: false,
-// };
-
 export class MusicComment {
     id: number;
     content: string;
@@ -92,18 +85,3 @@ export class CollectionDetail {
     canBeDeleted: boolean;
     musics: Music[];
 }
-
-// export const dummyCollectionDetail: CollectionDetail = {
-//     cover: 'http://localhost:9999/album/3.png',
-//     name: 'detail_name',
-//     canBeDeleted: false,
-//     musics: [],
-// };
-
-export const dummyMail: Mail = {
-    id: 0,
-    fromName: 'dummyFrom',
-    toName: 'dummyTo',
-    content: 'dummyContent',
-    fromId: 0,
-};
