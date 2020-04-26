@@ -23,7 +23,6 @@ const useStyles = makeStyles({
 interface PlayBarProps {
     musicPercent: number;
     isPlaying: boolean;
-    cover: string;
     volume: number;
     changeMusicPercent: (event: object, value: unknown) => void;
     pausePlay: () => void;

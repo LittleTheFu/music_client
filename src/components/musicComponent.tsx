@@ -191,7 +191,6 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
                     <PlayBarComponent
                         musicPercent={musicPercent}
                         isPlaying={isPlaying}
-                        cover={currentTheMusic.cover}
                         volume={volume}
                         changeMusicPercent={changeMusicPercent}
                         pausePlay={pausePlay}
