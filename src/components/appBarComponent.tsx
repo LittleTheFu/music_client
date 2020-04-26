@@ -33,7 +33,6 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export const AppBarComponent: React.FC = () => {
     const [drawerOpen, setDrawerOpen] = useGlobal('drawerOpen');
-    // const [userId, setUserId] = useGlobal('userId');
 
     const history = useHistory();
     const { path, url } = useRouteMatch();
@@ -96,7 +95,6 @@ export const AppBarComponent: React.FC = () => {
                         className={classes.appButton}
                         onClick={(): void => {
                             setLoginFlag(false);
-                            // setUserId('guest');
 
                             history.push('/login');
                         }}

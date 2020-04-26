@@ -46,7 +46,6 @@ export const LoginComponent: React.FC = () => {
             info => {
                 setMeAvatar(info.avatarUrl);
                 setMeId(info.id);
-                // setUserId(info.name);
             },
             e => {},
         );
@@ -57,7 +56,6 @@ export const LoginComponent: React.FC = () => {
             console.log('error : ' + data.error);
         } else if ('accessToken' in data) {
             setToken(data.accessToken);
-            // setUserId(username);
 
             getMe(console.log, console.log);
 

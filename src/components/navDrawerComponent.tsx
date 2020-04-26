@@ -20,7 +20,6 @@ export const TemporaryDrawer: React.FC = () => {
 
     const history = useHistory();
     const { path, url } = useRouteMatch();
-    // const [userId, setUserId] = useGlobal('userId');
 
     return (
         <div>
@@ -113,7 +112,6 @@ export const TemporaryDrawer: React.FC = () => {
                         key={4}
                         onClick={(): void => {
                             setLoginFlag(false);
-                            // setUserId('guest');
 
                             history.push('/login');
                         }}
