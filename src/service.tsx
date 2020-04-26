@@ -79,24 +79,32 @@ const rawObjectPost = (
             resolve(data);
         })
         .catch(err => {
-            // if (reject) {
-            //     reject(err);
-            //     return err;
-            // }
-            console.log('err');
-            console.log(err);
+            if (reject) {
+                reject(err);
+            }
+
             return err;
         });
 };
 
 const registerUrl = 'http://localhost:9999/users/register';
-export const postRegister = (username: string, password: string, resolve: (data: any) => void): Promise<object> => {
-    return rawObjectPost(registerUrl, { username: username, password: password }, resolve);
+export const postRegister = (
+    username: string,
+    password: string,
+    resolve: (data: any) => void,
+    reject: (data: any) => void,
+): Promise<object> => {
+    return rawObjectPost(registerUrl, { username: username, password: password }, resolve, {}, reject);
 };
 
 const loginUrl = 'http://localhost:9999/auth/login';
-export const postLogin = (username: string, password: string, resolve: (data: any) => void): Promise<object> => {
-    return rawObjectPost(loginUrl, { username: username, password: password }, resolve);
+export const postLogin = (
+    username: string,
+    password: string,
+    resolve: (data: any) => void,
+    reject: (data: any) => void,
+): Promise<object> => {
+    return rawObjectPost(loginUrl, { username: username, password: password }, resolve, {}, reject);
 };
 
 const likeMusicUrl = 'http://localhost:9999/music/like';

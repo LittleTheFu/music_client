@@ -73,6 +73,11 @@ setGlobal({
     hintMsg: '',
 });
 
+export const openHint = (global: State, dispatch: Dispatch, msg: string): Pick<State, 'hintMsg' | 'hintOpen'> => ({
+    hintMsg: msg,
+    hintOpen: true,
+});
+
 export const updateCommentModalState = (
     global: State,
     dispatch: Dispatch,

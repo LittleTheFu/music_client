@@ -42,7 +42,7 @@ export const RegisterComponent: React.FC = () => {
 
     function handleSubmit(event: React.FormEvent<HTMLFormElement>): void {
         event.preventDefault();
-        postRegister(user, password, resolveData);
+        postRegister(user, password, resolveData, console.log);
     }
 
     return (

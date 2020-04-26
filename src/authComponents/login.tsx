@@ -3,11 +3,11 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import { postLogin, getMe } from '../service';
-import { setToken, setMeId } from '../globals';
-import { useGlobal } from 'reactn';
+import { setToken, setMeId, openHint } from '../globals';
 import { useHistory, Link } from 'react-router-dom';
 import Container from '@material-ui/core/Container';
 import { setLoginFlag, setMeAvatar } from '../globals';
+import { useDispatch } from 'reactn';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -36,6 +36,7 @@ const useStyles = makeStyles((theme: Theme) =>
 export const LoginComponent: React.FC = () => {
     const [username, setUser] = useState('');
     const [password, setPassword] = useState('');
+    const openTheHint = useDispatch(openHint);
 
     const history = useHistory();
 
@@ -67,9 +68,14 @@ export const LoginComponent: React.FC = () => {
         }
     };
 
+    const loginFailed = (e: any): void => {
+        const err = e as Error;
+        openTheHint(err.message);
+    };
+
     function handleSubmit(event: React.FormEvent<HTMLFormElement>): void {
         event.preventDefault();
-        postLogin(username, password, resolveData);
+        postLogin(username, password, resolveData, loginFailed);
         // You should see email and password in console.
         // ..code to submit form to backend here...
     }
