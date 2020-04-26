@@ -45,7 +45,6 @@ export const getMeId = (): number => {
 
 setGlobal({
     avatar: 'anonymous.png',
-    // userId: 'guest',
     meId: 0,
 
     drawerOpen: false,
@@ -57,7 +56,6 @@ setGlobal({
 
     playListMusics: [],
     Collections: [],
-    // currentCollection: dummyCollection,
 
     collectionInfoModalOpen: false,
     collectionInfoData: [],
@@ -178,16 +176,6 @@ export const updateToNextMusic = (global: State, dispatch: Dispatch): Pick<State
     musicIndex: (global.musicIndex + 1) % global.musics.length,
     currentMusic: global.musics[(global.musicIndex + 1) % global.musics.length],
 });
-
-// export const updateCurrentCollection = (
-//     global: State,
-//     dispatch: Dispatch,
-//     name: string,
-// ): Pick<State, 'currentCollection'> => ({
-//     currentCollection: global.Collections.find(c => c.name === name)
-//         ? global.Collections.find(c => c.name === name)
-//         : dummyCollection,
-// });
 
 export const updateCollections = (
     global: State,

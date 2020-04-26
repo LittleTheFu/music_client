@@ -52,7 +52,6 @@ declare module 'reactn/default' {
 
     export interface State {
         avatar: string;
-        // userId: string;
         meId: number;
 
         drawerOpen: boolean;
