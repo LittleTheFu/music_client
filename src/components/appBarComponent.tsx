@@ -39,6 +39,31 @@ export const AppBarComponent: React.FC = () => {
 
     const classes = useStyles();
 
+    const menuClick = (): void => {
+        setDrawerOpen(true);
+    };
+
+    const musicClick = (): void => {
+        history.push(`/main/lobby`);
+    };
+
+    const mailClick = (): void => {
+        history.push(`/main/mail`);
+    };
+
+    const collectionsClick = (): void => {
+        history.push(`/main/collections`);
+    };
+
+    const searchClick = (): void => {
+        history.push(`/main/search`);
+    };
+
+    const exitClick = (): void => {
+        setLoginFlag(false);
+        history.push('/login');
+    };
+
     return (
         <div className={classes.root}>
             <AppBar position="static">
@@ -46,59 +71,25 @@ export const AppBarComponent: React.FC = () => {
                     <IconButton
                         edge="start"
                         className={classes.menuButton}
-                        onClick={(): void => {
-                            setDrawerOpen(true);
-                        }}
+                        onClick={menuClick}
                         color="inherit"
                         aria-label="menu"
                     >
                         <MenuIcon />
                     </IconButton>
-                    <IconButton
-                        className={classes.appButton}
-                        edge="start"
-                        onClick={(): void => {
-                            history.push(`${url}/lobby`);
-                        }}
-                    >
+                    <IconButton className={classes.appButton} edge="start" onClick={musicClick}>
                         <MusicNoteIcon />
                     </IconButton>
-                    <IconButton
-                        edge="start"
-                        className={classes.appButton}
-                        onClick={(): void => {
-                            history.push(`${url}/mail`);
-                        }}
-                    >
+                    <IconButton edge="start" className={classes.appButton} onClick={mailClick}>
                         <MailOutlinedIcon />
                     </IconButton>
-                    <IconButton
-                        edge="start"
-                        className={classes.appButton}
-                        onClick={(): void => {
-                            history.push(`${url}/collections`);
-                        }}
-                    >
+                    <IconButton edge="start" className={classes.appButton} onClick={collectionsClick}>
                         <AlbumIcon />
                     </IconButton>
-                    <IconButton
-                        edge="start"
-                        className={classes.appButton}
-                        onClick={(): void => {
-                            history.push(`${url}/search`);
-                        }}
-                    >
+                    <IconButton edge="start" className={classes.appButton} onClick={searchClick}>
                         <SearchIcon />
                     </IconButton>
-                    <IconButton
-                        edge="start"
-                        className={classes.appButton}
-                        onClick={(): void => {
-                            setLoginFlag(false);
-
-                            history.push('/login');
-                        }}
-                    >
+                    <IconButton edge="start" className={classes.appButton} onClick={exitClick}>
                         <ExitToAppIcon />
                     </IconButton>
                 </Toolbar>
