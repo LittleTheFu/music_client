@@ -65,7 +65,7 @@ declare module 'reactn/default' {
 
         playListMusics: Music[];
         Collections: MusicCollection[];
-        currentCollection: MusicCollection;
+        // currentCollection: MusicCollection;
 
         collectionInfoModalOpen: boolean;
         collectionInfoData: Music[];

@@ -62,7 +62,7 @@ setGlobal({
 
     playListMusics: [],
     Collections: [],
-    currentCollection: dummyCollection,
+    // currentCollection: dummyCollection,
 
     collectionInfoModalOpen: false,
     collectionInfoData: [],
@@ -184,15 +184,15 @@ export const updateToNextMusic = (global: State, dispatch: Dispatch): Pick<State
     currentMusic: global.musics[(global.musicIndex + 1) % global.musics.length],
 });
 
-export const updateCurrentCollection = (
-    global: State,
-    dispatch: Dispatch,
-    name: string,
-): Pick<State, 'currentCollection'> => ({
-    currentCollection: global.Collections.find(c => c.name === name)
-        ? global.Collections.find(c => c.name === name)
-        : dummyCollection,
-});
+// export const updateCurrentCollection = (
+//     global: State,
+//     dispatch: Dispatch,
+//     name: string,
+// ): Pick<State, 'currentCollection'> => ({
+//     currentCollection: global.Collections.find(c => c.name === name)
+//         ? global.Collections.find(c => c.name === name)
+//         : dummyCollection,
+// });
 
 export const updateCollections = (
     global: State,
