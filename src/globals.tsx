@@ -68,6 +68,9 @@ setGlobal({
     currentClickUserId: 0,
 
     isPlaying: false,
+
+    hintOpen: false,
+    hintMsg: '',
 });
 
 export const updateCommentModalState = (

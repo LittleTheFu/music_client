@@ -76,5 +76,8 @@ declare module 'reactn/default' {
         currentClickUserId: number;
 
         isPlaying: boolean;
+
+        hintOpen: boolean;
+        hintMsg: string;
     }
 }

@@ -5,10 +5,27 @@ import { LoginComponent } from './authComponents/login';
 import { RegisterComponent } from './authComponents/register';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import { getLoginFlag } from './globals';
+import Snackbar from '@material-ui/core/Snackbar';
+import { useGlobal } from 'reactn';
 
 const App: React.FC = () => {
+    const [hintOpen, setHintOpen] = useGlobal('hintOpen');
+    const [hintMsg] = useGlobal('hintMsg');
+
     return (
         <Router>
+            <Snackbar
+                anchorOrigin={{
+                    vertical: 'top',
+                    horizontal: 'center',
+                }}
+                open={hintOpen}
+                autoHideDuration={700}
+                onClose={(): void => {
+                    setHintOpen(false);
+                }}
+                message={hintMsg}
+            />
             <div>
                 <Switch>
                     <Route path="/register">
