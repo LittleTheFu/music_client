@@ -5,6 +5,8 @@ import Button from '@material-ui/core/Button';
 import { postRegister } from '../service';
 import { useHistory, Link } from 'react-router-dom';
 import Container from '@material-ui/core/Container';
+import { openHint } from '../globals';
+import { useDispatch } from 'reactn';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -31,6 +33,7 @@ const useStyles = makeStyles((theme: Theme) =>
 export const RegisterComponent: React.FC = () => {
     const [user, setUser] = useState('');
     const [password, setPassword] = useState('');
+    const openTheHint = useDispatch(openHint);
 
     const history = useHistory();
 
@@ -40,9 +43,13 @@ export const RegisterComponent: React.FC = () => {
         history.push('/login');
     };
 
+    const failedRegister = (e: Error): void => {
+        openTheHint(e.message);
+    };
+
     function handleSubmit(event: React.FormEvent<HTMLFormElement>): void {
         event.preventDefault();
-        postRegister(user, password, resolveData, console.log);
+        postRegister(user, password, resolveData, failedRegister);
     }
 
     return (

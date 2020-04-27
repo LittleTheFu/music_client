@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { getToken } from './globals';
 
 const hostPrefix = 'http://localhost:9999/';
@@ -15,29 +16,42 @@ const rawObjectPost = (
     headerContent: object = {},
     reject?: (error: any) => void,
 ): Promise<object> => {
-    console.log(url);
-    return fetch(url, {
-        method: 'POST',
-        body: JSON.stringify(data),
-        headers: {
-            'Content-Type': 'application/json',
-            ...headerContent,
-        },
-    })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(response.statusText);
-            }
-
-            return response.json();
+    return axios
+        .post(url, JSON.stringify(data), {
+            headers: {
+                'Content-Type': 'application/json',
+                ...headerContent,
+            },
         })
-        .then(data => {
+        .then(response => {
+            const { data } = response;
             resolve(data);
         })
         .catch(err => {
-            if (reject) {
-                reject(err);
+            if (err.response) {
+                // The request was made and the server responded with a status code
+                // that falls out of the range of 2xx
+                console.log('err.response');
+                console.log(err.response.data);
+                console.log(err.response.status);
+                console.log(err.response.headers);
+
+                if (reject) {
+                    if ('error' in err.response.data) {
+                        reject(new Error(err.response.data.error));
+                    }
+                }
+            } else if (err.request) {
+                // The request was made but no response was received
+                // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+                // http.ClientRequest in node.js
+                console.log('err.request');
+                console.log(err.request);
+            } else {
+                // Something happened in setting up the request that triggered an Error
+                console.log('Error', err.message);
             }
+            console.log(err.config);
 
             return err;
         });

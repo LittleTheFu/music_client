@@ -68,9 +68,9 @@ export const LoginComponent: React.FC = () => {
         }
     };
 
-    const loginFailed = (e: any): void => {
-        const err = e as Error;
-        openTheHint(err.message);
+    const loginFailed = (e: Error): void => {
+        // const err = e as Error;
+        openTheHint(e.message);
     };
 
     function handleSubmit(event: React.FormEvent<HTMLFormElement>): void {
