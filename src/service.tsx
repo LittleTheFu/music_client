@@ -357,20 +357,19 @@ const fileObjectPost = (
     resolve: (data: any) => void,
     headerContent: object = {},
 ): Promise<object> => {
-    const options = {
-        method: 'POST',
-        body: data,
-        headers: {
-            ...headerContent,
-        },
-    };
-
-    return fetch(url, options)
-        .then(response => {
-            return response.json();
+    return axios
+        .post(url, data, {
+            headers: {
+                ...headerContent,
+            },
         })
-        .then(data => resolve(data))
-        .catch(err => err);
+        .then(response => {
+            const { data } = response;
+            return data;
+        })
+        .catch(err => {
+            return err;
+        });
 };
 
 const uploadAvatarUrl = profilePrefix + 'upload';
@@ -384,36 +383,13 @@ export const uploadAvatar = (
     });
 };
 
-const rawTextObjectPost = (
-    url: string,
-    data: object,
-    resolve: (data: any) => void,
-    headerContent: object = {},
-): Promise<object> => {
-    return fetch(url, {
-        method: 'POST',
-        body: JSON.stringify(data),
-        headers: {
-            'Content-Type': 'application/json',
-            ...headerContent,
-        },
-    })
-        .then(response => {
-            return response.text();
-        })
-        .then(data => {
-            resolve(data);
-        })
-        .catch(err => err);
-};
-
 const getMusicLyricUrl = musicPrefix + 'getLyric';
 export const getLyric = (
     musicId: number,
     resolve: (data: any) => void,
     reject: (arg0: object) => void,
 ): Promise<object> => {
-    return rawTextObjectPost(getMusicLyricUrl, { musicId: musicId }, resolve, {
+    return rawObjectPost(getMusicLyricUrl, { musicId: musicId }, resolve, {
         Authorization: 'Bearer ' + getToken(),
     });
 };
