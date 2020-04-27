@@ -1,57 +1,12 @@
-import { Music } from './dataInterfaces/music';
 import { getToken } from './globals';
 
-const getOption = {
-    method: 'GET',
-};
-
-const musicUrl = 'http://localhost:9999/music/nextmusic';
-const musicsUrl = 'http://localhost:9999/music/musics';
-
-async function api<T>(url: string, headers: object, headersContent: object = {}): Promise<T> {
-    console.log({ ...headers, ...headersContent });
-    const response = await fetch(url, { ...headers, ...headersContent });
-    if (!response.ok) {
-        console.log(response);
-        throw new Error(response.statusText);
-    }
-    const data = await response.json();
-    return data as T;
-}
-
-export const fetchNextMusic = (
-    resolve: (arg0: string, arg1: string, arg2: string, arg3: string, arg4: string) => void,
-    reject: (arg0: object) => void,
-): void => {
-    api<{ address: string; cover: string; name: string; artist: string; album: string }>(musicUrl, getOption)
-        .then(({ address, cover, name, artist, album }) => resolve(address, cover, name, artist, album))
-        .catch(e => reject(e));
-};
-
-const playListMusicListUrl = 'http://localhost:9999/music/playlistmusiclist';
-export const fetchPlayListMusicList = (resolve: (arg0: object) => void, reject: (arg0: object) => void): void => {
-    api<{ musicList: Music[] }>(playListMusicListUrl, getOption, {
-        headers: {
-            Authorization: 'Bearer ' + getToken(),
-        },
-    })
-        .then(musicList => {
-            resolve(musicList);
-        })
-        .catch(e => reject(e));
-};
-
-export const fetchMusics = (resolve: (arg0: object) => void, reject: (arg0: object) => void): void => {
-    api<{ musicList: Array<Music> }>(musicsUrl, getOption, {
-        headers: {
-            Authorization: 'Bearer ' + getToken(),
-        },
-    })
-        .then(musicList => {
-            resolve(musicList);
-        })
-        .catch(e => reject(e));
-};
+const hostPrefix = 'http://localhost:9999/';
+const userPrefix = hostPrefix + 'users/';
+const authPrefix = hostPrefix + 'auth/';
+const musicPrefix = hostPrefix + 'music/';
+const profilePrefix = hostPrefix + 'profile/';
+const commentPrefix = hostPrefix + 'comment/';
+const mailPrefix = hostPrefix + 'mail/';
 
 const rawObjectPost = (
     url: string,
@@ -60,6 +15,7 @@ const rawObjectPost = (
     headerContent: object = {},
     reject?: (error: any) => void,
 ): Promise<object> => {
+    console.log(url);
     return fetch(url, {
         method: 'POST',
         body: JSON.stringify(data),
@@ -87,7 +43,7 @@ const rawObjectPost = (
         });
 };
 
-const registerUrl = 'http://localhost:9999/users/register';
+const registerUrl = userPrefix + 'register';
 export const postRegister = (
     username: string,
     password: string,
@@ -97,7 +53,7 @@ export const postRegister = (
     return rawObjectPost(registerUrl, { username: username, password: password }, resolve, {}, reject);
 };
 
-const loginUrl = 'http://localhost:9999/auth/login';
+const loginUrl = authPrefix + 'login';
 export const postLogin = (
     username: string,
     password: string,
@@ -107,7 +63,7 @@ export const postLogin = (
     return rawObjectPost(loginUrl, { username: username, password: password }, resolve, {}, reject);
 };
 
-const likeMusicUrl = 'http://localhost:9999/music/like';
+const likeMusicUrl = musicPrefix + 'like';
 export const postLikeMusic = (
     musicId: number,
     resolve: (data: any) => void,
@@ -122,22 +78,22 @@ export const postLikeMusic = (
     );
 };
 
-const dislikeMusicUrl = 'http://localhost:9999/music/dislike';
+const dislikeMusicUrl = musicPrefix + 'dislike';
 export const postDislikeMusic = (musicId: number, resolve: (data: any) => void): Promise<object> => {
     return rawObjectPost(dislikeMusicUrl, { musicId: musicId }, resolve, { Authorization: 'Bearer ' + getToken() });
 };
 
-const profileUrl = 'http://localhost:9999/profile';
+const profileUrl = profilePrefix;
 export const postShowProfile = (resolve: (data: any) => void): Promise<object> => {
     return rawObjectPost(profileUrl, {}, resolve, { Authorization: 'Bearer ' + getToken() });
 };
 
-const collectionsUrl = 'http://localhost:9999/music/collections';
+const collectionsUrl = musicPrefix + 'collections';
 export const getMusicCollections = (resolve: (data: any) => void, reject: (arg0: object) => void): Promise<object> => {
     return rawObjectPost(collectionsUrl, {}, resolve, { Authorization: 'Bearer ' + getToken() });
 };
 
-const getPrivateCollectionsUrl = 'http://localhost:9999/music/getPrivateMusicCollections';
+const getPrivateCollectionsUrl = musicPrefix + 'getPrivateMusicCollections';
 export const getPrivateMusicCollections = (
     resolve: (data: any) => void,
     reject: (arg0: object) => void,
@@ -145,7 +101,7 @@ export const getPrivateMusicCollections = (
     return rawObjectPost(getPrivateCollectionsUrl, {}, resolve, { Authorization: 'Bearer ' + getToken() });
 };
 
-const addMusicToCollectionUrl = 'http://localhost:9999/music/addMusicToCollection';
+const addMusicToCollectionUrl = musicPrefix + 'addMusicToCollection';
 export const addMusicToCollection = (
     collectionId: number,
     musicId: number,
@@ -157,7 +113,7 @@ export const addMusicToCollection = (
     });
 };
 
-const getPublicCollectionsUrl = 'http://localhost:9999/music/getPublicMusicCollections';
+const getPublicCollectionsUrl = musicPrefix + 'getPublicMusicCollections';
 export const getPublicMusicCollections = (
     resolve: (data: any) => void,
     reject: (arg0: object) => void,
@@ -165,7 +121,7 @@ export const getPublicMusicCollections = (
     return rawObjectPost(getPublicCollectionsUrl, {}, resolve, { Authorization: 'Bearer ' + getToken() });
 };
 
-const createCollectionUrl = 'http://localhost:9999/music/createCollection';
+const createCollectionUrl = musicPrefix + 'createCollection';
 export const createCollection = (
     name: string,
     resolve: (data: any) => void,
@@ -174,7 +130,7 @@ export const createCollection = (
     return rawObjectPost(createCollectionUrl, { name: name }, resolve, { Authorization: 'Bearer ' + getToken() });
 };
 
-const musicsByCollectionIdUrl = 'http://localhost:9999/music/GetMusicsByCollectionId';
+const musicsByCollectionIdUrl = musicPrefix + 'GetMusicsByCollectionId';
 export const fetchMusicsByCollectionId = (
     id: number,
     resolve: (data: any) => void,
@@ -183,7 +139,7 @@ export const fetchMusicsByCollectionId = (
     return rawObjectPost(musicsByCollectionIdUrl, { id: id }, resolve, { Authorization: 'Bearer ' + getToken() });
 };
 
-const deleteCollectionUrl = 'http://localhost:9999/music/deleteCollection';
+const deleteCollectionUrl = musicPrefix + 'deleteCollection';
 export const deleteCollection = (
     id: number,
     resolve: (data: any) => void,
@@ -192,7 +148,7 @@ export const deleteCollection = (
     return rawObjectPost(deleteCollectionUrl, { id: id }, resolve, { Authorization: 'Bearer ' + getToken() });
 };
 
-const getCollectionDetailByIdUrl = 'http://localhost:9999/music/GetCollectionDetailById';
+const getCollectionDetailByIdUrl = musicPrefix + 'GetCollectionDetailById';
 export const getCollectionDetailById = (
     id: number,
     resolve: (data: any) => void,
@@ -201,7 +157,7 @@ export const getCollectionDetailById = (
     return rawObjectPost(getCollectionDetailByIdUrl, { id: id }, resolve, { Authorization: 'Bearer ' + getToken() });
 };
 
-const musicsByCollectionUrl = 'http://localhost:9999/music/GetMusicsByCollectionName';
+const musicsByCollectionUrl = musicPrefix + 'GetMusicsByCollectionName';
 export const fetchMusicsByCollectionName = (
     name: string,
     resolve: (data: any) => void,
@@ -210,7 +166,7 @@ export const fetchMusicsByCollectionName = (
     return rawObjectPost(musicsByCollectionUrl, { name: name }, resolve, { Authorization: 'Bearer ' + getToken() });
 };
 
-const musicsByKeyWord = 'http://localhost:9999/music/GetMusicsByKeyWord';
+const musicsByKeyWord = musicPrefix + 'GetMusicsByKeyWord';
 export const fetchMusicsByKeyword = (
     keyword: string,
     resolve: (data: any) => void,
@@ -219,7 +175,7 @@ export const fetchMusicsByKeyword = (
     return rawObjectPost(musicsByKeyWord, { keyword: keyword }, resolve, { Authorization: 'Bearer ' + getToken() });
 };
 
-const addMusicToPersonalListUrl = 'http://localhost:9999/music/AddMusicToMyList';
+const addMusicToPersonalListUrl = musicPrefix + 'AddMusicToMyList';
 export const addMusicToPersonalList = (
     musicId: number,
     resolve: (data: any) => void,
@@ -230,7 +186,7 @@ export const addMusicToPersonalList = (
     });
 };
 
-const removeMusicToPersonalListUrl = 'http://localhost:9999/music/RemoveMusicFromMyList';
+const removeMusicToPersonalListUrl = musicPrefix + 'RemoveMusicFromMyList';
 export const removeMusicFromPersonalList = (
     musicId: number,
     resolve: (data: any) => void,
@@ -241,7 +197,7 @@ export const removeMusicFromPersonalList = (
     });
 };
 
-const removeMusicFromCollectionUrl = 'http://localhost:9999/music/removeMusicFromCollection';
+const removeMusicFromCollectionUrl = musicPrefix + 'removeMusicFromCollection';
 export const removeMusicFromCollection = (
     musicId: number,
     collectionId: number,
@@ -253,7 +209,7 @@ export const removeMusicFromCollection = (
     });
 };
 
-const getMusicCommentsUrl = 'http://localhost:9999/comment/GetMusicComments';
+const getMusicCommentsUrl = commentPrefix + 'GetMusicComments';
 export const getMusicComments = (
     musicId: number,
     resolve: (data: any) => void,
@@ -264,7 +220,7 @@ export const getMusicComments = (
     });
 };
 
-const postMusicCommentsUrl = 'http://localhost:9999/comment/PostMusicComments';
+const postMusicCommentsUrl = commentPrefix + 'PostMusicComments';
 export const postMusicComments = (
     musicId: number,
     content: string,
@@ -276,14 +232,14 @@ export const postMusicComments = (
     });
 };
 
-const getMeUrl = 'http://localhost:9999/users/me';
+const getMeUrl = userPrefix + 'me';
 export const getMe = (resolve: (data: any) => void, reject: (arg0: object) => void): Promise<object> => {
     return rawObjectPost(getMeUrl, {}, resolve, {
         Authorization: 'Bearer ' + getToken(),
     });
 };
 
-const getUserAvatarUrl = 'http://localhost:9999/profile/getUserAvatar';
+const getUserAvatarUrl = profilePrefix + 'getUserAvatar';
 export const getUserAvatar = (
     username: string,
     resolve: (data: any) => void,
@@ -294,14 +250,14 @@ export const getUserAvatar = (
     });
 };
 
-const getMailUrl = 'http://localhost:9999/mail/getMails';
+const getMailUrl = mailPrefix + 'getMails';
 export const getUserMails = (resolve: (data: any) => void, reject: (arg0: object) => void): Promise<object> => {
     return rawObjectPost(getMailUrl, {}, resolve, {
         Authorization: 'Bearer ' + getToken(),
     });
 };
 
-const getMailDetailUrl = 'http://localhost:9999/mail/getMail';
+const getMailDetailUrl = mailPrefix + 'getMail';
 export const getMailDetail = (
     mailId: number,
     resolve: (data: any) => void,
@@ -312,7 +268,7 @@ export const getMailDetail = (
     });
 };
 
-const deleteMailUrl = 'http://localhost:9999/mail/deleteMail';
+const deleteMailUrl = mailPrefix + 'deleteMail';
 export const deleteMail = (
     mailId: number,
     resolve: (data: any) => void,
@@ -323,7 +279,7 @@ export const deleteMail = (
     });
 };
 
-const sendMailUrl = 'http://localhost:9999/mail/sendMail';
+const sendMailUrl = mailPrefix + 'sendMail';
 export const sendMail = (
     toId: number,
     content: string,
@@ -335,7 +291,7 @@ export const sendMail = (
     });
 };
 
-const detailUrl = 'http://localhost:9999/users/detail';
+const detailUrl = userPrefix + 'detail';
 export const getDetail = (
     userId: number,
     resolve: (data: any) => void,
@@ -346,7 +302,7 @@ export const getDetail = (
     });
 };
 
-const followUserUrl = 'http://localhost:9999/users/follow';
+const followUserUrl = userPrefix + 'follow';
 export const followUser = (
     userId: number,
     resolve: (data: any) => void,
@@ -357,7 +313,7 @@ export const followUser = (
     });
 };
 
-const unfollowUserUrl = 'http://localhost:9999/users/unfollow';
+const unfollowUserUrl = userPrefix + 'unfollow';
 export const unfollowUser = (
     userId: number,
     resolve: (data: any) => void,
@@ -368,7 +324,7 @@ export const unfollowUser = (
     });
 };
 
-const getUserFollowersUrl = 'http://localhost:9999/users/getUserFollowers';
+const getUserFollowersUrl = userPrefix + 'getUserFollowers';
 export const getUserFollowers = (
     userId: number,
     resolve: (data: any) => void,
@@ -403,7 +359,7 @@ const fileObjectPost = (
         .catch(err => err);
 };
 
-const uploadAvatarUrl = 'http://localhost:9999/profile/upload';
+const uploadAvatarUrl = profilePrefix + 'upload';
 export const uploadAvatar = (
     data: FormData,
     resolve: (data: any) => void,
@@ -437,7 +393,7 @@ const rawTextObjectPost = (
         .catch(err => err);
 };
 
-const getMusicLyricUrl = 'http://localhost:9999/music/getLyric';
+const getMusicLyricUrl = musicPrefix + 'getLyric';
 export const getLyric = (
     musicId: number,
     resolve: (data: any) => void,
