@@ -349,6 +349,17 @@ export const getUserFollowers = (
     });
 };
 
+const getArtistInfoUrl = musicPrefix + 'getArtistInfo';
+export const getArtistInfo = (
+    artistId: number,
+    resolve: (data: any) => void,
+    reject: (arg0: object) => void,
+): Promise<object> => {
+    return rawObjectPost(getArtistInfoUrl, { artistId: artistId }, resolve, {
+        Authorization: 'Bearer ' + getToken(),
+    });
+};
+
 //------------------------------------------------------------
 
 const fileObjectPost = (
