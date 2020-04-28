@@ -11,6 +11,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import PersonIcon from '@material-ui/icons/Person';
 import SearchIcon from '@material-ui/icons/Search';
 import { NavListIconButton } from '../otherComponents/NavListIconButton';
+import AlbumIcon from '@material-ui/icons/Album';
 
 export const TemporaryDrawer: React.FC = () => {
     const [drawerOpen, setDrawerOpen] = useGlobal('drawerOpen');
@@ -65,7 +66,7 @@ export const TemporaryDrawer: React.FC = () => {
                     </NavListIconButton>
 
                     <NavListIconButton msg={'collections'} iconClick={collectionsClick}>
-                        <SearchIcon />
+                        <AlbumIcon />
                     </NavListIconButton>
 
                     <NavListIconButton msg={'search'} iconClick={searchClick}>
