@@ -172,15 +172,6 @@ export const getCollectionDetailById = (
     return rawObjectPost(getCollectionDetailByIdUrl, { id: id }, resolve, { Authorization: 'Bearer ' + getToken() });
 };
 
-const musicsByCollectionUrl = musicPrefix + 'GetMusicsByCollectionName';
-export const fetchMusicsByCollectionName = (
-    name: string,
-    resolve: (data: any) => void,
-    reject: (arg0: object) => void,
-): Promise<object> => {
-    return rawObjectPost(musicsByCollectionUrl, { name: name }, resolve, { Authorization: 'Bearer ' + getToken() });
-};
-
 const musicsByKeyWord = musicPrefix + 'GetMusicsByKeyWord';
 export const fetchMusicsByKeyword = (
     keyword: string,
@@ -188,28 +179,6 @@ export const fetchMusicsByKeyword = (
     reject: (arg0: object) => void,
 ): Promise<object> => {
     return rawObjectPost(musicsByKeyWord, { keyword: keyword }, resolve, { Authorization: 'Bearer ' + getToken() });
-};
-
-const addMusicToPersonalListUrl = musicPrefix + 'AddMusicToMyList';
-export const addMusicToPersonalList = (
-    musicId: number,
-    resolve: (data: any) => void,
-    reject: (arg0: object) => void,
-): Promise<object> => {
-    return rawObjectPost(addMusicToPersonalListUrl, { musicId: musicId }, resolve, {
-        Authorization: 'Bearer ' + getToken(),
-    });
-};
-
-const removeMusicToPersonalListUrl = musicPrefix + 'RemoveMusicFromMyList';
-export const removeMusicFromPersonalList = (
-    musicId: number,
-    resolve: (data: any) => void,
-    reject: (arg0: object) => void,
-): Promise<object> => {
-    return rawObjectPost(removeMusicToPersonalListUrl, { musicId: musicId }, resolve, {
-        Authorization: 'Bearer ' + getToken(),
-    });
 };
 
 const removeMusicFromCollectionUrl = musicPrefix + 'removeMusicFromCollection';
