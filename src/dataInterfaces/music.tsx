@@ -34,6 +34,7 @@ export class MusicCollection {
     id: number;
     cover: string;
     name: string;
+    musics: Music[];
 }
 
 export class Album {

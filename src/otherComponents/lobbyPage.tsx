@@ -17,21 +17,17 @@ export const LobbyPage: React.FC = () => {
     useEffect(() => {
         getAlbums(collections => {
             setMusicCollections(collections);
+            console.log(collections);
         }, console.log);
     }, []);
 
     const clickCollectionCover = (name: string, id: number): void => {
-        fetchMusicsByCollectionId(
-            id,
-            fetchedMusics => {
-                const musics = fetchedMusics as Music[];
-                if (musics && musics.length > 0) {
-                    updatePlayingMusics(musics);
-                    updateTheCurrentMusic(musics[0]);
-                }
-            },
-            console.log,
-        );
+        musicCollections.forEach(c => {
+            if (c.id === id) {
+                updatePlayingMusics(c.musics);
+                updateTheCurrentMusic(c.musics[0]);
+            }
+        });
     };
 
     const bodyClick = (name: string, id: number): void => {
