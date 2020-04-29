@@ -21,7 +21,7 @@ interface MusicList {
 
 const useStyles = makeStyles({
     list: {
-        height: 300,
+        // height: 300,
     },
     soundIcon: {
         color: 'red',
