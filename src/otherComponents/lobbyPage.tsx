@@ -31,7 +31,8 @@ export const LobbyPage: React.FC = () => {
     };
 
     const bodyClick = (name: string, id: number): void => {
-        history.push(`/main/collection_detail/` + id);
+        // history.push(`/main/collection_detail/` + id);
+        history.push(`/main/album/` + id);
     };
 
     return (

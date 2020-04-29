@@ -357,6 +357,17 @@ export const getAlbums = (resolve: (data: any) => void, reject: (arg0: object) =
     });
 };
 
+const getAlbumDetailUrl = musicPrefix + 'getAlbumDetail';
+export const getAlbumDetail = (
+    albumId: number,
+    resolve: (data: any) => void,
+    reject: (arg0: object) => void,
+): Promise<object> => {
+    return rawObjectPost(getAlbumDetailUrl, { albumId: albumId }, resolve, {
+        Authorization: 'Bearer ' + getToken(),
+    });
+};
+
 const getArtistInfoUrl = musicPrefix + 'getArtistInfo';
 export const getArtistInfo = (
     artistId: number,
