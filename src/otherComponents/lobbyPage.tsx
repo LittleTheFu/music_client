@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { getPublicMusicCollections, fetchMusicsByCollectionId } from '../service';
+import { fetchMusicsByCollectionId, getAlbums } from '../service';
 import { MusicCollectionsComponent } from '../components/musicCollectionsComponent';
-import { MusicCollection, Music } from '../dataInterfaces/music';
+import { MusicCollection, Music, Album } from '../dataInterfaces/music';
 import { useHistory } from 'react-router-dom';
 import { updateMusics, updateCurrentMusic } from '../globals';
 import { useDispatch } from 'reactn';
 
 export const LobbyPage: React.FC = () => {
+    // const [albums, setAlbums] = useState<Album[]>([]);
     const [musicCollections, setMusicCollections] = useState<MusicCollection[]>([]);
     const updatePlayingMusics = useDispatch(updateMusics);
     const updateTheCurrentMusic = useDispatch(updateCurrentMusic);
@@ -14,7 +15,7 @@ export const LobbyPage: React.FC = () => {
     const history = useHistory();
 
     useEffect(() => {
-        getPublicMusicCollections(collections => {
+        getAlbums(collections => {
             setMusicCollections(collections);
         }, console.log);
     }, []);

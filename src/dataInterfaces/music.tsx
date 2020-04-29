@@ -32,12 +32,14 @@ export const dummyMusic: Music = {
 
 export class MusicCollection {
     id: number;
-
-    name: string;
-
     cover: string;
+    name: string;
+}
 
-    isPlaying: boolean;
+export class Album {
+    id: number;
+    cover: string;
+    name: string;
 }
 
 export class MusicComment {
