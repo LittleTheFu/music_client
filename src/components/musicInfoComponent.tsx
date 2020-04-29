@@ -9,6 +9,7 @@ import { IconButton } from '@material-ui/core';
 import { getLyric } from '../service';
 import { parseLyric, getLine, LyricLine } from '../lyric/lyricParser';
 import CommentIcon from '@material-ui/icons/Comment';
+import { useHistory } from 'react-router-dom';
 
 interface MusicInfoProps {
     music: Music;
@@ -54,6 +55,8 @@ export const MusicInfoComponent: React.FC<MusicInfoProps> = (props: MusicInfoPro
     const [lyricLine, setLyricLine] = useState('');
     const [lines, setLines] = useState<LyricLine[]>([]);
 
+    const history = useHistory();
+
     useEffect(() => {
         if (lines && lines.length > 0) {
             setLyricLine(getLine(currentTime, lines));
@@ -71,13 +74,25 @@ export const MusicInfoComponent: React.FC<MusicInfoProps> = (props: MusicInfoPro
         );
     }, [music.id]);
 
+    const artistClick = (artistId: number): void => {
+        history.push(`/main/artist/` + artistId);
+    };
+
     return (
         <Card raised={true} className={classes.card}>
             <h4>
                 {music.name}--
-                {music.artist}--
+                <span
+                    onClick={(e): void => {
+                        e.stopPropagation();
+                        artistClick(music.artistId);
+                    }}
+                >
+                    {music.artist}
+                </span>
+                --
                 {music.album}--
-                {currentTime}--
+                {/* {currentTime}-- */}
             </h4>
             <h4 className={classes.line}>{lyricLine}</h4>
             ---{music.like}{' '}

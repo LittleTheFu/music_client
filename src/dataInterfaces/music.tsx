@@ -9,6 +9,8 @@ export class Music {
 
     artist: string;
 
+    artistId: number;
+
     album: string;
 
     like: number;
@@ -18,12 +20,19 @@ export class Music {
     isInPlayList: boolean;
 }
 
+export class Artist {
+    id: number;
+    name: string;
+    avatar: string;
+}
+
 export const dummyMusic: Music = {
     id: 0,
     address: 'address',
     cover: 'default.png',
     name: 'name',
     artist: 'artist',
+    artistId: 0,
     album: 'album',
     like: 0,
     likedByCurrentUser: false,
