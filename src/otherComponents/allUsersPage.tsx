@@ -3,6 +3,7 @@ import { SimpleUser } from '../dataInterfaces/music';
 import { getAllUsers } from '../service';
 import { makeStyles } from '@material-ui/core/styles';
 import { useHistory } from 'react-router-dom';
+import Link from '@material-ui/core/Link';
 
 const useStyles = makeStyles({
     bounder: {
@@ -54,7 +55,15 @@ export const AllUsersPage: React.FC = () => {
                     alt="avatar"
                     className={classes.avatar}
                 />
-                <div className={classes.name}>{user.name}</div>
+                <div className={classes.name}>
+                    <Link
+                        onClick={(): void => {
+                            avatarClick(user.id);
+                        }}
+                    >
+                        {user.name}
+                    </Link>
+                </div>
             </div>
         );
     });

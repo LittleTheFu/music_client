@@ -10,6 +10,7 @@ import { getLyric } from '../service';
 import { parseLyric, getLine, LyricLine } from '../lyric/lyricParser';
 import CommentIcon from '@material-ui/icons/Comment';
 import { useHistory } from 'react-router-dom';
+import Link from '@material-ui/core/Link';
 
 interface MusicInfoProps {
     music: Music;
@@ -92,7 +93,7 @@ export const MusicInfoComponent: React.FC<MusicInfoProps> = (props: MusicInfoPro
                         artistClick(music.artistId);
                     }}
                 >
-                    {music.artist}
+                    <Link>{music.artist}</Link>
                 </span>
                 --
                 <span
@@ -101,7 +102,7 @@ export const MusicInfoComponent: React.FC<MusicInfoProps> = (props: MusicInfoPro
                         albumClick(music.albumId);
                     }}
                 >
-                    {music.album}
+                    <Link>{music.album}</Link>
                 </span>
                 --
                 {/* {currentTime}-- */}
