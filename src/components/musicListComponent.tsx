@@ -82,10 +82,8 @@ export const MusicListComponent: React.FC<MusicList> = (props: MusicList) => {
     });
 
     return (
-        <Card className={classes.list} raised={true}>
-            <List component="nav">
-                <React.Fragment>{musicElements}</React.Fragment>{' '}
-            </List>
-        </Card>
+        <List component="nav">
+            <React.Fragment>{musicElements}</React.Fragment>{' '}
+        </List>
     );
 };
