@@ -16,6 +16,7 @@ export class Artist {
     id: number;
     name: string;
     avatar: string;
+    albums: MusicCollection[];
 }
 
 export const dummyMusic: Music = {
