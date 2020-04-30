@@ -12,6 +12,7 @@ import PersonIcon from '@material-ui/icons/Person';
 import SearchIcon from '@material-ui/icons/Search';
 import { NavListIconButton } from '../otherComponents/NavListIconButton';
 import AlbumIcon from '@material-ui/icons/Album';
+import PeopleIcon from '@material-ui/icons/People';
 
 export const TemporaryDrawer: React.FC = () => {
     const [drawerOpen, setDrawerOpen] = useGlobal('drawerOpen');
@@ -21,6 +22,10 @@ export const TemporaryDrawer: React.FC = () => {
     const logoutClick = (): void => {
         setLoginFlag(false);
         history.push('/login');
+    };
+
+    const peopleClick = (): void => {
+        history.push(`/main/all_users`);
     };
 
     const meClick = (): void => {
@@ -79,6 +84,10 @@ export const TemporaryDrawer: React.FC = () => {
 
                     <NavListIconButton msg={'me'} iconClick={meClick}>
                         <PersonIcon />
+                    </NavListIconButton>
+
+                    <NavListIconButton msg={'community'} iconClick={peopleClick}>
+                        <PeopleIcon />
                     </NavListIconButton>
 
                     <NavListIconButton msg={'logout'} iconClick={logoutClick}>

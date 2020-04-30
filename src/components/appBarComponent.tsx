@@ -7,11 +7,12 @@ import MenuIcon from '@material-ui/icons/Menu';
 import MailOutlinedIcon from '@material-ui/icons/MailOutlined';
 import { useGlobal } from 'reactn';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import { useHistory, useRouteMatch } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import MusicNoteIcon from '@material-ui/icons/MusicNote';
 import AlbumIcon from '@material-ui/icons/Album';
 import { setLoginFlag } from '../globals';
 import SearchIcon from '@material-ui/icons/Search';
+import PeopleIcon from '@material-ui/icons/People';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -58,6 +59,10 @@ export const AppBarComponent: React.FC = () => {
         history.push(`/main/search`);
     };
 
+    const peopleClick = (): void => {
+        history.push(`/main/all_users`);
+    };
+
     const exitClick = (): void => {
         setLoginFlag(false);
         history.push('/login');
@@ -87,6 +92,9 @@ export const AppBarComponent: React.FC = () => {
                     </IconButton>
                     <IconButton edge="start" className={classes.appButton} onClick={searchClick}>
                         <SearchIcon />
+                    </IconButton>
+                    <IconButton edge="start" className={classes.appButton} onClick={peopleClick}>
+                        <PeopleIcon />
                     </IconButton>
                     <IconButton edge="start" className={classes.appButton} onClick={exitClick}>
                         <ExitToAppIcon />

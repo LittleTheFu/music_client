@@ -19,6 +19,7 @@ import { MusicCommentPage } from '../otherComponents/musicCommentPage';
 import { MainDivider } from '../otherComponents/mainDivider';
 import { ArtistPage } from '../otherComponents/artistPage';
 import { AlbumDetailPage } from '../otherComponents/albumDetailPage';
+import { AllUsersPage } from '../otherComponents/allUsersPage';
 
 const audioElement = getAudioPlayer();
 
@@ -45,6 +46,9 @@ export const MusicApp: React.FC = () => {
                         </Route>
                         <Route path={`${path}/mail`}>
                             <MailPage></MailPage>
+                        </Route>
+                        <Route path={`${path}/all_users`}>
+                            <AllUsersPage></AllUsersPage>
                         </Route>
                         <Route path={`${path}/mail_detail/:id`}>
                             <MailDetailPage></MailDetailPage>

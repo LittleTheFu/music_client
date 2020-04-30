@@ -93,6 +93,11 @@ export const postLikeMusic = (
     );
 };
 
+const getAllUsersUrl = userPrefix + 'getAllUsers';
+export const getAllUsers = (resolve: (data: any) => void): Promise<object> => {
+    return rawObjectPost(getAllUsersUrl, {}, resolve, { Authorization: 'Bearer ' + getToken() });
+};
+
 const dislikeMusicUrl = musicPrefix + 'dislike';
 export const postDislikeMusic = (musicId: number, resolve: (data: any) => void): Promise<object> => {
     return rawObjectPost(dislikeMusicUrl, { musicId: musicId }, resolve, { Authorization: 'Bearer ' + getToken() });

@@ -91,3 +91,9 @@ export class CollectionDetail {
     canBeDeleted: boolean;
     musics: Music[];
 }
+
+export class SimpleUser {
+    id: number;
+    name: string;
+    avatarUrl: string;
+}
