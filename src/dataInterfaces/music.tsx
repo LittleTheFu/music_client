@@ -1,22 +1,14 @@
 export class Music {
     id: number;
-
     address: string;
-
     cover: string;
-
     name: string;
-
     artist: string;
-
     artistId: number;
-
     album: string;
-
+    albumId: number;
     like: number;
-
     likedByCurrentUser: boolean;
-
     isInPlayList: boolean;
 }
 
@@ -34,6 +26,7 @@ export const dummyMusic: Music = {
     artist: 'artist',
     artistId: 0,
     album: 'album',
+    albumId: 0,
     like: 0,
     likedByCurrentUser: false,
     isInPlayList: false,

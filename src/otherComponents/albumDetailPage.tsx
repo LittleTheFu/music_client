@@ -45,7 +45,7 @@ export const AlbumDetailPage: React.FC = () => {
             },
             console.log,
         );
-    }, []);
+    }, [history.location]);
 
     const clickMusic = (music: Music, index: number): void => {
         console.log('CLICK MUSIC');

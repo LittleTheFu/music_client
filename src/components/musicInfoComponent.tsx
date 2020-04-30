@@ -78,6 +78,10 @@ export const MusicInfoComponent: React.FC<MusicInfoProps> = (props: MusicInfoPro
         history.push(`/main/artist/` + artistId);
     };
 
+    const albumClick = (albumId: number): void => {
+        history.push(`/main/album/` + albumId);
+    };
+
     return (
         <Card raised={true} className={classes.card}>
             <h4>
@@ -91,7 +95,15 @@ export const MusicInfoComponent: React.FC<MusicInfoProps> = (props: MusicInfoPro
                     {music.artist}
                 </span>
                 --
-                {music.album}--
+                <span
+                    onClick={(e): void => {
+                        e.stopPropagation();
+                        albumClick(music.albumId);
+                    }}
+                >
+                    {music.album}
+                </span>
+                --
                 {/* {currentTime}-- */}
             </h4>
             <h4 className={classes.line}>{lyricLine}</h4>
