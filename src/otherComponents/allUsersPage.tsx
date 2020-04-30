@@ -7,9 +7,9 @@ import Link from '@material-ui/core/Link';
 
 const useStyles = makeStyles({
     bounder: {
-        padding: 20,
-        height: 180,
-        width: 200,
+        padding: 10,
+        height: 150,
+        width: 150,
         display: 'inline-block',
         // border: '1px solid red',
     },
@@ -18,8 +18,8 @@ const useStyles = makeStyles({
         display: 'block',
         marginLeft: 'auto',
         marginRight: 'auto',
-        height: 48 * 3,
-        width: 48 * 3,
+        height: 120,
+        width: 120,
     },
     name: {
         textAlign: 'center',

@@ -7,7 +7,9 @@ import ListItem from '@material-ui/core/ListItem';
 import VolumeUpIcon from '@material-ui/icons/VolumeUp';
 
 const useStyles = makeStyles({
-    list: {},
+    list: {
+        maxWidth: 300,
+    },
     soundIcon: {
         color: 'red',
     },
@@ -56,7 +58,7 @@ export const MusicListDrawer: React.FC<MusicListDrawerProps> = (props: MusicList
                 }}
             >
                 <h3 className={classes.header}>Play List</h3>
-                <List component="nav">
+                <List component="nav" className={classes.list}>
                     <React.Fragment>{musicElements}</React.Fragment>{' '}
                 </List>
             </Drawer>

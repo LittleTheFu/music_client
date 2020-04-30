@@ -15,8 +15,8 @@ import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
-        removeButton: {
-            // display: 'inline',
+        cover: {
+            width: 160,
         },
     }),
 );
@@ -80,7 +80,7 @@ export const AlbumDetailPage: React.FC = () => {
                         <BackButton></BackButton>
                     </Grid>
                     <Grid item xs={6} md={3}>
-                        <img src={detail.cover} alt="cover" />
+                        <img className={classes.cover} src={detail.cover} alt="cover" />
                     </Grid>
                     <Grid item xs={6} md={9}>
                         <h1>{detail.name}</h1>
