@@ -199,6 +199,7 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
                             likeClick={currentMusicInfoLikeClick}
                             dislikeClick={currentMusicInfoDislikeClick}
                             commentClick={currentMusicCommentClick}
+                            isPlaying={isPlaying}
                         ></MusicInfoComponent>
                     ) : (
                         <div></div>

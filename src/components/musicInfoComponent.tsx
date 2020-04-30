@@ -18,6 +18,11 @@ interface MusicInfoProps {
     likeClick: () => void;
     dislikeClick: () => void;
     commentClick: () => void;
+    isPlaying: boolean;
+}
+
+interface StyleProps {
+    playState: string;
 }
 
 const useStyles = makeStyles({
@@ -43,7 +48,7 @@ const useStyles = makeStyles({
         animationDuration: '12000ms',
         animationIterationCount: 'infinite',
         animationTimingFunction: 'linear',
-        animationPlayState: 'running',
+        animationPlayState: (props: StyleProps): string => props.playState,
     },
     likeIcon: {
         color: 'red',
@@ -51,12 +56,22 @@ const useStyles = makeStyles({
 });
 
 export const MusicInfoComponent: React.FC<MusicInfoProps> = (props: MusicInfoProps) => {
-    const classes = useStyles({});
+    const [cssProps, setCssProps] = useState({ playState: 'paused' });
+    const classes = useStyles(cssProps);
     const { music, likeClick, dislikeClick, currentTime, commentClick } = props;
     const [lyricLine, setLyricLine] = useState('');
     const [lines, setLines] = useState<LyricLine[]>([]);
 
     const history = useHistory();
+
+    useEffect(() => {
+        if (props.isPlaying) {
+            setCssProps({ playState: 'running' });
+        } else {
+            setCssProps({ playState: 'paused' });
+        }
+        console.log('PLAY PAUSE : ' + props.isPlaying);
+    }, [props.isPlaying]);
 
     useEffect(() => {
         if (lines && lines.length > 0) {
