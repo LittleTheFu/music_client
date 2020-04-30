@@ -70,7 +70,6 @@ export const MusicInfoComponent: React.FC<MusicInfoProps> = (props: MusicInfoPro
         } else {
             setCssProps({ playState: 'paused' });
         }
-        console.log('PLAY PAUSE : ' + props.isPlaying);
     }, [props.isPlaying]);
 
     useEffect(() => {
