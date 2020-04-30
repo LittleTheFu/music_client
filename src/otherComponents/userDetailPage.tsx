@@ -18,6 +18,7 @@ import { BackButton } from '../otherComponents/backButton';
 import { MusicCollectionsComponent } from '../components/musicCollectionsComponent';
 import { updateMusics, updateCurrentMusic } from '../globals';
 import { useDispatch } from 'reactn';
+import EditIcon from '@material-ui/icons/Edit';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -177,7 +178,7 @@ export const UserDetailPage: React.FC = () => {
                                     <Grid item sm={3} xs={6}>
                                         {intId === getMeId() ? (
                                             <IconButton onClick={editClick} className={classes.item}>
-                                                <PeopleIcon />
+                                                <EditIcon />
                                                 edit
                                             </IconButton>
                                         ) : (
