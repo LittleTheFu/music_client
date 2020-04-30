@@ -14,7 +14,7 @@ const useStyles = makeStyles(() =>
             height: 30,
         },
         paper: {
-            width: 400,
+            width: 280,
         },
     }),
 );
