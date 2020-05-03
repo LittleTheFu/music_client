@@ -108,11 +108,6 @@ export const postShowProfile = (resolve: (data: any) => void): Promise<object> =
     return rawObjectPost(profileUrl, {}, resolve, { Authorization: 'Bearer ' + getToken() });
 };
 
-const collectionsUrl = musicPrefix + 'collections';
-export const getMusicCollections = (resolve: (data: any) => void, reject: (arg0: object) => void): Promise<object> => {
-    return rawObjectPost(collectionsUrl, {}, resolve, { Authorization: 'Bearer ' + getToken() });
-};
-
 const getPrivateCollectionsUrl = musicPrefix + 'getPrivateMusicCollections';
 export const getPrivateMusicCollections = (
     resolve: (data: any) => void,
