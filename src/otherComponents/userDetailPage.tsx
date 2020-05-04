@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useGlobal } from 'reactn';
 import { getDetail, sendMail, fetchMusicsByCollectionId } from 'service';
-import { UserDetail, Music } from '../dataInterfaces/music';
+import { UserDetail } from '../dataInterfaces/music';
 import { followUser, unfollowUser } from '../service';
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';

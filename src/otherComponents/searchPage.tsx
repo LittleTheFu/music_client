@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import InputBase from '@material-ui/core/InputBase';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
@@ -73,10 +73,6 @@ export const SearchPage: React.FC = () => {
     const addMusicClick = (id: number): void => {
         setWantAddMusicId(id);
         setModalOpen(true);
-    };
-
-    const commentClick = (id: number): void => {
-        history.push(`/main/music_comment/` + id);
     };
 
     return (

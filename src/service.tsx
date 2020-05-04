@@ -24,7 +24,7 @@ function rawObjectPost<T>(
     data: object,
     resolve: (data: T) => void,
     headerContent: object = {},
-    reject?: (error: any) => void,
+    reject?: (error: Error) => void,
 ): Promise<T> {
     return axios
         .post(url, JSON.stringify(data), {
@@ -73,7 +73,7 @@ export const postRegister = (
     username: string,
     password: string,
     resolve: (data: any) => void,
-    reject: (data: any) => void,
+    reject: (data: Error) => void,
 ): Promise<object> => {
     return rawObjectPost(registerUrl, { username: username, password: password }, resolve, {}, reject);
 };
@@ -83,7 +83,7 @@ export const postLogin = (
     username: string,
     password: string,
     resolve: (data: AccessData) => void,
-    reject: (data: any) => void,
+    reject: (data: Error) => void,
 ): Promise<AccessData> => {
     return rawObjectPost(loginUrl, { username: username, password: password }, resolve, {}, reject);
 };
@@ -92,7 +92,7 @@ const likeMusicUrl = musicPrefix + 'like';
 export const postLikeMusic = (
     musicId: number,
     resolve: (data: any) => void,
-    reject?: (data: any) => void,
+    reject?: (data: Error) => void,
 ): Promise<object> => {
     return rawObjectPost(
         likeMusicUrl,
@@ -118,7 +118,7 @@ export const getPrivateMusicCollections = (
     resolve: (data: any) => void,
     reject: (arg0: object) => void,
 ): Promise<object> => {
-    return rawObjectPost(getPrivateCollectionsUrl, {}, resolve, { Authorization: 'Bearer ' + getToken() });
+    return rawObjectPost(getPrivateCollectionsUrl, {}, resolve, { Authorization: 'Bearer ' + getToken() }, reject);
 };
 
 const addMusicToCollectionUrl = musicPrefix + 'addMusicToCollection';
@@ -128,9 +128,15 @@ export const addMusicToCollection = (
     resolve: (data: any) => void,
     reject: (arg0: object) => void,
 ): Promise<object> => {
-    return rawObjectPost(addMusicToCollectionUrl, { collectionId: collectionId, musicId: musicId }, resolve, {
-        Authorization: 'Bearer ' + getToken(),
-    });
+    return rawObjectPost(
+        addMusicToCollectionUrl,
+        { collectionId: collectionId, musicId: musicId },
+        resolve,
+        {
+            Authorization: 'Bearer ' + getToken(),
+        },
+        reject,
+    );
 };
 
 const createCollectionUrl = musicPrefix + 'createCollection';
@@ -139,7 +145,13 @@ export const createCollection = (
     resolve: (data: any) => void,
     reject: (arg0: object) => void,
 ): Promise<object> => {
-    return rawObjectPost(createCollectionUrl, { name: name }, resolve, { Authorization: 'Bearer ' + getToken() });
+    return rawObjectPost(
+        createCollectionUrl,
+        { name: name },
+        resolve,
+        { Authorization: 'Bearer ' + getToken() },
+        reject,
+    );
 };
 
 const musicsByCollectionIdUrl = musicPrefix + 'GetMusicsByCollectionId';
@@ -148,7 +160,13 @@ export const fetchMusicsByCollectionId = (
     resolve: (data: Music[]) => void,
     reject: (arg0: object) => void,
 ): Promise<Music[]> => {
-    return rawObjectPost(musicsByCollectionIdUrl, { id: id }, resolve, { Authorization: 'Bearer ' + getToken() });
+    return rawObjectPost(
+        musicsByCollectionIdUrl,
+        { id: id },
+        resolve,
+        { Authorization: 'Bearer ' + getToken() },
+        reject,
+    );
 };
 
 const deleteCollectionUrl = musicPrefix + 'deleteCollection';
@@ -157,16 +175,22 @@ export const deleteCollection = (
     resolve: (data: any) => void,
     reject: (arg0: object) => void,
 ): Promise<object> => {
-    return rawObjectPost(deleteCollectionUrl, { id: id }, resolve, { Authorization: 'Bearer ' + getToken() });
+    return rawObjectPost(deleteCollectionUrl, { id: id }, resolve, { Authorization: 'Bearer ' + getToken() }, reject);
 };
 
 const getCollectionDetailByIdUrl = musicPrefix + 'GetCollectionDetailById';
 export const getCollectionDetailById = (
     id: number,
     resolve: (data: CollectionDetail) => void,
-    reject: (arg0: CollectionDetail) => void,
+    reject: (arg0: object) => void,
 ): Promise<object> => {
-    return rawObjectPost(getCollectionDetailByIdUrl, { id: id }, resolve, { Authorization: 'Bearer ' + getToken() });
+    return rawObjectPost(
+        getCollectionDetailByIdUrl,
+        { id: id },
+        resolve,
+        { Authorization: 'Bearer ' + getToken() },
+        reject,
+    );
 };
 
 const musicsByKeyWord = musicPrefix + 'GetMusicsByKeyWord';
@@ -175,7 +199,13 @@ export const fetchMusicsByKeyword = (
     resolve: (data: Music[]) => void,
     reject: (arg0: object) => void,
 ): Promise<Music[]> => {
-    return rawObjectPost(musicsByKeyWord, { keyword: keyword }, resolve, { Authorization: 'Bearer ' + getToken() });
+    return rawObjectPost(
+        musicsByKeyWord,
+        { keyword: keyword },
+        resolve,
+        { Authorization: 'Bearer ' + getToken() },
+        reject,
+    );
 };
 
 const removeMusicFromCollectionUrl = musicPrefix + 'removeMusicFromCollection';
@@ -185,9 +215,15 @@ export const removeMusicFromCollection = (
     resolve: (data: any) => void,
     reject: (arg0: object) => void,
 ): Promise<object> => {
-    return rawObjectPost(removeMusicFromCollectionUrl, { musicId: musicId, collectionId: collectionId }, resolve, {
-        Authorization: 'Bearer ' + getToken(),
-    });
+    return rawObjectPost(
+        removeMusicFromCollectionUrl,
+        { musicId: musicId, collectionId: collectionId },
+        resolve,
+        {
+            Authorization: 'Bearer ' + getToken(),
+        },
+        reject,
+    );
 };
 
 const getMusicCommentsUrl = commentPrefix + 'GetMusicComments';
@@ -208,9 +244,15 @@ export const postMusicComments = (
     resolve: (data: MusicComment[]) => void,
     reject: (arg0: object) => void,
 ): Promise<MusicComment[]> => {
-    return rawObjectPost(postMusicCommentsUrl, { musicId: musicId, content: content }, resolve, {
-        Authorization: 'Bearer ' + getToken(),
-    });
+    return rawObjectPost(
+        postMusicCommentsUrl,
+        { musicId: musicId, content: content },
+        resolve,
+        {
+            Authorization: 'Bearer ' + getToken(),
+        },
+        reject,
+    );
 };
 
 const getMeUrl = userPrefix + 'me';
@@ -225,9 +267,15 @@ export const getMe = (
 
 const getMailUrl = mailPrefix + 'getMails';
 export const getUserMails = (resolve: (data: Mail[]) => void, reject: (arg0: object) => void): Promise<Mail[]> => {
-    return rawObjectPost(getMailUrl, {}, resolve, {
-        Authorization: 'Bearer ' + getToken(),
-    });
+    return rawObjectPost(
+        getMailUrl,
+        {},
+        resolve,
+        {
+            Authorization: 'Bearer ' + getToken(),
+        },
+        reject,
+    );
 };
 
 const getMailDetailUrl = mailPrefix + 'getMail';
@@ -236,9 +284,15 @@ export const getMailDetail = (
     resolve: (data: Mail) => void,
     reject: (arg0: object) => void,
 ): Promise<Mail> => {
-    return rawObjectPost(getMailDetailUrl, { mailId: mailId }, resolve, {
-        Authorization: 'Bearer ' + getToken(),
-    });
+    return rawObjectPost(
+        getMailDetailUrl,
+        { mailId: mailId },
+        resolve,
+        {
+            Authorization: 'Bearer ' + getToken(),
+        },
+        reject,
+    );
 };
 
 const deleteMailUrl = mailPrefix + 'deleteMail';
@@ -247,9 +301,15 @@ export const deleteMail = (
     resolve: (data: Mail[]) => void,
     reject: (arg0: object) => void,
 ): Promise<Mail[]> => {
-    return rawObjectPost(deleteMailUrl, { mailId: mailId }, resolve, {
-        Authorization: 'Bearer ' + getToken(),
-    });
+    return rawObjectPost(
+        deleteMailUrl,
+        { mailId: mailId },
+        resolve,
+        {
+            Authorization: 'Bearer ' + getToken(),
+        },
+        reject,
+    );
 };
 
 const sendMailUrl = mailPrefix + 'sendMail';
@@ -259,9 +319,15 @@ export const sendMail = (
     resolve: (data: any) => void,
     reject: (arg0: object) => void,
 ): Promise<object> => {
-    return rawObjectPost(sendMailUrl, { toId: toId, content: content }, resolve, {
-        Authorization: 'Bearer ' + getToken(),
-    });
+    return rawObjectPost(
+        sendMailUrl,
+        { toId: toId, content: content },
+        resolve,
+        {
+            Authorization: 'Bearer ' + getToken(),
+        },
+        reject,
+    );
 };
 
 const detailUrl = userPrefix + 'detail';
@@ -270,9 +336,15 @@ export const getDetail = (
     resolve: (data: any) => void,
     reject: (arg0: object) => void,
 ): Promise<object> => {
-    return rawObjectPost(detailUrl, { userId: userId }, resolve, {
-        Authorization: 'Bearer ' + getToken(),
-    });
+    return rawObjectPost(
+        detailUrl,
+        { userId: userId },
+        resolve,
+        {
+            Authorization: 'Bearer ' + getToken(),
+        },
+        reject,
+    );
 };
 
 const followUserUrl = userPrefix + 'follow';
@@ -281,9 +353,15 @@ export const followUser = (
     resolve: (data: any) => void,
     reject: (arg0: object) => void,
 ): Promise<object> => {
-    return rawObjectPost(followUserUrl, { userId: userId }, resolve, {
-        Authorization: 'Bearer ' + getToken(),
-    });
+    return rawObjectPost(
+        followUserUrl,
+        { userId: userId },
+        resolve,
+        {
+            Authorization: 'Bearer ' + getToken(),
+        },
+        reject,
+    );
 };
 
 const unfollowUserUrl = userPrefix + 'unfollow';
@@ -292,9 +370,15 @@ export const unfollowUser = (
     resolve: (data: any) => void,
     reject: (arg0: object) => void,
 ): Promise<object> => {
-    return rawObjectPost(unfollowUserUrl, { userId: userId }, resolve, {
-        Authorization: 'Bearer ' + getToken(),
-    });
+    return rawObjectPost(
+        unfollowUserUrl,
+        { userId: userId },
+        resolve,
+        {
+            Authorization: 'Bearer ' + getToken(),
+        },
+        reject,
+    );
 };
 
 const getUserFollowersUrl = userPrefix + 'getUserFollowers';
@@ -303,16 +387,28 @@ export const getUserFollowers = (
     resolve: (data: Follower[]) => void,
     reject: (arg0: object) => void,
 ): Promise<Follower[]> => {
-    return rawObjectPost(getUserFollowersUrl, { userId: userId }, resolve, {
-        Authorization: 'Bearer ' + getToken(),
-    });
+    return rawObjectPost(
+        getUserFollowersUrl,
+        { userId: userId },
+        resolve,
+        {
+            Authorization: 'Bearer ' + getToken(),
+        },
+        reject,
+    );
 };
 
 const getAlbumsUrl = musicPrefix + 'getAlbums';
 export const getAlbums = (resolve: (data: any) => void, reject: (arg0: object) => void): Promise<object> => {
-    return rawObjectPost(getAlbumsUrl, {}, resolve, {
-        Authorization: 'Bearer ' + getToken(),
-    });
+    return rawObjectPost(
+        getAlbumsUrl,
+        {},
+        resolve,
+        {
+            Authorization: 'Bearer ' + getToken(),
+        },
+        reject,
+    );
 };
 
 const getAlbumDetailUrl = musicPrefix + 'getAlbumDetail';
@@ -321,9 +417,15 @@ export const getAlbumDetail = (
     resolve: (data: any) => void,
     reject: (arg0: object) => void,
 ): Promise<object> => {
-    return rawObjectPost(getAlbumDetailUrl, { albumId: albumId }, resolve, {
-        Authorization: 'Bearer ' + getToken(),
-    });
+    return rawObjectPost(
+        getAlbumDetailUrl,
+        { albumId: albumId },
+        resolve,
+        {
+            Authorization: 'Bearer ' + getToken(),
+        },
+        reject,
+    );
 };
 
 const getArtistInfoUrl = musicPrefix + 'getArtistInfo';
@@ -332,9 +434,15 @@ export const getArtistInfo = (
     resolve: (data: Artist) => void,
     reject: (arg0: object) => void,
 ): Promise<Artist> => {
-    return rawObjectPost(getArtistInfoUrl, { artistId: artistId }, resolve, {
-        Authorization: 'Bearer ' + getToken(),
-    });
+    return rawObjectPost(
+        getArtistInfoUrl,
+        { artistId: artistId },
+        resolve,
+        {
+            Authorization: 'Bearer ' + getToken(),
+        },
+        reject,
+    );
 };
 
 //------------------------------------------------------------
@@ -377,7 +485,13 @@ export const getLyric = (
     resolve: (data: any) => void,
     reject: (arg0: object) => void,
 ): Promise<object> => {
-    return rawObjectPost(getMusicLyricUrl, { musicId: musicId }, resolve, {
-        Authorization: 'Bearer ' + getToken(),
-    });
+    return rawObjectPost(
+        getMusicLyricUrl,
+        { musicId: musicId },
+        resolve,
+        {
+            Authorization: 'Bearer ' + getToken(),
+        },
+        reject,
+    );
 };

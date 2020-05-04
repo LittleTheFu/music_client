@@ -1,19 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Music, CollectionDetail } from '../dataInterfaces/music';
-import { getAlbumDetail, getCollectionDetailById, removeMusicFromCollection } from '../service';
+import { getAlbumDetail } from '../service';
 import { MusicListComponent } from '../components/musicListComponent';
 import { useGlobal, useDispatch } from 'reactn';
 import { updateMusics, updateCurrentMusic } from '../globals';
 import { useHistory } from 'react-router-dom';
-import { IconButton } from '@material-ui/core';
-import DeleteIcon from '@material-ui/icons/Delete';
 import { MyCollectionsModal } from '../components/myCollectionsModal';
 import Grid from '@material-ui/core/Grid';
 import { BackButton } from '../otherComponents/backButton';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import { makeStyles, createStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles((theme: Theme) =>
+const useStyles = makeStyles(() =>
     createStyles({
         cover: {
             width: 160,
