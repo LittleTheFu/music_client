@@ -35,7 +35,7 @@ export const MusicApp: React.FC = () => {
                 <MusicComponent audioElement={audioElement} musics={musics}></MusicComponent>
             </Grid>
             <MainDivider></MainDivider>
-            <Grid container spacing={1}>
+            <Grid container>
                 <Grid item xs={12}>
                     <Switch>
                         <Route path={`${path}/lobby`}>
