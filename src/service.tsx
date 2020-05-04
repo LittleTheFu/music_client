@@ -11,7 +11,8 @@ import {
     Artist,
 } from './dataInterfaces/music';
 
-const hostPrefix = 'http://localhost:9999/';
+// const hostPrefix = 'http://localhost:9999/';
+const hostPrefix = 'http://192.168.0.101:9999/';
 const userPrefix = hostPrefix + 'users/';
 const authPrefix = hostPrefix + 'auth/';
 const musicPrefix = hostPrefix + 'music/';
