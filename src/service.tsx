@@ -1,6 +1,15 @@
 import axios from 'axios';
 import { getToken } from './globals';
-import { AccessData, RetSimpleUser, Music, CollectionDetail } from './dataInterfaces/music';
+import {
+    AccessData,
+    RetSimpleUser,
+    Music,
+    CollectionDetail,
+    MusicComment,
+    Mail,
+    Follower,
+    Artist,
+} from './dataInterfaces/music';
 
 const hostPrefix = 'http://localhost:9999/';
 const userPrefix = hostPrefix + 'users/';
@@ -163,9 +172,9 @@ export const getCollectionDetailById = (
 const musicsByKeyWord = musicPrefix + 'GetMusicsByKeyWord';
 export const fetchMusicsByKeyword = (
     keyword: string,
-    resolve: (data: any) => void,
+    resolve: (data: Music[]) => void,
     reject: (arg0: object) => void,
-): Promise<object> => {
+): Promise<Music[]> => {
     return rawObjectPost(musicsByKeyWord, { keyword: keyword }, resolve, { Authorization: 'Bearer ' + getToken() });
 };
 
@@ -184,9 +193,9 @@ export const removeMusicFromCollection = (
 const getMusicCommentsUrl = commentPrefix + 'GetMusicComments';
 export const getMusicComments = (
     musicId: number,
-    resolve: (data: any) => void,
+    resolve: (data: MusicComment[]) => void,
     reject: (arg0: object) => void,
-): Promise<object> => {
+): Promise<MusicComment[]> => {
     return rawObjectPost(getMusicCommentsUrl, { musicId: musicId }, resolve, {
         Authorization: 'Bearer ' + getToken(),
     });
@@ -196,34 +205,26 @@ const postMusicCommentsUrl = commentPrefix + 'PostMusicComments';
 export const postMusicComments = (
     musicId: number,
     content: string,
-    resolve: (data: any) => void,
+    resolve: (data: MusicComment[]) => void,
     reject: (arg0: object) => void,
-): Promise<object> => {
+): Promise<MusicComment[]> => {
     return rawObjectPost(postMusicCommentsUrl, { musicId: musicId, content: content }, resolve, {
         Authorization: 'Bearer ' + getToken(),
     });
 };
 
 const getMeUrl = userPrefix + 'me';
-export const getMe = (resolve: (data: any) => void, reject: (arg0: object) => void): Promise<object> => {
+export const getMe = (
+    resolve: (data: RetSimpleUser) => void,
+    reject: (arg0: object) => void,
+): Promise<RetSimpleUser> => {
     return rawObjectPost(getMeUrl, {}, resolve, {
         Authorization: 'Bearer ' + getToken(),
     });
 };
 
-const getUserAvatarUrl = profilePrefix + 'getUserAvatar';
-export const getUserAvatar = (
-    username: string,
-    resolve: (data: any) => void,
-    reject: (arg0: object) => void,
-): Promise<object> => {
-    return rawObjectPost(getUserAvatarUrl, { username: username }, resolve, {
-        Authorization: 'Bearer ' + getToken(),
-    });
-};
-
 const getMailUrl = mailPrefix + 'getMails';
-export const getUserMails = (resolve: (data: any) => void, reject: (arg0: object) => void): Promise<object> => {
+export const getUserMails = (resolve: (data: Mail[]) => void, reject: (arg0: object) => void): Promise<Mail[]> => {
     return rawObjectPost(getMailUrl, {}, resolve, {
         Authorization: 'Bearer ' + getToken(),
     });
@@ -232,9 +233,9 @@ export const getUserMails = (resolve: (data: any) => void, reject: (arg0: object
 const getMailDetailUrl = mailPrefix + 'getMail';
 export const getMailDetail = (
     mailId: number,
-    resolve: (data: any) => void,
+    resolve: (data: Mail) => void,
     reject: (arg0: object) => void,
-): Promise<object> => {
+): Promise<Mail> => {
     return rawObjectPost(getMailDetailUrl, { mailId: mailId }, resolve, {
         Authorization: 'Bearer ' + getToken(),
     });
@@ -243,9 +244,9 @@ export const getMailDetail = (
 const deleteMailUrl = mailPrefix + 'deleteMail';
 export const deleteMail = (
     mailId: number,
-    resolve: (data: any) => void,
+    resolve: (data: Mail[]) => void,
     reject: (arg0: object) => void,
-): Promise<object> => {
+): Promise<Mail[]> => {
     return rawObjectPost(deleteMailUrl, { mailId: mailId }, resolve, {
         Authorization: 'Bearer ' + getToken(),
     });
@@ -299,9 +300,9 @@ export const unfollowUser = (
 const getUserFollowersUrl = userPrefix + 'getUserFollowers';
 export const getUserFollowers = (
     userId: number,
-    resolve: (data: any) => void,
+    resolve: (data: Follower[]) => void,
     reject: (arg0: object) => void,
-): Promise<object> => {
+): Promise<Follower[]> => {
     return rawObjectPost(getUserFollowersUrl, { userId: userId }, resolve, {
         Authorization: 'Bearer ' + getToken(),
     });
@@ -328,9 +329,9 @@ export const getAlbumDetail = (
 const getArtistInfoUrl = musicPrefix + 'getArtistInfo';
 export const getArtistInfo = (
     artistId: number,
-    resolve: (data: any) => void,
+    resolve: (data: Artist) => void,
     reject: (arg0: object) => void,
-): Promise<object> => {
+): Promise<Artist> => {
     return rawObjectPost(getArtistInfoUrl, { artistId: artistId }, resolve, {
         Authorization: 'Bearer ' + getToken(),
     });

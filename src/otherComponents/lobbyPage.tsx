@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { getAlbums } from '../service';
 import { MusicCollectionsComponent } from '../components/musicCollectionsComponent';
-import { MusicCollection, Music, Album } from '../dataInterfaces/music';
+import { MusicCollection } from '../dataInterfaces/music';
 import { useHistory } from 'react-router-dom';
 import { updateMusics, updateCurrentMusic } from '../globals';
 import { useDispatch } from 'reactn';
