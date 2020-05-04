@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { fetchMusicsByCollectionId, getAlbums } from '../service';
+import { getAlbums } from '../service';
 import { MusicCollectionsComponent } from '../components/musicCollectionsComponent';
 import { MusicCollection, Music, Album } from '../dataInterfaces/music';
 import { useHistory } from 'react-router-dom';

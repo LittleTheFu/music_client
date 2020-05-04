@@ -92,8 +92,19 @@ export class CollectionDetail {
     musics: Music[];
 }
 
-export class SimpleUser {
+export class RetSimpleUser {
     id: number;
     name: string;
     avatarUrl: string;
 }
+
+export class AccessData {
+    accessToken: string;
+}
+
+//----------------------
+// export class RetSimpleUser {
+//     id: number;
+//     name: string;
+//     avatarUrl: string;
+// }

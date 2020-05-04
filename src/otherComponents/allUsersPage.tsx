@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { SimpleUser } from '../dataInterfaces/music';
+import { RetSimpleUser } from '../dataInterfaces/music';
 import { getAllUsers } from '../service';
 import { makeStyles } from '@material-ui/core/styles';
 import { useHistory } from 'react-router-dom';
@@ -28,7 +28,7 @@ const useStyles = makeStyles({
 });
 
 export const AllUsersPage: React.FC = () => {
-    const [users, setUsers] = useState<SimpleUser[]>([]);
+    const [users, setUsers] = useState<RetSimpleUser[]>([]);
     const history = useHistory();
 
     const classes = useStyles({});
@@ -44,7 +44,7 @@ export const AllUsersPage: React.FC = () => {
         });
     }, []);
 
-    const userElementes = users.map((user: SimpleUser, index: number) => {
+    const userElementes = users.map((user: RetSimpleUser, index: number) => {
         return (
             <div key={index} className={classes.bounder}>
                 <img

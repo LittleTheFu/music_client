@@ -8,6 +8,7 @@ import { useHistory, Link } from 'react-router-dom';
 import Container from '@material-ui/core/Container';
 import { setLoginFlag, setMeAvatar } from '../globals';
 import { useDispatch } from 'reactn';
+import { AccessData } from '../dataInterfaces/music';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -52,20 +53,20 @@ export const LoginComponent: React.FC = () => {
         );
     };
 
-    const resolveData = (data: any): void => {
-        if ('error' in data) {
-            console.log('error : ' + data.error);
-        } else if ('accessToken' in data) {
-            setToken(data.accessToken);
+    const resolveData = (data: AccessData): void => {
+        // if ('error' in data) {
+        //     console.log('error : ' + data.error);
+        // } else if ('accessToken' in data) {
+        setToken(data.accessToken);
 
-            getMe(console.log, console.log);
+        getMe(console.log, console.log);
 
-            setLoginFlag(true);
+        setLoginFlag(true);
 
-            loadAvatarAndId();
+        loadAvatarAndId();
 
-            history.push('/main/lobby');
-        }
+        history.push('/main/lobby');
+        // }
     };
 
     const loginFailed = (e: Error): void => {

@@ -33,8 +33,8 @@ export const MusicCollectionPage: React.FC = () => {
     const clickCollectionCover = (name: string, id: number): void => {
         fetchMusicsByCollectionId(
             id,
-            fetchedMusics => {
-                const musics = fetchedMusics as Music[];
+            musics => {
+                // const musics = fetchedMusics as Music[];
                 if (musics && musics.length > 0) {
                     updatePlayingMusics(musics);
                     updateTheCurrentMusic(musics[0]);
