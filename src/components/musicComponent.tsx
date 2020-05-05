@@ -2,9 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { MusicInfoComponent } from './musicInfoComponent';
 import { Music } from '../dataInterfaces/music';
 import { PlayBarComponent } from './playBarComponent';
-import { CollectionInfoModal } from './collectionInfoModal';
-import { CommentModal } from './commentModal';
-import { UserCardModal } from '../otherComponents/userCardModal';
 import { useGlobal, useDispatch } from 'reactn';
 import { useHistory } from 'react-router-dom';
 import { postLikeMusic, postDislikeMusic } from '../service';
@@ -149,9 +146,6 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
 
     return (
         <div>
-            <CollectionInfoModal></CollectionInfoModal>
-            <CommentModal></CommentModal>
-            <UserCardModal></UserCardModal>
             <Grid item xs={12}>
                 <div>
                     <MusicListDrawer
