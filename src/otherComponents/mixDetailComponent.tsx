@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Music, CollectionDetail } from '../dataInterfaces/music';
 import { MusicListComponent } from '../components/musicListComponent';
 import Grid from '@material-ui/core/Grid';

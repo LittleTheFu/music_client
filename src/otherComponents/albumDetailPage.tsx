@@ -6,16 +6,7 @@ import { useGlobal, useDispatch } from 'reactn';
 import { updateMusics, updateCurrentMusic } from '../globals';
 import { useHistory } from 'react-router-dom';
 import { MyCollectionsModal } from '../components/myCollectionsModal';
-import { makeStyles, createStyles } from '@material-ui/core/styles';
 import { MixDetail } from '../otherComponents/mixDetailComponent';
-
-const useStyles = makeStyles(() =>
-    createStyles({
-        cover: {
-            width: 160,
-        },
-    }),
-);
 
 export const AlbumDetailPage: React.FC = () => {
     const { id } = useParams();
@@ -29,8 +20,6 @@ export const AlbumDetailPage: React.FC = () => {
     const history = useHistory();
 
     const intId = parseInt(id);
-
-    const classes = useStyles();
 
     useEffect(() => {
         getAlbumDetail(
