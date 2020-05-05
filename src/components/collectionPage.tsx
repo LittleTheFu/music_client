@@ -64,7 +64,7 @@ export const MusicCollectionPage: React.FC = () => {
 
     return (
         <div>
-            <Grid container spacing={1}>
+            <Grid container>
                 <Grid item xs={12}>
                     <CreateCollectionModal
                         addToCollections={addNewCollection}

@@ -64,7 +64,7 @@ export const AlbumDetailPage: React.FC = () => {
     return (
         <div>
             {detail ? (
-                <Grid container spacing={1}>
+                <Grid container>
                     <Grid item xs={12}>
                         <MyCollectionsModal
                             modalOpen={modalOpen}

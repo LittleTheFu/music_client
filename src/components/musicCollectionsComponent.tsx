@@ -14,7 +14,7 @@ export const MusicCollectionsComponent: React.FC<MusicCollectionsProps> = (props
 
     return (
         <div>
-            <Grid container spacing={1}>
+            <Grid container>
                 {collections.map((c: MusicCollection, index: number) => {
                     return (
                         <Grid item xs={6} sm={4} md={3} lg={2} key={index}>
