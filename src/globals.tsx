@@ -53,7 +53,6 @@ setGlobal({
     musicIndex: -1,
     musicLength: 0,
 
-    playListMusics: [],
     Collections: [],
 
     collectionInfoModalOpen: false,
@@ -105,17 +104,6 @@ export const updateComments = (
     comments: comments,
 });
 
-export const updatePlayListMusics = (
-    global: State,
-    dispatch: Dispatch,
-    musics: Music[],
-): Pick<State, 'playListMusics'> => ({
-    playListMusics: musics.map(m => {
-        m.isInPlayList = true;
-        return m;
-    }),
-});
-
 export const updateMusic = (
     global: State,
     dispatch: Dispatch,
@@ -155,11 +143,7 @@ export const updateMusics = (
 ): Pick<State, 'musics' | 'musicIndex' | 'musicLength' | 'currentMusic'> => ({
     musics: musics.map(m => {
         m.isInPlayList = false;
-        global.playListMusics.forEach(k => {
-            if (k.id === m.id) {
-                m.isInPlayList = true;
-            }
-        });
+
         return m;
     }),
     musicIndex: 0,
@@ -170,11 +154,7 @@ export const updateMusics = (
 export const updateMusicInPersoalListState = (global: State, dispatch: Dispatch): Pick<State, 'musics'> => ({
     musics: global.musics.map(m => {
         m.isInPlayList = false;
-        global.playListMusics.forEach(k => {
-            if (k.id === m.id) {
-                m.isInPlayList = true;
-            }
-        });
+
         return m;
     }),
 });

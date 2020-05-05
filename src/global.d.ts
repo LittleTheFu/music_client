@@ -4,7 +4,6 @@ import { MusicCollection, MusicComment } from './dataInterfaces/music';
 
 declare module 'reactn/default' {
     export interface Reducers {
-        updatePlayListMusics: (global: State, dispatch: Dispatch, musics: Music[]) => Pick<State, 'playListMusics'>;
         updateMusic: (global: State, dispatch: Dispatch, music: Music) => Pick<State, 'currentMusic' | 'musics'>;
 
         updateCommentModalState: (
@@ -61,7 +60,6 @@ declare module 'reactn/default' {
         musicIndex: number;
         musicLength: number;
 
-        playListMusics: Music[];
         Collections: MusicCollection[];
         currentCollection: MusicCollection;
 
