@@ -2,13 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Music, CollectionDetail } from '../dataInterfaces/music';
 import { getAlbumDetail } from '../service';
-import { MusicListComponent } from '../components/musicListComponent';
 import { useGlobal, useDispatch } from 'reactn';
 import { updateMusics, updateCurrentMusic } from '../globals';
 import { useHistory } from 'react-router-dom';
 import { MyCollectionsModal } from '../components/myCollectionsModal';
-import Grid from '@material-ui/core/Grid';
-import { BackButton } from '../otherComponents/backButton';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 import { MixDetail } from '../otherComponents/mixDetailComponent';
 
