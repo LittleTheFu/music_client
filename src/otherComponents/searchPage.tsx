@@ -105,7 +105,7 @@ export const SearchPage: React.FC = () => {
             <Grid item xs={12}>
                 <MusicListComponent
                     musics={musics}
-                    currentMusic={currentTheMusic}
+                    currentMusicId={currentTheMusic}
                     clickMusic={clickMusic}
                     addMusicClick={addMusicClick}
                 ></MusicListComponent>

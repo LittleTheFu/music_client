@@ -48,6 +48,7 @@ setGlobal({
 
     drawerOpen: false,
 
+    currentMusicId: 0,
     currentMusic: dummyMusic,
     musics: [],
     musicIndex: -1,
@@ -72,7 +73,7 @@ export const updateMusic = (
     global: State,
     dispatch: Dispatch,
     music: Music,
-): Pick<State, 'currentMusic' | 'musics'> => ({
+): Pick<State, 'currentMusic' | 'musics' | 'currentMusicId'> => ({
     currentMusic: global.currentMusic.id === music.id ? music : global.currentMusic,
     musics: global.musics.map(m => {
         if (m.id === music.id) {
@@ -81,22 +82,24 @@ export const updateMusic = (
             return m;
         }
     }),
+    currentMusicId: global.currentMusic.id === music.id ? music.id : global.currentMusic.id,
 });
 
 export const updateCurrentMusic = (
     global: State,
     dispatch: Dispatch,
     music: Music,
-): Pick<State, 'currentMusic' | 'musicIndex'> => ({
+): Pick<State, 'currentMusic' | 'musicIndex' | 'currentMusicId'> => ({
     currentMusic: music,
     musicIndex: global.musics.indexOf(music),
+    currentMusicId: music.id,
 });
 
 export const updateMusics = (
     global: State,
     dispatch: Dispatch,
     musics: Music[],
-): Pick<State, 'musics' | 'musicIndex' | 'musicLength' | 'currentMusic'> => ({
+): Pick<State, 'musics' | 'musicIndex' | 'musicLength' | 'currentMusic' | 'currentMusicId'> => ({
     musics: musics.map(m => {
         m.isInPlayList = false;
 
@@ -105,6 +108,7 @@ export const updateMusics = (
     musicIndex: 0,
     musicLength: musics.length,
     currentMusic: musics[0] ? musics[0] : dummyMusic,
+    currentMusicId: musics[0] ? musics[0].id : dummyMusic.id,
 });
 
 export const updateMusicInPersoalListState = (global: State, dispatch: Dispatch): Pick<State, 'musics'> => ({
@@ -115,9 +119,13 @@ export const updateMusicInPersoalListState = (global: State, dispatch: Dispatch)
     }),
 });
 
-export const updateToNextMusic = (global: State, dispatch: Dispatch): Pick<State, 'currentMusic' | 'musicIndex'> => ({
+export const updateToNextMusic = (
+    global: State,
+    dispatch: Dispatch,
+): Pick<State, 'currentMusic' | 'musicIndex' | 'currentMusicId'> => ({
     musicIndex: (global.musicIndex + 1) % global.musics.length,
     currentMusic: global.musics[(global.musicIndex + 1) % global.musics.length],
+    currentMusicId: global.musics[(global.musicIndex + 1) % global.musics.length].id,
 });
 
 export const updateCollections = (

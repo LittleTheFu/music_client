@@ -15,7 +15,7 @@ const useStyles = makeStyles(() =>
 );
 
 interface MixDetailProps {
-    currentMusic: Music;
+    currentMusicId: number;
     detail: CollectionDetail;
     clickMusic: (music: Music, index: number) => void;
     addMusicClick: (id: number) => void;
@@ -27,7 +27,7 @@ interface MixDetailProps {
 export const MixDetail: React.FC<MixDetailProps> = (props: MixDetailProps) => {
     const classes = useStyles();
 
-    const { detail, currentMusic, clickMusic, addMusicClick, commentClick, removeMusicClick, trashClick } = props;
+    const { detail, currentMusicId, clickMusic, addMusicClick, commentClick, removeMusicClick, trashClick } = props;
 
     return (
         <div>
@@ -46,7 +46,7 @@ export const MixDetail: React.FC<MixDetailProps> = (props: MixDetailProps) => {
                     <Grid item xs={12}>
                         <MusicListComponent
                             musics={detail.musics}
-                            currentMusic={currentMusic}
+                            currentMusicId={currentMusicId}
                             clickMusic={clickMusic}
                             addMusicClick={addMusicClick}
                             commentClick={commentClick}

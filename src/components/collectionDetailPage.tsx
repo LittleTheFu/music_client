@@ -14,7 +14,7 @@ export const CollectionDetailPage: React.FC = () => {
     const [wantAddMusicId, setWantAddMusicId] = useState(1);
     const [modalOpen, setModalOpen] = useState(false);
     const [detail, setDetail] = useState<CollectionDetail>(null);
-    const [currentTheMusic] = useGlobal('currentMusic');
+    const [currentTheMusicId] = useGlobal('currentMusicId');
     const updatePlayingMusics = useDispatch(updateMusics);
     const updateTheCurrentMusic = useDispatch(updateCurrentMusic);
     const history = useHistory();
@@ -80,7 +80,7 @@ export const CollectionDetailPage: React.FC = () => {
                         musicId={wantAddMusicId}
                     ></MyCollectionsModal>
                     <MixDetail
-                        currentMusic={currentTheMusic}
+                        currentMusicId={currentTheMusicId}
                         detail={detail}
                         clickMusic={clickMusic}
                         addMusicClick={addMusicClick}

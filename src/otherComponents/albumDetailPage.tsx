@@ -14,7 +14,7 @@ export const AlbumDetailPage: React.FC = () => {
     const [wantAddMusicId, setWantAddMusicId] = useState(1);
     const [modalOpen, setModalOpen] = useState(false);
     const [detail, setDetail] = useState<CollectionDetail>(null);
-    const [currentTheMusic] = useGlobal('currentMusic');
+    const [currentTheMusicId] = useGlobal('currentMusicId');
     const updatePlayingMusics = useDispatch(updateMusics);
     const updateTheCurrentMusic = useDispatch(updateCurrentMusic);
     const history = useHistory();
@@ -63,7 +63,7 @@ export const AlbumDetailPage: React.FC = () => {
                         commentClick={commentClick}
                         addMusicClick={addMusicClick}
                         clickMusic={clickMusic}
-                        currentMusic={currentTheMusic}
+                        currentMusicId={currentTheMusicId}
                         detail={detail}
                     ></MixDetail>
                 </div>

@@ -11,7 +11,7 @@ import CommentIcon from '@material-ui/icons/Comment';
 
 interface MusicList {
     musics: Music[];
-    currentMusic: Music;
+    currentMusicId: number;
     clickMusic: (music: Music, index: number) => void;
     addMusicClick: (id: number) => void;
     removeMusicClick?: (id: number) => void;
@@ -32,14 +32,14 @@ const useStyles = makeStyles({
 
 export const MusicListComponent: React.FC<MusicList> = (props: MusicList) => {
     const classes = useStyles({});
-    const { musics, currentMusic, clickMusic, addMusicClick, removeMusicClick, commentClick } = props;
+    const { musics, currentMusicId, clickMusic, addMusicClick, removeMusicClick, commentClick } = props;
 
     const musicElements = musics.map((music: Music, index: number) => {
         return (
             <ListItem divider button key={index} onClick={(): void => clickMusic(music, index)}>
                 {music.name}
                 <span>&nbsp;&nbsp;</span>({music.artist})
-                {currentMusic.id === music.id ? (
+                {currentMusicId === music.id ? (
                     <VolumeUpIcon className={classes.soundIcon}></VolumeUpIcon>
                 ) : (
                     <div></div>
