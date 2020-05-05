@@ -6,12 +6,6 @@ declare module 'reactn/default' {
     export interface Reducers {
         updateMusic: (global: State, dispatch: Dispatch, music: Music) => Pick<State, 'currentMusic' | 'musics'>;
 
-        updateCommentModalState: (
-            global: State,
-            dispatch: Dispatch,
-            isOpen: boolean,
-        ) => Pick<State, 'commentModalOpen'>;
-
         updateAvatar: (global: State, dispatch: Dispatch, avatar: string) => Pick<State, 'avatar'>;
 
         updateCurrentMusic: (
@@ -44,7 +38,6 @@ declare module 'reactn/default' {
     }
 
     export interface State {
-        avatar: string;
         meId: number;
 
         drawerOpen: boolean;
@@ -57,11 +50,8 @@ declare module 'reactn/default' {
         Collections: MusicCollection[];
         currentCollection: MusicCollection;
 
-        commentModalOpen: boolean;
-        comments: MusicComment[];
         currentCommentMusicId: number;
 
-        userCardModalOpen: boolean;
         currentClickUserId: number;
 
         isPlaying: boolean;

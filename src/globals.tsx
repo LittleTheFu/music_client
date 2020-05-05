@@ -55,11 +55,8 @@ setGlobal({
 
     Collections: [],
 
-    commentModalOpen: false,
-    comments: [],
     currentCommentMusicId: 0,
 
-    userCardModalOpen: false,
     currentClickUserId: 0,
 
     isPlaying: false,
@@ -73,32 +70,12 @@ export const openHint = (global: State, dispatch: Dispatch, msg: string): Pick<S
     hintOpen: true,
 });
 
-export const updateCommentModalState = (
-    global: State,
-    dispatch: Dispatch,
-    isOpen: boolean,
-): Pick<State, 'commentModalOpen'> => ({
-    commentModalOpen: isOpen,
-});
-
-export const updateAvatar = (global: State, dispatch: Dispatch, avatar: string): Pick<State, 'avatar'> => ({
-    avatar: avatar,
-});
-
 export const updateCurrentCommentMusicId = (
     global: State,
     dispatch: Dispatch,
     id: number,
 ): Pick<State, 'currentCommentMusicId'> => ({
     currentCommentMusicId: id,
-});
-
-export const updateComments = (
-    global: State,
-    dispatch: Dispatch,
-    comments: MusicComment[],
-): Pick<State, 'comments'> => ({
-    comments: comments,
 });
 
 export const updateMusic = (
