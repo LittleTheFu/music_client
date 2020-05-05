@@ -26,12 +26,12 @@ interface MusicListDrawerProps {
     closeClick: () => void;
 
     musics: Music[];
-    currentMusic: Music;
+    currentMusicId: number;
     clickMusic: (music: Music, index: number) => void;
 }
 
 export const MusicListDrawer: React.FC<MusicListDrawerProps> = (props: MusicListDrawerProps) => {
-    const { open, closeClick, musics, currentMusic, clickMusic } = props;
+    const { open, closeClick, musics, currentMusicId, clickMusic } = props;
 
     const classes = useStyles({});
 
@@ -39,7 +39,7 @@ export const MusicListDrawer: React.FC<MusicListDrawerProps> = (props: MusicList
         return (
             <ListItem divider button key={index} onClick={(): void => clickMusic(music, index)}>
                 {music.name}
-                {currentMusic.id === music.id ? (
+                {currentMusicId === music.id ? (
                     <VolumeUpIcon className={classes.soundIcon}></VolumeUpIcon>
                 ) : (
                     <div></div>

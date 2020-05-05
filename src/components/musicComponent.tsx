@@ -24,6 +24,7 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
 
     const [currentTheMusic] = useGlobal('currentMusic');
     const [currentMusics] = useGlobal('musics');
+    const [currentTheMusicId] = useGlobal('currentMusicId');
 
     const [currentTime, setCurrentTime] = useState(0);
     const [duration, setDuration] = useState(0);
@@ -152,7 +153,7 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
                         open={musicListDrawerOpen}
                         closeClick={drawerCloseClick}
                         musics={currentMusics}
-                        currentMusic={currentTheMusic}
+                        currentMusicId={currentTheMusicId}
                         clickMusic={playMusic}
                     ></MusicListDrawer>
 
