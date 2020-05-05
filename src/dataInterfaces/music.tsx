@@ -59,6 +59,10 @@ export class RetUpdateAvatarDto {
     remoteUrl: string;
 }
 
+export class RetMsgObj {
+    msg: string;
+}
+
 export class Mail {
     id: number;
 
@@ -86,6 +90,7 @@ export class Follower {
 }
 
 export class CollectionDetail {
+    id: number;
     cover: string;
     name: string;
     canBeDeleted: boolean;

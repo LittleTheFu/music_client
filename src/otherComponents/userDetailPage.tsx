@@ -5,7 +5,7 @@ import { UserDetail } from '../dataInterfaces/music';
 import { followUser, unfollowUser } from '../service';
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import { makeStyles, createStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import MailOutlinedIcon from '@material-ui/icons/MailOutlined';
 import RemoveCircleOutlineIcon from '@material-ui/icons/RemoveCircleOutline';
@@ -20,7 +20,7 @@ import { updateMusics, updateCurrentMusic } from '../globals';
 import { useDispatch } from 'reactn';
 import EditIcon from '@material-ui/icons/Edit';
 
-const useStyles = makeStyles((theme: Theme) =>
+const useStyles = makeStyles(() =>
     createStyles({
         avatar: {
             height: 80,

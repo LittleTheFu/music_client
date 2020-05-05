@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import { MusicInfoComponent } from './musicInfoComponent';
 import { Music } from '../dataInterfaces/music';
 import { PlayBarComponent } from './playBarComponent';
@@ -12,18 +11,11 @@ import { postLikeMusic, postDislikeMusic } from '../service';
 import { updateMusic, updateCurrentMusic, updateToNextMusic, openHint } from '../globals';
 import Grid from '@material-ui/core/Grid';
 import { MusicListDrawer } from './musicListDrawer';
-import Snackbar from '@material-ui/core/Snackbar';
 
 interface MusicComponentProps {
     audioElement: HTMLAudioElement;
     musics: Music[];
 }
-
-const useStyles = makeStyles({
-    paper: {
-        padding: 0,
-    },
-});
 
 export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicComponentProps) => {
     const { audioElement } = props;
@@ -44,14 +36,7 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
 
     const [musicListDrawerOpen, setMusicListDrawerOpen] = useState(false);
 
-    const [hintOpen, setHintOpen] = useGlobal('hintOpen');
-    const [hintMsg, setHintMsg] = useGlobal('hintMsg');
-
-    // const [snackOpen, setSnackOpen] = useState(false);
-
     const history = useHistory();
-
-    const classes = useStyles({});
 
     const [volume, setVolume] = useState(0.5);
     audioElement.volume = volume;
