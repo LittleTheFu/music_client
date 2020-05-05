@@ -27,7 +27,7 @@ interface StyleProps {
 
 const useStyles = makeStyles({
     card: {
-        height: 350,
+        height: 430,
     },
     line: {
         height: 20,
@@ -52,6 +52,9 @@ const useStyles = makeStyles({
     },
     likeIcon: {
         color: 'red',
+    },
+    text: {
+        padding: 5,
     },
 });
 
@@ -100,26 +103,23 @@ export const MusicInfoComponent: React.FC<MusicInfoProps> = (props: MusicInfoPro
     return (
         <Card raised={true} className={classes.card}>
             <h4>
-                {music.name}--
-                <span
+                <div className={classes.text}>{music.name}</div>
+                <div
+                    className={classes.text}
                     onClick={(e): void => {
-                        e.stopPropagation();
                         artistClick(music.artistId);
                     }}
                 >
-                    <Link>{music.artist}</Link>
-                </span>
-                --
-                <span
+                    artist :<Link>{music.artist}</Link>
+                </div>
+                <div
+                    className={classes.text}
                     onClick={(e): void => {
-                        e.stopPropagation();
                         albumClick(music.albumId);
                     }}
                 >
-                    <Link>{music.album}</Link>
-                </span>
-                --
-                {/* {currentTime}-- */}
+                    <Link>album : {music.album}</Link>
+                </div>
             </h4>
             <h4 className={classes.line}>{lyricLine}</h4>
             ---{music.like}{' '}
