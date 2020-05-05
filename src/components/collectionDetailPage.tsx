@@ -2,24 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Music, CollectionDetail } from '../dataInterfaces/music';
 import { deleteCollection, getCollectionDetailById, removeMusicFromCollection } from '../service';
-import { MusicListComponent } from './musicListComponent';
 import { useGlobal, useDispatch } from 'reactn';
 import { updateMusics, updateCurrentMusic } from '../globals';
 import { useHistory } from 'react-router-dom';
-import { IconButton } from '@material-ui/core';
-import DeleteIcon from '@material-ui/icons/Delete';
 import { MyCollectionsModal } from './myCollectionsModal';
-import Grid from '@material-ui/core/Grid';
-import { BackButton } from '../otherComponents/backButton';
-import { makeStyles, createStyles } from '@material-ui/core/styles';
-
-const useStyles = makeStyles(() =>
-    createStyles({
-        removeButton: {
-            // display: 'inline',
-        },
-    }),
-);
+import { MixDetail } from '../otherComponents/mixDetailComponent';
 
 export const CollectionDetailPage: React.FC = () => {
     const { id } = useParams();
@@ -33,8 +20,6 @@ export const CollectionDetailPage: React.FC = () => {
     const history = useHistory();
 
     const intId = parseInt(id);
-
-    const classes = useStyles();
 
     useEffect(() => {
         getCollectionDetailById(
@@ -86,48 +71,24 @@ export const CollectionDetailPage: React.FC = () => {
     return (
         <div>
             {detail ? (
-                <Grid container>
-                    <Grid item xs={12}>
-                        <MyCollectionsModal
-                            modalOpen={modalOpen}
-                            modalClose={(): void => {
-                                setModalOpen(false);
-                            }}
-                            musicId={wantAddMusicId}
-                        ></MyCollectionsModal>
-                    </Grid>
-                    <Grid item xs={12}>
-                        <BackButton></BackButton>
-                        {detail.canBeDeleted ? (
-                            <IconButton
-                                className={classes.removeButton}
-                                onClick={(): void => {
-                                    deleteClick();
-                                }}
-                            >
-                                <DeleteIcon></DeleteIcon>
-                            </IconButton>
-                        ) : (
-                            <div></div>
-                        )}
-                    </Grid>
-                    <Grid item xs={6} md={3}>
-                        <img src={detail.cover} alt="cover" />
-                    </Grid>
-                    <Grid item xs={6} md={9}>
-                        <h1>{detail.name}</h1>
-                    </Grid>
-                    <Grid item xs={12}>
-                        <MusicListComponent
-                            musics={detail.musics}
-                            currentMusic={currentTheMusic}
-                            clickMusic={clickMusic}
-                            addMusicClick={addMusicClick}
-                            removeMusicClick={detail.canBeDeleted ? removeMusicClick : null}
-                            commentClick={commentClick}
-                        ></MusicListComponent>
-                    </Grid>
-                </Grid>
+                <div>
+                    <MyCollectionsModal
+                        modalOpen={modalOpen}
+                        modalClose={(): void => {
+                            setModalOpen(false);
+                        }}
+                        musicId={wantAddMusicId}
+                    ></MyCollectionsModal>
+                    <MixDetail
+                        currentMusic={currentTheMusic}
+                        detail={detail}
+                        clickMusic={clickMusic}
+                        addMusicClick={addMusicClick}
+                        removeMusicClick={removeMusicClick}
+                        commentClick={commentClick}
+                        trashClick={detail.canBeDeleted ? deleteClick : null}
+                    ></MixDetail>
+                </div>
             ) : (
                 <div></div>
             )}

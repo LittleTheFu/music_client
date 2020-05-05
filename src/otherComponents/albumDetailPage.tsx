@@ -10,6 +10,7 @@ import { MyCollectionsModal } from '../components/myCollectionsModal';
 import Grid from '@material-ui/core/Grid';
 import { BackButton } from '../otherComponents/backButton';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
+import { MixDetail } from '../otherComponents/mixDetailComponent';
 
 const useStyles = makeStyles(() =>
     createStyles({
@@ -64,35 +65,22 @@ export const AlbumDetailPage: React.FC = () => {
     return (
         <div>
             {detail ? (
-                <Grid container>
-                    <Grid item xs={12}>
-                        <MyCollectionsModal
-                            modalOpen={modalOpen}
-                            modalClose={(): void => {
-                                setModalOpen(false);
-                            }}
-                            musicId={wantAddMusicId}
-                        ></MyCollectionsModal>
-                    </Grid>
-                    <Grid item xs={12}>
-                        <BackButton></BackButton>
-                    </Grid>
-                    <Grid item xs={6} md={3}>
-                        <img className={classes.cover} src={detail.cover} alt="cover" />
-                    </Grid>
-                    <Grid item xs={6} md={9}>
-                        <h1>{detail.name}</h1>
-                    </Grid>
-                    <Grid item xs={12}>
-                        <MusicListComponent
-                            musics={detail.musics}
-                            currentMusic={currentTheMusic}
-                            clickMusic={clickMusic}
-                            addMusicClick={addMusicClick}
-                            commentClick={commentClick}
-                        ></MusicListComponent>
-                    </Grid>
-                </Grid>
+                <div>
+                    <MyCollectionsModal
+                        modalOpen={modalOpen}
+                        modalClose={(): void => {
+                            setModalOpen(false);
+                        }}
+                        musicId={wantAddMusicId}
+                    ></MyCollectionsModal>
+                    <MixDetail
+                        commentClick={commentClick}
+                        addMusicClick={addMusicClick}
+                        clickMusic={clickMusic}
+                        currentMusic={currentTheMusic}
+                        detail={detail}
+                    ></MixDetail>
+                </div>
             ) : (
                 <div></div>
             )}
