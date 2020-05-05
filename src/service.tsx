@@ -96,9 +96,9 @@ export const postLogin = (
 const likeMusicUrl = musicPrefix + 'like';
 export const postLikeMusic = (
     musicId: number,
-    resolve: (data: RetMsgObj) => void,
+    resolve: (data: Music) => void,
     reject?: (data: Error) => void,
-): Promise<RetMsgObj> => {
+): Promise<Music> => {
     return rawObjectPost(
         likeMusicUrl,
         { musicId: musicId },
@@ -114,7 +114,7 @@ export const getAllUsers = (resolve: (data: RetSimpleUser[]) => void): Promise<R
 };
 
 const dislikeMusicUrl = musicPrefix + 'dislike';
-export const postDislikeMusic = (musicId: number, resolve: (data: RetMsgObj) => void): Promise<RetMsgObj> => {
+export const postDislikeMusic = (musicId: number, resolve: (data: Music) => void): Promise<Music> => {
     return rawObjectPost(dislikeMusicUrl, { musicId: musicId }, resolve, { Authorization: 'Bearer ' + getToken() });
 };
 
