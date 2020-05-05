@@ -12,7 +12,6 @@ import {
     MusicCollection,
     UserDetail,
     RetUpdateAvatarDto,
-    RetMsgObj,
 } from './dataInterfaces/music';
 
 // const hostPrefix = 'http://localhost:9999/';

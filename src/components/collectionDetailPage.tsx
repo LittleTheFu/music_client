@@ -26,7 +26,6 @@ export const CollectionDetailPage: React.FC = () => {
 
     const [wantAddMusicId, setWantAddMusicId] = useState(1);
     const [modalOpen, setModalOpen] = useState(false);
-    // const [detail, setDetail] = useState<CollectionDetail>(dummyCollectionDetail);
     const [detail, setDetail] = useState<CollectionDetail>(null);
     const [currentTheMusic] = useGlobal('currentMusic');
     const updatePlayingMusics = useDispatch(updateMusics);
