@@ -41,12 +41,6 @@ declare module 'reactn/default' {
             dispatch: Dispatch,
             collections: MusicCollection[],
         ) => Pick<State, 'Collections'>;
-
-        updateCollectionInfoMusics: (
-            global: State,
-            dispatch: Dispatch,
-            musics: Music[],
-        ) => Pick<State, 'collectionInfoData'>;
     }
 
     export interface State {
@@ -62,9 +56,6 @@ declare module 'reactn/default' {
 
         Collections: MusicCollection[];
         currentCollection: MusicCollection;
-
-        collectionInfoModalOpen: boolean;
-        collectionInfoData: Music[];
 
         commentModalOpen: boolean;
         comments: MusicComment[];
