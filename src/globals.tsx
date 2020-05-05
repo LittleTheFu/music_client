@@ -44,7 +44,6 @@ export const getMeId = (): number => {
 };
 
 setGlobal({
-    avatar: 'anonymous.png',
     meId: 0,
 
     drawerOpen: false,
