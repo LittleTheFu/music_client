@@ -14,6 +14,7 @@ import Link from '@material-ui/core/Link';
 
 interface MusicInfoProps {
     music: Music;
+    musicId: number;
     currentTime: number;
     likeClick: () => void;
     dislikeClick: () => void;
@@ -61,7 +62,7 @@ const useStyles = makeStyles({
 export const MusicInfoComponent: React.FC<MusicInfoProps> = (props: MusicInfoProps) => {
     const [cssProps, setCssProps] = useState({ playState: 'paused' });
     const classes = useStyles(cssProps);
-    const { music, likeClick, dislikeClick, currentTime, commentClick } = props;
+    const { music, likeClick, dislikeClick, currentTime, commentClick, musicId } = props;
     const [lyricLine, setLyricLine] = useState('');
     const [lines, setLines] = useState<LyricLine[]>([]);
 
@@ -76,21 +77,25 @@ export const MusicInfoComponent: React.FC<MusicInfoProps> = (props: MusicInfoPro
     }, [props.isPlaying]);
 
     useEffect(() => {
-        if (lines && lines.length > 0) {
-            setLyricLine(getLine(currentTime, lines));
+        if (musicId > 0) {
+            if (lines && lines.length > 0) {
+                setLyricLine(getLine(currentTime, lines));
+            }
         }
     }, [currentTime]);
 
     useEffect(() => {
-        getLyric(
-            music.id,
-            strLyric => {
-                const lines = parseLyric(strLyric);
-                setLines(lines);
-            },
-            console.log,
-        );
-    }, [music.id]);
+        if (musicId > 0) {
+            getLyric(
+                musicId,
+                strLyric => {
+                    const lines = parseLyric(strLyric);
+                    setLines(lines);
+                },
+                console.log,
+            );
+        }
+    }, [musicId]);
 
     const artistClick = (artistId: number): void => {
         history.push(`/main/artist/` + artistId);
@@ -102,41 +107,47 @@ export const MusicInfoComponent: React.FC<MusicInfoProps> = (props: MusicInfoPro
 
     return (
         <Card raised={true} className={classes.card}>
-            <h4>
-                <div className={classes.text}>{music.name}</div>
-                <div
-                    className={classes.text}
-                    onClick={(e): void => {
-                        artistClick(music.artistId);
-                    }}
-                >
-                    artist :<Link>{music.artist}</Link>
+            {music ? (
+                <div>
+                    <h4>
+                        <div className={classes.text}>{music.name}</div>
+                        <div
+                            className={classes.text}
+                            onClick={(e): void => {
+                                artistClick(music.artistId);
+                            }}
+                        >
+                            artist :<Link>{music.artist}</Link>
+                        </div>
+                        <div
+                            className={classes.text}
+                            onClick={(e): void => {
+                                albumClick(music.albumId);
+                            }}
+                        >
+                            <Link>album : {music.album}</Link>
+                        </div>
+                    </h4>
+                    <h4 className={classes.line}>{lyricLine}</h4>
+                    ---{music.like}{' '}
+                    {music.likedByCurrentUser ? (
+                        <IconButton className={classes.likeIcon} onClick={dislikeClick}>
+                            <FavoriteIcon></FavoriteIcon>
+                        </IconButton>
+                    ) : (
+                        <IconButton className={classes.likeIcon} onClick={likeClick}>
+                            <FavoriteBorderIcon></FavoriteBorderIcon>
+                        </IconButton>
+                    )}
+                    <IconButton className={classes.likeIcon} onClick={commentClick}>
+                        <CommentIcon></CommentIcon>
+                    </IconButton>
+                    ---
+                    <CardMedia image={music.cover} className={classes.cover}></CardMedia>
                 </div>
-                <div
-                    className={classes.text}
-                    onClick={(e): void => {
-                        albumClick(music.albumId);
-                    }}
-                >
-                    <Link>album : {music.album}</Link>
-                </div>
-            </h4>
-            <h4 className={classes.line}>{lyricLine}</h4>
-            ---{music.like}{' '}
-            {music.likedByCurrentUser ? (
-                <IconButton className={classes.likeIcon} onClick={dislikeClick}>
-                    <FavoriteIcon></FavoriteIcon>
-                </IconButton>
             ) : (
-                <IconButton className={classes.likeIcon} onClick={likeClick}>
-                    <FavoriteBorderIcon></FavoriteBorderIcon>
-                </IconButton>
+                <div></div>
             )}
-            <IconButton className={classes.likeIcon} onClick={commentClick}>
-                <CommentIcon></CommentIcon>
-            </IconButton>
-            ---
-            <CardMedia image={music.cover} className={classes.cover}></CardMedia>
         </Card>
     );
 };

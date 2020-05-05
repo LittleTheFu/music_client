@@ -35,6 +35,8 @@ declare module 'reactn/default' {
 
         drawerOpen: boolean;
 
+        refreshMusic: boolean;
+
         currentMusicId: number;
         currentMusic: Music;
         musics: Music[];

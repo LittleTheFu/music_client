@@ -42,10 +42,12 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
     const [isPlaying, setIsPlaying] = useState(false);
 
     useEffect(() => {
-        audioElement.src = currentTheMusic.address;
-        audioElement.autoplay = true;
-        setIsPlaying(true);
-    }, [currentTheMusic.id]);
+        if (currentTheMusic && currentTheMusicId > 0) {
+            audioElement.src = currentTheMusic.address;
+            audioElement.autoplay = true;
+            setIsPlaying(true);
+        }
+    }, [currentTheMusicId]);
 
     useEffect(() => {
         if (duration !== 0) {
@@ -87,15 +89,21 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
     };
 
     const currentMusicInfoLikeClick = (): void => {
-        postLikeMusic(currentTheMusic.id, updateMusicAfterClickLike, console.log);
+        if (currentTheMusic) {
+            postLikeMusic(currentTheMusic.id, updateMusicAfterClickLike, console.log);
+        }
     };
 
     const currentMusicInfoDislikeClick = (): void => {
-        postDislikeMusic(currentTheMusic.id, updateMusicAfterClickLike);
+        if (currentTheMusic) {
+            postDislikeMusic(currentTheMusic.id, updateMusicAfterClickLike);
+        }
     };
 
     const currentMusicCommentClick = (): void => {
-        history.push(`/main/music_comment/` + currentTheMusic.id);
+        if (currentTheMusic) {
+            history.push(`/main/music_comment/` + currentTheMusic.id);
+        }
     };
 
     const changeMusicVolume = (event: object, value: unknown): void => {
@@ -136,7 +144,9 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
     };
 
     const skipToNext = (): void => {
-        updateToTheNextMusic();
+        if (currentMusics && currentMusics.length > 0) {
+            updateToTheNextMusic();
+        }
     };
 
     const drawerCloseClick = (): void => {
@@ -174,6 +184,7 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
                     ></PlayBarComponent>
                     {showFullPart ? (
                         <MusicInfoComponent
+                            musicId={currentTheMusicId}
                             currentTime={currentTime}
                             music={currentTheMusic}
                             likeClick={currentMusicInfoLikeClick}

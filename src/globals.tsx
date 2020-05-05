@@ -48,8 +48,12 @@ setGlobal({
 
     drawerOpen: false,
 
+    refreshMusic: false,
+
     currentMusicId: 0,
-    currentMusic: dummyMusic,
+    // currentMusic: dummyMusic,
+    currentMusic: null,
+
     musics: [],
     musicIndex: -1,
     musicLength: 0,
