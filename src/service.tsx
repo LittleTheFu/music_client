@@ -12,6 +12,7 @@ import {
     MusicCollection,
     UserDetail,
     RetUpdateAvatarDto,
+    RetMsgObj,
 } from './dataInterfaces/music';
 
 // const hostPrefix = 'http://localhost:9999/';
@@ -76,9 +77,9 @@ const registerUrl = userPrefix + 'register';
 export const postRegister = (
     username: string,
     password: string,
-    resolve: (data: any) => void,
+    resolve: (data: RetMsgObj) => void,
     reject: (data: Error) => void,
-): Promise<object> => {
+): Promise<RetMsgObj> => {
     return rawObjectPost(registerUrl, { username: username, password: password }, resolve, {}, reject);
 };
 
@@ -95,9 +96,9 @@ export const postLogin = (
 const likeMusicUrl = musicPrefix + 'like';
 export const postLikeMusic = (
     musicId: number,
-    resolve: (data: any) => void,
+    resolve: (data: RetMsgObj) => void,
     reject?: (data: Error) => void,
-): Promise<object> => {
+): Promise<RetMsgObj> => {
     return rawObjectPost(
         likeMusicUrl,
         { musicId: musicId },
@@ -113,7 +114,7 @@ export const getAllUsers = (resolve: (data: RetSimpleUser[]) => void): Promise<R
 };
 
 const dislikeMusicUrl = musicPrefix + 'dislike';
-export const postDislikeMusic = (musicId: number, resolve: (data: any) => void): Promise<object> => {
+export const postDislikeMusic = (musicId: number, resolve: (data: RetMsgObj) => void): Promise<RetMsgObj> => {
     return rawObjectPost(dislikeMusicUrl, { musicId: musicId }, resolve, { Authorization: 'Bearer ' + getToken() });
 };
 
@@ -129,9 +130,9 @@ const addMusicToCollectionUrl = musicPrefix + 'addMusicToCollection';
 export const addMusicToCollection = (
     collectionId: number,
     musicId: number,
-    resolve: (data: any) => void,
+    resolve: (data: RetMsgObj) => void,
     reject: (arg0: object) => void,
-): Promise<object> => {
+): Promise<RetMsgObj> => {
     return rawObjectPost(
         addMusicToCollectionUrl,
         { collectionId: collectionId, musicId: musicId },
@@ -176,9 +177,9 @@ export const fetchMusicsByCollectionId = (
 const deleteCollectionUrl = musicPrefix + 'deleteCollection';
 export const deleteCollection = (
     id: number,
-    resolve: (data: any) => void,
+    resolve: (data: RetMsgObj) => void,
     reject: (arg0: object) => void,
-): Promise<object> => {
+): Promise<RetMsgObj> => {
     return rawObjectPost(deleteCollectionUrl, { id: id }, resolve, { Authorization: 'Bearer ' + getToken() }, reject);
 };
 
@@ -216,9 +217,9 @@ const removeMusicFromCollectionUrl = musicPrefix + 'removeMusicFromCollection';
 export const removeMusicFromCollection = (
     musicId: number,
     collectionId: number,
-    resolve: (data: any) => void,
+    resolve: (data: RetMsgObj) => void,
     reject: (arg0: object) => void,
-): Promise<object> => {
+): Promise<RetMsgObj> => {
     return rawObjectPost(
         removeMusicFromCollectionUrl,
         { musicId: musicId, collectionId: collectionId },
@@ -321,9 +322,9 @@ const sendMailUrl = mailPrefix + 'sendMail';
 export const sendMail = (
     toId: number,
     content: string,
-    resolve: (data: any) => void,
+    resolve: (data: RetMsgObj) => void,
     reject: (arg0: object) => void,
-): Promise<object> => {
+): Promise<RetMsgObj> => {
     return rawObjectPost(
         sendMailUrl,
         { toId: toId, content: content },
@@ -355,9 +356,9 @@ export const getDetail = (
 const followUserUrl = userPrefix + 'follow';
 export const followUser = (
     userId: number,
-    resolve: (data: any) => void,
+    resolve: (data: RetMsgObj) => void,
     reject: (arg0: object) => void,
-): Promise<object> => {
+): Promise<RetMsgObj> => {
     return rawObjectPost(
         followUserUrl,
         { userId: userId },
@@ -372,9 +373,9 @@ export const followUser = (
 const unfollowUserUrl = userPrefix + 'unfollow';
 export const unfollowUser = (
     userId: number,
-    resolve: (data: any) => void,
+    resolve: (data: RetMsgObj) => void,
     reject: (arg0: object) => void,
-): Promise<object> => {
+): Promise<RetMsgObj> => {
     return rawObjectPost(
         unfollowUserUrl,
         { userId: userId },
