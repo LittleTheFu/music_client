@@ -55,8 +55,6 @@ setGlobal({
 
     Collections: [],
 
-    currentCommentMusicId: 0,
-
     currentClickUserId: 0,
 
     isPlaying: false,
@@ -68,14 +66,6 @@ setGlobal({
 export const openHint = (global: State, dispatch: Dispatch, msg: string): Pick<State, 'hintMsg' | 'hintOpen'> => ({
     hintMsg: msg,
     hintOpen: true,
-});
-
-export const updateCurrentCommentMusicId = (
-    global: State,
-    dispatch: Dispatch,
-    id: number,
-): Pick<State, 'currentCommentMusicId'> => ({
-    currentCommentMusicId: id,
 });
 
 export const updateMusic = (
