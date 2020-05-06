@@ -113,7 +113,7 @@ export const MusicInfoComponent: React.FC<MusicInfoProps> = (props: MusicInfoPro
                         <div className={classes.text}>{music.name}</div>
                         <div
                             className={classes.text}
-                            onClick={(e): void => {
+                            onClick={(): void => {
                                 artistClick(music.artistId);
                             }}
                         >
@@ -121,7 +121,7 @@ export const MusicInfoComponent: React.FC<MusicInfoProps> = (props: MusicInfoPro
                         </div>
                         <div
                             className={classes.text}
-                            onClick={(e): void => {
+                            onClick={(): void => {
                                 albumClick(music.albumId);
                             }}
                         >

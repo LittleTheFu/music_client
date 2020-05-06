@@ -1,5 +1,5 @@
 import { setGlobal } from 'reactn';
-import { Music, dummyMusic, MusicCollection } from './dataInterfaces/music';
+import { Music, dummyMusic } from './dataInterfaces/music';
 import { State, Dispatch } from 'reactn/default';
 
 export const setToken = (token: string): void => {
@@ -119,7 +119,6 @@ export const updateMusics = (
 
 export const updateToNextMusic = (
     global: State,
-    dispatch: Dispatch,
 ): Pick<State, 'currentMusic' | 'musicIndex' | 'currentMusicId' | 'refreshMusicFlag'> => ({
     musicIndex: (global.musicIndex + 1) % global.musics.length,
     currentMusic: global.musics[(global.musicIndex + 1) % global.musics.length],
