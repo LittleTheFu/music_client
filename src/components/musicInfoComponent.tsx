@@ -117,7 +117,7 @@ export const MusicInfoComponent: React.FC<MusicInfoProps> = (props: MusicInfoPro
                                 artistClick(music.artistId);
                             }}
                         >
-                            artist :<Link>{music.artist}</Link>
+                            artist : <Link>{music.artist}</Link>
                         </div>
                         <div
                             className={classes.text}
@@ -125,7 +125,7 @@ export const MusicInfoComponent: React.FC<MusicInfoProps> = (props: MusicInfoPro
                                 albumClick(music.albumId);
                             }}
                         >
-                            <Link>album : {music.album}</Link>
+                            album : <Link>{music.album}</Link>
                         </div>
                     </h4>
                     <h4 className={classes.line}>{lyricLine}</h4>
