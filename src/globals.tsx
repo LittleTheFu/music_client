@@ -48,7 +48,7 @@ setGlobal({
 
     drawerOpen: false,
 
-    refreshMusic: false,
+    refreshMusicFlag: false,
 
     currentMusicId: 0,
     // currentMusic: dummyMusic,
@@ -93,17 +93,18 @@ export const updateCurrentMusic = (
     global: State,
     dispatch: Dispatch,
     music: Music,
-): Pick<State, 'currentMusic' | 'musicIndex' | 'currentMusicId'> => ({
+): Pick<State, 'currentMusic' | 'musicIndex' | 'currentMusicId' | 'refreshMusicFlag'> => ({
     currentMusic: music,
     musicIndex: global.musics.indexOf(music),
     currentMusicId: music.id,
+    refreshMusicFlag: true,
 });
 
 export const updateMusics = (
     global: State,
     dispatch: Dispatch,
     musics: Music[],
-): Pick<State, 'musics' | 'musicIndex' | 'musicLength' | 'currentMusic' | 'currentMusicId'> => ({
+): Pick<State, 'musics' | 'musicIndex' | 'musicLength' | 'currentMusic' | 'currentMusicId' | 'refreshMusicFlag'> => ({
     musics: musics.map(m => {
         m.isInPlayList = false;
 
@@ -113,29 +114,15 @@ export const updateMusics = (
     musicLength: musics.length,
     currentMusic: musics[0] ? musics[0] : dummyMusic,
     currentMusicId: musics[0] ? musics[0].id : dummyMusic.id,
-});
-
-export const updateMusicInPersoalListState = (global: State, dispatch: Dispatch): Pick<State, 'musics'> => ({
-    musics: global.musics.map(m => {
-        m.isInPlayList = false;
-
-        return m;
-    }),
+    refreshMusicFlag: true,
 });
 
 export const updateToNextMusic = (
     global: State,
     dispatch: Dispatch,
-): Pick<State, 'currentMusic' | 'musicIndex' | 'currentMusicId'> => ({
+): Pick<State, 'currentMusic' | 'musicIndex' | 'currentMusicId' | 'refreshMusicFlag'> => ({
     musicIndex: (global.musicIndex + 1) % global.musics.length,
     currentMusic: global.musics[(global.musicIndex + 1) % global.musics.length],
     currentMusicId: global.musics[(global.musicIndex + 1) % global.musics.length].id,
-});
-
-export const updateCollections = (
-    global: State,
-    dispatch: Dispatch,
-    collections: MusicCollection[],
-): Pick<State, 'Collections'> => ({
-    Collections: collections,
+    refreshMusicFlag: true,
 });

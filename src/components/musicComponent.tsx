@@ -25,6 +25,7 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
     const [currentTheMusic] = useGlobal('currentMusic');
     const [currentMusics] = useGlobal('musics');
     const [currentTheMusicId] = useGlobal('currentMusicId');
+    const [refresher, setRefresher] = useGlobal('refreshMusicFlag');
 
     const [currentTime, setCurrentTime] = useState(0);
     const [duration, setDuration] = useState(0);
@@ -42,12 +43,15 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
     const [isPlaying, setIsPlaying] = useState(false);
 
     useEffect(() => {
-        if (currentTheMusic && currentTheMusicId > 0) {
+        if (refresher && currentTheMusic && currentTheMusicId > 0) {
+            setRefresher(false);
+
             audioElement.src = currentTheMusic.address;
             audioElement.autoplay = true;
+
             setIsPlaying(true);
         }
-    }, [currentTheMusicId]);
+    }, [refresher]);
 
     useEffect(() => {
         if (duration !== 0) {
