@@ -6,8 +6,7 @@ import { fetchMusicsByKeyword } from '../service';
 import { useGlobal, useDispatch } from 'reactn';
 import { Music } from '../dataInterfaces/music';
 import { MyCollectionsModal } from '../components/myCollectionsModal';
-import { useHistory } from 'react-router-dom';
-import { updateMusics, updateCurrentMusic } from '../globals';
+import { updateMusics, updateCurrentMusic, openHint } from '../globals';
 import { MusicListComponent } from '../components/musicListComponent';
 import { addMusicToCollection } from '../service';
 
@@ -36,14 +35,13 @@ export const SearchPage: React.FC = () => {
 
     const updatePlayingMusics = useDispatch(updateMusics);
     const updateTheCurrentMusic = useDispatch(updateCurrentMusic);
+    const openTheHint = useDispatch(openHint);
 
     const [content, setContent] = useState('');
     const [musics, setMusics] = useState<Music[]>([]);
 
     const [wantAddMusicId, setWantAddMusicId] = useState(1);
     const [modalOpen, setModalOpen] = useState(false);
-
-    const history = useHistory();
 
     const classes = useStyles();
 
@@ -81,7 +79,8 @@ export const SearchPage: React.FC = () => {
             collectionId,
             wantAddMusicId,
             (o): void => {
-                setModalOpen(false);
+                openTheHint(o.msg);
+                // setModalOpen(false);
             },
             console.log,
         );

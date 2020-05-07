@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { Music, CollectionDetail } from '../dataInterfaces/music';
 import { getAlbumDetail } from '../service';
 import { useGlobal, useDispatch } from 'reactn';
-import { updateMusics, updateCurrentMusic } from '../globals';
+import { updateMusics, updateCurrentMusic, openHint } from '../globals';
 import { useHistory } from 'react-router-dom';
 import { MyCollectionsModal } from '../components/myCollectionsModal';
 import { MixDetail } from '../otherComponents/mixDetailComponent';
@@ -14,10 +14,14 @@ export const AlbumDetailPage: React.FC = () => {
 
     const [wantAddMusicId, setWantAddMusicId] = useState(1);
     const [modalOpen, setModalOpen] = useState(false);
+
     const [detail, setDetail] = useState<CollectionDetail>(null);
     const [currentTheMusicId] = useGlobal('currentMusicId');
+
     const updatePlayingMusics = useDispatch(updateMusics);
     const updateTheCurrentMusic = useDispatch(updateCurrentMusic);
+    const openTheHint = useDispatch(openHint);
+
     const history = useHistory();
 
     const intId = parseInt(id);
@@ -45,7 +49,7 @@ export const AlbumDetailPage: React.FC = () => {
             collectionId,
             wantAddMusicId,
             (o): void => {
-                setModalOpen(false);
+                openTheHint(o.msg);
             },
             console.log,
         );

@@ -20,7 +20,7 @@ const App: React.FC = () => {
                     horizontal: 'center',
                 }}
                 open={hintOpen}
-                autoHideDuration={700}
+                autoHideDuration={7000}
                 onClose={(): void => {
                     setHintOpen(false);
                 }}

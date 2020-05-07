@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { Music, CollectionDetail } from '../dataInterfaces/music';
 import { deleteCollection, getCollectionDetailById, removeMusicFromCollection } from '../service';
 import { useGlobal, useDispatch } from 'reactn';
-import { updateMusics, updateCurrentMusic } from '../globals';
+import { updateMusics, updateCurrentMusic, openHint } from '../globals';
 import { useHistory } from 'react-router-dom';
 import { MyCollectionsModal } from './myCollectionsModal';
 import { MixDetail } from '../otherComponents/mixDetailComponent';
@@ -16,8 +16,11 @@ export const CollectionDetailPage: React.FC = () => {
     const [modalOpen, setModalOpen] = useState(false);
     const [detail, setDetail] = useState<CollectionDetail>(null);
     const [currentTheMusicId] = useGlobal('currentMusicId');
+
     const updatePlayingMusics = useDispatch(updateMusics);
     const updateTheCurrentMusic = useDispatch(updateCurrentMusic);
+    const openTheHint = useDispatch(openHint);
+
     const history = useHistory();
 
     const intId = parseInt(id);
@@ -37,7 +40,7 @@ export const CollectionDetailPage: React.FC = () => {
             collectionId,
             wantAddMusicId,
             (o): void => {
-                setModalOpen(false);
+                openTheHint(o.msg);
             },
             console.log,
         );
@@ -47,6 +50,7 @@ export const CollectionDetailPage: React.FC = () => {
         deleteCollection(
             intId,
             (o): void => {
+                openTheHint(o.msg);
                 history.push(`/main/collections/`);
             },
             console.log,
@@ -72,6 +76,7 @@ export const CollectionDetailPage: React.FC = () => {
                         return m.id !== musicId;
                     }),
                 });
+                openTheHint(o.msg);
             },
             console.log,
         );
