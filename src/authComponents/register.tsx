@@ -7,6 +7,7 @@ import { useHistory, Link } from 'react-router-dom';
 import Container from '@material-ui/core/Container';
 import { openHint } from '../globals';
 import { useDispatch } from 'reactn';
+import { RetMsgObj } from '../dataInterfaces/music';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -39,7 +40,8 @@ export const RegisterComponent: React.FC = () => {
 
     const classes = useStyles({});
 
-    const resolveData = (data: any): void => {
+    const resolveData = (data: RetMsgObj): void => {
+        openTheHint(data.msg);
         history.push('/login');
     };
 
