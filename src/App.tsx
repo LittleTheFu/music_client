@@ -52,7 +52,7 @@ const PrivateRoute = ({ children, ...rest }: PrivateRouteProps): JSX.Element => 
     return (
         <Route
             {...rest}
-            render={({ location }) =>
+            render={({}): React.ReactNode =>
                 getLoginFlag() ? (
                     children
                 ) : (
