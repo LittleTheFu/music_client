@@ -268,7 +268,6 @@ export const getMe = (
 ): Promise<RetSimpleUser> => {
     return rawObjectPost(getMeUrl, {}, resolve, {
         Authorization: 'Bearer ' + getToken(),
-        reject,
     });
 };
 
@@ -486,7 +485,6 @@ export const uploadAvatar = (
 ): Promise<RetUpdateAvatarDto> => {
     return fileObjectPost(uploadAvatarUrl, data, resolve, {
         Authorization: 'Bearer ' + getToken(),
-        reject,
     });
 };
 

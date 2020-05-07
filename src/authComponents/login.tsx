@@ -48,6 +48,7 @@ export const LoginComponent: React.FC = () => {
             info => {
                 setMeAvatar(info.avatarUrl);
                 setMeId(info.id);
+                console.log('ME_ID:' + info.id);
             },
             e => {
                 console.log(e);
