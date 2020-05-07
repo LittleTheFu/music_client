@@ -69,6 +69,9 @@ const useStyles = makeStyles({
         marginLeft: 'auto',
         marginRight: 'auto',
     },
+    root: {
+        width: 350,
+    },
 });
 
 export const MusicInfoComponent: React.FC<MusicInfoProps> = (props: MusicInfoProps) => {
@@ -120,7 +123,7 @@ export const MusicInfoComponent: React.FC<MusicInfoProps> = (props: MusicInfoPro
     return (
         <Card raised={true} className={classes.card}>
             {music ? (
-                <div>
+                <div className={classes.root}>
                     <h4 className={classes.infoText}>
                         <div className={classes.text}>{music.name}</div>
                         <div
