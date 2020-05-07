@@ -66,7 +66,7 @@ export const SearchPage: React.FC = () => {
         console.log('search : ' + content);
     };
 
-    const clickMusic = (music: Music, index: number): void => {
+    const clickMusic = (music: Music): void => {
         updatePlayingMusics(musics);
         updateTheCurrentMusic(music);
     };

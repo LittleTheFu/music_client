@@ -12,7 +12,7 @@ import CommentIcon from '@material-ui/icons/Comment';
 interface MusicList {
     musics: Music[];
     currentMusicId: number;
-    clickMusic: (music: Music, index: number) => void;
+    clickMusic: (music: Music) => void;
     addMusicClick: (id: number) => void;
     removeMusicClick?: (id: number) => void;
     commentClick?: (id: number) => void;
@@ -36,7 +36,7 @@ export const MusicListComponent: React.FC<MusicList> = (props: MusicList) => {
 
     const musicElements = musics.map((music: Music, index: number) => {
         return (
-            <ListItem divider button key={index} onClick={(): void => clickMusic(music, index)}>
+            <ListItem divider button key={index} onClick={(): void => clickMusic(music)}>
                 {music.name}
                 <span>&nbsp;&nbsp;</span>({music.artist})
                 {currentMusicId === music.id ? (

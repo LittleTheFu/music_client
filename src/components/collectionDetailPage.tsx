@@ -53,7 +53,7 @@ export const CollectionDetailPage: React.FC = () => {
         );
     };
 
-    const clickMusic = (music: Music, index: number): void => {
+    const clickMusic = (music: Music): void => {
         updatePlayingMusics(detail.musics);
         updateTheCurrentMusic(music);
     };

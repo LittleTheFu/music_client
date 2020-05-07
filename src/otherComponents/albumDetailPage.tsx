@@ -33,7 +33,7 @@ export const AlbumDetailPage: React.FC = () => {
         );
     }, [history.location]);
 
-    const clickMusic = (music: Music, index: number): void => {
+    const clickMusic = (music: Music): void => {
         console.log('CLICK MUSIC');
         console.log(music);
         updatePlayingMusics(detail.musics);

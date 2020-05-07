@@ -17,7 +17,7 @@ const useStyles = makeStyles(() =>
 interface MixDetailProps {
     currentMusicId: number;
     detail: CollectionDetail;
-    clickMusic: (music: Music, index: number) => void;
+    clickMusic: (music: Music) => void;
     addMusicClick: (id: number) => void;
     removeMusicClick?: (id: number) => void;
     commentClick?: (id: number) => void;
