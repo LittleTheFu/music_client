@@ -30,8 +30,9 @@ const useStyles = makeStyles({
     card: {
         height: 430,
     },
-    line: {
+    lyricText: {
         height: 20,
+        textAlign: 'center',
     },
     '@keyframes spin': {
         from: {
@@ -42,6 +43,8 @@ const useStyles = makeStyles({
         },
     },
     cover: {
+        marginLeft: 'auto',
+        marginRight: 'auto',
         width: 200,
         height: 200,
         borderRadius: '50%',
@@ -56,6 +59,15 @@ const useStyles = makeStyles({
     },
     text: {
         padding: 5,
+    },
+    infoText: {
+        textAlign: 'center',
+    },
+    btnGroup: {
+        paddingLeft: 10,
+        width: 140,
+        marginLeft: 'auto',
+        marginRight: 'auto',
     },
 });
 
@@ -109,7 +121,7 @@ export const MusicInfoComponent: React.FC<MusicInfoProps> = (props: MusicInfoPro
         <Card raised={true} className={classes.card}>
             {music ? (
                 <div>
-                    <h4>
+                    <h4 className={classes.infoText}>
                         <div className={classes.text}>{music.name}</div>
                         <div
                             className={classes.text}
@@ -128,21 +140,24 @@ export const MusicInfoComponent: React.FC<MusicInfoProps> = (props: MusicInfoPro
                             album : <Link>{music.album}</Link>
                         </div>
                     </h4>
-                    <h4 className={classes.line}>{lyricLine}</h4>
-                    ---{music.like}{' '}
-                    {music.likedByCurrentUser ? (
-                        <IconButton className={classes.likeIcon} onClick={dislikeClick}>
-                            <FavoriteIcon></FavoriteIcon>
+                    <h4 className={classes.lyricText}>{lyricLine}</h4>
+
+                    <div className={classes.btnGroup}>
+                        {music.like}
+                        {music.likedByCurrentUser ? (
+                            <IconButton className={classes.likeIcon} onClick={dislikeClick}>
+                                <FavoriteIcon></FavoriteIcon>
+                            </IconButton>
+                        ) : (
+                            <IconButton className={classes.likeIcon} onClick={likeClick}>
+                                <FavoriteBorderIcon></FavoriteBorderIcon>
+                            </IconButton>
+                        )}
+                        <IconButton className={classes.likeIcon} onClick={commentClick}>
+                            <CommentIcon></CommentIcon>
                         </IconButton>
-                    ) : (
-                        <IconButton className={classes.likeIcon} onClick={likeClick}>
-                            <FavoriteBorderIcon></FavoriteBorderIcon>
-                        </IconButton>
-                    )}
-                    <IconButton className={classes.likeIcon} onClick={commentClick}>
-                        <CommentIcon></CommentIcon>
-                    </IconButton>
-                    ---
+                        {/* --- */}
+                    </div>
                     <CardMedia image={music.cover} className={classes.cover}></CardMedia>
                 </div>
             ) : (
