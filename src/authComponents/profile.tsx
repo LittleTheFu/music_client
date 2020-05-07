@@ -54,7 +54,9 @@ export const ProfilePage: React.FC = () => {
                 const obj = o as RetUpdateAvatarDto;
                 setMeAvatar(obj.remoteUrl);
             },
-            e => {},
+            e => {
+                console.log(e);
+            },
         );
     };
 
