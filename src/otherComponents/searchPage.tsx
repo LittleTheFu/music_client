@@ -9,6 +9,7 @@ import { MyCollectionsModal } from '../components/myCollectionsModal';
 import { useHistory } from 'react-router-dom';
 import { updateMusics, updateCurrentMusic } from '../globals';
 import { MusicListComponent } from '../components/musicListComponent';
+import { addMusicToCollection } from '../service';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -75,6 +76,17 @@ export const SearchPage: React.FC = () => {
         setModalOpen(true);
     };
 
+    const mixClick = (collectionId: number): void => {
+        addMusicToCollection(
+            collectionId,
+            wantAddMusicId,
+            (o): void => {
+                setModalOpen(false);
+            },
+            console.log,
+        );
+    };
+
     return (
         <Grid container>
             <Grid item xs={12}>
@@ -83,7 +95,7 @@ export const SearchPage: React.FC = () => {
                     modalClose={(): void => {
                         setModalOpen(false);
                     }}
-                    musicId={wantAddMusicId}
+                    mixClick={mixClick}
                 ></MyCollectionsModal>
             </Grid>
             <Grid item xs={12} className={classes.inputRoot}>

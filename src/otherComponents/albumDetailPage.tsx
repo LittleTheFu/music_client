@@ -7,6 +7,7 @@ import { updateMusics, updateCurrentMusic } from '../globals';
 import { useHistory } from 'react-router-dom';
 import { MyCollectionsModal } from '../components/myCollectionsModal';
 import { MixDetail } from '../otherComponents/mixDetailComponent';
+import { addMusicToCollection } from '../service';
 
 export const AlbumDetailPage: React.FC = () => {
     const { id } = useParams();
@@ -39,6 +40,17 @@ export const AlbumDetailPage: React.FC = () => {
         updateTheCurrentMusic(music);
     };
 
+    const mixClick = (collectionId: number): void => {
+        addMusicToCollection(
+            collectionId,
+            wantAddMusicId,
+            (o): void => {
+                setModalOpen(false);
+            },
+            console.log,
+        );
+    };
+
     const addMusicClick = (id: number): void => {
         setWantAddMusicId(id);
         setModalOpen(true);
@@ -57,7 +69,7 @@ export const AlbumDetailPage: React.FC = () => {
                         modalClose={(): void => {
                             setModalOpen(false);
                         }}
-                        musicId={wantAddMusicId}
+                        mixClick={mixClick}
                     ></MyCollectionsModal>
                     <MixDetail
                         commentClick={commentClick}
