@@ -75,6 +75,7 @@ export const MailDetailPage: React.FC = () => {
                 <div>
                     <Grid container>
                         <Grid item xs={12}>
+                            <BackButton></BackButton>
                             <IconButton
                                 onClick={(): void => {
                                     deleteClick();
@@ -82,7 +83,6 @@ export const MailDetailPage: React.FC = () => {
                             >
                                 <DeleteIcon></DeleteIcon>
                             </IconButton>
-                            <BackButton></BackButton>
                         </Grid>
 
                         <Grid item xs={12}>
