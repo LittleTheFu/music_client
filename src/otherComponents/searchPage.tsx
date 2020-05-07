@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import InputBase from '@material-ui/core/InputBase';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
@@ -9,6 +9,7 @@ import { MyCollectionsModal } from '../components/myCollectionsModal';
 import { updateMusics, updateCurrentMusic, openHint } from '../globals';
 import { MusicListComponent } from '../components/musicListComponent';
 import { addMusicToCollection } from '../service';
+import { useDebounce } from '../helper/debounce';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -45,24 +46,22 @@ export const SearchPage: React.FC = () => {
 
     const classes = useStyles();
 
-    const doSearch = (key: string): void => {
-        if (key !== 'Enter') {
-            return;
-        }
+    const debouncedContent = useDebounce(content, 500);
 
-        if (content === '') {
+    useEffect(() => {
+        if (debouncedContent === '') {
             return;
         }
 
         fetchMusicsByKeyword(
-            content,
+            debouncedContent,
             (retMusic): void => {
                 setMusics(retMusic);
             },
             console.log,
         );
-        console.log('search : ' + content);
-    };
+        console.log('search : ' + debouncedContent);
+    }, [debouncedContent]);
 
     const clickMusic = (music: Music): void => {
         updatePlayingMusics(musics);
@@ -107,9 +106,6 @@ export const SearchPage: React.FC = () => {
                     inputProps={{ 'aria-label': 'search' }}
                     onChange={(e): void => {
                         setContent(e.target.value);
-                    }}
-                    onKeyUp={(e): void => {
-                        doSearch(e.key);
                     }}
                 />
             </Grid>
