@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Music, CollectionDetail } from '../dataInterfaces/music';
-import { getAlbumDetail } from '../service';
 import { useGlobal, useDispatch } from 'reactn';
 import { updateMusics, updateCurrentMusic, openHint } from '../globals';
 import { useHistory } from 'react-router-dom';

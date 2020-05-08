@@ -13,7 +13,7 @@ import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import PeopleIcon from '@material-ui/icons/People';
 import { useHistory, useParams } from 'react-router-dom';
 import { WriteMailModal } from '../mailComponents/writeMailModal';
-import { getMeId } from '../globals';
+import { getMeId, openHint } from '../globals';
 import { BackButton } from '../otherComponents/backButton';
 import { MusicCollectionsComponent } from '../components/musicCollectionsComponent';
 import { updateMusics, updateCurrentMusic } from '../globals';
@@ -51,6 +51,7 @@ export const UserDetailPage: React.FC = () => {
     const history = useHistory();
     const updatePlayingMusics = useDispatch(updateMusics);
     const updateTheCurrentMusic = useDispatch(updateCurrentMusic);
+    const openTheHint = useDispatch(openHint);
 
     const { id } = useParams();
     const intId = parseInt(id);
@@ -76,6 +77,7 @@ export const UserDetailPage: React.FC = () => {
             intId,
             content,
             o => {
+                openTheHint(o.msg);
                 setMailModalOpen(false);
             },
             console.log,
@@ -90,6 +92,7 @@ export const UserDetailPage: React.FC = () => {
         followUser(
             intId,
             (o): void => {
+                openTheHint(o.msg);
                 setDetail({ ...detail, isFollowed: true });
             },
             console.log,
@@ -100,6 +103,7 @@ export const UserDetailPage: React.FC = () => {
         unfollowUser(
             currentClickUserId,
             (o): void => {
+                openTheHint(o.msg);
                 setDetail({ ...detail, isFollowed: false });
             },
             console.log,
