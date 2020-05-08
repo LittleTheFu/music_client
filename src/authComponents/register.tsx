@@ -64,7 +64,7 @@ export const RegisterComponent: React.FC = () => {
                         label="password"
                         onChange={(e): void => setPassword(e.target.value)}
                     />
-                    <Button type="submit" variant="contained" color="primary">
+                    <Button type="submit" variant="contained" color="secondary">
                         register
                     </Button>
                     <Button component={Link} to="/login" type="submit" variant="contained" color="primary">
