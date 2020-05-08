@@ -36,8 +36,9 @@ export const RegisterComponent: React.FC = () => {
     const [password, setPassword] = useState('');
     const openTheHint = useDispatch(openHint);
 
-    const history = useHistory();
+    const MIN_LEN = 6;
 
+    const history = useHistory();
     const classes = useStyles({});
 
     const resolveData = (data: RetMsgObj): void => {
@@ -51,6 +52,18 @@ export const RegisterComponent: React.FC = () => {
 
     function handleSubmit(event: React.FormEvent<HTMLFormElement>): void {
         event.preventDefault();
+
+        if (user.length < MIN_LEN) {
+            openTheHint('user name is too short!');
+            return;
+        }
+
+        if (password.length < MIN_LEN) {
+            openTheHint('password is too short!');
+            return;
+        }
+
+        // event.preventDefault();
         postRegister(user, password, resolveData, failedRegister);
     }
 
@@ -58,12 +71,20 @@ export const RegisterComponent: React.FC = () => {
         <Container maxWidth="sm" className={classes.main}>
             <div className={classes.paper}>
                 <form onSubmit={handleSubmit} className={classes.root} noValidate autoComplete="off">
-                    <TextField id="standard-basic" label="user" onChange={(e): void => setUser(e.target.value)} />
                     <TextField
+                        id="standard-basic"
+                        error={user.length < MIN_LEN}
+                        label="user"
+                        onChange={(e): void => setUser(e.target.value)}
+                        helperText={'at least ' + MIN_LEN + 'characters'}
+                    />
+                    <TextField
+                        error={password.length < MIN_LEN}
                         id="standard-basic"
                         label="password"
                         type="password"
                         onChange={(e): void => setPassword(e.target.value)}
+                        helperText={'at least ' + MIN_LEN + 'characters'}
                     />
                     <Button type="submit" variant="contained" color="secondary">
                         register
