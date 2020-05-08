@@ -12,6 +12,8 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import Avatar from '@material-ui/core/Avatar';
 import { BackButton } from '../otherComponents/backButton';
+import { openHint } from '../globals';
+import { useDispatch } from 'reactn';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -46,6 +48,7 @@ export const MusicCommentPage: React.FC = () => {
     const [comments, setComments] = useState<MusicComment[]>([]);
     const [content, setContent] = useState('');
 
+    const openTheHint = useDispatch(openHint);
     const history = useHistory();
 
     const classes = useStyles({});
@@ -103,6 +106,7 @@ export const MusicCommentPage: React.FC = () => {
             intId,
             content,
             comments => {
+                openTheHint('you post a new comment!');
                 setComments(comments);
             },
             console.log,
@@ -120,6 +124,7 @@ export const MusicCommentPage: React.FC = () => {
                         className={classes.inputBox}
                         id="standard-basic"
                         label="comment"
+                        variant="outlined"
                         onChange={(e): void => setContent(e.target.value)}
                     />
                     <Button type="submit" variant="contained" color="primary" className={classes.postButton}>
