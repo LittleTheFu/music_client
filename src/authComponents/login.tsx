@@ -92,6 +92,7 @@ export const LoginComponent: React.FC = () => {
                     <TextField
                         id="standard-basic"
                         label="password"
+                        type="password"
                         onChange={(e): void => setPassword(e.target.value)}
                     />
                     <Button type="submit" variant="contained" color="primary">
