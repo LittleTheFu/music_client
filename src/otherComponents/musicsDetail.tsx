@@ -47,7 +47,7 @@ export const MusicsDetail: React.FC<MusicsDetailProps> = (props: MusicsDetailPro
             },
             console.log,
         );
-    }, [history.location]);
+    }, [initData, intId]);
 
     const removeMusicClickWrapper = (musicId: number): void => {
         removeMusicClick(musicId, () => {
