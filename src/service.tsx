@@ -470,6 +470,7 @@ function fileObjectPost<T>(
         })
         .then(response => {
             const { data } = response;
+            resolve(data);
             return data;
         })
         .catch(err => {

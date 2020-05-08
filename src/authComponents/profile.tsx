@@ -6,6 +6,8 @@ import { RetUpdateAvatarDto } from '../dataInterfaces/music';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import IconButton from '@material-ui/core/IconButton';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
+import { openHint } from '../globals';
+import { useDispatch } from 'reactn';
 
 const useStyles = makeStyles(() =>
     createStyles({
@@ -18,6 +20,7 @@ const useStyles = makeStyles(() =>
 export const ProfilePage: React.FC = () => {
     const [selectedFile, setSelectedFile] = useState(null);
     const [preview, setPreview] = useState('');
+    const openTheHint = useDispatch(openHint);
 
     const classes = useStyles({});
 
@@ -53,6 +56,8 @@ export const ProfilePage: React.FC = () => {
             o => {
                 const obj = o as RetUpdateAvatarDto;
                 setMeAvatar(obj.remoteUrl);
+                openTheHint('successed!');
+                console.log('changed');
             },
             e => {
                 console.log(e);
