@@ -14,15 +14,22 @@ const useStyles = makeStyles(() =>
         btnGroup: {
             display: 'block',
         },
+        img: {
+            width: 80,
+            height: 80,
+        },
     }),
 );
 
 export const ProfilePage: React.FC = () => {
     const [selectedFile, setSelectedFile] = useState(null);
     const [preview, setPreview] = useState('');
-    const openTheHint = useDispatch(openHint);
+    const [size, setSize] = useState(0);
 
+    const openTheHint = useDispatch(openHint);
     const classes = useStyles({});
+
+    const MAX_SIZE = 10 * 1024;
 
     useEffect(() => {
         if (!selectedFile) {
@@ -30,6 +37,7 @@ export const ProfilePage: React.FC = () => {
             return;
         }
 
+        setSize(selectedFile.size);
         const objectUrl = URL.createObjectURL(selectedFile);
         setPreview(objectUrl);
 
@@ -47,6 +55,11 @@ export const ProfilePage: React.FC = () => {
 
     const uploadFile = (): void => {
         if (!selectedFile) return;
+
+        if (size > MAX_SIZE) {
+            openTheHint('file too large');
+            return;
+        }
 
         const formData = new FormData();
         formData.append('avatar', selectedFile);
@@ -67,8 +80,9 @@ export const ProfilePage: React.FC = () => {
 
     return (
         <div>
-            <h1>Choose a img</h1>
-            {selectedFile && <img src={preview} alt="avatar" />}
+            <h1>Choose a img, at most 10KB</h1>
+            <h1>size: {size / 1024}KB</h1>
+            {selectedFile && <img src={preview} className={classes.img} alt="avatar" />}
             <div className={classes.btnGroup}>
                 <IconButton component="label">
                     <input
