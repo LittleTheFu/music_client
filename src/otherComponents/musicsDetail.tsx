@@ -108,6 +108,7 @@ export const MusicsDetail: React.FC<MusicsDetailProps> = (props: MusicsDetailPro
                         cover={detail.cover}
                         trashClick={detail.canBeDeleted ? trashClick : null}
                         removeMusicClick={removeMusicClick ? removeMusicClickWrapper : null}
+                        showBackButton={true}
                     ></MixDetail>
                 </div>
             ) : (

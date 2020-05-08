@@ -19,6 +19,7 @@ interface MixDetailProps {
     name?: string;
     cover?: string;
     musics: Music[];
+    showBackButton: boolean;
     clickMusic: (music: Music) => void;
     addMusicClick: (id: number) => void;
     removeMusicClick?: (id: number) => void;
@@ -39,6 +40,7 @@ export const MixDetail: React.FC<MixDetailProps> = (props: MixDetailProps) => {
         commentClick,
         removeMusicClick,
         trashClick,
+        showBackButton,
     } = props;
 
     const [myMusics, setMyMusics] = useState(musics);
@@ -51,9 +53,13 @@ export const MixDetail: React.FC<MixDetailProps> = (props: MixDetailProps) => {
         <div>
             {
                 <Grid container>
-                    <Grid item xs={12}>
-                        <BackButton></BackButton>
-                    </Grid>
+                    {showBackButton ? (
+                        <Grid item xs={12}>
+                            <BackButton></BackButton>
+                        </Grid>
+                    ) : (
+                        <div></div>
+                    )}
                     {cover ? (
                         <Grid item xs={6} md={3}>
                             <img className={classes.cover} src={cover} alt="cover" />

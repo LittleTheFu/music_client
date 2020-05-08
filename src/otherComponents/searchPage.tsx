@@ -115,6 +115,7 @@ export const SearchPage: React.FC = () => {
                     clickMusic={clickMusic}
                     currentMusicId={currentTheMusicId}
                     musics={musics}
+                    showBackButton={false}
                 ></MixDetail>
             </Grid>
         </Grid>
