@@ -36,7 +36,7 @@ export const getMeId = (): number => {
     const strId = sessionStorage.getItem('meId') || '';
     const id = parseInt(strId);
 
-    if (id === NaN) {
+    if (isNaN(id)) {
         return 0;
     }
 

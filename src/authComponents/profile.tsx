@@ -68,7 +68,7 @@ export const ProfilePage: React.FC = () => {
     return (
         <div>
             <h1>Choose a img</h1>
-            {selectedFile && <img src={preview} />}
+            {selectedFile && <img src={preview} alt="avatar" />}
             <div className={classes.btnGroup}>
                 <IconButton component="label">
                     <input

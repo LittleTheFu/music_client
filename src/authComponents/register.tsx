@@ -76,7 +76,7 @@ export const RegisterComponent: React.FC = () => {
                         error={user.length < MIN_LEN}
                         label="user"
                         onChange={(e): void => setUser(e.target.value)}
-                        helperText={'at least ' + MIN_LEN + 'characters'}
+                        helperText={'at least ' + MIN_LEN + ' characters'}
                     />
                     <TextField
                         error={password.length < MIN_LEN}
@@ -84,7 +84,7 @@ export const RegisterComponent: React.FC = () => {
                         label="password"
                         type="password"
                         onChange={(e): void => setPassword(e.target.value)}
-                        helperText={'at least ' + MIN_LEN + 'characters'}
+                        helperText={'at least ' + MIN_LEN + ' characters'}
                     />
                     <Button type="submit" variant="contained" color="secondary">
                         register

@@ -64,7 +64,7 @@ export const MusicCommentPage: React.FC = () => {
             },
             console.log,
         );
-    }, []);
+    }, [intId]);
 
     const detailClick = (userId: number): void => {
         history.push(`/main/userdetail/` + userId);

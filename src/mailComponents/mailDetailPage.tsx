@@ -52,7 +52,7 @@ export const MailDetailPage: React.FC = () => {
             },
             console.log,
         );
-    }, []);
+    }, [intId]);
 
     const deleteClick = (): void => {
         deleteMail(

@@ -66,7 +66,7 @@ export const UserDetailPage: React.FC = () => {
             },
             console.log,
         );
-    }, [history.location]);
+    }, [intId]);
 
     const mailClick = (): void => {
         setMailModalOpen(true);

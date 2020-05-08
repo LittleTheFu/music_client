@@ -24,7 +24,7 @@ export const ArtistPage: React.FC = () => {
             },
             console.log,
         );
-    }, [history.location]);
+    }, [intId]);
 
     const clickCollectionCover = (name: string, id: number): void => {
         artist.albums.forEach(c => {

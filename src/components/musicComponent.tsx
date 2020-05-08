@@ -69,7 +69,7 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
             audioElement.pause();
             audioElement.src = '';
         };
-    }, []);
+    }, [audioElement]);
 
     const changeMusicPercent = (event: object, value: unknown): void => {
         const percent = value as number;

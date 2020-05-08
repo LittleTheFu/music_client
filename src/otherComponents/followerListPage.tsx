@@ -55,7 +55,7 @@ export const FollowerListPage: React.FC = () => {
             },
             console.log,
         );
-    }, []);
+    }, [intId]);
 
     const followClick = (userId: number): void => {
         followUser(
