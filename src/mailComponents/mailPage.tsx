@@ -6,9 +6,12 @@ import ListItem from '@material-ui/core/ListItem';
 import { IconButton } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { useHistory } from 'react-router-dom';
+import { openHint } from '../globals';
+import { useDispatch } from 'reactn';
 
 export const MailPage: React.FC = () => {
     const [mails, setMails] = useState<Mail[]>([]);
+    const openTheHint = useDispatch(openHint);
 
     const history = useHistory();
 
@@ -39,8 +42,13 @@ export const MailPage: React.FC = () => {
 
                         deleteMail(
                             m.id,
-                            mails => {
-                                setMails(mails);
+                            o => {
+                                openTheHint(o.msg);
+                                setMails(
+                                    mails.filter(mail => {
+                                        return mail.id !== m.id;
+                                    }),
+                                );
                             },
                             console.log,
                         );

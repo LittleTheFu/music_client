@@ -11,6 +11,8 @@ import { makeStyles, createStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import { BackButton } from '../otherComponents/backButton';
 import Link from '@material-ui/core/Link';
+import { openHint } from '../globals';
+import { useDispatch } from 'reactn';
 
 const useStyles = makeStyles(() =>
     createStyles({
@@ -32,6 +34,8 @@ const useStyles = makeStyles(() =>
 
 export const MailDetailPage: React.FC = () => {
     const { id } = useParams();
+    const openTheHint = useDispatch(openHint);
+
     const [mail, setMail] = useState<Mail>(null);
     const [content, setContent] = useState('');
 
@@ -53,7 +57,8 @@ export const MailDetailPage: React.FC = () => {
     const deleteClick = (): void => {
         deleteMail(
             intId,
-            mails => {
+            o => {
+                openTheHint(o.msg);
                 history.push(`/main/mail/`);
             },
             console.log,
@@ -66,7 +71,14 @@ export const MailDetailPage: React.FC = () => {
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
         event.preventDefault();
-        sendMail(mail.fromId, content, console.log, console.log);
+        sendMail(
+            mail.fromId,
+            content,
+            o => {
+                openTheHint(o.msg);
+            },
+            console.log,
+        );
     };
 
     return (

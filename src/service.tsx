@@ -304,9 +304,9 @@ export const getMailDetail = (
 const deleteMailUrl = mailPrefix + 'deleteMail';
 export const deleteMail = (
     mailId: number,
-    resolve: (data: Mail[]) => void,
+    resolve: (data: RetMsgObj) => void,
     reject: (arg0: object) => void,
-): Promise<Mail[]> => {
+): Promise<RetMsgObj> => {
     return rawObjectPost(
         deleteMailUrl,
         { mailId: mailId },
