@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -34,7 +34,13 @@ export const MusicListComponent: React.FC<MusicList> = (props: MusicList) => {
     const classes = useStyles({});
     const { musics, currentMusicId, clickMusic, addMusicClick, removeMusicClick, commentClick } = props;
 
-    const musicElements = musics.map((music: Music, index: number) => {
+    const [myMusics, setMyMusics] = useState(musics);
+
+    useEffect(() => {
+        setMyMusics(props.musics);
+    }, [props.musics]);
+
+    const musicElements = myMusics.map((music: Music, index: number) => {
         return (
             <ListItem divider button key={index} onClick={(): void => clickMusic(music)}>
                 {music.name}

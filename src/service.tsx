@@ -188,7 +188,7 @@ export const getCollectionDetailById = (
     id: number,
     resolve: (data: CollectionDetail) => void,
     reject: (arg0: object) => void,
-): Promise<object> => {
+): Promise<CollectionDetail> => {
     return rawObjectPost(
         getCollectionDetailByIdUrl,
         { id: id },

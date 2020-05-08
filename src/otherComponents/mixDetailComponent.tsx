@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Music } from '../dataInterfaces/music';
 import { MusicListComponent } from '../components/musicListComponent';
 import Grid from '@material-ui/core/Grid';
@@ -41,6 +41,12 @@ export const MixDetail: React.FC<MixDetailProps> = (props: MixDetailProps) => {
         trashClick,
     } = props;
 
+    const [myMusics, setMyMusics] = useState(musics);
+
+    useEffect(() => {
+        setMyMusics(props.musics);
+    }, [props.musics]);
+
     return (
         <div>
             {
@@ -63,10 +69,10 @@ export const MixDetail: React.FC<MixDetailProps> = (props: MixDetailProps) => {
                     ) : (
                         <div></div>
                     )}
-                    {musics ? (
+                    {myMusics ? (
                         <Grid item xs={12}>
                             <MusicListComponent
-                                musics={musics}
+                                musics={myMusics}
                                 currentMusicId={currentMusicId}
                                 clickMusic={clickMusic}
                                 addMusicClick={addMusicClick}

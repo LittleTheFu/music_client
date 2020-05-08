@@ -8,9 +8,18 @@ import { useHistory } from 'react-router-dom';
 import { MyCollectionsModal } from '../components/myCollectionsModal';
 import { MixDetail } from '../otherComponents/mixDetailComponent';
 import { addMusicToCollection } from '../service';
-import { MusicsDetail } from './musicsDetail';
 
-export const AlbumDetailPage: React.FC = () => {
+interface MusicsDetailProps {
+    initData: (
+        id: number,
+        resolve: (data: CollectionDetail) => void,
+        reject: (arg0: object) => void,
+    ) => Promise<CollectionDetail>;
+    trashClick?: () => void;
+    removeMusicClick?: (musicId: number, actionAfterRemoved: () => void) => void;
+}
+
+export const MusicsDetail: React.FC<MusicsDetailProps> = (props: MusicsDetailProps) => {
     const { id } = useParams();
 
     const [wantAddMusicId, setWantAddMusicId] = useState(1);
@@ -27,8 +36,11 @@ export const AlbumDetailPage: React.FC = () => {
 
     const intId = parseInt(id);
 
+    const { initData, trashClick, removeMusicClick } = props;
+
     useEffect(() => {
-        getAlbumDetail(
+        // getAlbumDetail(
+        initData(
             intId,
             detail => {
                 setDetail(detail);
@@ -37,6 +49,17 @@ export const AlbumDetailPage: React.FC = () => {
             console.log,
         );
     }, [history.location]);
+
+    const removeMusicClickWrapper = (musicId: number): void => {
+        removeMusicClick(musicId, () => {
+            setDetail({
+                ...detail,
+                musics: detail.musics.filter(m => {
+                    return m.id !== musicId;
+                }),
+            });
+        });
+    };
 
     const clickMusic = (music: Music): void => {
         console.log('CLICK MUSIC');
@@ -65,5 +88,32 @@ export const AlbumDetailPage: React.FC = () => {
         history.push(`/main/music_comment/` + id);
     };
 
-    return <MusicsDetail initData={getAlbumDetail}></MusicsDetail>;
+    return (
+        <div>
+            {detail ? (
+                <div>
+                    <MyCollectionsModal
+                        modalOpen={modalOpen}
+                        modalClose={(): void => {
+                            setModalOpen(false);
+                        }}
+                        mixClick={mixClick}
+                    ></MyCollectionsModal>
+                    <MixDetail
+                        commentClick={commentClick}
+                        addMusicClick={addMusicClick}
+                        clickMusic={clickMusic}
+                        currentMusicId={currentTheMusicId}
+                        musics={detail.musics}
+                        name={detail.name}
+                        cover={detail.cover}
+                        trashClick={detail.canBeDeleted ? trashClick : null}
+                        removeMusicClick={removeMusicClick ? removeMusicClickWrapper : null}
+                    ></MixDetail>
+                </div>
+            ) : (
+                <div></div>
+            )}
+        </div>
+    );
 };
