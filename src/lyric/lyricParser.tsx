@@ -56,7 +56,7 @@ const strToTime = (strTime: string): number => {
 
     const m = parseInt(min);
     const s = parseFloat(sec);
-    if (m === NaN || s === NaN) {
+    if (isNaN(m) || isNaN(s)) {
         return 0;
     }
 
