@@ -7,9 +7,9 @@ import { useGlobal, useDispatch } from 'reactn';
 import { Music } from '../dataInterfaces/music';
 import { MyCollectionsModal } from '../components/myCollectionsModal';
 import { updateMusics, updateCurrentMusic, openHint } from '../globals';
-import { MusicListComponent } from '../components/musicListComponent';
 import { addMusicToCollection } from '../service';
 import { useDebounce } from '../helper/debounce';
+import { MixDetail } from '../otherComponents/mixDetailComponent';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export const SearchPage: React.FC = () => {
-    const [currentTheMusic] = useGlobal('currentMusic');
+    const [currentTheMusicId] = useGlobal('currentMusicId');
 
     const updatePlayingMusics = useDispatch(updateMusics);
     const updateTheCurrentMusic = useDispatch(updateCurrentMusic);
@@ -110,12 +110,12 @@ export const SearchPage: React.FC = () => {
                 />
             </Grid>
             <Grid item xs={12}>
-                <MusicListComponent
-                    musics={musics}
-                    currentMusicId={currentTheMusic}
-                    clickMusic={clickMusic}
+                <MixDetail
                     addMusicClick={addMusicClick}
-                ></MusicListComponent>
+                    clickMusic={clickMusic}
+                    currentMusicId={currentTheMusicId}
+                    musics={musics}
+                ></MixDetail>
             </Grid>
         </Grid>
     );

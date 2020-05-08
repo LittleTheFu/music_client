@@ -80,7 +80,9 @@ export const AlbumDetailPage: React.FC = () => {
                         addMusicClick={addMusicClick}
                         clickMusic={clickMusic}
                         currentMusicId={currentTheMusicId}
-                        detail={detail}
+                        musics={detail.musics}
+                        name={detail.name}
+                        cover={detail.cover}
                     ></MixDetail>
                 </div>
             ) : (

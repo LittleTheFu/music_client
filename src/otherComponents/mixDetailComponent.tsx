@@ -1,5 +1,5 @@
 import React from 'react';
-import { Music, CollectionDetail } from '../dataInterfaces/music';
+import { Music } from '../dataInterfaces/music';
 import { MusicListComponent } from '../components/musicListComponent';
 import Grid from '@material-ui/core/Grid';
 import { BackButton } from '../otherComponents/backButton';
@@ -16,7 +16,9 @@ const useStyles = makeStyles(() =>
 
 interface MixDetailProps {
     currentMusicId: number;
-    detail: CollectionDetail;
+    name?: string;
+    cover?: string;
+    musics: Music[];
     clickMusic: (music: Music) => void;
     addMusicClick: (id: number) => void;
     removeMusicClick?: (id: number) => void;
@@ -27,36 +29,56 @@ interface MixDetailProps {
 export const MixDetail: React.FC<MixDetailProps> = (props: MixDetailProps) => {
     const classes = useStyles();
 
-    const { detail, currentMusicId, clickMusic, addMusicClick, commentClick, removeMusicClick, trashClick } = props;
+    const {
+        name,
+        cover,
+        musics,
+        currentMusicId,
+        clickMusic,
+        addMusicClick,
+        commentClick,
+        removeMusicClick,
+        trashClick,
+    } = props;
 
     return (
         <div>
-            {detail ? (
+            {
                 <Grid container>
                     <Grid item xs={12}>
                         <BackButton></BackButton>
                     </Grid>
-                    <Grid item xs={6} md={3}>
-                        <img className={classes.cover} src={detail.cover} alt="cover" />
-                    </Grid>
-                    <Grid item xs={6} md={9}>
-                        <h1>{detail.name}</h1>
-                        {trashClick ? <DeleteButton clickDelete={trashClick} /> : <div />}
-                    </Grid>
-                    <Grid item xs={12}>
-                        <MusicListComponent
-                            musics={detail.musics}
-                            currentMusicId={currentMusicId}
-                            clickMusic={clickMusic}
-                            addMusicClick={addMusicClick}
-                            commentClick={commentClick}
-                            removeMusicClick={removeMusicClick}
-                        ></MusicListComponent>
-                    </Grid>
+                    {cover ? (
+                        <Grid item xs={6} md={3}>
+                            <img className={classes.cover} src={cover} alt="cover" />
+                        </Grid>
+                    ) : (
+                        <div></div>
+                    )}
+                    {name ? (
+                        <Grid item xs={6} md={9}>
+                            <h1>{name}</h1>
+                            {trashClick ? <DeleteButton clickDelete={trashClick} /> : <div />}
+                        </Grid>
+                    ) : (
+                        <div></div>
+                    )}
+                    {musics ? (
+                        <Grid item xs={12}>
+                            <MusicListComponent
+                                musics={musics}
+                                currentMusicId={currentMusicId}
+                                clickMusic={clickMusic}
+                                addMusicClick={addMusicClick}
+                                commentClick={commentClick}
+                                removeMusicClick={removeMusicClick}
+                            ></MusicListComponent>
+                        </Grid>
+                    ) : (
+                        <div></div>
+                    )}
                 </Grid>
-            ) : (
-                <div></div>
-            )}
+            }
         </div>
     );
 };

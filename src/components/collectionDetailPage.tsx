@@ -98,7 +98,9 @@ export const CollectionDetailPage: React.FC = () => {
                     ></MyCollectionsModal>
                     <MixDetail
                         currentMusicId={currentTheMusicId}
-                        detail={detail}
+                        musics={detail.musics}
+                        name={detail.name}
+                        cover={detail.cover}
                         clickMusic={clickMusic}
                         addMusicClick={addMusicClick}
                         removeMusicClick={removeMusicClick}
