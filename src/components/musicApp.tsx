@@ -20,6 +20,7 @@ import { MainDivider } from '../otherComponents/mainDivider';
 import { ArtistPage } from '../otherComponents/artistPage';
 import { AlbumDetailPage } from '../otherComponents/albumDetailPage';
 import { AllUsersPage } from '../otherComponents/allUsersPage';
+import { SourceCodePage } from '../otherComponents/sourceCodePage';
 
 const audioElement = getAudioPlayer();
 
@@ -76,6 +77,9 @@ export const MusicApp: React.FC = () => {
                         </Route>
                         <Route path={`${path}/music_comment/:id`}>
                             <MusicCommentPage></MusicCommentPage>
+                        </Route>
+                        <Route path={`${path}/source_code`}>
+                            <SourceCodePage></SourceCodePage>
                         </Route>
                     </Switch>
                 </Grid>

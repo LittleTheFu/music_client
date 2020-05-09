@@ -13,6 +13,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import { NavListIconButton } from '../otherComponents/NavListIconButton';
 import AlbumIcon from '@material-ui/icons/Album';
 import PeopleIcon from '@material-ui/icons/People';
+import GitHubIcon from '@material-ui/icons/GitHub';
 
 export const TemporaryDrawer: React.FC = () => {
     const [drawerOpen, setDrawerOpen] = useGlobal('drawerOpen');
@@ -52,6 +53,10 @@ export const TemporaryDrawer: React.FC = () => {
         history.push(`/main/lobby`);
     };
 
+    const projectClick = (): void => {
+        history.push(`/main/source_code`);
+    };
+
     return (
         <div>
             <Drawer
@@ -88,6 +93,10 @@ export const TemporaryDrawer: React.FC = () => {
 
                     <NavListIconButton msg={'community'} iconClick={peopleClick}>
                         <PeopleIcon />
+                    </NavListIconButton>
+
+                    <NavListIconButton msg={'source code'} iconClick={projectClick}>
+                        <GitHubIcon />
                     </NavListIconButton>
 
                     <NavListIconButton msg={'logout'} iconClick={logoutClick}>
