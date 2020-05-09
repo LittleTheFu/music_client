@@ -4,7 +4,7 @@ import { getDetail, sendMail, fetchMusicsByCollectionId } from 'service';
 import { UserDetail } from '../dataInterfaces/music';
 import { followUser, unfollowUser } from '../service';
 import Grid from '@material-ui/core/Grid';
-import { makeStyles, createStyles } from '@material-ui/core/styles';
+// import { makeStyles, createStyles } from '@material-ui/core/styles';
 import { useHistory, useParams } from 'react-router-dom';
 import { WriteMailModal } from '../mailComponents/writeMailModal';
 import { getMeId, openHint } from '../globals';
@@ -14,29 +14,7 @@ import { updateMusics, updateCurrentMusic } from '../globals';
 import { useDispatch } from 'reactn';
 import { UserInfoCard } from '../otherComponents/userInfoCard';
 
-const useStyles = makeStyles(() =>
-    createStyles({
-        avatar: {
-            height: 80,
-            width: 80,
-
-            display: 'block',
-            marginLeft: 'auto',
-            marginRight: 'auto',
-        },
-        name: {
-            textAlign: 'center',
-        },
-        card: {
-            width: '100%',
-        },
-        item: {
-            display: 'block',
-            marginLeft: 'auto',
-            marginRight: 'auto',
-        },
-    }),
-);
+// const useStyles = makeStyles(() => createStyles({}));
 
 export const UserDetailPage: React.FC = () => {
     const [currentClickUserId] = useGlobal('currentClickUserId');
@@ -50,7 +28,7 @@ export const UserDetailPage: React.FC = () => {
     const { id } = useParams();
     const intId = parseInt(id);
 
-    const classes = useStyles({});
+    // const classes = useStyles({});
 
     useEffect(() => {
         getDetail(
