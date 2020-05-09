@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { getUserFollowers, followUser, unfollowUser } from '../service';
 import { Follower } from '../dataInterfaces/music';
 import Card from '@material-ui/core/Card';
-import { makeStyles, createStyles } from '@material-ui/core/styles';
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import RemoveCircleOutlineIcon from '@material-ui/icons/RemoveCircleOutline';
@@ -11,7 +11,7 @@ import { useHistory, useParams } from 'react-router-dom';
 import { BackButton } from '../otherComponents/backButton';
 import Grid from '@material-ui/core/Grid';
 
-const useStyles = makeStyles(() =>
+const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         avatarContainer: {
             display: 'tableCell',
@@ -20,12 +20,12 @@ const useStyles = makeStyles(() =>
         avatar: {
             height: 40,
             width: 40,
-            // display: 'block',
-            // margin: 'auto',
+            display: 'block',
+            marginLeft: 'auto',
+            marginRight: 'auto',
         },
         card: {
-            height: '80%',
-            width: '80%',
+            padding: theme.spacing(1),
         },
         name: {
             textAlign: 'center',
@@ -97,8 +97,8 @@ export const FollowerListPage: React.FC = () => {
 
     const followerElements = followers.map((f: Follower, index: number) => {
         return (
-            <Grid item xs={6} sm={4} md={3} key={index}>
-                <Card className={classes.card}>
+            <Grid item xs={12} sm={4} md={3} key={index} className={classes.card}>
+                <Card>
                     <Grid container>
                         <Grid item xs={2} className={classes.avatarContainer}>
                             <Avatar
@@ -108,11 +108,9 @@ export const FollowerListPage: React.FC = () => {
                                     avatarClick(f.id);
                                 }}
                             ></Avatar>
+                            <div className={classes.name}>{f.name}</div>
                         </Grid>
                         <Grid container item xs={10}>
-                            <Grid item xs={12}>
-                                <div className={classes.name}> {f.name}</div>
-                            </Grid>
                             <Grid item xs={12}>
                                 {f.isFollowed ? (
                                     <IconButton
