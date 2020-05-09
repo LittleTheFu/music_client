@@ -6,14 +6,13 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import Divider from '@material-ui/core/Divider';
-import Card from '@material-ui/core/Card';
 import Grid from '@material-ui/core/Grid';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import Avatar from '@material-ui/core/Avatar';
 import { BackButton } from '../otherComponents/backButton';
 import { openHint } from '../globals';
 import { useDispatch } from 'reactn';
+import { CommentCard } from '../otherComponents/commentCard';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -25,12 +24,16 @@ const useStyles = makeStyles((theme: Theme) =>
             padding: theme.spacing(2, 4, 3),
         },
         userAvatar: {
-            height: 40,
-            width: 40,
+            height: 80,
+            width: 80,
+            marginLeft: 'auto',
+            marginRight: 'auto',
         },
         card: {
-            width: '98%',
-            marginLeft: 10,
+            width: '100%',
+        },
+        item: {
+            width: '100%',
         },
         date: {
             color: 'grey',
@@ -74,25 +77,7 @@ export const MusicCommentPage: React.FC = () => {
         return (
             <div key={index}>
                 <ListItem>
-                    <Card className={classes.card}>
-                        <Grid container>
-                            <Grid item xs={1}>
-                                <Avatar
-                                    className={classes.userAvatar}
-                                    src={comment.avatar}
-                                    onClick={(): void => {
-                                        detailClick(comment.userId);
-                                    }}
-                                ></Avatar>
-                            </Grid>
-                            <Grid container item xs={11}>
-                                {comment.username}: {comment.content}
-                                <Grid item xs={12} className={classes.date}>
-                                    {comment.date.toString()}
-                                </Grid>
-                            </Grid>
-                        </Grid>
-                    </Card>
+                    <CommentCard detailClick={detailClick} comment={comment}></CommentCard>
                 </ListItem>
                 <Divider />
             </div>
@@ -132,9 +117,11 @@ export const MusicCommentPage: React.FC = () => {
                     </Button>
                 </form>
             </Grid>
-            <List>
-                <React.Fragment>{infoElements}</React.Fragment>
-            </List>
+            <Grid item xs={12}>
+                <List>
+                    <React.Fragment>{infoElements}</React.Fragment>
+                </List>
+            </Grid>
         </Grid>
     );
 };
