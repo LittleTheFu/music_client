@@ -10,7 +10,7 @@ const useStyles = makeStyles({
         padding: 10,
         height: 150,
         width: 150,
-        display: 'inline-block',
+        // display: 'inline-block',
         // border: '1px solid red',
     },
     avatar: {
@@ -24,6 +24,11 @@ const useStyles = makeStyles({
     name: {
         textAlign: 'center',
         fontSize: 30,
+    },
+    root: {
+        display: 'flex',
+        justifyContent: 'center',
+        flexFlow: 'wrap',
     },
 });
 
@@ -69,7 +74,7 @@ export const AllUsersPage: React.FC = () => {
     });
 
     return (
-        <div>
+        <div className={classes.root}>
             <React.Fragment>{userElementes}</React.Fragment>
         </div>
     );
