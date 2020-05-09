@@ -10,6 +10,8 @@ import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import { useHistory, useParams } from 'react-router-dom';
 import { BackButton } from '../otherComponents/backButton';
 import Grid from '@material-ui/core/Grid';
+import { openHint } from '../globals';
+import { useDispatch } from 'reactn';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -47,6 +49,8 @@ export const FollowerListPage: React.FC = () => {
     const { id } = useParams();
     const intId = parseInt(id);
 
+    const openTheHint = useDispatch(openHint);
+
     useEffect(() => {
         getUserFollowers(
             intId,
@@ -60,7 +64,7 @@ export const FollowerListPage: React.FC = () => {
     const followClick = (userId: number): void => {
         followUser(
             userId,
-            (): void => {
+            (o): void => {
                 const thatFollowers = followers;
                 const retFollowers = thatFollowers.map(f => {
                     if (f.id === userId) {
@@ -69,6 +73,7 @@ export const FollowerListPage: React.FC = () => {
                     return f;
                 });
                 setFollowers(retFollowers);
+                openTheHint(o.msg);
             },
             console.log,
         );
@@ -77,7 +82,7 @@ export const FollowerListPage: React.FC = () => {
     const unfollowClick = (userId: number): void => {
         unfollowUser(
             userId,
-            (): void => {
+            (o): void => {
                 const thatFollowers = followers;
                 const retFollowers = thatFollowers.map(f => {
                     if (f.id === userId) {
@@ -86,6 +91,7 @@ export const FollowerListPage: React.FC = () => {
                     return f;
                 });
                 setFollowers(retFollowers);
+                openTheHint(o.msg);
             },
             console.log,
         );
