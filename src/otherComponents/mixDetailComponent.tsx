@@ -10,6 +10,7 @@ const useStyles = makeStyles(() =>
     createStyles({
         cover: {
             width: 160,
+            paddingLeft: 10,
         },
     }),
 );

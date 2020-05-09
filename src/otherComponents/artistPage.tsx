@@ -5,6 +5,20 @@ import { Artist } from '../dataInterfaces/music';
 import { useDispatch } from 'reactn';
 import { updateMusics, updateCurrentMusic } from '../globals';
 import { MusicCollectionsComponent } from '../components/musicCollectionsComponent';
+import { makeStyles, createStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles(() =>
+    createStyles({
+        artist: {
+            width: 160,
+            paddingLeft: 30,
+            paddingTop: 30,
+        },
+        name: {
+            paddingLeft: 40,
+        },
+    }),
+);
 
 export const ArtistPage: React.FC = () => {
     const [artist, setArtist] = useState<Artist>(null);
@@ -15,6 +29,8 @@ export const ArtistPage: React.FC = () => {
 
     const { id } = useParams();
     const intId = parseInt(id);
+
+    const classes = useStyles();
 
     useEffect(() => {
         getArtistInfo(
@@ -44,8 +60,8 @@ export const ArtistPage: React.FC = () => {
         <div>
             {artist ? (
                 <div>
-                    <img alt="" src={artist.avatar} />
-                    {artist.name}
+                    <img alt="artist" src={artist.avatar} className={classes.artist} />
+                    <h1 className={classes.name}>{artist.name}</h1>
                     <MusicCollectionsComponent
                         coverClick={clickCollectionCover}
                         collections={artist.albums}
