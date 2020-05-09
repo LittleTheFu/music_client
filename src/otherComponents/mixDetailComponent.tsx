@@ -12,6 +12,14 @@ const useStyles = makeStyles(() =>
             width: 160,
             paddingLeft: 10,
         },
+        trashBtn: {
+            display: 'inline',
+        },
+        name: {
+            display: 'inline',
+            padding: 5,
+            fontSize: 30,
+        },
     }),
 );
 
@@ -57,6 +65,7 @@ export const MixDetail: React.FC<MixDetailProps> = (props: MixDetailProps) => {
                     {showBackButton ? (
                         <Grid item xs={12}>
                             <BackButton></BackButton>
+                            {trashClick ? <DeleteButton clickDelete={trashClick} /> : <div />}{' '}
                         </Grid>
                     ) : (
                         <div></div>
@@ -70,8 +79,7 @@ export const MixDetail: React.FC<MixDetailProps> = (props: MixDetailProps) => {
                     )}
                     {name ? (
                         <Grid item xs={6} md={9}>
-                            <h1>{name}</h1>
-                            {trashClick ? <DeleteButton clickDelete={trashClick} /> : <div />}
+                            <div className={classes.name}>{name}</div>
                         </Grid>
                     ) : (
                         <div></div>
