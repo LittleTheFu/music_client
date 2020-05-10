@@ -14,6 +14,7 @@ import { openHint } from '../globals';
 import { useDispatch } from 'reactn';
 import { CommentCard } from '../otherComponents/commentCard';
 import Pagination from '@material-ui/lab/Pagination';
+import { useGlobal } from 'reactn';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -53,6 +54,8 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export const MusicCommentPage: React.FC = () => {
+    const [currentTheMusicId] = useGlobal('currentMusicId');
+
     const [comments, setComments] = useState<MusicComment[]>([]);
     const [content, setContent] = useState('');
 
@@ -79,6 +82,12 @@ export const MusicCommentPage: React.FC = () => {
             console.log,
         );
     }, [intId, currentPage, refresher]);
+
+    useEffect(() => {
+        if (currentTheMusicId > 0) {
+            history.push(`/main/music_comment/` + currentTheMusicId);
+        }
+    }, [currentTheMusicId]);
 
     const triggerRefresher = (): void => {
         setRefresher(!refresher);
