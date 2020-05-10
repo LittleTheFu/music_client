@@ -7,10 +7,23 @@ import { useHistory } from 'react-router-dom';
 import { openHint } from '../globals';
 import { useDispatch } from 'reactn';
 import { DeleteButton } from '../otherComponents/deleteButton';
+import MailOutlineIcon from '@material-ui/icons/MailOutline';
+import { makeStyles, createStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles(() =>
+    createStyles({
+        mailIcon: {
+            paddingLeft: 8,
+            paddingRight: 8,
+        },
+    }),
+);
 
 export const MailPage: React.FC = () => {
     const [mails, setMails] = useState<Mail[]>([]);
     const openTheHint = useDispatch(openHint);
+
+    const classes = useStyles({});
 
     const history = useHistory();
 
@@ -24,6 +37,17 @@ export const MailPage: React.FC = () => {
         history.push(`/main/mail_detail/` + id);
     };
 
+    const getShortContentStr = (content: string): string => {
+        const MAX_LEN = 10;
+        const len = content.length;
+
+        if (len <= MAX_LEN) {
+            return content;
+        }
+
+        return content.substr(0, MAX_LEN) + '...';
+    };
+
     const mailElements = mails.map((m: Mail, index: number) => {
         return (
             <ListItem
@@ -34,6 +58,8 @@ export const MailPage: React.FC = () => {
                     mailClick(m.id);
                 }}
             >
+                <MailOutlineIcon className={classes.mailIcon}></MailOutlineIcon>
+                message from {m.fromName} : {getShortContentStr(m.content)}
                 <DeleteButton
                     clickDelete={(): void => {
                         deleteMail(
@@ -50,7 +76,6 @@ export const MailPage: React.FC = () => {
                         );
                     }}
                 ></DeleteButton>
-                message from {m.fromName} : {m.content}
             </ListItem>
         );
     });
