@@ -16,7 +16,8 @@ import {
 } from './dataInterfaces/interface';
 
 // const hostPrefix = 'http://localhost:9999/';
-const hostPrefix = 'http://192.168.0.101:9999/';
+// const hostPrefix = 'http://192.168.0.101:9999/';
+const hostPrefix = process.env.REACT_APP_HOST;
 const userPrefix = hostPrefix + 'users/';
 const authPrefix = hostPrefix + 'auth/';
 const musicPrefix = hostPrefix + 'music/';
