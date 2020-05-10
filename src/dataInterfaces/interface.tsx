@@ -55,6 +55,11 @@ export class MusicComment {
     date: Date;
 }
 
+export class RetComments {
+    comments: MusicComment[];
+    pageNum: number;
+}
+
 export class RetUpdateAvatarDto {
     remoteUrl: string;
 }

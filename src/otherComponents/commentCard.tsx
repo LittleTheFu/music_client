@@ -44,6 +44,8 @@ export const CommentCard: React.FC<CommentCardProps> = (props: CommentCardProps)
     const { comment, detailClick } = props;
     const { avatar, userId, username, content, date } = comment;
 
+    const localDate = new Date(date);
+
     return (
         <Card className={classes.card}>
             <Grid container>
@@ -66,7 +68,7 @@ export const CommentCard: React.FC<CommentCardProps> = (props: CommentCardProps)
                     </Link>
                     : {content}
                     <Grid item xs={12} className={classes.date}>
-                        {date.toString()}
+                        {localDate.toString()}
                     </Grid>
                 </Grid>
             </Grid>

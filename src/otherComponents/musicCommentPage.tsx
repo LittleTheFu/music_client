@@ -13,6 +13,7 @@ import { BackButton } from '../otherComponents/backButton';
 import { openHint } from '../globals';
 import { useDispatch } from 'reactn';
 import { CommentCard } from '../otherComponents/commentCard';
+import Pagination from '@material-ui/lab/Pagination';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -44,12 +45,20 @@ const useStyles = makeStyles((theme: Theme) =>
         postButton: {
             width: '100%',
         },
+        pages: {
+            paddingTop: 5,
+            paddingBottom: 5,
+        },
     }),
 );
 
 export const MusicCommentPage: React.FC = () => {
     const [comments, setComments] = useState<MusicComment[]>([]);
     const [content, setContent] = useState('');
+
+    const [pageNum, setPageNum] = useState(1);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [refresher, setRefresher] = useState(false);
 
     const openTheHint = useDispatch(openHint);
     const history = useHistory();
@@ -62,12 +71,18 @@ export const MusicCommentPage: React.FC = () => {
     useEffect(() => {
         getMusicComments(
             intId,
-            retComments => {
-                setComments(retComments);
+            currentPage,
+            ret => {
+                setComments(ret.comments);
+                setPageNum(ret.pageNum);
             },
             console.log,
         );
-    }, [intId]);
+    }, [intId, currentPage, refresher]);
+
+    const triggerRefresher = (): void => {
+        setRefresher(!refresher);
+    };
 
     const detailClick = (userId: number): void => {
         history.push(`/main/userdetail/` + userId);
@@ -90,9 +105,11 @@ export const MusicCommentPage: React.FC = () => {
         postMusicComments(
             intId,
             content,
-            comments => {
-                openTheHint('you post a new comment!');
-                setComments(comments);
+            o => {
+                openTheHint(o.msg);
+                if (currentPage === 1) {
+                    triggerRefresher();
+                }
             },
             console.log,
         );
@@ -116,6 +133,15 @@ export const MusicCommentPage: React.FC = () => {
                         post
                     </Button>
                 </form>
+            </Grid>
+            <Grid item xs={12}>
+                <Pagination
+                    className={classes.pages}
+                    count={pageNum}
+                    onChange={(e, page): void => {
+                        setCurrentPage(page);
+                    }}
+                />
             </Grid>
             <Grid item xs={12}>
                 <List>

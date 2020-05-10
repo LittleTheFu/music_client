@@ -13,6 +13,7 @@ import {
     UserDetail,
     RetUpdateAvatarDto,
     RetMsgObj,
+    RetComments,
 } from './dataInterfaces/interface';
 
 // const hostPrefix = 'http://localhost:9999/';
@@ -234,10 +235,11 @@ export const removeMusicFromCollection = (
 const getMusicCommentsUrl = commentPrefix + 'GetMusicComments';
 export const getMusicComments = (
     musicId: number,
-    resolve: (data: MusicComment[]) => void,
+    page: number,
+    resolve: (data: RetComments) => void,
     reject: (arg0: object) => void,
-): Promise<MusicComment[]> => {
-    return rawObjectPost(getMusicCommentsUrl, { musicId: musicId }, resolve, {
+): Promise<RetComments> => {
+    return rawObjectPost(getMusicCommentsUrl, { musicId: musicId, page: page }, resolve, {
         Authorization: 'Bearer ' + getToken(),
         reject,
     });
@@ -247,9 +249,9 @@ const postMusicCommentsUrl = commentPrefix + 'PostMusicComments';
 export const postMusicComments = (
     musicId: number,
     content: string,
-    resolve: (data: MusicComment[]) => void,
+    resolve: (data: RetMsgObj) => void,
     reject: (arg0: object) => void,
-): Promise<MusicComment[]> => {
+): Promise<RetMsgObj> => {
     return rawObjectPost(
         postMusicCommentsUrl,
         { musicId: musicId, content: content },
