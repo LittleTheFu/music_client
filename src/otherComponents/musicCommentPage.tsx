@@ -111,6 +111,11 @@ export const MusicCommentPage: React.FC = () => {
     function handleSubmit(event: React.FormEvent<HTMLFormElement>): void {
         event.preventDefault();
 
+        if (content.length < 5) {
+            openTheHint('need more words!!!!');
+            return;
+        }
+
         postMusicComments(
             intId,
             content,
