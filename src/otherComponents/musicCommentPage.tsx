@@ -132,6 +132,7 @@ export const MusicCommentPage: React.FC = () => {
             <Grid item xs={12}>
                 <form onSubmit={handleSubmit} noValidate autoComplete="off">
                     <TextField
+                        multiline={true}
                         className={classes.inputBox}
                         id="standard-basic"
                         label="comment"
