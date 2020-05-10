@@ -8,7 +8,7 @@ import { useHistory, Link } from 'react-router-dom';
 import Container from '@material-ui/core/Container';
 import { setLoginFlag, setMeAvatar } from '../globals';
 import { useDispatch } from 'reactn';
-import { AccessData } from '../dataInterfaces/music';
+import { AccessData } from '../dataInterfaces/interface';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({

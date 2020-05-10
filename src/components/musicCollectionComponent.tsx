@@ -1,5 +1,5 @@
 import React from 'react';
-import { MusicCollection } from '../dataInterfaces/music';
+import { MusicCollection } from '../dataInterfaces/interface';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import PlayCircleFilledWhiteOutlinedIcon from '@material-ui/icons/PlayCircleFilledWhiteOutlined';

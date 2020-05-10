@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { getUserFollowers, followUser, unfollowUser } from '../service';
-import { Follower } from '../dataInterfaces/music';
+import { Follower } from '../dataInterfaces/interface';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import { useHistory, useParams } from 'react-router-dom';
 import { BackButton } from '../otherComponents/backButton';

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import { getMusicComments, postMusicComments } from '../service';
-import { MusicComment } from '../dataInterfaces/music';
+import { MusicComment } from '../dataInterfaces/interface';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';

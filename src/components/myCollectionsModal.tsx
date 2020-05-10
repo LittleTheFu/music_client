@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Dialog from '@material-ui/core/Dialog';
-import { MusicCollection } from '../dataInterfaces/music';
+import { MusicCollection } from '../dataInterfaces/interface';
 import { getPrivateMusicCollections } from '../service';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';

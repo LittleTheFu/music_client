@@ -1,7 +1,7 @@
 import React from 'react';
 import Drawer from '@material-ui/core/Drawer';
 import { makeStyles } from '@material-ui/core/styles';
-import { Music } from '../dataInterfaces/music';
+import { Music } from '../dataInterfaces/interface';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import VolumeUpIcon from '@material-ui/icons/VolumeUp';

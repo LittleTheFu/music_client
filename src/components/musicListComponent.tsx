@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import { Music } from '../dataInterfaces/music';
+import { Music } from '../dataInterfaces/interface';
 import { IconButton } from '@material-ui/core';
 import VolumeUpIcon from '@material-ui/icons/VolumeUp';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';

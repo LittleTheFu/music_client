@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { MusicInfoComponent } from './musicInfoComponent';
-import { Music } from '../dataInterfaces/music';
+import { Music } from '../dataInterfaces/interface';
 import { PlayBarComponent } from './playBarComponent';
 import { useGlobal, useDispatch } from 'reactn';
 import { useHistory } from 'react-router-dom';

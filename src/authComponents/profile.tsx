@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Button from '@material-ui/core/Button';
 import { uploadAvatar } from '../service';
 import { setMeAvatar } from '../globals';
-import { RetUpdateAvatarDto } from '../dataInterfaces/music';
+import { RetUpdateAvatarDto } from '../dataInterfaces/interface';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import IconButton from '@material-ui/core/IconButton';
 import { makeStyles, createStyles } from '@material-ui/core/styles';

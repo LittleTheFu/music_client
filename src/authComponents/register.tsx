@@ -7,7 +7,7 @@ import { useHistory, Link } from 'react-router-dom';
 import Container from '@material-ui/core/Container';
 import { openHint } from '../globals';
 import { useDispatch } from 'reactn';
-import { RetMsgObj } from '../dataInterfaces/music';
+import { RetMsgObj } from '../dataInterfaces/interface';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({

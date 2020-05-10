@@ -1,6 +1,6 @@
 import 'reactn';
-import './dataInterfaces/music';
-import { MusicCollection } from './dataInterfaces/music';
+import './dataInterfaces/interface';
+import { MusicCollection } from './dataInterfaces/interface';
 
 declare module 'reactn/default' {
     export interface Reducers {

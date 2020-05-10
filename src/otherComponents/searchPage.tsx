@@ -4,7 +4,7 @@ import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import { fetchMusicsByKeyword } from '../service';
 import { useGlobal, useDispatch } from 'reactn';
-import { Music } from '../dataInterfaces/music';
+import { Music } from '../dataInterfaces/interface';
 import { MyCollectionsModal } from '../components/myCollectionsModal';
 import { updateMusics, updateCurrentMusic, openHint } from '../globals';
 import { addMusicToCollection } from '../service';

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { RetSimpleUser } from '../dataInterfaces/music';
+import { RetSimpleUser } from '../dataInterfaces/interface';
 import { getAllUsers } from '../service';
 import { makeStyles } from '@material-ui/core/styles';
 import { useHistory } from 'react-router-dom';

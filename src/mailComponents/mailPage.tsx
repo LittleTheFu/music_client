@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { getUserMails, deleteMail } from '../service';
-import { Mail } from '../dataInterfaces/music';
+import { Mail } from '../dataInterfaces/interface';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import { IconButton } from '@material-ui/core';

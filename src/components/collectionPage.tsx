@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getPrivateMusicCollections, fetchMusicsByCollectionId } from '../service';
 import { MusicCollectionsComponent } from '../components/musicCollectionsComponent';
-import { MusicCollection } from '../dataInterfaces/music';
+import { MusicCollection } from '../dataInterfaces/interface';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import { IconButton } from '@material-ui/core';
 import { CreateCollectionModal } from './createCollectionModal';

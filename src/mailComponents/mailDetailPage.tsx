@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { Mail } from '../dataInterfaces/music';
+import { Mail } from '../dataInterfaces/interface';
 import { getMailDetail, deleteMail, sendMail } from '../service';
 import { IconButton } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';

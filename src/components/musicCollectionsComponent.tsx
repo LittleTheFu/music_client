@@ -1,5 +1,5 @@
 import React from 'react';
-import { MusicCollection } from '../dataInterfaces/music';
+import { MusicCollection } from '../dataInterfaces/interface';
 import { MusicCollectionComponent } from './musicCollectionComponent';
 import Grid from '@material-ui/core/Grid';
 

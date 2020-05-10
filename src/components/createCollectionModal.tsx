@@ -3,7 +3,7 @@ import Dialog from '@material-ui/core/Dialog';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import { createCollection } from '../service';
-import { MusicCollection } from '../dataInterfaces/music';
+import { MusicCollection } from '../dataInterfaces/interface';
 import Grid from '@material-ui/core/Grid';
 
 import { makeStyles, createStyles } from '@material-ui/core/styles';

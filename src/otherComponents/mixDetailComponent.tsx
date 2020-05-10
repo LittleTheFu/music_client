@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Music } from '../dataInterfaces/music';
+import { Music } from '../dataInterfaces/interface';
 import { MusicListComponent } from '../components/musicListComponent';
 import Grid from '@material-ui/core/Grid';
 import { BackButton } from '../otherComponents/backButton';
