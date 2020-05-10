@@ -3,11 +3,10 @@ import { getUserMails, deleteMail } from '../service';
 import { Mail } from '../dataInterfaces/interface';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import { IconButton } from '@material-ui/core';
-import DeleteIcon from '@material-ui/icons/Delete';
 import { useHistory } from 'react-router-dom';
 import { openHint } from '../globals';
 import { useDispatch } from 'reactn';
+import { DeleteButton } from '../otherComponents/deleteButton';
 
 export const MailPage: React.FC = () => {
     const [mails, setMails] = useState<Mail[]>([]);
@@ -35,11 +34,8 @@ export const MailPage: React.FC = () => {
                     mailClick(m.id);
                 }}
             >
-                message from {m.fromName} : {m.content}
-                <IconButton
-                    onClick={(e): void => {
-                        e.stopPropagation();
-
+                <DeleteButton
+                    clickDelete={(): void => {
                         deleteMail(
                             m.id,
                             o => {
@@ -53,9 +49,8 @@ export const MailPage: React.FC = () => {
                             console.log,
                         );
                     }}
-                >
-                    <DeleteIcon></DeleteIcon>
-                </IconButton>
+                ></DeleteButton>
+                message from {m.fromName} : {m.content}
             </ListItem>
         );
     });
