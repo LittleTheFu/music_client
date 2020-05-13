@@ -72,7 +72,7 @@ export const RegisterComponent: React.FC = () => {
             <div className={classes.paper}>
                 <form onSubmit={handleSubmit} className={classes.root} noValidate autoComplete="off">
                     <TextField
-                        id="standard-basic"
+                        id="name"
                         error={user.length < MIN_LEN}
                         label="user"
                         onChange={(e): void => setUser(e.target.value)}
@@ -80,7 +80,7 @@ export const RegisterComponent: React.FC = () => {
                     />
                     <TextField
                         error={password.length < MIN_LEN}
-                        id="standard-basic"
+                        id="pswd"
                         label="password"
                         type="password"
                         onChange={(e): void => setPassword(e.target.value)}

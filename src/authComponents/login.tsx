@@ -88,9 +88,9 @@ export const LoginComponent: React.FC = () => {
         <Container maxWidth="sm" className={classes.main}>
             <div className={classes.paper}>
                 <form onSubmit={handleSubmit} className={classes.root} noValidate autoComplete="off">
-                    <TextField id="standard-basic" label="user" onChange={(e): void => setUser(e.target.value)} />
+                    <TextField id="name" label="user" onChange={(e): void => setUser(e.target.value)} />
                     <TextField
-                        id="standard-basic"
+                        id="pswd"
                         label="password"
                         type="password"
                         onChange={(e): void => setPassword(e.target.value)}
