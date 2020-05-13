@@ -8,6 +8,7 @@ import VolumeUpIcon from '@material-ui/icons/VolumeUp';
 
 const useStyles = makeStyles({
     list: {
+        minWidth: 150,
         maxWidth: 300,
     },
     soundIcon: {
