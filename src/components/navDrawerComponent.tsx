@@ -6,7 +6,7 @@ import MailIcon from '@material-ui/icons/Mail';
 import { useHistory } from 'react-router-dom';
 import MusicNoteIcon from '@material-ui/icons/MusicNote';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import { getMeId, setLoginFlag } from '../globals';
+import { getMeId, setLoginFlag, getMeAvatar } from '../globals';
 import EditIcon from '@material-ui/icons/Edit';
 import PersonIcon from '@material-ui/icons/Person';
 import SearchIcon from '@material-ui/icons/Search';
@@ -14,10 +14,25 @@ import { NavListIconButton } from '../otherComponents/NavListIconButton';
 import AlbumIcon from '@material-ui/icons/Album';
 import PeopleIcon from '@material-ui/icons/People';
 import GitHubIcon from '@material-ui/icons/GitHub';
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme: Theme) =>
+    createStyles({
+        avatar: {
+            borderRadius: '50%',
+            display: 'block',
+            marginLeft: 'auto',
+            marginRight: 'auto',
+            height: 80,
+            width: 80,
+        },
+    }),
+);
 
 export const TemporaryDrawer: React.FC = () => {
     const [drawerOpen, setDrawerOpen] = useGlobal('drawerOpen');
 
+    const classes = useStyles({});
     const history = useHistory();
 
     const logoutClick = (): void => {
@@ -67,6 +82,7 @@ export const TemporaryDrawer: React.FC = () => {
                 }}
             >
                 <List>
+                    <img onClick={meClick} src={getMeAvatar()} alt="avatar " className={classes.avatar} />
                     <NavListIconButton msg={'music'} iconClick={musicClick}>
                         <MusicNoteIcon />
                     </NavListIconButton>
