@@ -51,6 +51,8 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
             audioElement.autoplay = true;
 
             setIsPlaying(true);
+
+            setLikeButtunGuard(false);
         }
     }, [refresher]);
 
