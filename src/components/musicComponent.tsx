@@ -29,6 +29,7 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
 
     const [currentTime, setCurrentTime] = useState(0);
     const [duration, setDuration] = useState(0);
+    const [likeButtunGuard, setLikeButtunGuard] = useState(false);
 
     const [musicPercent, setMusicPercent] = useState(0);
     const [showFullPart, setShowFullPart] = useState(true);
@@ -92,16 +93,35 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
         setMusicListDrawerOpen(true);
     };
 
-    const currentMusicInfoLikeClick = (): void => {
+    const clickHeartIcon = (
+        postAct: (musicId: number, resolve: (data: Music) => void, reject?: (data: Error) => void) => Promise<Music>,
+    ): void => {
         if (currentTheMusic) {
-            postLikeMusic(currentTheMusic.id, updateMusicAfterClickLike, console.log);
+            if (likeButtunGuard) {
+                openTheHint('too busy!!!');
+            } else {
+                setLikeButtunGuard(true);
+                postAct(
+                    currentTheMusic.id,
+                    (data): void => {
+                        updateMusicAfterClickLike(data);
+                        setLikeButtunGuard(false);
+                    },
+                    e => {
+                        console.log(e);
+                        setLikeButtunGuard(false);
+                    },
+                );
+            }
         }
     };
 
+    const currentMusicInfoLikeClick = (): void => {
+        clickHeartIcon(postLikeMusic);
+    };
+
     const currentMusicInfoDislikeClick = (): void => {
-        if (currentTheMusic) {
-            postDislikeMusic(currentTheMusic.id, updateMusicAfterClickLike);
-        }
+        clickHeartIcon(postDislikeMusic);
     };
 
     const currentMusicCommentClick = (): void => {

@@ -115,8 +115,18 @@ export const getAllUsers = (resolve: (data: RetSimpleUser[]) => void): Promise<R
 };
 
 const dislikeMusicUrl = musicPrefix + 'dislike';
-export const postDislikeMusic = (musicId: number, resolve: (data: Music) => void): Promise<Music> => {
-    return rawObjectPost(dislikeMusicUrl, { musicId: musicId }, resolve, { Authorization: 'Bearer ' + getToken() });
+export const postDislikeMusic = (
+    musicId: number,
+    resolve: (data: Music) => void,
+    reject?: (data: Error) => void,
+): Promise<Music> => {
+    return rawObjectPost(
+        dislikeMusicUrl,
+        { musicId: musicId },
+        resolve,
+        { Authorization: 'Bearer ' + getToken() },
+        reject,
+    );
 };
 
 const getPrivateCollectionsUrl = musicPrefix + 'getPrivateMusicCollections';
