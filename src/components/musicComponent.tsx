@@ -17,7 +17,7 @@ interface MusicComponentProps {
 export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicComponentProps) => {
     const { audioElement } = props;
 
-    const updateMusicAfterClickLike = useDispatch(updateMusic);
+    const updateMusicAfterClickHeartIcon = useDispatch(updateMusic);
     const updateCurerntMusicInfo = useDispatch(updateCurrentMusic);
     const updateToTheNextMusic = useDispatch(updateToNextMusic);
     const openTheHint = useDispatch(openHint);
@@ -104,7 +104,7 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
                 postAct(
                     currentTheMusic.id,
                     (data): void => {
-                        updateMusicAfterClickLike(data);
+                        updateMusicAfterClickHeartIcon(data);
                         setLikeButtunGuard(false);
                     },
                     e => {
