@@ -90,6 +90,7 @@ export const LoginComponent: React.FC = () => {
                 <form onSubmit={handleSubmit} className={classes.root} noValidate autoComplete="off">
                     <TextField id="name" label="user" onChange={(e): void => setUser(e.target.value)} />
                     <TextField
+                        autoComplete="on"
                         id="pswd"
                         label="password"
                         type="password"

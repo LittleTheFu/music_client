@@ -37,6 +37,7 @@ export const RegisterComponent: React.FC = () => {
     const openTheHint = useDispatch(openHint);
 
     const MIN_LEN = 6;
+    const MAX_LEN = 12;
 
     const history = useHistory();
     const classes = useStyles({});
@@ -50,6 +51,15 @@ export const RegisterComponent: React.FC = () => {
         openTheHint(e.message);
     };
 
+    function isCorrectTextLength(text: string): boolean {
+        const len = text.length;
+
+        if (len > MAX_LEN) return false;
+        if (len < MIN_LEN) return false;
+
+        return true;
+    }
+
     function handleSubmit(event: React.FormEvent<HTMLFormElement>): void {
         event.preventDefault();
 
@@ -58,8 +68,18 @@ export const RegisterComponent: React.FC = () => {
             return;
         }
 
+        if (user.length < MAX_LEN) {
+            openTheHint('user name is too long!');
+            return;
+        }
+
         if (password.length < MIN_LEN) {
             openTheHint('password is too short!');
+            return;
+        }
+
+        if (password.length > MAX_LEN) {
+            openTheHint('password is too long!');
             return;
         }
 
@@ -73,18 +93,19 @@ export const RegisterComponent: React.FC = () => {
                 <form onSubmit={handleSubmit} className={classes.root} noValidate autoComplete="off">
                     <TextField
                         id="name"
-                        error={user.length < MIN_LEN}
+                        error={!isCorrectTextLength(user)}
                         label="user"
                         onChange={(e): void => setUser(e.target.value)}
-                        helperText={'at least ' + MIN_LEN + ' characters'}
+                        helperText={'(6 - 12) characters'}
                     />
                     <TextField
-                        error={password.length < MIN_LEN}
+                        autoComplete="on"
+                        error={!isCorrectTextLength(password)}
                         id="pswd"
                         label="password"
                         type="password"
                         onChange={(e): void => setPassword(e.target.value)}
-                        helperText={'at least ' + MIN_LEN + ' characters'}
+                        helperText={'(6 - 12) characters'}
                     />
                     <Button type="submit" variant="contained" color="secondary">
                         register
