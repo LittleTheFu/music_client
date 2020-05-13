@@ -5,12 +5,12 @@ import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import MailOutlinedIcon from '@material-ui/icons/MailOutlined';
-import { useGlobal } from 'reactn';
+import { useDispatch } from 'reactn';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { useHistory } from 'react-router-dom';
 import MusicNoteIcon from '@material-ui/icons/MusicNote';
 import AlbumIcon from '@material-ui/icons/Album';
-import { setLoginFlag } from '../globals';
+import { setLoginFlag, openMenuDrawer } from '../globals';
 import SearchIcon from '@material-ui/icons/Search';
 import PeopleIcon from '@material-ui/icons/People';
 
@@ -33,14 +33,14 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export const AppBarComponent: React.FC = () => {
-    const [drawerOpen, setDrawerOpen] = useGlobal('drawerOpen');
+    const openTheMenuDrawer = useDispatch(openMenuDrawer);
 
     const history = useHistory();
 
     const classes = useStyles();
 
     const menuClick = (): void => {
-        setDrawerOpen(true);
+        openTheMenuDrawer();
     };
 
     const musicClick = (): void => {

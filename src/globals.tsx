@@ -73,6 +73,10 @@ export const openHint = (global: State, dispatch: Dispatch, msg: string): Pick<S
     hintOpen: true,
 });
 
+export const openMenuDrawer = (): Pick<State, 'drawerOpen'> => ({
+    drawerOpen: true,
+});
+
 export const updateMusic = (
     global: State,
     dispatch: Dispatch,
