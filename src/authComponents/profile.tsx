@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Button from '@material-ui/core/Button';
 import { uploadAvatar } from '../service';
-import { setMeAvatar } from '../globals';
+import { setMeAvatar, getMeAvatar } from '../globals';
 import { RetUpdateAvatarDto } from '../dataInterfaces/interface';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import IconButton from '@material-ui/core/IconButton';
@@ -23,7 +23,7 @@ const useStyles = makeStyles(() =>
 
 export const ProfilePage: React.FC = () => {
     const [selectedFile, setSelectedFile] = useState(null);
-    const [preview, setPreview] = useState('');
+    const [preview, setPreview] = useState(getMeAvatar());
     const [size, setSize] = useState(0);
 
     const openTheHint = useDispatch(openHint);
@@ -33,7 +33,7 @@ export const ProfilePage: React.FC = () => {
 
     useEffect(() => {
         if (!selectedFile) {
-            setPreview(undefined);
+            // setPreview(undefined);
             return;
         }
 
@@ -82,7 +82,7 @@ export const ProfilePage: React.FC = () => {
         <div>
             <h1>Choose a img, at most 10KB</h1>
             <h1>size: {size / 1024}KB</h1>
-            {selectedFile && <img src={preview} className={classes.img} alt="avatar" />}
+            <img src={preview} className={classes.img} alt="avatar" />
             <div className={classes.btnGroup}>
                 <IconButton component="label">
                     <input
