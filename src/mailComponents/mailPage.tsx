@@ -16,6 +16,15 @@ const useStyles = makeStyles(() =>
             paddingLeft: 8,
             paddingRight: 8,
         },
+        boldText: {
+            fontWeight: 'bold',
+        },
+        normalText: {
+            fontWeight: 'normal',
+        },
+        fromName: {
+            color: 'blue',
+        },
     }),
 );
 
@@ -30,6 +39,7 @@ export const MailPage: React.FC = () => {
     useEffect(() => {
         getUserMails(m => {
             setMails(m);
+            console.log(m);
         }, console.log);
     }, []);
 
@@ -59,9 +69,13 @@ export const MailPage: React.FC = () => {
                 }}
             >
                 <MailOutlineIcon className={classes.mailIcon}></MailOutlineIcon>
-                message from {m.fromName} : {getShortContentStr(m.content)}
+                <span className={m.read ? classes.normalText : classes.boldText}>
+                    message from <span className={classes.fromName}>{m.fromName}</span> :{' '}
+                    {getShortContentStr(m.content)}
+                </span>
                 <DeleteButton
-                    clickDelete={(): void => {
+                    clickDelete={(e): void => {
+                        e.stopPropagation();
                         deleteMail(
                             m.id,
                             o => {

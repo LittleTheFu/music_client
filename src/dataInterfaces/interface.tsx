@@ -71,14 +71,11 @@ export class RetMsgObj {
 
 export class Mail {
     id: number;
-
     content: string;
-
     fromName: string;
-
     toName: string;
-
     fromId: number;
+    read: boolean;
 }
 
 export class UserDetail {
