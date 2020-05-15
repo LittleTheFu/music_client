@@ -36,8 +36,8 @@ export const RegisterComponent: React.FC = () => {
     const [password, setPassword] = useState('');
     const openTheHint = useDispatch(openHint);
 
-    const MIN_LEN = 6;
-    const MAX_LEN = 12;
+    const MIN_LEN = 4;
+    const MAX_LEN = 6;
 
     const history = useHistory();
     const classes = useStyles({});
@@ -96,7 +96,7 @@ export const RegisterComponent: React.FC = () => {
                         error={!isCorrectTextLength(user)}
                         label="user"
                         onChange={(e): void => setUser(e.target.value)}
-                        helperText={'(6 - 12) characters'}
+                        helperText={'(' + MIN_LEN + ' - ' + MAX_LEN + ') characters'}
                     />
                     <TextField
                         autoComplete="on"
@@ -105,7 +105,7 @@ export const RegisterComponent: React.FC = () => {
                         label="password"
                         type="password"
                         onChange={(e): void => setPassword(e.target.value)}
-                        helperText={'(6 - 12) characters'}
+                        helperText={'(' + MIN_LEN + ' - ' + MAX_LEN + ') characters'}
                     />
                     <Button type="submit" variant="contained" color="secondary">
                         register
