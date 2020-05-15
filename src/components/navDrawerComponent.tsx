@@ -6,7 +6,7 @@ import MailIcon from '@material-ui/icons/Mail';
 import { useHistory } from 'react-router-dom';
 import MusicNoteIcon from '@material-ui/icons/MusicNote';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import { getMeId, setLoginFlag, getMeAvatar } from '../globals';
+import { getMeId, setLoginFlag, getMeAvatar, getMeName } from '../globals';
 import EditIcon from '@material-ui/icons/Edit';
 import PersonIcon from '@material-ui/icons/Person';
 import SearchIcon from '@material-ui/icons/Search';
@@ -15,6 +15,7 @@ import AlbumIcon from '@material-ui/icons/Album';
 import PeopleIcon from '@material-ui/icons/People';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
+import Divider from '@material-ui/core/Divider';
 
 const useStyles = makeStyles(() =>
     createStyles({
@@ -25,6 +26,10 @@ const useStyles = makeStyles(() =>
             marginRight: 'auto',
             height: 80,
             width: 80,
+        },
+        name: {
+            textAlign: 'center',
+            fontWeight: 'bold',
         },
     }),
 );
@@ -83,6 +88,8 @@ export const TemporaryDrawer: React.FC = () => {
             >
                 <List>
                     <img onClick={meClick} src={getMeAvatar()} alt="avatar " className={classes.avatar} />
+                    <div className={classes.name}>{getMeName()}</div>
+                    <Divider></Divider>
                     <NavListIconButton msg={'music'} iconClick={musicClick}>
                         <MusicNoteIcon />
                     </NavListIconButton>

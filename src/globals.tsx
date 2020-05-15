@@ -28,6 +28,14 @@ export const getMeAvatar = (): string => {
     return sessionStorage.getItem('avatar') || '';
 };
 
+export const setMeName = (name: string): void => {
+    sessionStorage.setItem('name', name);
+};
+
+export const getMeName = (): string => {
+    return sessionStorage.getItem('name') || '';
+};
+
 export const setMeId = (id: number): void => {
     sessionStorage.setItem('meId', id.toString());
 };

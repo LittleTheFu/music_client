@@ -3,7 +3,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import { postLogin, getMe } from '../service';
-import { setToken, setMeId, openHint } from '../globals';
+import { setToken, setMeId, openHint, setMeName } from '../globals';
 import { useHistory, Link } from 'react-router-dom';
 import Container from '@material-ui/core/Container';
 import { setLoginFlag, setMeAvatar } from '../globals';
@@ -47,6 +47,7 @@ export const LoginComponent: React.FC = () => {
         getMe(
             info => {
                 setMeAvatar(info.avatarUrl);
+                setMeName(info.name);
                 setMeId(info.id);
                 console.log('ME_ID:' + info.id);
             },
