@@ -13,6 +13,7 @@ import { MusicCollectionsComponent } from '../components/musicCollectionsCompone
 import { updateMusics, updateCurrentMusic } from '../globals';
 import { useDispatch } from 'reactn';
 import { UserInfoCard } from '../otherComponents/userInfoCard';
+import { wrapName } from '../helper/common';
 
 // const useStyles = makeStyles(() => createStyles({}));
 
@@ -115,7 +116,7 @@ export const UserDetailPage: React.FC = () => {
                 <Grid container>
                     <Grid container item xs={12}>
                         <UserInfoCard
-                            name={detail.name}
+                            name={wrapName(intId, detail.name)}
                             avatar={detail.avatarUrl}
                             isFollowed={detail.isFollowed}
                             mailClick={mailClick}

@@ -4,6 +4,7 @@ import { getAllUsers } from '../service';
 import { makeStyles } from '@material-ui/core/styles';
 import { useHistory } from 'react-router-dom';
 import Link from '@material-ui/core/Link';
+import { wrapName } from '../helper/common';
 
 const useStyles = makeStyles({
     bounder: {
@@ -66,7 +67,7 @@ export const AllUsersPage: React.FC = () => {
                             avatarClick(user.id);
                         }}
                     >
-                        {user.name}
+                        {wrapName(user.id, user.name)}
                     </Link>
                 </div>
             </div>
