@@ -14,6 +14,12 @@ const useStyles = makeStyles(() =>
             marginLeft: 'auto',
             marginRight: 'auto',
         },
+        userName: {
+            textAlign: 'center',
+            marginLeft: 'auto',
+            marginRight: 'auto',
+            display: 'block',
+        },
         card: {
             width: '100%',
         },
@@ -57,16 +63,17 @@ export const CommentCard: React.FC<CommentCardProps> = (props: CommentCardProps)
                             detailClick(userId);
                         }}
                     ></Avatar>
-                </Grid>
-                <Grid container item xs={9} md={10} lg={11}>
                     <Link
+                        className={classes.userName}
                         onClick={(): void => {
                             detailClick(userId);
                         }}
                     >
                         {username}
                     </Link>
-                    : {content}
+                </Grid>
+                <Grid container item xs={9} md={10} lg={11}>
+                    {content}
                     <Grid item xs={12} className={classes.date}>
                         {localDate.toString()}
                     </Grid>
