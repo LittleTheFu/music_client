@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
-import { getMusicComments, postMusicComments } from '../service';
+import { getMusicComments, postMusicComments, deleteMusicComment } from '../service';
 import { MusicComment } from '../dataInterfaces/interface';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
@@ -99,11 +99,30 @@ export const MusicCommentPage: React.FC = () => {
         history.push(`/main/userdetail/` + userId);
     };
 
+    const deleteClick = (commentId: number): void => {
+        deleteMusicComment(
+            commentId,
+            o => {
+                openTheHint(o.msg);
+                const newComments = comments.map(c => {
+                    if (c.id === commentId) {
+                        c.content = '[removed]';
+                        c.canBeDeleted = false;
+                    }
+
+                    return c;
+                });
+                setComments(newComments);
+            },
+            console.log,
+        );
+    };
+
     const infoElements = comments.map((comment: MusicComment, index: number) => {
         return (
             <div key={index}>
                 <ListItem>
-                    <CommentCard detailClick={detailClick} comment={comment}></CommentCard>
+                    <CommentCard deleteClick={deleteClick} detailClick={detailClick} comment={comment}></CommentCard>
                 </ListItem>
                 <Divider />
             </div>

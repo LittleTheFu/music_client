@@ -5,6 +5,7 @@ import Card from '@material-ui/core/Card';
 import Avatar from '@material-ui/core/Avatar';
 import Link from '@material-ui/core/Link';
 import { MusicComment } from '../dataInterfaces/interface';
+import { DeleteButton } from '../otherComponents/deleteButton';
 
 const useStyles = makeStyles(() =>
     createStyles({
@@ -35,6 +36,10 @@ const useStyles = makeStyles(() =>
         postButton: {
             width: '100%',
         },
+        deleteBtn: {
+            border: '2px solid grey',
+            display: 'inline',
+        },
     }),
 );
 
@@ -42,13 +47,14 @@ interface CommentCardProps {
     comment: MusicComment;
 
     detailClick: (userId: number) => void;
+    deleteClick: (commentId: number) => void;
 }
 
 export const CommentCard: React.FC<CommentCardProps> = (props: CommentCardProps) => {
     const classes = useStyles({});
 
-    const { comment, detailClick } = props;
-    const { avatar, userId, username, content, date } = comment;
+    const { comment, detailClick, deleteClick } = props;
+    const { avatar, userId, username, content, date, canBeDeleted, id } = comment;
 
     const localDate = new Date(date);
 
@@ -73,9 +79,18 @@ export const CommentCard: React.FC<CommentCardProps> = (props: CommentCardProps)
                     </Link>
                 </Grid>
                 <Grid container item xs={9} md={10} lg={11}>
-                    {content}
+                    <div>{content}</div>
                     <Grid item xs={12} className={classes.date}>
                         {localDate.toString()}
+                        {canBeDeleted ? (
+                            <DeleteButton
+                                clickDelete={(): void => {
+                                    deleteClick(id);
+                                }}
+                            ></DeleteButton>
+                        ) : (
+                            <div></div>
+                        )}
                     </Grid>
                 </Grid>
             </Grid>

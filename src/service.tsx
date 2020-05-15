@@ -255,6 +255,23 @@ export const getMusicComments = (
     });
 };
 
+const deleteMusicCommentUrl = commentPrefix + 'DeleteMusicComment';
+export const deleteMusicComment = (
+    commentId: number,
+    resolve: (data: RetMsgObj) => void,
+    reject: (arg0: object) => void,
+): Promise<RetMsgObj> => {
+    return rawObjectPost(
+        deleteMusicCommentUrl,
+        { commentId: commentId },
+        resolve,
+        {
+            Authorization: 'Bearer ' + getToken(),
+        },
+        reject,
+    );
+};
+
 const postMusicCommentsUrl = commentPrefix + 'PostMusicComments';
 export const postMusicComments = (
     musicId: number,

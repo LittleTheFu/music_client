@@ -53,6 +53,7 @@ export class MusicComment {
     avatar: string;
     userId: number;
     date: Date;
+    canBeDeleted: boolean;
 }
 
 export class RetComments {
