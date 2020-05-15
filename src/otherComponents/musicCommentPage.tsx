@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import { getMusicComments, postMusicComments } from '../service';
 import { MusicComment } from '../dataInterfaces/interface';
@@ -63,6 +63,8 @@ export const MusicCommentPage: React.FC = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [refresher, setRefresher] = useState(false);
 
+    const textInput = useRef(null);
+
     const openTheHint = useDispatch(openHint);
     const history = useHistory();
 
@@ -87,7 +89,7 @@ export const MusicCommentPage: React.FC = () => {
         if (currentTheMusicId > 0) {
             history.push(`/main/music_comment/` + currentTheMusicId);
         }
-    }, [currentTheMusicId]);
+    }, [currentTheMusicId, history]);
 
     const triggerRefresher = (): void => {
         setRefresher(!refresher);
@@ -120,6 +122,8 @@ export const MusicCommentPage: React.FC = () => {
             intId,
             content,
             o => {
+                setContent('');
+                textInput.current.value = '';
                 openTheHint(o.msg);
                 if (currentPage === 1) {
                     triggerRefresher();
@@ -137,6 +141,7 @@ export const MusicCommentPage: React.FC = () => {
             <Grid item xs={12}>
                 <form onSubmit={handleSubmit} noValidate autoComplete="off">
                     <TextField
+                        inputRef={textInput}
                         multiline={true}
                         className={classes.inputBox}
                         id="standard-basic"
