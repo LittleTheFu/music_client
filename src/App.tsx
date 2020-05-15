@@ -1,8 +1,8 @@
 import React, { ReactNode } from 'react';
 import './App.css';
 import { MusicApp } from './components/musicApp';
-import { LoginComponent } from './authComponents/login';
-import { RegisterComponent } from './authComponents/register';
+import { LoginComponent } from './pages/auth/login';
+import { RegisterComponent } from './pages/auth/register';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import { getLoginFlag } from './globals';
 import Snackbar from '@material-ui/core/Snackbar';
