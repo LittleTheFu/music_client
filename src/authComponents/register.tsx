@@ -68,7 +68,7 @@ export const RegisterComponent: React.FC = () => {
             return;
         }
 
-        if (user.length < MAX_LEN) {
+        if (user.length > MAX_LEN) {
             openTheHint('user name is too long!');
             return;
         }
