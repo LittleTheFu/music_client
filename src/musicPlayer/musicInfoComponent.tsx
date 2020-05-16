@@ -97,7 +97,7 @@ export const MusicInfoComponent: React.FC<MusicInfoProps> = (props: MusicInfoPro
                 setLyricLine(getLine(currentTime, lines));
             }
         }
-    }, [currentTime]);
+    }, [currentTime, musicId, lines]);
 
     useEffect(() => {
         if (musicId > 0) {
