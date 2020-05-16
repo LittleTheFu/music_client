@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useReducer } from 'react';
 import { MusicInfoComponent } from './musicInfoComponent';
 import { Music } from '../common/interface';
 import { PlayBarComponent } from './playBarComponent';
@@ -12,6 +12,10 @@ import { MusicListDrawer } from './musicListDrawer';
 interface MusicComponentProps {
     audioElement: HTMLAudioElement;
     musics: Music[];
+}
+
+interface State {
+    audio: HTMLAudioElement;
 }
 
 export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicComponentProps) => {
@@ -39,9 +43,31 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
     const history = useHistory();
 
     const [volume, setVolume] = useState(0.5);
-    audioElement.volume = volume;
+    // audioElement.volume = volume;
 
     const [isPlaying, setIsPlaying] = useState(false);
+
+    //------------------------
+
+    const initialState: State = {
+        audio: audioElement,
+    };
+
+    const [state, dispatch] = useReducer(reducer, initialState);
+    // const { audio } = state;
+    console.log('volume audio');
+    // console.log(audio);
+    console.log(audioElement);
+
+    function reducer(state: State, action: { type: string }): State {
+        console.log(state);
+        if (action.type === 'volume') {
+            return { audio: { ...state.audio, volume: volume } };
+        }
+        return null;
+    }
+
+    //------------------------
 
     useEffect(() => {
         if (refresher && currentTheMusic && currentTheMusicId > 0) {
@@ -63,7 +89,10 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
     }, [currentTime, duration]);
 
     useEffect(() => {
-        audioElement.volume = volume;
+        // audioElement.volume = volume;
+        dispatch({
+            type: 'volume',
+        });
         openTheHint('volume : ' + Math.round(volume * 100) + '%');
     }, [volume, openTheHint]);
 
