@@ -54,7 +54,7 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
 
             setLikeButtunGuard(false);
         }
-    }, [refresher]);
+    }, [refresher, setRefresher]);
 
     useEffect(() => {
         if (duration !== 0) {
