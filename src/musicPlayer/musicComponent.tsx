@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { MusicInfoComponent } from './musicInfoComponent';
 import { Music } from '../common/interface';
 import { PlayBarComponent } from './playBarComponent';
@@ -20,7 +20,7 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
     const updateMusicAfterClickHeartIcon = useDispatch(updateMusic);
     const updateCurerntMusicInfo = useDispatch(updateCurrentMusic);
     const updateToTheNextMusic = useDispatch(updateToNextMusic);
-    const openTheHint = useDispatch(openHint);
+    const openTheHint = useCallback(useDispatch(openHint), []);
 
     const [currentTheMusic] = useGlobal('currentMusic');
     const [currentMusics] = useGlobal('musics');
@@ -65,7 +65,7 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
     useEffect(() => {
         audioElement.volume = volume;
         openTheHint('volume : ' + Math.round(volume * 100) + '%');
-    }, [volume]);
+    }, [volume, openTheHint]);
 
     useEffect(() => {
         return (): void => {
