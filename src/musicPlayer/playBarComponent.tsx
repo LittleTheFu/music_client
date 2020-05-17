@@ -27,7 +27,6 @@ interface PlayBarProps {
     changeMusicPercent: (event: object, value: unknown) => void;
     pausePlay: () => void;
     skipToNext: () => void;
-    changeMusicVolume: (event: object, value: unknown) => void;
     expand: () => void;
     shrink: () => void;
     showFullPart: boolean;

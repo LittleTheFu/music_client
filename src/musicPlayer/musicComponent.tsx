@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useCallback, useReducer } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
+// import { useReducer } from 'react';
 import { MusicInfoComponent } from './musicInfoComponent';
 import { Music } from '../common/interface';
 import { PlayBarComponent } from './playBarComponent';
@@ -14,9 +15,9 @@ interface MusicComponentProps {
     musics: Music[];
 }
 
-interface State {
-    audio: HTMLAudioElement;
-}
+// interface State {
+//     audio: HTMLAudioElement;
+// }
 
 export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicComponentProps) => {
     const { audioElement } = props;
@@ -43,29 +44,36 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
     const history = useHistory();
 
     const [volume, setVolume] = useState(0.5);
-    // audioElement.volume = volume;
+    audioElement.volume = volume;
 
     const [isPlaying, setIsPlaying] = useState(false);
 
     //------------------------
 
-    const initialState: State = {
-        audio: audioElement,
-    };
+    // const [cnt, setCnt] = useState(0);
 
-    const [state, dispatch] = useReducer(reducer, initialState);
+    // const initialState: State = {
+    //     audio: audioElement,
+    // };
+
+    // const [state, dispatch] = useReducer(reducer, initialState);
     // const { audio } = state;
-    console.log('volume audio');
-    // console.log(audio);
-    console.log(audioElement);
+    // console.log('volume audio : ');
+    // console.log(state);
+    // console.log(audioElement);
+    // console.log('volume audio end: ');
 
-    function reducer(state: State, action: { type: string }): State {
-        console.log(state);
-        if (action.type === 'volume') {
-            return { audio: { ...state.audio, volume: volume } };
-        }
-        return null;
-    }
+    // function reducer(state: State, action: { type: string }): State {
+    //     console.log(state);
+    //     if (action.type === 'volume') {
+    //         console.log('in reducer!');
+    //         console.log(state);
+    //         console.log('in reducer end!');
+
+    //         return { audio: { ...state.audio } };
+    //     }
+    //     return null;
+    // }
 
     //------------------------
 
@@ -89,10 +97,6 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
     }, [currentTime, duration]);
 
     useEffect(() => {
-        // audioElement.volume = volume;
-        dispatch({
-            type: 'volume',
-        });
         openTheHint('volume : ' + Math.round(volume * 100) + '%');
     }, [volume, openTheHint]);
 
@@ -161,10 +165,6 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
         }
     };
 
-    const changeMusicVolume = (event: object, value: unknown): void => {
-        setVolume((value as number) / 100.0);
-    };
-
     audioElement.onloadedmetadata = (): void => {
         setCurrentTime(audioElement.currentTime);
         setDuration(audioElement.duration);
@@ -187,11 +187,17 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
     };
 
     const volumeUp = (): void => {
-        setVolume(Math.min(1, volume + 0.05));
+        const v = Math.min(1, volume + 0.05);
+
+        setVolume(v);
+        audioElement.volume = v;
     };
 
     const volumeDown = (): void => {
-        setVolume(Math.max(0.0, volume - 0.05));
+        const v = Math.max(0.0, volume - 0.05);
+        setVolume(v);
+
+        audioElement.volume = v;
     };
 
     const playMusic = (m: Music): void => {
@@ -229,7 +235,6 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
                         changeMusicPercent={changeMusicPercent}
                         pausePlay={pausePlay}
                         skipToNext={skipToNext}
-                        changeMusicVolume={changeMusicVolume}
                         expand={expand}
                         shrink={shrink}
                         showFullPart={showFullPart}
