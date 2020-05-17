@@ -17,7 +17,7 @@ export const LobbyPage: React.FC = () => {
     useEffect(() => {
         getAlbums(collections => {
             setMusicCollections(collections);
-            console.log(collections);
+            // console.log(collections);
         }, console.log);
     }, []);
 

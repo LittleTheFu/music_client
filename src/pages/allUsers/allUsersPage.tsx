@@ -45,7 +45,7 @@ export const AllUsersPage: React.FC = () => {
 
     useEffect(() => {
         getAllUsers((o): void => {
-            console.log(o);
+            // console.log(o);
             setUsers(o);
         });
     }, []);

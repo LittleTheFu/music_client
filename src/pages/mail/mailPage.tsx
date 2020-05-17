@@ -39,7 +39,7 @@ export const MailPage: React.FC = () => {
     useEffect(() => {
         getUserMails(m => {
             setMails(m);
-            console.log(m);
+            // console.log(m);
         }, console.log);
     }, []);
 

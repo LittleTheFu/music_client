@@ -38,12 +38,10 @@ export const MusicsDetail: React.FC<MusicsDetailProps> = (props: MusicsDetailPro
     const { initData, trashClick, removeMusicClick } = props;
 
     useEffect(() => {
-        // getAlbumDetail(
         initData(
             intId,
             detail => {
                 setDetail(detail);
-                console.log(detail);
             },
             console.log,
         );
@@ -61,8 +59,6 @@ export const MusicsDetail: React.FC<MusicsDetailProps> = (props: MusicsDetailPro
     };
 
     const clickMusic = (music: Music): void => {
-        console.log('CLICK MUSIC');
-        console.log(music);
         updatePlayingMusics(detail.musics);
         updateTheCurrentMusic(music);
     };

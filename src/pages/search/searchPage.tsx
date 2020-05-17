@@ -60,7 +60,6 @@ export const SearchPage: React.FC = () => {
             },
             console.log,
         );
-        console.log('search : ' + debouncedContent);
     }, [debouncedContent]);
 
     const clickMusic = (music: Music): void => {

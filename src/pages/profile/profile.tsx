@@ -70,7 +70,6 @@ export const ProfilePage: React.FC = () => {
                 const obj = o as RetUpdateAvatarDto;
                 setMeAvatar(obj.remoteUrl);
                 openTheHint('successed!');
-                console.log('changed');
             },
             e => {
                 console.log(e);
