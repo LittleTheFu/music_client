@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useCallback } from 'react';
-// import { useReducer } from 'react';
 import { MusicInfoComponent } from './musicInfoComponent';
 import { Music } from '../common/interface';
 import { PlayBarComponent } from './playBarComponent';
@@ -14,10 +13,6 @@ interface MusicComponentProps {
     audioElement: HTMLAudioElement;
     musics: Music[];
 }
-
-// interface State {
-//     audio: HTMLAudioElement;
-// }
 
 export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicComponentProps) => {
     const { audioElement } = props;
@@ -48,35 +43,6 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
 
     const [isPlaying, setIsPlaying] = useState(false);
 
-    //------------------------
-
-    // const [cnt, setCnt] = useState(0);
-
-    // const initialState: State = {
-    //     audio: audioElement,
-    // };
-
-    // const [state, dispatch] = useReducer(reducer, initialState);
-    // const { audio } = state;
-    // console.log('volume audio : ');
-    // console.log(state);
-    // console.log(audioElement);
-    // console.log('volume audio end: ');
-
-    // function reducer(state: State, action: { type: string }): State {
-    //     console.log(state);
-    //     if (action.type === 'volume') {
-    //         console.log('in reducer!');
-    //         console.log(state);
-    //         console.log('in reducer end!');
-
-    //         return { audio: { ...state.audio } };
-    //     }
-    //     return null;
-    // }
-
-    //------------------------
-
     useEffect(() => {
         if (refresher && currentTheMusic && currentTheMusicId > 0) {
             setRefresher(false);
@@ -88,7 +54,7 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
 
             setLikeButtunGuard(false);
         }
-    }, [refresher, setRefresher]);
+    }, [refresher, setRefresher, audioElement.autoplay, audioElement.src, currentTheMusic, currentTheMusicId]);
 
     useEffect(() => {
         if (duration !== 0) {
@@ -177,6 +143,11 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
     };
 
     const pausePlay = (): void => {
+        if (audioElement.src === '') {
+            openTheHint('choose a music first!');
+            return;
+        }
+
         if (isPlaying) {
             audioElement.pause();
             setIsPlaying(false);
