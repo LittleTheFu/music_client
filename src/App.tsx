@@ -7,6 +7,24 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-d
 import { getLoginFlag } from './globals';
 import Snackbar from '@material-ui/core/Snackbar';
 import { useGlobal } from 'reactn';
+import io from 'socket.io-client';
+
+const socket: SocketIOClient.Socket = io('localhost:9999');
+socket.on('connect', function() {
+    console.log('Connected');
+
+    socket.emit('events', { test: 'test' });
+    socket.emit('identity', 0, (response: any) => console.log('Identity:', response));
+});
+socket.on('events', function(data: any) {
+    console.log('event', data);
+});
+socket.on('exception', function(data: any) {
+    console.log('event', data);
+});
+socket.on('disconnect', function() {
+    console.log('Disconnected');
+});
 
 const App: React.FC = () => {
     const [hintOpen, setHintOpen] = useGlobal('hintOpen');
