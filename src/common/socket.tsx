@@ -1,5 +1,6 @@
 import io from 'socket.io-client';
 import { getDispatch } from 'reactn';
+import { getLoginFlag, getMeId } from '../globals';
 
 let socket: SocketIOClient.Socket = null;
 
@@ -46,4 +47,11 @@ export const initSocket = (): void => {
     socket.on('disconnect', function() {
         console.log('Disconnected');
     });
+
+    if (true === getLoginFlag()) {
+        const id = getMeId();
+        if (id > 0) {
+            emitLoginSocketMsg(id);
+        }
+    }
 };
