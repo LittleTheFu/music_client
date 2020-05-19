@@ -92,7 +92,7 @@ export const AppBarComponent: React.FC = () => {
                         <MusicNoteIcon />
                     </IconButton>
                     <IconButton edge="start" className={classes.appButton} onClick={mailClick}>
-                        <Badge color="secondary" badgeContent={_unreadMailCnt} invisible={false}>
+                        <Badge color="secondary" badgeContent={_unreadMailCnt} invisible={_unreadMailCnt <= 0}>
                             <MailOutlinedIcon />
                         </Badge>
                     </IconButton>
