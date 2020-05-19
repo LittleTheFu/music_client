@@ -4,7 +4,7 @@ import { Mail } from '../../common/interface';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import { useHistory } from 'react-router-dom';
-import { openHint } from '../../globals';
+import { openHint, decUnreadMailCnt } from '../../globals';
 import { useDispatch } from 'reactn';
 import { DeleteButton } from '../../sharedComponents/basicComponents/deleteButton';
 import MailOutlineIcon from '@material-ui/icons/MailOutline';
@@ -31,6 +31,7 @@ const useStyles = makeStyles(() =>
 export const MailPage: React.FC = () => {
     const [mails, setMails] = useState<Mail[]>([]);
     const openTheHint = useDispatch(openHint);
+    const _decUnreadMailCnt = useDispatch(decUnreadMailCnt);
 
     const classes = useStyles({});
 
@@ -44,6 +45,13 @@ export const MailPage: React.FC = () => {
     }, []);
 
     const mailClick = (id: number): void => {
+        const m = mails.find(mail => {
+            return mail.id === id;
+        });
+        if (m.read === false) {
+            _decUnreadMailCnt();
+        }
+
         history.push(`/main/mail_detail/` + id);
     };
 
@@ -85,6 +93,9 @@ export const MailPage: React.FC = () => {
                                         return mail.id !== m.id;
                                     }),
                                 );
+                                if (m.read === false) {
+                                    _decUnreadMailCnt();
+                                }
                             },
                             console.log,
                         );

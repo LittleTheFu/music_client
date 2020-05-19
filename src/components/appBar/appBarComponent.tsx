@@ -10,7 +10,7 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { useHistory } from 'react-router-dom';
 import MusicNoteIcon from '@material-ui/icons/MusicNote';
 import AlbumIcon from '@material-ui/icons/Album';
-import { setLoginFlag, openMenuDrawer, getMeId } from '../../globals';
+import { setLoginFlag, openMenuDrawer, getMeId, getMeUnreadMailNum } from '../../globals';
 import SearchIcon from '@material-ui/icons/Search';
 import PeopleIcon from '@material-ui/icons/People';
 import { emitLogoutSocketMsg } from '../../common/socket';
@@ -38,6 +38,7 @@ export const AppBarComponent: React.FC = () => {
     const openTheMenuDrawer = useDispatch(openMenuDrawer);
     const [_newMailHint] = useGlobal('newMailHint');
     const updateTheNewMailHint = useDispatch('updateNewMailHint');
+    const [_unreadMailCnt] = useGlobal('unreadMailCnt');
 
     const history = useHistory();
 
@@ -91,7 +92,7 @@ export const AppBarComponent: React.FC = () => {
                         <MusicNoteIcon />
                     </IconButton>
                     <IconButton edge="start" className={classes.appButton} onClick={mailClick}>
-                        <Badge color="secondary" variant="dot" invisible={!_newMailHint}>
+                        <Badge color="secondary" badgeContent={_unreadMailCnt} invisible={false}>
                             <MailOutlinedIcon />
                         </Badge>
                     </IconButton>

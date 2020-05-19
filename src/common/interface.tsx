@@ -106,6 +106,13 @@ export class RetSimpleUser {
     avatarUrl: string;
 }
 
+export class RetMeData {
+    id: number;
+    name: string;
+    avatarUrl: string;
+    unreadMailNum: number;
+}
+
 export class AccessData {
     accessToken: string;
 }

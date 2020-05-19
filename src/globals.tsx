@@ -51,7 +51,24 @@ export const getMeId = (): number => {
     return id;
 };
 
+export const setMeUnreadMailNum = (num: number): void => {
+    sessionStorage.setItem('unread', num.toString());
+};
+
+export const getMeUnreadMailNum = (): number => {
+    const strNum = sessionStorage.getItem('unread') || '';
+    const num = parseInt(strNum);
+
+    if (isNaN(num)) {
+        return 0;
+    }
+
+    return num;
+};
+
 setGlobal({
+    unreadMailCnt: 0,
+
     newMailHint: false,
 
     meId: 0,
@@ -81,6 +98,18 @@ setGlobal({
 export const openHint = (global: State, dispatch: Dispatch, msg: string): Pick<State, 'hintMsg' | 'hintOpen'> => ({
     hintMsg: msg,
     hintOpen: true,
+});
+
+export const updateUnreadMailCnt = (global: State, dispatch: Dispatch, cnt: number): Pick<State, 'unreadMailCnt'> => ({
+    unreadMailCnt: cnt,
+});
+
+export const decUnreadMailCnt = (global: State, dispatch: Dispatch): Pick<State, 'unreadMailCnt'> => ({
+    unreadMailCnt: global.unreadMailCnt - 1,
+});
+
+export const incUnreadMailCnt = (global: State, dispatch: Dispatch): Pick<State, 'unreadMailCnt'> => ({
+    unreadMailCnt: global.unreadMailCnt + 1,
 });
 
 addReducer('updateNewMailHint', (global: State, dispatch: Dispatch, hint: boolean) => ({

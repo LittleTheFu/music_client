@@ -3,6 +3,7 @@ import { getToken } from '../globals';
 import {
     AccessData,
     RetSimpleUser,
+    RetMeData,
     Music,
     CollectionDetail,
     Mail,
@@ -285,10 +286,7 @@ export const postMusicComments = (
 };
 
 const getMeUrl = userPrefix + 'me';
-export const getMe = (
-    resolve: (data: RetSimpleUser) => void,
-    reject: (arg0: object) => void,
-): Promise<RetSimpleUser> => {
+export const getMe = (resolve: (data: RetMeData) => void, reject: (arg0: object) => void): Promise<RetMeData> => {
     return rawObjectPost(getMeUrl, {}, resolve, {
         Authorization: 'Bearer ' + getToken(),
     });

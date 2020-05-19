@@ -23,9 +23,13 @@ declare module 'reactn/default' {
         openHint: (global: State, dispatch: Dispatch, msg: string) => Pick<State, 'hintMsg' | 'hintOpen'>;
 
         updateNewMailHint: (global: State, dispatch: Dispatch, hint: boolean) => Pick<State, 'newMailHint'>;
+
+        updateUnreadMailCnt: (global: State, dispatch: Dispatch, cnt: number) => Pick<State, 'unreadMailCnt'>;
     }
 
     export interface State {
+        unreadMailCnt: number;
+
         newMailHint: boolean;
 
         meId: number;
