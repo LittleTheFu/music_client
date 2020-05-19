@@ -24,7 +24,8 @@ export const initSocket = (): void => {
 
     socket.on('notice', function(data: unknown) {
         // console.log(getDispatch().updateNewMailHint);
-        getDispatch().updateNewMailHint(true);
+        // getDispatch().updateNewMailHint(true);
+        getDispatch().incUnreadMailCnt();
         console.log('NOTICE ', data);
     });
 

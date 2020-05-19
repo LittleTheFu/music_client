@@ -108,9 +108,13 @@ export const decUnreadMailCnt = (global: State, dispatch: Dispatch): Pick<State,
     unreadMailCnt: global.unreadMailCnt - 1,
 });
 
-export const incUnreadMailCnt = (global: State, dispatch: Dispatch): Pick<State, 'unreadMailCnt'> => ({
+// export const incUnreadMailCnt = (global: State, dispatch: Dispatch): Pick<State, 'unreadMailCnt'> => ({
+//     unreadMailCnt: global.unreadMailCnt + 1,
+// });
+
+addReducer('incUnreadMailCnt', (global: State, dispatch: Dispatch) => ({
     unreadMailCnt: global.unreadMailCnt + 1,
-});
+}));
 
 addReducer('updateNewMailHint', (global: State, dispatch: Dispatch, hint: boolean) => ({
     newMailHint: hint,
