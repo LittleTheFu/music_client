@@ -10,9 +10,10 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { useHistory } from 'react-router-dom';
 import MusicNoteIcon from '@material-ui/icons/MusicNote';
 import AlbumIcon from '@material-ui/icons/Album';
-import { setLoginFlag, openMenuDrawer } from '../../globals';
+import { setLoginFlag, openMenuDrawer, getMeId } from '../../globals';
 import SearchIcon from '@material-ui/icons/Search';
 import PeopleIcon from '@material-ui/icons/People';
+import { emitLogoutSocketMsg } from '../../common/socket';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -65,6 +66,7 @@ export const AppBarComponent: React.FC = () => {
 
     const exitClick = (): void => {
         setLoginFlag(false);
+        emitLogoutSocketMsg(getMeId());
         history.push('/login');
     };
 

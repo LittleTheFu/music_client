@@ -9,6 +9,7 @@ import Container from '@material-ui/core/Container';
 import { setLoginFlag, setMeAvatar } from '../../globals';
 import { useDispatch } from 'reactn';
 import { AccessData } from '../../common/interface';
+import { emitLoginSocketMsg } from '../../common/socket';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -50,6 +51,7 @@ export const LoginComponent: React.FC = () => {
                 setMeName(info.name);
                 setMeId(info.id);
                 // console.log('ME_ID:' + info.id);
+                emitLoginSocketMsg(info.id);
             },
             e => {
                 console.log(e);

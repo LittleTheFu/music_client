@@ -16,6 +16,7 @@ import PeopleIcon from '@material-ui/icons/People';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 import Divider from '@material-ui/core/Divider';
+import { emitLogoutSocketMsg } from '../../common/socket';
 
 const useStyles = makeStyles(() =>
     createStyles({
@@ -42,6 +43,7 @@ export const TemporaryDrawer: React.FC = () => {
 
     const logoutClick = (): void => {
         setLoginFlag(false);
+        emitLogoutSocketMsg(getMeId());
         history.push('/login');
     };
 
