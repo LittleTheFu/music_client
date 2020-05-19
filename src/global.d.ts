@@ -19,9 +19,15 @@ declare module 'reactn/default' {
         ) => Pick<State, 'musics' | 'musicIndex' | 'musicLength' | 'currentMusic'>;
 
         updateToNextMusic: (global: State, dispatch: Dispatch) => Pick<State, 'currentMusic' | 'musicIndex'>;
+
+        openHint: (global: State, dispatch: Dispatch, msg: string) => Pick<State, 'hintMsg' | 'hintOpen'>;
+
+        updateNewMailHint: (global: State, dispatch: Dispatch, hint: boolean) => Pick<State, 'newMailHint'>;
     }
 
     export interface State {
+        newMailHint: boolean;
+
         meId: number;
 
         drawerOpen: boolean;

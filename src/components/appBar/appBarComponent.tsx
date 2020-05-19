@@ -5,7 +5,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import MailOutlinedIcon from '@material-ui/icons/MailOutlined';
-import { useDispatch } from 'reactn';
+import { useDispatch, useGlobal } from 'reactn';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { useHistory } from 'react-router-dom';
 import MusicNoteIcon from '@material-ui/icons/MusicNote';
@@ -14,6 +14,7 @@ import { setLoginFlag, openMenuDrawer, getMeId } from '../../globals';
 import SearchIcon from '@material-ui/icons/Search';
 import PeopleIcon from '@material-ui/icons/People';
 import { emitLogoutSocketMsg } from '../../common/socket';
+import Badge from '@material-ui/core/Badge';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -35,6 +36,8 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export const AppBarComponent: React.FC = () => {
     const openTheMenuDrawer = useDispatch(openMenuDrawer);
+    const [_newMailHint] = useGlobal('newMailHint');
+    const updateTheNewMailHint = useDispatch('updateNewMailHint');
 
     const history = useHistory();
 
@@ -49,6 +52,7 @@ export const AppBarComponent: React.FC = () => {
     };
 
     const mailClick = (): void => {
+        updateTheNewMailHint(false);
         history.push(`/main/mail`);
     };
 
@@ -87,7 +91,9 @@ export const AppBarComponent: React.FC = () => {
                         <MusicNoteIcon />
                     </IconButton>
                     <IconButton edge="start" className={classes.appButton} onClick={mailClick}>
-                        <MailOutlinedIcon />
+                        <Badge color="secondary" variant="dot" invisible={!_newMailHint}>
+                            <MailOutlinedIcon />
+                        </Badge>
                     </IconButton>
                     <IconButton edge="start" className={classes.appButton} onClick={collectionsClick}>
                         <AlbumIcon />

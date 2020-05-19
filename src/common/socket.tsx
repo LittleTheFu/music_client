@@ -1,4 +1,5 @@
 import io from 'socket.io-client';
+import { getDispatch } from 'reactn';
 
 let socket: SocketIOClient.Socket = null;
 
@@ -21,6 +22,8 @@ export const initSocket = (): void => {
     });
 
     socket.on('notice', function(data: unknown) {
+        // console.log(getDispatch().updateNewMailHint);
+        getDispatch().updateNewMailHint(true);
         console.log('NOTICE ', data);
     });
 

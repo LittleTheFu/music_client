@@ -1,4 +1,4 @@
-import { setGlobal } from 'reactn';
+import { setGlobal, addReducer } from 'reactn';
 import { Music, dummyMusic } from './common/interface';
 import { State, Dispatch } from 'reactn/default';
 
@@ -52,6 +52,8 @@ export const getMeId = (): number => {
 };
 
 setGlobal({
+    newMailHint: false,
+
     meId: 0,
 
     drawerOpen: false,
@@ -80,6 +82,14 @@ export const openHint = (global: State, dispatch: Dispatch, msg: string): Pick<S
     hintMsg: msg,
     hintOpen: true,
 });
+
+addReducer('updateNewMailHint', (global: State, dispatch: Dispatch, hint: boolean) => ({
+    newMailHint: hint,
+}));
+
+// export const updateNewMailHint = (global: State, dispatch: Dispatch, hint: boolean): Pick<State, 'newMailHint'> => ({
+//     newMailHint: hint,
+// });
 
 export const openMenuDrawer = (): Pick<State, 'drawerOpen'> => ({
     drawerOpen: true,
