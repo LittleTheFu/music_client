@@ -27,6 +27,7 @@ export const initSocket = (): void => {
 
     socket.on('new_mail', function() {
         getDispatch().incUnreadMailCnt();
+        getDispatch().setRefreshMailPageFlag();
     });
 
     socket.on('login', function(data: unknown) {

@@ -1,6 +1,6 @@
 import React from 'react';
 import Drawer from '@material-ui/core/Drawer';
-import { useGlobal, useDispatch } from 'reactn';
+import { useGlobal } from 'reactn';
 import List from '@material-ui/core/List';
 import MailIcon from '@material-ui/icons/Mail';
 import { useHistory } from 'react-router-dom';
@@ -38,11 +38,10 @@ const useStyles = makeStyles(() =>
 
 export const TemporaryDrawer: React.FC = () => {
     const [drawerOpen, setDrawerOpen] = useGlobal('drawerOpen');
-    const [_newMailHint] = useGlobal('newMailHint');
-    const updateTheNewMailHint = useDispatch('updateNewMailHint');
 
     const classes = useStyles({});
     const history = useHistory();
+    const [_unreadMailCnt] = useGlobal('unreadMailCnt');
 
     const logoutClick = (): void => {
         setLoginFlag(false);
@@ -71,7 +70,6 @@ export const TemporaryDrawer: React.FC = () => {
     };
 
     const mailClick = (): void => {
-        updateTheNewMailHint(false);
         history.push(`/main/mail`);
     };
 
@@ -101,7 +99,7 @@ export const TemporaryDrawer: React.FC = () => {
                     </NavListIconButton>
 
                     <NavListIconButton msg={'mail'} iconClick={mailClick}>
-                        <Badge color="secondary" variant="dot" invisible={!_newMailHint}>
+                        <Badge color="secondary" badgeContent={_unreadMailCnt} invisible={_unreadMailCnt <= 0}>
                             <MailIcon />
                         </Badge>
                     </NavListIconButton>

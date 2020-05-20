@@ -22,17 +22,16 @@ declare module 'reactn/default' {
 
         openHint: (global: State, dispatch: Dispatch, msg: string) => Pick<State, 'hintMsg' | 'hintOpen'>;
 
-        updateNewMailHint: (global: State, dispatch: Dispatch, hint: boolean) => Pick<State, 'newMailHint'>;
-
         updateUnreadMailCnt: (global: State, dispatch: Dispatch, cnt: number) => Pick<State, 'unreadMailCnt'>;
 
         incUnreadMailCnt: (global: State) => Pick<State, 'unreadMailCnt'>;
+
+        setRefreshMailPageFlag: (global: State) => Pick<State, 'refreshMailPage'>;
     }
 
     export interface State {
+        refreshMailPage: boolean;
         unreadMailCnt: number;
-
-        newMailHint: boolean;
 
         meId: number;
 

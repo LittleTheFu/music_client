@@ -67,9 +67,8 @@ export const getMeUnreadMailNum = (): number => {
 };
 
 setGlobal({
+    refreshMailPage: false,
     unreadMailCnt: 0,
-
-    newMailHint: false,
 
     meId: 0,
 
@@ -112,8 +111,8 @@ addReducer('incUnreadMailCnt', (global: State) => ({
     unreadMailCnt: global.unreadMailCnt + 1,
 }));
 
-addReducer('updateNewMailHint', (global: State, dispatch: Dispatch, hint: boolean) => ({
-    newMailHint: hint,
+addReducer('setRefreshMailPageFlag', (global: State) => ({
+    refreshMailPage: !global.refreshMailPage,
 }));
 
 export const openMenuDrawer = (): Pick<State, 'drawerOpen'> => ({

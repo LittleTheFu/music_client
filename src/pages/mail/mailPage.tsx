@@ -5,7 +5,7 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import { useHistory } from 'react-router-dom';
 import { openHint, decUnreadMailCnt } from '../../globals';
-import { useDispatch } from 'reactn';
+import { useDispatch, useGlobal } from 'reactn';
 import { DeleteButton } from '../../sharedComponents/basicComponents/deleteButton';
 import MailOutlineIcon from '@material-ui/icons/MailOutline';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
@@ -32,7 +32,7 @@ export const MailPage: React.FC = () => {
     const [mails, setMails] = useState<Mail[]>([]);
     const openTheHint = useDispatch(openHint);
     const _decUnreadMailCnt = useDispatch(decUnreadMailCnt);
-
+    const [refreshMailPage] = useGlobal('refreshMailPage');
     const classes = useStyles({});
 
     const history = useHistory();
@@ -40,9 +40,8 @@ export const MailPage: React.FC = () => {
     useEffect(() => {
         getUserMails(m => {
             setMails(m);
-            // console.log(m);
         }, console.log);
-    }, []);
+    }, [refreshMailPage]);
 
     const mailClick = (id: number): void => {
         const m = mails.find(mail => {
