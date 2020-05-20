@@ -4,7 +4,7 @@ import { getAllUsers } from '../../common/service';
 import { makeStyles } from '@material-ui/core/styles';
 import { useHistory } from 'react-router-dom';
 import { wrapName } from '../../common/common';
-import { UserHead } from './userHead';
+import { UserHead } from '../../sharedComponents/basicComponents/userHead';
 
 const useStyles = makeStyles({
     root: {

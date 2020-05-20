@@ -13,6 +13,7 @@ import { BackButton } from '../../sharedComponents/basicComponents/backButton';
 import Link from '@material-ui/core/Link';
 import { openHint } from '../../globals';
 import { useDispatch } from 'reactn';
+import { UserHead } from '../../sharedComponents/basicComponents/userHead';
 
 const useStyles = makeStyles(() =>
     createStyles({
@@ -77,6 +78,12 @@ export const MailDetailPage: React.FC = () => {
         history.push(`/main/userdetail/` + fromId);
     };
 
+    const avatarClickWrapper = (id: number) => {
+        return (): void => {
+            fromNameClick(id);
+        };
+    };
+
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
         event.preventDefault();
         sendMail(
@@ -106,23 +113,11 @@ export const MailDetailPage: React.FC = () => {
                         </Grid>
 
                         <Grid item xs={12}>
-                            <img
-                                onClick={(): void => {
-                                    fromNameClick(mail.fromId);
-                                }}
-                                src={mail.fromAvatar}
-                                alt="avatar"
-                                className={classes.avatar}
-                            />
-                            <div className={classes.from}>
-                                <Link
-                                    onClick={(): void => {
-                                        fromNameClick(mail.fromId);
-                                    }}
-                                >
-                                    {mail.fromName}
-                                </Link>{' '}
-                            </div>
+                            <UserHead
+                                avatar={mail.fromAvatar}
+                                userName={mail.fromName}
+                                avatarClick={avatarClickWrapper(mail.fromId)}
+                            ></UserHead>
                             <div className={classes.content}>{mail.content}</div>
                             <div className={classes.content}>{mail.date.toString()}</div>
                         </Grid>
