@@ -72,10 +72,12 @@ export class RetMsgObj {
 export class Mail {
     id: number;
     content: string;
-    fromName: string;
-    toName: string;
     fromId: number;
+    fromName: string;
+    fromAvatar: string;
+    toName: string;
     read: boolean;
+    date: Date;
 }
 
 export class UserDetail {

@@ -12,7 +12,7 @@ import ListItem from '@material-ui/core/ListItem';
 import { BackButton } from '../../sharedComponents/basicComponents/backButton';
 import { openHint } from '../../globals';
 import { useDispatch } from 'reactn';
-import { CommentCard } from './commentCard';
+import { ContentCard } from '../../sharedComponents/musicsComponent/contentCard';
 import Pagination from '@material-ui/lab/Pagination';
 import { useGlobal } from 'reactn';
 
@@ -122,7 +122,17 @@ export const MusicCommentPage: React.FC = () => {
         return (
             <div key={index}>
                 <ListItem>
-                    <CommentCard deleteClick={deleteClick} detailClick={detailClick} comment={comment}></CommentCard>
+                    <ContentCard
+                        deleteClick={deleteClick}
+                        detailClick={detailClick}
+                        id={comment.id}
+                        avatar={comment.avatar}
+                        content={comment.content}
+                        canBeDeleted={comment.canBeDeleted}
+                        userId={comment.userId}
+                        username={comment.username}
+                        date={comment.date}
+                    ></ContentCard>
                 </ListItem>
                 <Divider />
             </div>

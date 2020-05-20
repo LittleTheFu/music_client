@@ -11,6 +11,7 @@ export const DeleteButton: React.FC<DeleteButtonProps> = (props: DeleteButtonPro
     return (
         <IconButton
             onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>): void => {
+                e.stopPropagation();
                 clickDelete(e);
             }}
         >
