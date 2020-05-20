@@ -26,7 +26,7 @@ declare module 'reactn/default' {
 
         updateUnreadMailCnt: (global: State, dispatch: Dispatch, cnt: number) => Pick<State, 'unreadMailCnt'>;
 
-        incUnreadMailCnt: (global: State, dispatch: Dispatch) => Pick<State, 'unreadMailCnt'>;
+        incUnreadMailCnt: (global: State) => Pick<State, 'unreadMailCnt'>;
     }
 
     export interface State {

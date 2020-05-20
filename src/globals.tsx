@@ -100,29 +100,21 @@ export const openHint = (global: State, dispatch: Dispatch, msg: string): Pick<S
     hintOpen: true,
 });
 
-export const updateUnreadMailCnt = (global: State, dispatch: Dispatch, cnt: number): Pick<State, 'unreadMailCnt'> => ({
+addReducer('updateUnreadMailCnt', (global: State, dispatch: Dispatch, cnt: number) => ({
     unreadMailCnt: cnt,
-});
+}));
 
-export const decUnreadMailCnt = (global: State, dispatch: Dispatch): Pick<State, 'unreadMailCnt'> => ({
+export const decUnreadMailCnt = (global: State): Pick<State, 'unreadMailCnt'> => ({
     unreadMailCnt: global.unreadMailCnt - 1,
 });
 
-// export const incUnreadMailCnt = (global: State, dispatch: Dispatch): Pick<State, 'unreadMailCnt'> => ({
-//     unreadMailCnt: global.unreadMailCnt + 1,
-// });
-
-addReducer('incUnreadMailCnt', (global: State, dispatch: Dispatch) => ({
+addReducer('incUnreadMailCnt', (global: State) => ({
     unreadMailCnt: global.unreadMailCnt + 1,
 }));
 
 addReducer('updateNewMailHint', (global: State, dispatch: Dispatch, hint: boolean) => ({
     newMailHint: hint,
 }));
-
-// export const updateNewMailHint = (global: State, dispatch: Dispatch, hint: boolean): Pick<State, 'newMailHint'> => ({
-//     newMailHint: hint,
-// });
 
 export const openMenuDrawer = (): Pick<State, 'drawerOpen'> => ({
     drawerOpen: true,

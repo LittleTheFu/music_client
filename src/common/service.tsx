@@ -292,6 +292,19 @@ export const getMe = (resolve: (data: RetMeData) => void, reject: (arg0: object)
     });
 };
 
+const getUnreadMailNumUrl = mailPrefix + 'getUnreadMailNum';
+export const getUnreadMailNum = (resolve: (num: number) => void, reject: (arg0: object) => void): Promise<number> => {
+    return rawObjectPost(
+        getUnreadMailNumUrl,
+        {},
+        resolve,
+        {
+            Authorization: 'Bearer ' + getToken(),
+        },
+        reject,
+    );
+};
+
 const getMailUrl = mailPrefix + 'getMails';
 export const getUserMails = (resolve: (data: Mail[]) => void, reject: (arg0: object) => void): Promise<Mail[]> => {
     return rawObjectPost(

@@ -3,7 +3,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import { postLogin, getMe } from '../../common/service';
-import { setToken, setMeId, openHint, setMeName, setMeUnreadMailNum, updateUnreadMailCnt } from '../../globals';
+import { setToken, setMeId, openHint, setMeName } from '../../globals';
 import { useHistory, Link } from 'react-router-dom';
 import Container from '@material-ui/core/Container';
 import { setLoginFlag, setMeAvatar } from '../../globals';
@@ -39,7 +39,7 @@ export const LoginComponent: React.FC = () => {
     const [username, setUser] = useState('');
     const [password, setPassword] = useState('');
     const openTheHint = useDispatch(openHint);
-    const _updateUnreadMailCnt = useDispatch(updateUnreadMailCnt);
+    const _updateUnreadMailCnt = useDispatch('updateUnreadMailCnt');
 
     const history = useHistory();
 
