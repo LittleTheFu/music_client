@@ -29,6 +29,14 @@ const useStyles = makeStyles(() =>
         reply: {
             width: '100%',
         },
+        avatar: {
+            borderRadius: '50%',
+            // display: 'block',
+            // marginLeft: 'auto',
+            // marginRight: 'auto',
+            height: 120,
+            width: 120,
+        },
     }),
 );
 
@@ -48,7 +56,7 @@ export const MailDetailPage: React.FC = () => {
         getMailDetail(
             intId,
             (m): void => {
-                setMail(m);
+                setMail({ ...m, date: new Date(m.date) });
             },
             console.log,
         );
@@ -98,8 +106,8 @@ export const MailDetailPage: React.FC = () => {
                         </Grid>
 
                         <Grid item xs={12}>
+                            <img src={mail.fromAvatar} alt="avatar" className={classes.avatar} />
                             <div className={classes.from}>
-                                From :{' '}
                                 <Link
                                     onClick={(): void => {
                                         fromNameClick(mail.fromId);
@@ -109,6 +117,7 @@ export const MailDetailPage: React.FC = () => {
                                 </Link>{' '}
                             </div>
                             <div className={classes.content}>{mail.content}</div>
+                            <div className={classes.content}>{mail.date.toString()}</div>
                         </Grid>
                         <Grid item xs={12}>
                             <form onSubmit={handleSubmit} noValidate autoComplete="off">
