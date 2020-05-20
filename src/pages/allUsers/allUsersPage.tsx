@@ -3,29 +3,10 @@ import { RetSimpleUser } from '../../common/interface';
 import { getAllUsers } from '../../common/service';
 import { makeStyles } from '@material-ui/core/styles';
 import { useHistory } from 'react-router-dom';
-import Link from '@material-ui/core/Link';
 import { wrapName } from '../../common/common';
+import { UserHead } from './userHead';
 
 const useStyles = makeStyles({
-    bounder: {
-        padding: 10,
-        height: 150,
-        width: 150,
-        // display: 'inline-block',
-        // border: '1px solid red',
-    },
-    avatar: {
-        borderRadius: '50%',
-        display: 'block',
-        marginLeft: 'auto',
-        marginRight: 'auto',
-        height: 120,
-        width: 120,
-    },
-    name: {
-        textAlign: 'center',
-        fontSize: 30,
-    },
     root: {
         display: 'flex',
         justifyContent: 'center',
@@ -43,6 +24,12 @@ export const AllUsersPage: React.FC = () => {
         history.push(`/main/userdetail/` + userId);
     };
 
+    const avatarClickWrapper = (userId: number) => {
+        return (): void => {
+            avatarClick(userId);
+        };
+    };
+
     useEffect(() => {
         getAllUsers((o): void => {
             // console.log(o);
@@ -50,33 +37,18 @@ export const AllUsersPage: React.FC = () => {
         });
     }, []);
 
-    const userElementes = users.map((user: RetSimpleUser, index: number) => {
-        return (
-            <div key={index} className={classes.bounder}>
-                <img
-                    onClick={(): void => {
-                        avatarClick(user.id);
-                    }}
-                    src={user.avatarUrl}
-                    alt="avatar"
-                    className={classes.avatar}
-                />
-                <div className={classes.name}>
-                    <Link
-                        onClick={(): void => {
-                            avatarClick(user.id);
-                        }}
-                    >
-                        {wrapName(user.id, user.name)}
-                    </Link>
-                </div>
-            </div>
-        );
-    });
-
     return (
         <div className={classes.root}>
-            <React.Fragment>{userElementes}</React.Fragment>
+            {users.map((user, index) => {
+                return (
+                    <UserHead
+                        key={index}
+                        avatar={user.avatarUrl}
+                        userName={wrapName(user.id, user.name)}
+                        avatarClick={avatarClickWrapper(user.id)}
+                    />
+                );
+            })}
         </div>
     );
 };
