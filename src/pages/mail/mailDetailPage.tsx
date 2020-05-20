@@ -106,7 +106,14 @@ export const MailDetailPage: React.FC = () => {
                         </Grid>
 
                         <Grid item xs={12}>
-                            <img src={mail.fromAvatar} alt="avatar" className={classes.avatar} />
+                            <img
+                                onClick={(): void => {
+                                    fromNameClick(mail.fromId);
+                                }}
+                                src={mail.fromAvatar}
+                                alt="avatar"
+                                className={classes.avatar}
+                            />
                             <div className={classes.from}>
                                 <Link
                                     onClick={(): void => {
