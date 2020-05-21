@@ -2,12 +2,12 @@ import React from 'react';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
-import Avatar from '@material-ui/core/Avatar';
-import Link from '@material-ui/core/Link';
 import { Follower } from '../../common/interface';
 import IconButton from '@material-ui/core/IconButton';
 import RemoveCircleOutlineIcon from '@material-ui/icons/RemoveCircleOutline';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
+import { UserHead } from '../../sharedComponents/basicComponents/userHead';
+import { wrapName } from '../../common/common';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -39,9 +39,9 @@ const useStyles = makeStyles((theme: Theme) =>
 interface FollowerCardProps {
     follower: Follower;
 
-    followClick: (userId: number) => void;
-    unfollowClick: (userId: number) => void;
-    avatarClick: (userId: number) => void;
+    followClick: () => void;
+    unfollowClick: () => void;
+    avatarClick: () => void;
 }
 
 export const FollowerCard: React.FC<FollowerCardProps> = (props: FollowerCardProps) => {
@@ -54,42 +54,24 @@ export const FollowerCard: React.FC<FollowerCardProps> = (props: FollowerCardPro
         <Card>
             <Grid container>
                 <Grid item xs={2} className={classes.avatarContainer}>
-                    <Avatar
-                        className={classes.avatar}
-                        src={avatarUrl}
-                        onClick={(): void => {
-                            avatarClick(id);
-                        }}
-                    ></Avatar>
-                    <div className={classes.name}>
-                        <Link
-                            onClick={(): void => {
-                                avatarClick(id);
-                            }}
-                        >
-                            {name}
-                        </Link>
-                    </div>
+                    <UserHead
+                        padding={5}
+                        size={80}
+                        avatar={avatarUrl}
+                        userName={wrapName(id, name)}
+                        avatarClick={avatarClick}
+                        nameClick={avatarClick}
+                    ></UserHead>
                 </Grid>
                 <Grid container item xs={10}>
                     <Grid item xs={12}>
                         {isFollowed ? (
-                            <IconButton
-                                className={classes.button}
-                                onClick={(): void => {
-                                    unfollowClick(id);
-                                }}
-                            >
+                            <IconButton className={classes.button} onClick={unfollowClick}>
                                 <RemoveCircleOutlineIcon />
                                 unfollow
                             </IconButton>
                         ) : (
-                            <IconButton
-                                className={classes.button}
-                                onClick={(): void => {
-                                    followClick(id);
-                                }}
-                            >
+                            <IconButton className={classes.button} onClick={followClick}>
                                 <AddCircleOutlineIcon />
                                 follow
                             </IconButton>

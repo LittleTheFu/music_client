@@ -8,6 +8,7 @@ import Grid from '@material-ui/core/Grid';
 import { openHint } from '../../globals';
 import { useDispatch } from 'reactn';
 import { FollowerCard } from './followerCard';
+import { wrapFunc1 } from '../../common/common';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -80,11 +81,11 @@ export const FollowerListPage: React.FC = () => {
 
     const followerElements = followers.map((f: Follower, index: number) => {
         return (
-            <Grid item xs={12} sm={4} md={3} key={index} className={classes.card}>
+            <Grid item xs={12} sm={4} key={index} className={classes.card}>
                 <FollowerCard
-                    followClick={followClick}
-                    unfollowClick={unfollowClick}
-                    avatarClick={avatarClick}
+                    followClick={wrapFunc1(followClick, f.id)}
+                    unfollowClick={wrapFunc1(unfollowClick, f.id)}
+                    avatarClick={wrapFunc1(avatarClick, f.id)}
                     follower={f}
                 ></FollowerCard>
             </Grid>
