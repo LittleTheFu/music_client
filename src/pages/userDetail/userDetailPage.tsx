@@ -18,7 +18,6 @@ import { wrapName } from '../../common/common';
 // const useStyles = makeStyles(() => createStyles({}));
 
 export const UserDetailPage: React.FC = () => {
-    const [currentClickUserId] = useGlobal('currentClickUserId');
     const [detail, setDetail] = useState<UserDetail>(null);
     const [mailModalOpen, setMailModalOpen] = useState(false);
     const history = useHistory();
@@ -74,7 +73,7 @@ export const UserDetailPage: React.FC = () => {
 
     const unfollowClick = (): void => {
         unfollowUser(
-            currentClickUserId,
+            intId,
             (o): void => {
                 openTheHint(o.msg);
                 setDetail({ ...detail, isFollowed: false });

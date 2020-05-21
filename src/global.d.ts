@@ -48,8 +48,6 @@ declare module 'reactn/default' {
         Collections: MusicCollection[];
         currentCollection: MusicCollection;
 
-        currentClickUserId: number;
-
         isPlaying: boolean;
 
         hintOpen: boolean;

@@ -86,8 +86,6 @@ setGlobal({
 
     Collections: [],
 
-    currentClickUserId: 0,
-
     isPlaying: false,
 
     hintOpen: false,
