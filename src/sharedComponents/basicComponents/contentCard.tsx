@@ -2,8 +2,8 @@ import React from 'react';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
-import { DeleteButton } from '../basicComponents/deleteButton';
-import { UserHead } from '../basicComponents/userHead';
+import { DeleteButton } from './deleteButton';
+import { UserHead } from './userHead';
 
 const useStyles = makeStyles(() =>
     createStyles({

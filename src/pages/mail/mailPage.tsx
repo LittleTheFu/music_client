@@ -7,7 +7,7 @@ import { useHistory } from 'react-router-dom';
 import { openHint, decUnreadMailCnt } from '../../globals';
 import { useDispatch, useGlobal } from 'reactn';
 // import { makeStyles, createStyles } from '@material-ui/core/styles';
-import { ContentCard } from '../../sharedComponents/musicsComponent/contentCard';
+import { ContentCard } from '../../sharedComponents/basicComponents/contentCard';
 import { wrapFunc1 } from '../../common/common';
 
 // const useStyles = makeStyles(() =>

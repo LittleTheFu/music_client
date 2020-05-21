@@ -12,7 +12,7 @@ import ListItem from '@material-ui/core/ListItem';
 import { BackButton } from '../../sharedComponents/basicComponents/backButton';
 import { openHint } from '../../globals';
 import { useDispatch } from 'reactn';
-import { ContentCard } from '../../sharedComponents/musicsComponent/contentCard';
+import { ContentCard } from '../../sharedComponents/basicComponents/contentCard';
 import Pagination from '@material-ui/lab/Pagination';
 import { useGlobal } from 'reactn';
 import { wrapFunc1 } from '../../common/common';
