@@ -8,6 +8,7 @@ import RemoveCircleOutlineIcon from '@material-ui/icons/RemoveCircleOutline';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import PeopleIcon from '@material-ui/icons/People';
 import EditIcon from '@material-ui/icons/Edit';
+import { UserHead } from '../../sharedComponents/basicComponents/userHead';
 
 const useStyles = makeStyles(() =>
     createStyles({
@@ -53,12 +54,7 @@ export const UserInfoCard: React.FC<UserInfoCardProps> = (props: UserInfoCardPro
         <Card className={classes.card}>
             <Grid container item xs={12}>
                 <Grid container item xs={3}>
-                    <Grid item xs={12}>
-                        <img src={avatar} alt="avatar" className={classes.avatar} />
-                    </Grid>
-                    <Grid item xs={12}>
-                        <div className={classes.name}>{name}</div>
-                    </Grid>
+                    <UserHead avatar={avatar} userName={name} size={90}></UserHead>
                 </Grid>
                 <Grid container item xs={9}>
                     <Grid item sm={3} xs={6}>

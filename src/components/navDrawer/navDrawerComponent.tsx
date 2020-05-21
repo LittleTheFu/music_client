@@ -14,32 +14,33 @@ import { NavListIconButton } from './NavListIconButton';
 import AlbumIcon from '@material-ui/icons/Album';
 import PeopleIcon from '@material-ui/icons/People';
 import GitHubIcon from '@material-ui/icons/GitHub';
-import { makeStyles, createStyles } from '@material-ui/core/styles';
+// import { makeStyles, createStyles } from '@material-ui/core/styles';
 import Divider from '@material-ui/core/Divider';
 import { emitLogoutSocketMsg } from '../../common/socket';
 import Badge from '@material-ui/core/Badge';
+import { UserHead } from '../../sharedComponents/basicComponents/userHead';
 
-const useStyles = makeStyles(() =>
-    createStyles({
-        avatar: {
-            borderRadius: '50%',
-            display: 'block',
-            marginLeft: 'auto',
-            marginRight: 'auto',
-            height: 80,
-            width: 80,
-        },
-        name: {
-            textAlign: 'center',
-            fontWeight: 'bold',
-        },
-    }),
-);
+// const useStyles = makeStyles(() =>
+//     createStyles({
+//         avatar: {
+//             borderRadius: '50%',
+//             display: 'block',
+//             marginLeft: 'auto',
+//             marginRight: 'auto',
+//             height: 80,
+//             width: 80,
+//         },
+//         name: {
+//             textAlign: 'center',
+//             fontWeight: 'bold',
+//         },
+//     }),
+// );
 
 export const TemporaryDrawer: React.FC = () => {
     const [drawerOpen, setDrawerOpen] = useGlobal('drawerOpen');
 
-    const classes = useStyles({});
+    // const classes = useStyles({});
     const history = useHistory();
     const [_unreadMailCnt] = useGlobal('unreadMailCnt');
 
@@ -91,8 +92,7 @@ export const TemporaryDrawer: React.FC = () => {
                 }}
             >
                 <List>
-                    <img onClick={meClick} src={getMeAvatar()} alt="avatar " className={classes.avatar} />
-                    <div className={classes.name}>{getMeName()}</div>
+                    <UserHead avatar={getMeAvatar()} userName={getMeName()} avatarClick={meClick} size={80}></UserHead>
                     <Divider></Divider>
                     <NavListIconButton msg={'music'} iconClick={musicClick}>
                         <MusicNoteIcon />
