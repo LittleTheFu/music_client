@@ -119,7 +119,7 @@ export const MailPage: React.FC = () => {
         <div>
             {showAlert ? (
                 <MuiAlert severity="info" elevation={6} variant="filled" onClick={alertClick}>
-                    here comes new mails, click me to refresh.
+                    click me to get new mail.
                 </MuiAlert>
             ) : (
                 <div></div>
