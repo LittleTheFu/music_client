@@ -9,6 +9,8 @@ import { useDispatch, useGlobal } from 'reactn';
 // import { makeStyles, createStyles } from '@material-ui/core/styles';
 import { ContentCard } from '../../sharedComponents/basicComponents/contentCard';
 import { wrapFunc1 } from '../../common/common';
+import { useIsMount } from '../../common/isMount';
+import MuiAlert from '@material-ui/lab/Alert';
 
 // const useStyles = makeStyles(() =>
 //     createStyles({
@@ -33,7 +35,9 @@ export const MailPage: React.FC = () => {
     const openTheHint = useDispatch(openHint);
     const _decUnreadMailCnt = useDispatch(decUnreadMailCnt);
     const [refreshMailPage] = useGlobal('refreshMailPage');
+    const [showAlert, setShowAlert] = useState(false);
     // const classes = useStyles({});
+    const isMount = useIsMount();
 
     const history = useHistory();
 
@@ -43,15 +47,25 @@ export const MailPage: React.FC = () => {
         return r;
     };
 
+    const getFixedMails = (ms: Mail[]): Mail[] => {
+        return ms.map(m => {
+            return getFixedMail(m);
+        });
+    };
+
     useEffect(() => {
         getUserMails(fetchedMails => {
-            const fixedMails = fetchedMails.map(m => {
-                return getFixedMail(m);
-            });
-            setMails(fixedMails);
-
-            console.log(fetchedMails);
+            setMails(getFixedMails(fetchedMails));
         }, console.log);
+    }, []);
+
+    useEffect(() => {
+        if (isMount) {
+            console.log('First Render');
+        } else {
+            setShowAlert(true);
+            console.log('Subsequent Render');
+        }
     }, [refreshMailPage]);
 
     const mailClick = (id: number): void => {
@@ -73,6 +87,14 @@ export const MailPage: React.FC = () => {
         return (): void => {
             mailClick(id);
         };
+    };
+
+    const alertClick = (): void => {
+        setShowAlert(false);
+
+        getUserMails(fetchedMails => {
+            setMails(getFixedMails(fetchedMails));
+        }, console.log);
     };
 
     // const getShortContentStr = (content: string): string => {
@@ -122,8 +144,18 @@ export const MailPage: React.FC = () => {
     });
 
     return (
-        <List component="nav">
-            {mails && mails.length > 0 ? <React.Fragment>{mailElements}</React.Fragment> : <div></div>}
-        </List>
+        <div>
+            {showAlert ? (
+                <MuiAlert severity="info" elevation={6} variant="filled" onClick={alertClick}>
+                    here comes new mails, click me to refresh.
+                </MuiAlert>
+            ) : (
+                <div></div>
+            )}
+
+            <List component="nav">
+                {mails && mails.length > 0 ? <React.Fragment>{mailElements}</React.Fragment> : <div></div>}
+            </List>
+        </div>
     );
 };
