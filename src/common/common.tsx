@@ -7,3 +7,9 @@ export const wrapName = (id: number, name: string): string => {
 
     return name;
 };
+
+export function wrapFunc1<T>(fn: (data: T) => void, param: T) {
+    return (): void => {
+        fn(param);
+    };
+}

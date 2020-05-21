@@ -3,7 +3,7 @@ import { RetSimpleUser } from '../../common/interface';
 import { getAllUsers } from '../../common/service';
 import { makeStyles } from '@material-ui/core/styles';
 import { useHistory } from 'react-router-dom';
-import { wrapName } from '../../common/common';
+import { wrapName, wrapFunc1 } from '../../common/common';
 import { UserHead } from '../../sharedComponents/basicComponents/userHead';
 
 const useStyles = makeStyles({
@@ -24,11 +24,11 @@ export const AllUsersPage: React.FC = () => {
         history.push(`/main/userdetail/` + userId);
     };
 
-    const avatarClickWrapper = (userId: number) => {
-        return (): void => {
-            avatarClick(userId);
-        };
-    };
+    // const avatarClickWrapper = (userId: number) => {
+    //     return (): void => {
+    //         avatarClick(userId);
+    //     };
+    // };
 
     useEffect(() => {
         getAllUsers((o): void => {
@@ -45,7 +45,8 @@ export const AllUsersPage: React.FC = () => {
                         key={index}
                         avatar={user.avatarUrl}
                         userName={wrapName(user.id, user.name)}
-                        avatarClick={avatarClickWrapper(user.id)}
+                        avatarClick={wrapFunc1(avatarClick, user.id)}
+                        nameClick={wrapFunc1(avatarClick, user.id)}
                     />
                 );
             })}

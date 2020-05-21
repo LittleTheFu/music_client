@@ -29,12 +29,13 @@ interface UserHeadProps {
     avatar: string;
 
     avatarClick: () => void;
+    nameClick?: () => void;
 }
 
 export const UserHead: React.FC<UserHeadProps> = (props: UserHeadProps) => {
     const classes = useStyles({});
 
-    const { userName, avatar, avatarClick } = props;
+    const { userName, avatar, avatarClick, nameClick } = props;
 
     return (
         <div className={classes.bounder}>
@@ -46,14 +47,19 @@ export const UserHead: React.FC<UserHeadProps> = (props: UserHeadProps) => {
                 alt="avatar"
                 className={classes.avatar}
             />
+
             <div className={classes.name}>
-                <Link
-                    onClick={(): void => {
-                        avatarClick();
-                    }}
-                >
-                    {userName}
-                </Link>
+                {nameClick ? (
+                    <Link
+                        onClick={(): void => {
+                            nameClick();
+                        }}
+                    >
+                        {userName}
+                    </Link>
+                ) : (
+                    <div>{userName}</div>
+                )}
             </div>
         </div>
     );
