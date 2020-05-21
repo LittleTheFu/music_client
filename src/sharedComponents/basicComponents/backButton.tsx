@@ -11,11 +11,7 @@ export const BackButton: React.FC = () => {
     };
 
     return (
-        <IconButton
-            onClick={(): void => {
-                backClick();
-            }}
-        >
+        <IconButton onClick={backClick}>
             <ArrowBackIcon></ArrowBackIcon>
         </IconButton>
     );
