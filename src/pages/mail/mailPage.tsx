@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { getUserMails, deleteMail } from '../../common/service';
 import { Mail } from '../../common/interface';
 import List from '@material-ui/core/List';
@@ -34,17 +34,17 @@ export const MailPage: React.FC = () => {
         return r;
     };
 
-    const getFixedMails = (ms: Mail[]): Mail[] => {
+    const getFixedMails = useCallback((ms: Mail[]): Mail[] => {
         return ms.map(m => {
             return getFixedMail(m);
         });
-    };
+    }, []);
 
     useEffect(() => {
         getUserMails(fetchedMails => {
             setMails(getFixedMails(fetchedMails));
         }, console.log);
-    }, []);
+    }, [getFixedMails]);
 
     useEffect(() => {
         if (isMount) {

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { useGlobal } from 'reactn';
 import { getDetail, sendMail, fetchMusicsByCollectionId } from 'common/service';
 import { UserDetail } from '../../common/interface';
 import { followUser, unfollowUser } from '../../common/service';
