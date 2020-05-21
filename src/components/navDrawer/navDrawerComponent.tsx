@@ -92,7 +92,13 @@ export const TemporaryDrawer: React.FC = () => {
                 }}
             >
                 <List>
-                    <UserHead avatar={getMeAvatar()} userName={getMeName()} avatarClick={meClick} size={80}></UserHead>
+                    <UserHead
+                        padding={5}
+                        avatar={getMeAvatar()}
+                        userName={getMeName()}
+                        avatarClick={meClick}
+                        size={80}
+                    ></UserHead>
                     <Divider></Divider>
                     <NavListIconButton msg={'music'} iconClick={musicClick}>
                         <MusicNoteIcon />

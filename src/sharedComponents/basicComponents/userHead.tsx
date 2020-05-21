@@ -5,12 +5,13 @@ import Link from '@material-ui/core/Link';
 interface BoundProps {
     size: number;
     center: boolean;
+    padding: number;
 }
 
 const useStyles = makeStyles(() =>
     createStyles({
         bounder: {
-            padding: 0,
+            padding: (props: BoundProps): number => props.padding,
             height: (props: BoundProps): number => props.size,
             width: (props: BoundProps): number => props.size,
             // border: '2px solid #000',
@@ -39,14 +40,15 @@ interface UserHeadProps {
     avatar: string;
     size?: number;
     center?: boolean;
+    padding?: number;
 
     avatarClick?: () => void;
     nameClick?: () => void;
 }
 
 export const UserHead: React.FC<UserHeadProps> = (props: UserHeadProps) => {
-    const { userName, avatar, avatarClick, nameClick, size, center } = props;
-    const classes = useStyles({ size: size, center: center });
+    const { userName, avatar, avatarClick, nameClick, size, center, padding } = props;
+    const classes = useStyles({ size: size, center: center, padding: padding });
 
     return (
         <div className={classes.bounder}>
@@ -79,4 +81,5 @@ export const UserHead: React.FC<UserHeadProps> = (props: UserHeadProps) => {
 UserHead.defaultProps = {
     size: 150,
     center: true,
+    padding: 0,
 };

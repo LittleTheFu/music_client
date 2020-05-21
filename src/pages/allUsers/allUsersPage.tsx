@@ -42,6 +42,7 @@ export const AllUsersPage: React.FC = () => {
             {users.map((user, index) => {
                 return (
                     <UserHead
+                        padding={10}
                         key={index}
                         avatar={user.avatarUrl}
                         userName={wrapName(user.id, user.name)}
