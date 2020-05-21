@@ -53,7 +53,7 @@ export const UserInfoCard: React.FC<UserInfoCardProps> = (props: UserInfoCardPro
     return (
         <Card className={classes.card}>
             <Grid container item xs={12}>
-                <Grid container item xs={3}>
+                <Grid item xs={3}>
                     <UserHead avatar={avatar} userName={name} size={90}></UserHead>
                 </Grid>
                 <Grid container item xs={9}>
