@@ -81,7 +81,7 @@ export const FollowerListPage: React.FC = () => {
 
     const followerElements = followers.map((f: Follower, index: number) => {
         return (
-            <Grid item xs={12} sm={4} key={index} className={classes.card}>
+            <Grid item xs={12} sm={6} md={4} lg={3} key={index} className={classes.card}>
                 <FollowerCard
                     followClick={wrapFunc1(followClick, f.id)}
                     unfollowClick={wrapFunc1(unfollowClick, f.id)}

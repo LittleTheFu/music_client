@@ -1,6 +1,5 @@
 import React from 'react';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import { Follower } from '../../common/interface';
 import IconButton from '@material-ui/core/IconButton';
@@ -28,10 +27,9 @@ const useStyles = makeStyles((theme: Theme) =>
         name: {
             textAlign: 'center',
         },
-        button: {
-            display: 'block',
-            marginLeft: 'auto',
-            marginRight: 'auto',
+        btnRoot: {
+            display: 'inline-block',
+            verticalAlign: 'middle',
         },
     }),
 );
@@ -52,33 +50,30 @@ export const FollowerCard: React.FC<FollowerCardProps> = (props: FollowerCardPro
 
     return (
         <Card>
-            <Grid container>
-                <Grid item xs={2} className={classes.avatarContainer}>
-                    <UserHead
-                        padding={5}
-                        size={80}
-                        avatar={avatarUrl}
-                        userName={wrapName(id, name)}
-                        avatarClick={avatarClick}
-                        nameClick={avatarClick}
-                    ></UserHead>
-                </Grid>
-                <Grid container item xs={10}>
-                    <Grid item xs={12}>
-                        {isFollowed ? (
-                            <IconButton className={classes.button} onClick={unfollowClick}>
-                                <RemoveCircleOutlineIcon />
-                                unfollow
-                            </IconButton>
-                        ) : (
-                            <IconButton className={classes.button} onClick={followClick}>
-                                <AddCircleOutlineIcon />
-                                follow
-                            </IconButton>
-                        )}
-                    </Grid>
-                </Grid>
-            </Grid>
+            <div className={classes.btnRoot}>
+                <UserHead
+                    padding={5}
+                    size={80}
+                    avatar={avatarUrl}
+                    userName={wrapName(id, name)}
+                    avatarClick={avatarClick}
+                    nameClick={avatarClick}
+                    center={false}
+                ></UserHead>
+            </div>
+            <div className={classes.btnRoot}>
+                {isFollowed ? (
+                    <IconButton onClick={unfollowClick}>
+                        <RemoveCircleOutlineIcon />
+                        unfollow
+                    </IconButton>
+                ) : (
+                    <IconButton onClick={followClick}>
+                        <AddCircleOutlineIcon />
+                        follow
+                    </IconButton>
+                )}
+            </div>
         </Card>
     );
 };
