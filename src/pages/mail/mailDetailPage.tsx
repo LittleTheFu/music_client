@@ -10,7 +10,6 @@ import Button from '@material-ui/core/Button';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import { BackButton } from '../../sharedComponents/basicComponents/backButton';
-import Link from '@material-ui/core/Link';
 import { openHint } from '../../globals';
 import { useDispatch } from 'reactn';
 import { UserHead } from '../../sharedComponents/basicComponents/userHead';
@@ -117,6 +116,8 @@ export const MailDetailPage: React.FC = () => {
                                 avatar={mail.fromAvatar}
                                 userName={mail.fromName}
                                 avatarClick={avatarClickWrapper(mail.fromId)}
+                                nameClick={avatarClickWrapper(mail.fromId)}
+                                center={false}
                             ></UserHead>
                             <div className={classes.content}>{mail.content}</div>
                             <div className={classes.content}>{mail.date.toString()}</div>

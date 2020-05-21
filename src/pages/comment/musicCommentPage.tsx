@@ -15,6 +15,7 @@ import { useDispatch } from 'reactn';
 import { ContentCard } from '../../sharedComponents/musicsComponent/contentCard';
 import Pagination from '@material-ui/lab/Pagination';
 import { useGlobal } from 'reactn';
+import { wrapFunc1 } from '../../common/common';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -123,13 +124,11 @@ export const MusicCommentPage: React.FC = () => {
             <div key={index}>
                 <ListItem>
                     <ContentCard
-                        deleteClick={deleteClick}
-                        detailClick={detailClick}
-                        id={comment.id}
+                        deleteClick={wrapFunc1(deleteClick, comment.id)}
+                        detailClick={wrapFunc1(detailClick, comment.userId)}
                         avatar={comment.avatar}
                         content={comment.content}
                         canBeDeleted={comment.canBeDeleted}
-                        userId={comment.userId}
                         username={comment.username}
                         date={comment.date}
                     ></ContentCard>

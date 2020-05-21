@@ -4,6 +4,7 @@ import Link from '@material-ui/core/Link';
 
 interface BoundProps {
     size: number;
+    center: boolean;
 }
 
 const useStyles = makeStyles(() =>
@@ -12,11 +13,11 @@ const useStyles = makeStyles(() =>
             padding: 0,
             height: (props: BoundProps): number => props.size,
             width: (props: BoundProps): number => props.size,
-            border: '2px solid #000',
+            // border: '2px solid #000',
 
             display: 'block',
-            marginLeft: 'auto',
-            marginRight: 'auto',
+            marginLeft: (props: BoundProps): string => (props.center ? 'auto' : '0'),
+            marginRight: (props: BoundProps): string => (props.center ? 'auto' : '0'),
         },
         avatar: {
             borderRadius: '50%',
@@ -37,14 +38,15 @@ interface UserHeadProps {
     userName: string;
     avatar: string;
     size?: number;
+    center?: boolean;
 
     avatarClick?: () => void;
     nameClick?: () => void;
 }
 
 export const UserHead: React.FC<UserHeadProps> = (props: UserHeadProps) => {
-    const { userName, avatar, avatarClick, nameClick, size } = props;
-    const classes = useStyles({ size: size });
+    const { userName, avatar, avatarClick, nameClick, size, center } = props;
+    const classes = useStyles({ size: size, center: center });
 
     return (
         <div className={classes.bounder}>
@@ -76,4 +78,5 @@ export const UserHead: React.FC<UserHeadProps> = (props: UserHeadProps) => {
 
 UserHead.defaultProps = {
     size: 150,
+    center: true,
 };

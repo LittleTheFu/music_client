@@ -8,6 +8,7 @@ import { openHint, decUnreadMailCnt } from '../../globals';
 import { useDispatch, useGlobal } from 'reactn';
 // import { makeStyles, createStyles } from '@material-ui/core/styles';
 import { ContentCard } from '../../sharedComponents/musicsComponent/contentCard';
+import { wrapFunc1 } from '../../common/common';
 
 // const useStyles = makeStyles(() =>
 //     createStyles({
@@ -103,23 +104,15 @@ export const MailPage: React.FC = () => {
         );
     };
 
-    const deleteClickWrapper = (mail: Mail) => {
-        return (id: number): void => {
-            deleteCLick(mail);
-        };
-    };
-
     const mailElements = mails.map((m: Mail, index: number) => {
         return (
             <ListItem divider button key={index}>
                 <ContentCard
                     cardClick={mailClickWrapper(m.id)}
-                    deleteClick={deleteClickWrapper(m)}
-                    id={m.id}
+                    deleteClick={wrapFunc1(deleteCLick, m)}
                     avatar={m.fromAvatar}
                     content={m.content}
                     canBeDeleted={true}
-                    userId={m.fromId}
                     username={m.fromName}
                     date={m.date}
                     boldText={!m.read}

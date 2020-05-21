@@ -49,18 +49,15 @@ const useStyles = makeStyles(() =>
 );
 
 interface ContentCardProps {
-    // comment: MusicComment;
-    id: number;
     content: string;
     username: string;
     avatar: string;
-    userId: number;
     date: Date;
     canBeDeleted: boolean;
     boldText?: boolean;
 
-    detailClick?: (userId: number) => void;
-    deleteClick: (commentId: number) => void;
+    detailClick?: () => void;
+    deleteClick: () => void;
     cardClick?: () => void;
 }
 
@@ -68,7 +65,7 @@ export const ContentCard: React.FC<ContentCardProps> = (props: ContentCardProps)
     const classes = useStyles({});
 
     const { detailClick, deleteClick, cardClick } = props;
-    const { avatar, userId, username, content, date, canBeDeleted, id, boldText } = props;
+    const { avatar, username, content, date, canBeDeleted, boldText } = props;
 
     const localDate = new Date(date);
 
@@ -80,13 +77,13 @@ export const ContentCard: React.FC<ContentCardProps> = (props: ContentCardProps)
                         className={classes.userAvatar}
                         src={avatar}
                         onClick={(): void => {
-                            detailClick?.(userId);
+                            detailClick?.();
                         }}
                     ></Avatar>
                     <Link
                         className={classes.userName}
                         onClick={(): void => {
-                            detailClick?.(userId);
+                            detailClick?.();
                         }}
                     >
                         {username}
@@ -96,15 +93,7 @@ export const ContentCard: React.FC<ContentCardProps> = (props: ContentCardProps)
                     <div className={boldText ? classes.contentBold : classes.contentNormal}>{content}</div>
                     <Grid item xs={12} className={classes.date}>
                         {localDate.toString()}
-                        {canBeDeleted ? (
-                            <DeleteButton
-                                clickDelete={(): void => {
-                                    deleteClick(id);
-                                }}
-                            ></DeleteButton>
-                        ) : (
-                            <div></div>
-                        )}
+                        {canBeDeleted ? <DeleteButton clickDelete={deleteClick}></DeleteButton> : <div></div>}
                     </Grid>
                 </Grid>
             </Grid>
