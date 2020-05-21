@@ -59,10 +59,6 @@ export const MailPage: React.FC = () => {
         const m = mails.find(mail => {
             return mail.id === id;
         });
-        console.log('mail click');
-        console.log(mails);
-        console.log(m);
-        console.log(id);
         if (m.read === false) {
             _decUnreadMailCnt();
         }
