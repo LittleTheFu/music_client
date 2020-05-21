@@ -14,19 +14,6 @@ import MuiAlert from '@material-ui/lab/Alert';
 
 // const useStyles = makeStyles(() =>
 //     createStyles({
-//         mailIcon: {
-//             paddingLeft: 8,
-//             paddingRight: 8,
-//         },
-//         boldText: {
-//             fontWeight: 'bold',
-//         },
-//         normalText: {
-//             fontWeight: 'normal',
-//         },
-//         fromName: {
-//             color: 'blue',
-//         },
 //     }),
 // );
 
@@ -96,17 +83,6 @@ export const MailPage: React.FC = () => {
             setMails(getFixedMails(fetchedMails));
         }, console.log);
     };
-
-    // const getShortContentStr = (content: string): string => {
-    //     const MAX_LEN = 10;
-    //     const len = content.length;
-
-    //     if (len <= MAX_LEN) {
-    //         return content;
-    //     }
-
-    //     return content.substr(0, MAX_LEN) + '...';
-    // };
 
     const deleteCLick = (mail: Mail): void => {
         deleteMail(
