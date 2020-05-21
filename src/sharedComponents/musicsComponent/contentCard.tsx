@@ -7,18 +7,6 @@ import { UserHead } from '../basicComponents/userHead';
 
 const useStyles = makeStyles(() =>
     createStyles({
-        // userAvatar: {
-        //     height: 80,
-        //     width: 80,
-        //     marginLeft: 'auto',
-        //     marginRight: 'auto',
-        // },
-        // userName: {
-        //     textAlign: 'center',
-        //     marginLeft: 'auto',
-        //     marginRight: 'auto',
-        //     display: 'block',
-        // },
         card: {
             width: '100%',
         },
