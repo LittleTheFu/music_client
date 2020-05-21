@@ -2,24 +2,23 @@ import React from 'react';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
-import Avatar from '@material-ui/core/Avatar';
-import Link from '@material-ui/core/Link';
 import { DeleteButton } from '../basicComponents/deleteButton';
+import { UserHead } from '../basicComponents/userHead';
 
 const useStyles = makeStyles(() =>
     createStyles({
-        userAvatar: {
-            height: 80,
-            width: 80,
-            marginLeft: 'auto',
-            marginRight: 'auto',
-        },
-        userName: {
-            textAlign: 'center',
-            marginLeft: 'auto',
-            marginRight: 'auto',
-            display: 'block',
-        },
+        // userAvatar: {
+        //     height: 80,
+        //     width: 80,
+        //     marginLeft: 'auto',
+        //     marginRight: 'auto',
+        // },
+        // userName: {
+        //     textAlign: 'center',
+        //     marginLeft: 'auto',
+        //     marginRight: 'auto',
+        //     display: 'block',
+        // },
         card: {
             width: '100%',
         },
@@ -73,21 +72,13 @@ export const ContentCard: React.FC<ContentCardProps> = (props: ContentCardProps)
         <Card className={classes.card} onClick={cardClick}>
             <Grid container>
                 <Grid item xs={3} md={2} lg={1}>
-                    <Avatar
-                        className={classes.userAvatar}
-                        src={avatar}
-                        onClick={(): void => {
-                            detailClick?.();
-                        }}
-                    ></Avatar>
-                    <Link
-                        className={classes.userName}
-                        onClick={(): void => {
-                            detailClick?.();
-                        }}
-                    >
-                        {username}
-                    </Link>
+                    <UserHead
+                        size={80}
+                        avatar={avatar}
+                        userName={username}
+                        nameClick={detailClick}
+                        avatarClick={detailClick}
+                    ></UserHead>
                 </Grid>
                 <Grid container item xs={9} md={10} lg={11}>
                     <div className={boldText ? classes.contentBold : classes.contentNormal}>{content}</div>
