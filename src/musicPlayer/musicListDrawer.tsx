@@ -28,7 +28,7 @@ interface MusicListDrawerProps {
 
     musics: Music[];
     currentMusicId: number;
-    clickMusic: (music: Music, index: number) => void;
+    clickMusic: (music: Music) => void;
 }
 
 export const MusicListDrawer: React.FC<MusicListDrawerProps> = (props: MusicListDrawerProps) => {
@@ -38,7 +38,7 @@ export const MusicListDrawer: React.FC<MusicListDrawerProps> = (props: MusicList
 
     const musicElements = musics.map((music: Music, index: number) => {
         return (
-            <ListItem divider button key={index} onClick={(): void => clickMusic(music, index)}>
+            <ListItem divider button key={index} onClick={(): void => clickMusic(music)}>
                 {music.name}
                 {currentMusicId === music.id ? (
                     <VolumeUpIcon className={classes.soundIcon}></VolumeUpIcon>
