@@ -1,6 +1,6 @@
 import io from 'socket.io-client';
 import { getDispatch } from 'reactn';
-import { getLoginFlag, getMeId } from '../globals';
+import { getLoginFlag, getMeId, setLoginFlag } from '../globals';
 import { getUnreadMailNum } from './service';
 
 const host = process.env.REACT_APP_HOST;
@@ -26,6 +26,7 @@ export const initSocket = (): void => {
     });
 
     socket.on('banned', function() {
+        setLoginFlag(false);
         getDispatch().activeBanFlag();
     });
 
