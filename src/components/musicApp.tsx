@@ -21,12 +21,35 @@ import { ArtistPage } from '../pages/artist/artistPage';
 import { AlbumDetailPage } from '../pages/album/albumDetailPage';
 import { AllUsersPage } from '../pages/allUsers/allUsersPage';
 import { SourceCodePage } from '../pages/source/sourceCodePage';
+import Backdrop from '@material-ui/core/Backdrop';
+import { makeStyles } from '@material-ui/core/styles';
+import { setLoginFlag } from '../globals';
+import { useHistory } from 'react-router-dom';
+
+const useStyles = makeStyles(theme => ({
+    backdrop: {
+        zIndex: theme.zIndex.drawer + 1,
+        color: '#fff',
+        textAlign: 'center',
+    },
+}));
 
 const audioElement = getAudioPlayer();
 
 export const MusicApp: React.FC = () => {
+    const [showBannedMask, setShowBannedMask] = useGlobal('showBannedMask');
     const [musics] = useGlobal('musics');
     const { path } = useRouteMatch();
+
+    const history = useHistory();
+
+    const classes = useStyles();
+
+    const handleClose = (): void => {
+        setShowBannedMask(false);
+        setLoginFlag(false);
+        history.push('/login');
+    };
 
     return (
         <div>
@@ -84,6 +107,9 @@ export const MusicApp: React.FC = () => {
                     </Switch>
                 </Grid>
             </Grid>
+            <Backdrop className={classes.backdrop} open={showBannedMask} onClick={handleClose}>
+                <h1>You have been banned, click to redirect to login page!</h1>
+            </Backdrop>
         </div>
     );
 };

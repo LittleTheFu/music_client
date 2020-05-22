@@ -25,6 +25,10 @@ export const initSocket = (): void => {
         // socket.emit('identity', 0, (response: unknown) => console.log('Identity:', response));
     });
 
+    socket.on('banned', function() {
+        getDispatch().activeBanFlag();
+    });
+
     socket.on('new_mail', function() {
         getDispatch().incUnreadMailCnt();
         getDispatch().setRefreshMailPageFlag();
