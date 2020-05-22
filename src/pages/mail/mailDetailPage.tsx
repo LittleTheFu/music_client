@@ -13,6 +13,7 @@ import { BackButton } from '../../sharedComponents/basicComponents/backButton';
 // import { openHint } from '../../globals';
 import { useDispatch } from 'reactn';
 import { UserHead } from '../../sharedComponents/basicComponents/userHead';
+import { wrapFunc1 } from '../../common/common';
 
 const useStyles = makeStyles(() =>
     createStyles({
@@ -77,12 +78,6 @@ export const MailDetailPage: React.FC = () => {
         history.push(`/main/userdetail/` + fromId);
     };
 
-    const avatarClickWrapper = (id: number) => {
-        return (): void => {
-            fromNameClick(id);
-        };
-    };
-
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
         event.preventDefault();
         sendMail(
@@ -115,8 +110,8 @@ export const MailDetailPage: React.FC = () => {
                             <UserHead
                                 avatar={mail.fromAvatar}
                                 userName={mail.fromName}
-                                avatarClick={avatarClickWrapper(mail.fromId)}
-                                nameClick={avatarClickWrapper(mail.fromId)}
+                                avatarClick={wrapFunc1(fromNameClick, mail.fromId)}
+                                nameClick={wrapFunc1(fromNameClick, mail.fromId)}
                                 center={false}
                             ></UserHead>
                             <div className={classes.content}>{mail.content}</div>

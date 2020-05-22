@@ -66,12 +66,6 @@ export const MailPage: React.FC = () => {
         history.push(`/main/mail_detail/` + id);
     };
 
-    const mailClickWrapper = (id: number) => {
-        return (): void => {
-            mailClick(id);
-        };
-    };
-
     const alertClick = (): void => {
         setShowAlert(false);
 
@@ -98,7 +92,7 @@ export const MailPage: React.FC = () => {
         return (
             <ListItem divider button key={index}>
                 <ContentCard
-                    cardClick={mailClickWrapper(m.id)}
+                    cardClick={wrapFunc1(mailClick, m.id)}
                     deleteClick={wrapFunc1(deleteCLick, m)}
                     avatar={m.fromAvatar}
                     content={m.content}
