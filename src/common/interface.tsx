@@ -61,7 +61,7 @@ export class RetComments {
     pageNum: number;
 }
 
-export class RetUpdateAvatarDto {
+export class RetAvatar {
     remoteUrl: string;
 }
 

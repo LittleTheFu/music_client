@@ -11,7 +11,7 @@ import {
     Artist,
     MusicCollection,
     UserDetail,
-    RetUpdateAvatarDto,
+    RetAvatar,
     RetMsgObj,
     RetComments,
 } from './interface';
@@ -530,11 +530,7 @@ function fileObjectPost<T>(
 }
 
 const uploadAvatarUrl = profilePrefix + 'upload';
-export const uploadAvatar = (
-    data: FormData,
-    resolve: (data: RetUpdateAvatarDto) => void,
-    reject: (arg0: object) => void,
-): Promise<RetUpdateAvatarDto> => {
+export const uploadAvatar = (data: FormData, resolve: (data: RetAvatar) => void): Promise<RetAvatar> => {
     return fileObjectPost(uploadAvatarUrl, data, resolve, {
         Authorization: 'Bearer ' + getToken(),
     });
