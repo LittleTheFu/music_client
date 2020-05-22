@@ -22,12 +22,14 @@ export const LobbyPage: React.FC = () => {
     }, []);
 
     const clickCollectionCover = (name: string, id: number): void => {
-        musicCollections.forEach(c => {
-            if (c.id === id) {
-                updatePlayingMusics(c.musics);
-                updateTheCurrentMusic(c.musics[0]);
-            }
+        const c = musicCollections.find(ms => {
+            return ms.id === id;
         });
+
+        if (c && c.musics && c.musics.length > 0) {
+            updatePlayingMusics(c.musics);
+            updateTheCurrentMusic(c.musics[0]);
+        }
     };
 
     const bodyClick = (name: string, id: number): void => {
