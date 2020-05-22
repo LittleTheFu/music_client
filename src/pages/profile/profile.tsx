@@ -2,21 +2,45 @@ import React, { useState, useEffect } from 'react';
 import Button from '@material-ui/core/Button';
 import { uploadAvatar } from '../../common/service';
 import { setMeAvatar, getMeAvatar } from '../../globals';
-import { RetUpdateAvatarDto } from '../../common/interface';
-import CloudUploadIcon from '@material-ui/icons/CloudUpload';
+import { RetAvatar } from '../../common/interface';
 import IconButton from '@material-ui/core/IconButton';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
-// import { openHint } from '../../globals';
 import { useDispatch } from 'reactn';
+import AddPhotoAlternateIcon from '@material-ui/icons/AddPhotoAlternate';
 
 const useStyles = makeStyles(() =>
     createStyles({
-        btnGroup: {
+        root: {
+            // border: '1px solid #000',
             display: 'block',
+            marginLeft: 'auto',
+            marginRight: 'auto',
+        },
+        addBtn: {
+            display: 'inline-block',
+            height: 80,
+            width: 80,
         },
         img: {
             width: 80,
             height: 80,
+        },
+        imgGroup: {
+            width: 160,
+            // border: '1px solid #000',
+
+            display: 'block',
+            marginLeft: 'auto',
+            marginRight: 'auto',
+        },
+        okBtn: {
+            display: 'block',
+            width: 140,
+            marginLeft: 'auto',
+            marginRight: 'auto',
+        },
+        message: {
+            textAlign: 'center',
         },
     }),
 );
@@ -64,39 +88,34 @@ export const ProfilePage: React.FC = () => {
         const formData = new FormData();
         formData.append('avatar', selectedFile);
 
-        uploadAvatar(
-            formData,
-            o => {
-                const obj = o as RetUpdateAvatarDto;
-                setMeAvatar(obj.remoteUrl);
-                openTheHint('successed!');
-            },
-            e => {
-                console.log(e);
-            },
-        );
+        uploadAvatar(formData, (o: RetAvatar): void => {
+            setMeAvatar(o.remoteUrl);
+            openTheHint('successed!');
+        });
     };
 
     return (
-        <div>
-            <h1>Choose a img, at most 10KB</h1>
-            <h1>size: {size / 1024}KB</h1>
-            <img src={preview} className={classes.img} alt="avatar" />
-            <div className={classes.btnGroup}>
-                <IconButton component="label">
-                    <input
-                        accept="image/*"
-                        id="contained-button-file"
-                        type="file"
-                        onChange={onSelectFile}
-                        name="avatar"
-                        style={{ display: 'none' }}
-                    />
-                    <CloudUploadIcon></CloudUploadIcon>
-                </IconButton>
+        <div className={classes.root}>
+            <h2 className={classes.message}>Choose a img, at most 10KB</h2>
+            <h2 className={classes.message}>size: {size / 1024}KB</h2>
+            <div className={classes.imgGroup}>
+                <img src={preview} className={classes.img} alt="avatar" />
+                <div className={classes.addBtn}>
+                    <IconButton component="label">
+                        <input
+                            accept="image/*"
+                            id="contained-button-file"
+                            type="file"
+                            onChange={onSelectFile}
+                            name="avatar"
+                            style={{ display: 'none' }}
+                        />
+                        <AddPhotoAlternateIcon></AddPhotoAlternateIcon>
+                    </IconButton>
+                </div>
             </div>
 
-            <Button variant="contained" color="primary" component="span" onClick={uploadFile}>
+            <Button variant="contained" color="primary" component="span" onClick={uploadFile} className={classes.okBtn}>
                 OK
             </Button>
         </div>
