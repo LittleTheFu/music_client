@@ -8,7 +8,7 @@ import { decUnreadMailCnt } from '../../globals';
 import { useDispatch, useGlobal } from 'reactn';
 // import { makeStyles, createStyles } from '@material-ui/core/styles';
 import { ContentCard } from '../../sharedComponents/basicComponents/contentCard';
-import { wrapFunc1 } from '../../common/common';
+import { wrapFunc1, wrapName } from '../../common/common';
 import { useIsMount } from '../../common/isMount';
 import MuiAlert from '@material-ui/lab/Alert';
 
@@ -97,7 +97,7 @@ export const MailPage: React.FC = () => {
                     avatar={m.fromAvatar}
                     content={m.content}
                     canBeDeleted={true}
-                    username={m.fromName}
+                    username={wrapName(m.fromId, m.fromName)}
                     date={m.date}
                     boldText={!m.read}
                 ></ContentCard>

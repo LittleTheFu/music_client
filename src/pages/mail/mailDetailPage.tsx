@@ -13,7 +13,7 @@ import { BackButton } from '../../sharedComponents/basicComponents/backButton';
 // import { openHint } from '../../globals';
 import { useDispatch } from 'reactn';
 import { UserHead } from '../../sharedComponents/basicComponents/userHead';
-import { wrapFunc1 } from '../../common/common';
+import { wrapFunc1, wrapName } from '../../common/common';
 
 const useStyles = makeStyles(() =>
     createStyles({
@@ -109,7 +109,7 @@ export const MailDetailPage: React.FC = () => {
                         <Grid item xs={12}>
                             <UserHead
                                 avatar={mail.fromAvatar}
-                                userName={mail.fromName}
+                                userName={wrapName(mail.fromId, mail.fromName)}
                                 avatarClick={wrapFunc1(fromNameClick, mail.fromId)}
                                 nameClick={wrapFunc1(fromNameClick, mail.fromId)}
                                 center={false}
