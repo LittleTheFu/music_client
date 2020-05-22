@@ -25,23 +25,24 @@ export const MusicCollectionPage: React.FC = () => {
     const [modalOpen, setModalOpen] = useState(false);
     const updatePlayingMusics = useDispatch(updateMusics);
     const updateTheCurrentMusic = useDispatch(updateCurrentMusic);
+    const openHint = useDispatch('openHint');
 
     const history = useHistory();
 
     const classes = useStyles({});
 
     const clickCollectionCover = (name: string, id: number): void => {
-        fetchMusicsByCollectionId(
-            id,
-            musics => {
-                // const musics = fetchedMusics as Music[];
-                if (musics && musics.length > 0) {
+        fetchMusicsByCollectionId(id, musics => {
+            // const musics = fetchedMusics as Music[];
+            if (musics) {
+                if (musics.length > 0) {
                     updatePlayingMusics(musics);
                     updateTheCurrentMusic(musics[0]);
+                } else {
+                    openHint('empty!');
                 }
-            },
-            console.log,
-        );
+            }
+        });
     };
 
     const bodyClick = (name: string, id: number): void => {
