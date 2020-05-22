@@ -33,7 +33,7 @@ export const MyCollectionsModal: React.FC<MyCollectionsModalProps> = (props: MyC
     useEffect(() => {
         getPrivateMusicCollections(collections => {
             setMusicCollections(collections);
-        }, console.log);
+        });
     }, []);
 
     const collectionElements = musicCollections.map((c: MusicCollection, index: number) => {

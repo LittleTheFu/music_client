@@ -18,7 +18,7 @@ export const LobbyPage: React.FC = () => {
         getAlbums(collections => {
             setMusicCollections(collections);
             // console.log(collections);
-        }, console.log);
+        });
     }, []);
 
     const clickCollectionCover = (name: string, id: number): void => {

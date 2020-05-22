@@ -19,7 +19,7 @@ import MuiAlert from '@material-ui/lab/Alert';
 
 export const MailPage: React.FC = () => {
     const [mails, setMails] = useState<Mail[]>([]);
-    // const openTheHint = useDispatch('openHint');
+    const openTheHint = useDispatch('openHint');
     const _decUnreadMailCnt = useDispatch(decUnreadMailCnt);
     const [refreshMailPage] = useGlobal('refreshMailPage');
     const [showAlert, setShowAlert] = useState(false);
@@ -43,7 +43,7 @@ export const MailPage: React.FC = () => {
     useEffect(() => {
         getUserMails(fetchedMails => {
             setMails(getFixedMails(fetchedMails));
-        }, console.log);
+        });
     }, [getFixedMails]);
 
     useEffect(() => {
@@ -77,25 +77,21 @@ export const MailPage: React.FC = () => {
 
         getUserMails(fetchedMails => {
             setMails(getFixedMails(fetchedMails));
-        }, console.log);
+        });
     };
 
     const deleteCLick = (mail: Mail): void => {
-        deleteMail(
-            mail.id,
-            o => {
-                // openTheHint(o.msg);
-                setMails(
-                    mails.filter(m => {
-                        return m.id !== mail.id;
-                    }),
-                );
-                if (mail.read === false) {
-                    _decUnreadMailCnt();
-                }
-            },
-            console.log,
-        );
+        deleteMail(mail.id, o => {
+            openTheHint(o.msg);
+            setMails(
+                mails.filter(m => {
+                    return m.id !== mail.id;
+                }),
+            );
+            if (mail.read === false) {
+                _decUnreadMailCnt();
+            }
+        });
     };
 
     const mailElements = mails.map((m: Mail, index: number) => {

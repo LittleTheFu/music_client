@@ -59,7 +59,7 @@ export const MusicCollectionPage: React.FC = () => {
     useEffect(() => {
         getPrivateMusicCollections((collections): void => {
             setMusicCollections(collections);
-        }, console.log);
+        });
     }, []);
 
     return (

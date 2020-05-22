@@ -38,7 +38,6 @@ const useStyles = makeStyles((theme: Theme) =>
 export const LoginComponent: React.FC = () => {
     const [username, setUser] = useState('');
     const [password, setPassword] = useState('');
-    const openTheHint = useDispatch('openHint');
     const _updateUnreadMailCnt = useDispatch('updateUnreadMailCnt');
 
     const history = useHistory();
@@ -67,19 +66,12 @@ export const LoginComponent: React.FC = () => {
         // } else if ('accessToken' in data) {
         setToken(data.accessToken);
 
-        getMe(console.log, console.log);
-
         setLoginFlag(true);
-
         loadAvatarAndId();
 
         history.push('/main/lobby');
         // }
     };
-
-    // const loginFailed = (e: Error): void => {
-    //     openTheHint(e.message);
-    // };
 
     function handleSubmit(event: React.FormEvent<HTMLFormElement>): void {
         event.preventDefault();

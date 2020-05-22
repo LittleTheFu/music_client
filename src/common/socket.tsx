@@ -57,7 +57,7 @@ export const initSocket = (): void => {
             getUnreadMailNum(num => {
                 getDispatch().updateUnreadMailCnt(num);
                 console.log('mails ' + num);
-            }, console.log);
+            });
         }
     }
 };
