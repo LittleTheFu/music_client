@@ -73,15 +73,9 @@ export const SearchPage: React.FC = () => {
     };
 
     const mixClick = (collectionId: number): void => {
-        addMusicToCollection(
-            collectionId,
-            wantAddMusicId,
-            (o): void => {
-                openTheHint(o.msg);
-                // setModalOpen(false);
-            },
-            console.log,
-        );
+        addMusicToCollection(collectionId, wantAddMusicId, (o): void => {
+            openTheHint(o.msg);
+        });
     };
 
     return (
