@@ -2,13 +2,13 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { deleteCollection, getCollectionDetailById, removeMusicFromCollection } from '../../common/service';
 import { useDispatch } from 'reactn';
-import { openHint } from '../../globals';
+// import { openHint } from '../../globals';
 import { useHistory } from 'react-router-dom';
 import { MusicsDetail } from '../../sharedComponents/musicsComponent/musicsDetail';
 
 export const CollectionDetailPage: React.FC = () => {
     const { id } = useParams();
-    const openTheHint = useDispatch(openHint);
+    const openTheHint = useDispatch('openHint');
 
     const history = useHistory();
     const intId = parseInt(id);

@@ -6,7 +6,7 @@ import Grid from '@material-ui/core/Grid';
 // import { makeStyles, createStyles } from '@material-ui/core/styles';
 import { useHistory, useParams } from 'react-router-dom';
 import { WriteMailModal } from './writeMailModal';
-import { getMeId, openHint } from '../../globals';
+import { getMeId } from '../../globals';
 import { BackButton } from '../../sharedComponents/basicComponents/backButton';
 import { MusicCollectionsComponent } from '../../sharedComponents/musicsComponent/musicCollectionsComponent';
 import { updateMusics, updateCurrentMusic } from '../../globals';
@@ -22,7 +22,7 @@ export const UserDetailPage: React.FC = () => {
     const history = useHistory();
     const updatePlayingMusics = useDispatch(updateMusics);
     const updateTheCurrentMusic = useDispatch(updateCurrentMusic);
-    const openTheHint = useDispatch(openHint);
+    const openTheHint = useDispatch('openHint');
 
     const { id } = useParams();
     const intId = parseInt(id);

@@ -5,7 +5,7 @@ import Button from '@material-ui/core/Button';
 import { postRegister } from '../../common/service';
 import { useHistory, Link } from 'react-router-dom';
 import Container from '@material-ui/core/Container';
-import { openHint } from '../../globals';
+// import { openHint } from '../../globals';
 import { useDispatch } from 'reactn';
 import { RetMsgObj } from '../../common/interface';
 
@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme: Theme) =>
 export const RegisterComponent: React.FC = () => {
     const [user, setUser] = useState('');
     const [password, setPassword] = useState('');
-    const openTheHint = useDispatch(openHint);
+    const openTheHint = useDispatch('openHint');
 
     const MIN_LEN = 4;
     const MAX_LEN = 6;
@@ -47,9 +47,9 @@ export const RegisterComponent: React.FC = () => {
         history.push('/login');
     };
 
-    const failedRegister = (e: Error): void => {
-        openTheHint(e.message);
-    };
+    // const failedRegister = (e: Error): void => {
+    //     openTheHint(e.message);
+    // };
 
     function isCorrectTextLength(text: string): boolean {
         const len = text.length;
@@ -84,7 +84,7 @@ export const RegisterComponent: React.FC = () => {
         }
 
         // event.preventDefault();
-        postRegister(user, password, resolveData, failedRegister);
+        postRegister(user, password, resolveData);
     }
 
     return (

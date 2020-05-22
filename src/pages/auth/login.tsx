@@ -3,7 +3,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import { postLogin, getMe } from '../../common/service';
-import { setToken, setMeId, openHint, setMeName } from '../../globals';
+import { setToken, setMeId, setMeName } from '../../globals';
 import { useHistory, Link } from 'react-router-dom';
 import Container from '@material-ui/core/Container';
 import { setLoginFlag, setMeAvatar } from '../../globals';
@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme: Theme) =>
 export const LoginComponent: React.FC = () => {
     const [username, setUser] = useState('');
     const [password, setPassword] = useState('');
-    const openTheHint = useDispatch(openHint);
+    const openTheHint = useDispatch('openHint');
     const _updateUnreadMailCnt = useDispatch('updateUnreadMailCnt');
 
     const history = useHistory();
@@ -77,14 +77,13 @@ export const LoginComponent: React.FC = () => {
         // }
     };
 
-    const loginFailed = (e: Error): void => {
-        // const err = e as Error;
-        openTheHint(e.message);
-    };
+    // const loginFailed = (e: Error): void => {
+    //     openTheHint(e.message);
+    // };
 
     function handleSubmit(event: React.FormEvent<HTMLFormElement>): void {
         event.preventDefault();
-        postLogin(username, password, resolveData, loginFailed);
+        postLogin(username, password, resolveData);
         // You should see email and password in console.
         // ..code to submit form to backend here...
     }

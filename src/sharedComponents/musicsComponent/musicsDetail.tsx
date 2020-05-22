@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Music, CollectionDetail } from '../../common/interface';
 import { useGlobal, useDispatch } from 'reactn';
-import { updateMusics, updateCurrentMusic, openHint } from '../../globals';
+import { updateMusics, updateCurrentMusic } from '../../globals';
 import { useHistory } from 'react-router-dom';
 import { MyCollectionsModal } from './myCollectionsModal';
 import { MixDetail } from './mixDetailComponent';
@@ -29,7 +29,7 @@ export const MusicsDetail: React.FC<MusicsDetailProps> = (props: MusicsDetailPro
 
     const updatePlayingMusics = useDispatch(updateMusics);
     const updateTheCurrentMusic = useDispatch(updateCurrentMusic);
-    const openTheHint = useDispatch(openHint);
+    const openTheHint = useDispatch('openHint');
 
     const history = useHistory();
 
@@ -64,14 +64,9 @@ export const MusicsDetail: React.FC<MusicsDetailProps> = (props: MusicsDetailPro
     };
 
     const mixClick = (collectionId: number): void => {
-        addMusicToCollection(
-            collectionId,
-            wantAddMusicId,
-            (o): void => {
-                openTheHint(o.msg);
-            },
-            console.log,
-        );
+        addMusicToCollection(collectionId, wantAddMusicId, (o): void => {
+            openTheHint(o.msg);
+        });
     };
 
     const addMusicClick = (id: number): void => {

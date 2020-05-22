@@ -4,7 +4,7 @@ import { Mail } from '../../common/interface';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import { useHistory } from 'react-router-dom';
-import { openHint, decUnreadMailCnt } from '../../globals';
+import { decUnreadMailCnt } from '../../globals';
 import { useDispatch, useGlobal } from 'reactn';
 // import { makeStyles, createStyles } from '@material-ui/core/styles';
 import { ContentCard } from '../../sharedComponents/basicComponents/contentCard';
@@ -19,7 +19,7 @@ import MuiAlert from '@material-ui/lab/Alert';
 
 export const MailPage: React.FC = () => {
     const [mails, setMails] = useState<Mail[]>([]);
-    const openTheHint = useDispatch(openHint);
+    // const openTheHint = useDispatch('openHint');
     const _decUnreadMailCnt = useDispatch(decUnreadMailCnt);
     const [refreshMailPage] = useGlobal('refreshMailPage');
     const [showAlert, setShowAlert] = useState(false);
@@ -84,7 +84,7 @@ export const MailPage: React.FC = () => {
         deleteMail(
             mail.id,
             o => {
-                openTheHint(o.msg);
+                // openTheHint(o.msg);
                 setMails(
                     mails.filter(m => {
                         return m.id !== mail.id;

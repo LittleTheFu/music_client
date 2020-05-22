@@ -5,7 +5,7 @@ import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import { useHistory, useParams } from 'react-router-dom';
 import { BackButton } from '../../sharedComponents/basicComponents/backButton';
 import Grid from '@material-ui/core/Grid';
-import { openHint } from '../../globals';
+// import { openHint } from '../../globals';
 import { useDispatch } from 'reactn';
 import { FollowerCard } from './followerCard';
 import { wrapFunc1 } from '../../common/common';
@@ -27,7 +27,7 @@ export const FollowerListPage: React.FC = () => {
     const { id } = useParams();
     const intId = parseInt(id);
 
-    const openTheHint = useDispatch(openHint);
+    const openTheHint = useDispatch('openHint');
 
     useEffect(() => {
         getUserFollowers(

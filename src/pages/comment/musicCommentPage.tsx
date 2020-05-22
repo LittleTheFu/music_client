@@ -10,7 +10,7 @@ import Grid from '@material-ui/core/Grid';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import { BackButton } from '../../sharedComponents/basicComponents/backButton';
-import { openHint } from '../../globals';
+// import { openHint } from '../../globals';
 import { useDispatch } from 'reactn';
 import { ContentCard } from '../../sharedComponents/basicComponents/contentCard';
 import Pagination from '@material-ui/lab/Pagination';
@@ -66,7 +66,7 @@ export const MusicCommentPage: React.FC = () => {
 
     const textInput = useRef(null);
 
-    const openTheHint = useDispatch(openHint);
+    const openTheHint = useDispatch('openHint');
     const history = useHistory();
 
     const classes = useStyles({});

@@ -92,10 +92,15 @@ setGlobal({
     hintMsg: '',
 });
 
-export const openHint = (global: State, dispatch: Dispatch, msg: string): Pick<State, 'hintMsg' | 'hintOpen'> => ({
+addReducer('openHint', (global: State, dispatch: Dispatch, msg: string) => ({
     hintMsg: msg,
     hintOpen: true,
-});
+}));
+
+// export const openHint = (global: State, dispatch: Dispatch, msg: string): Pick<State, 'hintMsg' | 'hintOpen'> => ({
+//     hintMsg: msg,
+//     hintOpen: true,
+// });
 
 addReducer('updateUnreadMailCnt', (global: State, dispatch: Dispatch, cnt: number) => ({
     unreadMailCnt: cnt,

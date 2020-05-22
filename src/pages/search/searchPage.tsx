@@ -6,7 +6,7 @@ import { fetchMusicsByKeyword } from '../../common/service';
 import { useGlobal, useDispatch } from 'reactn';
 import { Music } from '../../common/interface';
 import { MyCollectionsModal } from '../../sharedComponents/musicsComponent/myCollectionsModal';
-import { updateMusics, updateCurrentMusic, openHint } from '../../globals';
+import { updateMusics, updateCurrentMusic } from '../../globals';
 import { addMusicToCollection } from '../../common/service';
 import { useDebounce } from '../../common/debounce';
 import { MixDetail } from '../../sharedComponents/musicsComponent/mixDetailComponent';
@@ -36,7 +36,7 @@ export const SearchPage: React.FC = () => {
 
     const updatePlayingMusics = useDispatch(updateMusics);
     const updateTheCurrentMusic = useDispatch(updateCurrentMusic);
-    const openTheHint = useDispatch(openHint);
+    const openTheHint = useDispatch('openHint');
 
     const [content, setContent] = useState('');
     const [musics, setMusics] = useState<Music[]>([]);

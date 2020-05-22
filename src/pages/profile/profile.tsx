@@ -6,7 +6,7 @@ import { RetUpdateAvatarDto } from '../../common/interface';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import IconButton from '@material-ui/core/IconButton';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
-import { openHint } from '../../globals';
+// import { openHint } from '../../globals';
 import { useDispatch } from 'reactn';
 
 const useStyles = makeStyles(() =>
@@ -26,7 +26,7 @@ export const ProfilePage: React.FC = () => {
     const [preview, setPreview] = useState(getMeAvatar());
     const [size, setSize] = useState(0);
 
-    const openTheHint = useDispatch(openHint);
+    const openTheHint = useDispatch('openHint');
     const classes = useStyles({});
 
     const MAX_SIZE = 10 * 1024;

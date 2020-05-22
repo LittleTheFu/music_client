@@ -10,7 +10,7 @@ import Button from '@material-ui/core/Button';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import { BackButton } from '../../sharedComponents/basicComponents/backButton';
-import { openHint } from '../../globals';
+// import { openHint } from '../../globals';
 import { useDispatch } from 'reactn';
 import { UserHead } from '../../sharedComponents/basicComponents/userHead';
 
@@ -42,7 +42,7 @@ const useStyles = makeStyles(() =>
 
 export const MailDetailPage: React.FC = () => {
     const { id } = useParams();
-    const openTheHint = useDispatch(openHint);
+    const openTheHint = useDispatch('openHint');
 
     const [mail, setMail] = useState<Mail>(null);
     const [content, setContent] = useState('');

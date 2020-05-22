@@ -5,7 +5,7 @@ import { PlayBarComponent } from './playBarComponent';
 import { useGlobal, useDispatch } from 'reactn';
 import { useHistory } from 'react-router-dom';
 import { postLikeMusic, postDislikeMusic } from '../common/service';
-import { updateMusic, updateCurrentMusic, updateToNextMusic, openHint } from '../globals';
+import { updateMusic, updateCurrentMusic, updateToNextMusic } from '../globals';
 import Grid from '@material-ui/core/Grid';
 import { MusicListDrawer } from './musicListDrawer';
 
@@ -20,7 +20,7 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
     const updateMusicAfterClickHeartIcon = useDispatch(updateMusic);
     const updateCurerntMusicInfo = useDispatch(updateCurrentMusic);
     const updateToTheNextMusic = useDispatch(updateToNextMusic);
-    const openTheHint = useCallback(useDispatch(openHint), []);
+    const openTheHint = useCallback(useDispatch('openHint'), []);
 
     const [currentTheMusic] = useGlobal('currentMusic');
     const [currentMusics] = useGlobal('musics');
