@@ -1,8 +1,6 @@
 ## This is a music app client
 
-`
-git clone git@github.com:LittleTheFu/music_client.git
-`
+
 
 `
 npm install
