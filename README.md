@@ -1,6 +1,6 @@
 ## This is a music app client
 
-
+with React + Typescript
 
 `
 npm install
