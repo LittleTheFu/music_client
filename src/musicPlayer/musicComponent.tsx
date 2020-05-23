@@ -32,7 +32,7 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
     const [likeButtunGuard, setLikeButtunGuard] = useState(false);
 
     const [musicPercent, setMusicPercent] = useState(0);
-    const [showFullPart, setShowFullPart] = useState(true);
+    const [showFullPart, setShowFullPart] = useState(false);
 
     const [musicListDrawerOpen, setMusicListDrawerOpen] = useState(false);
 
