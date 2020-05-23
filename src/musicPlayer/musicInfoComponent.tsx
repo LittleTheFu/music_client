@@ -33,6 +33,7 @@ const useStyles = makeStyles({
     lyricText: {
         height: 20,
         textAlign: 'center',
+        color: 'red',
     },
     '@keyframes spin': {
         from: {
