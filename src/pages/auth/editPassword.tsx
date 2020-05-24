@@ -66,7 +66,7 @@ export const ChangePasswordPage: React.FC = () => {
                     className={classes.text}
                     autoComplete="on"
                     id="pswd"
-                    label="password"
+                    label="new password"
                     type="password"
                     onChange={(e): void => setPassword(e.target.value)}
                 />
