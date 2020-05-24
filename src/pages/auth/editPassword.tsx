@@ -5,6 +5,7 @@ import { makeStyles, createStyles } from '@material-ui/core/styles';
 import { editPassword } from '../../common/service';
 import { RetMsgObj } from '../../common/interface';
 import { useDispatch } from 'reactn';
+import { isValidPassowrd, getPassowrdHelpText } from '../../common/common';
 
 const useStyles = makeStyles(() =>
     createStyles({
@@ -47,14 +48,21 @@ export const ChangePasswordPage: React.FC = () => {
 
     function handleSubmit(event: React.FormEvent<HTMLFormElement>): void {
         event.preventDefault();
+
+        if (!isValidPassowrd(password)) {
+            openTheHint('invalid length!');
+            return;
+        }
+
         editPassword(password, resolve);
-        // postLogin(username, password, resolveData);
     }
 
     return (
         <div className={classes.root}>
             <form onSubmit={handleSubmit} noValidate autoComplete="off">
                 <TextField
+                    error={!isValidPassowrd(password)}
+                    helperText={getPassowrdHelpText()}
                     className={classes.text}
                     autoComplete="on"
                     id="pswd"

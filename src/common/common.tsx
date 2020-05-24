@@ -1,5 +1,21 @@
 import { getMeId } from '../globals';
 
+export const PASSWORD_MIN_LEN = 4;
+export const PASSWORD_MAX_LEN = 6;
+
+export const isValidPassowrd = (password: string): boolean => {
+    const len = password.length;
+
+    if (len < PASSWORD_MIN_LEN) return false;
+    if (len > PASSWORD_MAX_LEN) return false;
+
+    return true;
+};
+
+export const getPassowrdHelpText = (): string => {
+    return '(' + PASSWORD_MIN_LEN + ' - ' + PASSWORD_MAX_LEN + ') characters';
+};
+
 export const wrapName = (id: number, name: string): string => {
     if (id === getMeId()) {
         return name + '(me)';
