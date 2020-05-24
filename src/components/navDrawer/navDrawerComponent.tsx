@@ -19,6 +19,7 @@ import Divider from '@material-ui/core/Divider';
 import { emitLogoutSocketMsg } from '../../common/socket';
 import Badge from '@material-ui/core/Badge';
 import { UserHead } from '../../sharedComponents/basicComponents/userHead';
+import VpnKeyIcon from '@material-ui/icons/VpnKey';
 
 // const useStyles = makeStyles(() =>
 //     createStyles({
@@ -60,6 +61,10 @@ export const TemporaryDrawer: React.FC = () => {
 
     const editClick = (): void => {
         history.push(`/main/profile`);
+    };
+
+    const passwordClick = (): void => {
+        history.push(`/main/eidt_password`);
     };
 
     const searchClick = (): void => {
@@ -120,6 +125,10 @@ export const TemporaryDrawer: React.FC = () => {
 
                     <NavListIconButton msg={'edit'} iconClick={editClick}>
                         <EditIcon />
+                    </NavListIconButton>
+
+                    <NavListIconButton msg={'change password'} iconClick={passwordClick}>
+                        <VpnKeyIcon />
                     </NavListIconButton>
 
                     <NavListIconButton msg={'me'} iconClick={meClick}>

@@ -93,6 +93,21 @@ export const postLogin = (
     return rawObjectPost(loginUrl, { username: username, password: password }, resolve, {}, reject);
 };
 
+const editPasswordUrl = userPrefix + 'edit_password';
+export const editPassword = (
+    password: string,
+    resolve: (data: RetMsgObj) => void,
+    reject?: (data: Error) => void,
+): Promise<RetMsgObj> => {
+    return rawObjectPost(
+        editPasswordUrl,
+        { password: password },
+        resolve,
+        { Authorization: 'Bearer ' + getToken() },
+        reject,
+    );
+};
+
 const likeMusicUrl = musicPrefix + 'like';
 export const postLikeMusic = (
     musicId: number,

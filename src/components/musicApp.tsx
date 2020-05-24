@@ -21,6 +21,7 @@ import { ArtistPage } from '../pages/artist/artistPage';
 import { AlbumDetailPage } from '../pages/album/albumDetailPage';
 import { AllUsersPage } from '../pages/allUsers/allUsersPage';
 import { SourceCodePage } from '../pages/source/sourceCodePage';
+import { ChangePasswordPage } from '../pages/auth/editPassword';
 import Backdrop from '@material-ui/core/Backdrop';
 import { makeStyles } from '@material-ui/core/styles';
 import { setLoginFlag } from '../globals';
@@ -103,6 +104,9 @@ export const MusicApp: React.FC = () => {
                         </Route>
                         <Route path={`${path}/source_code`}>
                             <SourceCodePage></SourceCodePage>
+                        </Route>
+                        <Route path={`${path}/eidt_password`}>
+                            <ChangePasswordPage></ChangePasswordPage>
                         </Route>
                     </Switch>
                 </Grid>
