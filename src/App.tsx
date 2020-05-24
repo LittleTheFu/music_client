@@ -3,6 +3,7 @@ import './App.css';
 import { MusicApp } from './components/musicApp';
 import { LoginComponent } from './pages/auth/login';
 import { RegisterComponent } from './pages/auth/register';
+import { ForgetPasswordPage } from './pages/auth/forget';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import { getLoginFlag } from './globals';
 import Snackbar from '@material-ui/core/Snackbar';
@@ -33,6 +34,9 @@ const App: React.FC = () => {
                 <Switch>
                     <Route path="/register">
                         <Register />
+                    </Route>
+                    <Route path="/forget_password">
+                        <ForgetPassword />
                     </Route>
                     <PrivateRoute path="/main">
                         <Main />
@@ -76,6 +80,10 @@ const Home = (): JSX.Element => {
 
 const Register = (): JSX.Element => {
     return <RegisterComponent></RegisterComponent>;
+};
+
+const ForgetPassword = (): JSX.Element => {
+    return <ForgetPasswordPage></ForgetPasswordPage>;
 };
 
 const Main = (): JSX.Element => {

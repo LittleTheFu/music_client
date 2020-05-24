@@ -98,6 +98,9 @@ export const LoginComponent: React.FC = () => {
                     <Button component={Link} to="/register" type="submit" variant="contained" color="primary">
                         go register page
                     </Button>
+                    <Button component={Link} to="/forget_password" type="submit" variant="contained" color="secondary">
+                        I forgot password
+                    </Button>
                 </form>
             </div>
         </Container>
