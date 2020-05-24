@@ -8,6 +8,7 @@ import Container from '@material-ui/core/Container';
 // import { openHint } from '../../globals';
 import { useDispatch } from 'reactn';
 import { RetMsgObj } from '../../common/interface';
+import { validate } from 'email-validator';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -34,10 +35,13 @@ const useStyles = makeStyles((theme: Theme) =>
 export const RegisterComponent: React.FC = () => {
     const [user, setUser] = useState('');
     const [password, setPassword] = useState('');
+    const [email, setEmail] = useState('');
     const openTheHint = useDispatch('openHint');
 
     const MIN_LEN = 4;
     const MAX_LEN = 6;
+
+    const MAX_EMAIL_LEN = 30;
 
     const history = useHistory();
     const classes = useStyles({});
@@ -58,6 +62,12 @@ export const RegisterComponent: React.FC = () => {
         if (len < MIN_LEN) return false;
 
         return true;
+    }
+
+    function isCorrectEmail(email: string): boolean {
+        if (email.length > MAX_EMAIL_LEN) return false;
+
+        return validate(email);
     }
 
     function handleSubmit(event: React.FormEvent<HTMLFormElement>): void {
@@ -83,8 +93,13 @@ export const RegisterComponent: React.FC = () => {
             return;
         }
 
+        if (!isCorrectEmail(email)) {
+            openTheHint('please check your email!');
+            return;
+        }
+
         // event.preventDefault();
-        postRegister(user, password, resolveData);
+        postRegister(user, password, email, resolveData);
     }
 
     return (
@@ -106,6 +121,15 @@ export const RegisterComponent: React.FC = () => {
                         type="password"
                         onChange={(e): void => setPassword(e.target.value)}
                         helperText={'(' + MIN_LEN + ' - ' + MAX_LEN + ') characters'}
+                    />
+                    <TextField
+                        autoComplete="on"
+                        error={!isCorrectEmail(email)}
+                        id="email"
+                        label="email"
+                        type="email"
+                        onChange={(e): void => setEmail(e.target.value)}
+                        helperText={'at most ' + MAX_EMAIL_LEN + 'characters'}
                     />
                     <Button type="submit" variant="contained" color="secondary">
                         register
