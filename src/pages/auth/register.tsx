@@ -5,10 +5,10 @@ import Button from '@material-ui/core/Button';
 import { postRegister } from '../../common/service';
 import { useHistory, Link } from 'react-router-dom';
 import Container from '@material-ui/core/Container';
-// import { openHint } from '../../globals';
 import { useDispatch } from 'reactn';
 import { RetMsgObj } from '../../common/interface';
 import { validate } from 'email-validator';
+import { isValidPassowrd, isValidUserName, getPassowrdHelpText, getUsernameHelpText } from '../../common/common';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -73,23 +73,13 @@ export const RegisterComponent: React.FC = () => {
     function handleSubmit(event: React.FormEvent<HTMLFormElement>): void {
         event.preventDefault();
 
-        if (user.length < MIN_LEN) {
-            openTheHint('user name is too short!');
+        if (!isValidUserName(user)) {
+            openTheHint('invalid user name!');
             return;
         }
 
-        if (user.length > MAX_LEN) {
-            openTheHint('user name is too long!');
-            return;
-        }
-
-        if (password.length < MIN_LEN) {
-            openTheHint('password is too short!');
-            return;
-        }
-
-        if (password.length > MAX_LEN) {
-            openTheHint('password is too long!');
+        if (!isValidPassowrd(password)) {
+            openTheHint('invalid password!');
             return;
         }
 
@@ -98,7 +88,6 @@ export const RegisterComponent: React.FC = () => {
             return;
         }
 
-        // event.preventDefault();
         postRegister(user, password, email, resolveData);
     }
 
@@ -108,19 +97,19 @@ export const RegisterComponent: React.FC = () => {
                 <form onSubmit={handleSubmit} className={classes.root} noValidate autoComplete="off">
                     <TextField
                         id="name"
-                        error={!isCorrectTextLength(user)}
+                        error={!isValidUserName(user)}
                         label="user"
                         onChange={(e): void => setUser(e.target.value)}
-                        helperText={'(' + MIN_LEN + ' - ' + MAX_LEN + ') characters'}
+                        helperText={getUsernameHelpText()}
                     />
                     <TextField
                         autoComplete="on"
-                        error={!isCorrectTextLength(password)}
+                        error={!isValidPassowrd(password)}
                         id="pswd"
                         label="password"
                         type="password"
                         onChange={(e): void => setPassword(e.target.value)}
-                        helperText={'(' + MIN_LEN + ' - ' + MAX_LEN + ') characters'}
+                        helperText={getPassowrdHelpText()}
                     />
                     <TextField
                         autoComplete="on"

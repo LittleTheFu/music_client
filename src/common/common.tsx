@@ -3,17 +3,36 @@ import { getMeId } from '../globals';
 export const PASSWORD_MIN_LEN = 4;
 export const PASSWORD_MAX_LEN = 6;
 
-export const isValidPassowrd = (password: string): boolean => {
-    const len = password.length;
+const isValidLength = (str: string, minLen: number, maxLen: number): boolean => {
+    const len = str.length;
 
-    if (len < PASSWORD_MIN_LEN) return false;
-    if (len > PASSWORD_MAX_LEN) return false;
+    if (len < minLen) return false;
+    if (len > maxLen) return false;
 
     return true;
 };
 
+export const isValidPassowrd = (password: string): boolean => {
+    return isValidLength(password, PASSWORD_MIN_LEN, PASSWORD_MAX_LEN);
+};
+
+const getLengthHelpText = (minLen: number, maxLen: number): string => {
+    return '(' + minLen + ' - ' + maxLen + ') characters';
+};
+
 export const getPassowrdHelpText = (): string => {
-    return '(' + PASSWORD_MIN_LEN + ' - ' + PASSWORD_MAX_LEN + ') characters';
+    return getLengthHelpText(PASSWORD_MIN_LEN, PASSWORD_MAX_LEN);
+};
+
+export const USERNAME_MIN_LEN = 4;
+export const USERNAME_MAX_LEN = 6;
+
+export const isValidUserName = (name: string): boolean => {
+    return isValidLength(name, USERNAME_MIN_LEN, USERNAME_MAX_LEN);
+};
+
+export const getUsernameHelpText = (): string => {
+    return getLengthHelpText(USERNAME_MIN_LEN, USERNAME_MAX_LEN);
 };
 
 export const wrapName = (id: number, name: string): string => {
