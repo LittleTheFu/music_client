@@ -8,7 +8,14 @@ import Container from '@material-ui/core/Container';
 import { useDispatch } from 'reactn';
 import { RetMsgObj } from '../../common/interface';
 import { validate } from 'email-validator';
-import { isValidPassowrd, isValidUserName, getPassowrdHelpText, getUsernameHelpText } from '../../common/common';
+import {
+    isValidPassowrd,
+    isValidUserName,
+    getPassowrdHelpText,
+    getUsernameHelpText,
+    isValidEmail,
+    getEmailHelpText,
+} from '../../common/common';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -38,9 +45,6 @@ export const RegisterComponent: React.FC = () => {
     const [email, setEmail] = useState('');
     const openTheHint = useDispatch('openHint');
 
-    const MIN_LEN = 4;
-    const MAX_LEN = 6;
-
     const MAX_EMAIL_LEN = 30;
 
     const history = useHistory();
@@ -50,19 +54,6 @@ export const RegisterComponent: React.FC = () => {
         openTheHint(data.msg);
         history.push('/login');
     };
-
-    // const failedRegister = (e: Error): void => {
-    //     openTheHint(e.message);
-    // };
-
-    function isCorrectTextLength(text: string): boolean {
-        const len = text.length;
-
-        if (len > MAX_LEN) return false;
-        if (len < MIN_LEN) return false;
-
-        return true;
-    }
 
     function isCorrectEmail(email: string): boolean {
         if (email.length > MAX_EMAIL_LEN) return false;
@@ -113,12 +104,12 @@ export const RegisterComponent: React.FC = () => {
                     />
                     <TextField
                         autoComplete="on"
-                        error={!isCorrectEmail(email)}
+                        error={!isValidEmail(email)}
                         id="email"
                         label="email"
                         type="email"
                         onChange={(e): void => setEmail(e.target.value)}
-                        helperText={'at most ' + MAX_EMAIL_LEN + 'characters'}
+                        helperText={getEmailHelpText()}
                     />
                     <Button type="submit" variant="contained" color="secondary">
                         register

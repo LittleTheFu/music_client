@@ -93,6 +93,25 @@ export const postLogin = (
     return rawObjectPost(loginUrl, { username: username, password: password }, resolve, {}, reject);
 };
 
+const resetPasswordUrl = userPrefix + 'reset_password';
+export const resetPassword = (
+    key: string,
+    resolve: (data: RetMsgObj) => void,
+    reject?: (data: Error) => void,
+): Promise<RetMsgObj> => {
+    return rawObjectPost(resetPasswordUrl, { key: key }, resolve, {}, reject);
+};
+
+const forgetPasswordUrl = userPrefix + 'forget_password';
+export const postForgetPassword = (
+    username: string,
+    email: string,
+    resolve: (data: RetMsgObj) => void,
+    reject?: (data: Error) => void,
+): Promise<RetMsgObj> => {
+    return rawObjectPost(forgetPasswordUrl, { username: username, email: email }, resolve, {}, reject);
+};
+
 const editPasswordUrl = userPrefix + 'edit_password';
 export const editPassword = (
     password: string,

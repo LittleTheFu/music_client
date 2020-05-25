@@ -1,4 +1,5 @@
 import { getMeId } from '../globals';
+import { validate } from 'email-validator';
 
 export const PASSWORD_MIN_LEN = 4;
 export const PASSWORD_MAX_LEN = 6;
@@ -33,6 +34,17 @@ export const isValidUserName = (name: string): boolean => {
 
 export const getUsernameHelpText = (): string => {
     return getLengthHelpText(USERNAME_MIN_LEN, USERNAME_MAX_LEN);
+};
+
+export const EMAIL_MIN_LEN = 4;
+export const EMAIL_MAX_LEN = 30;
+
+export const isValidEmail = (email: string): boolean => {
+    return isValidLength(email, EMAIL_MIN_LEN, EMAIL_MAX_LEN) && validate(email);
+};
+
+export const getEmailHelpText = (): string => {
+    return getLengthHelpText(EMAIL_MIN_LEN, EMAIL_MAX_LEN);
 };
 
 export const wrapName = (id: number, name: string): string => {

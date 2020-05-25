@@ -2,6 +2,7 @@ import React, { ReactNode } from 'react';
 import './App.css';
 import { MusicApp } from './components/musicApp';
 import { LoginComponent } from './pages/auth/login';
+import { ResetPasswordPage } from './pages/auth/resetPassword';
 import { RegisterComponent } from './pages/auth/register';
 import { ForgetPasswordPage } from './pages/auth/forget';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
@@ -34,6 +35,9 @@ const App: React.FC = () => {
                 <Switch>
                     <Route path="/register">
                         <Register />
+                    </Route>
+                    <Route path="/reset/:id">
+                        <Reset />
                     </Route>
                     <Route path="/forget_password">
                         <ForgetPassword />
@@ -72,6 +76,10 @@ const PrivateRoute = ({ children, ...rest }: PrivateRouteProps): JSX.Element => 
             }
         />
     );
+};
+
+const Reset = (): JSX.Element => {
+    return <ResetPasswordPage></ResetPasswordPage>;
 };
 
 const Home = (): JSX.Element => {
