@@ -42,7 +42,7 @@ export const ArtistPage: React.FC = () => {
         );
     }, [intId]);
 
-    const clickCollectionCover = (name: string, id: number): void => {
+    const clickCollectionCover = (id: number): void => {
         artist.albums.forEach(c => {
             if (c.id === id) {
                 updatePlayingMusics(c.musics);

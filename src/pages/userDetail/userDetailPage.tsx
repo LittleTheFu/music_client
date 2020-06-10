@@ -85,7 +85,7 @@ export const UserDetailPage: React.FC = () => {
         history.push(`/main/profile`);
     };
 
-    const clickCollectionCover = (name: string, id: number): void => {
+    const clickCollectionCover = (id: number): void => {
         fetchMusicsByCollectionId(
             id,
             musics => {

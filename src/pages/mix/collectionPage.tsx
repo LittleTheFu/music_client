@@ -31,7 +31,7 @@ export const MusicCollectionPage: React.FC = () => {
 
     const classes = useStyles({});
 
-    const clickCollectionCover = (name: string, id: number): void => {
+    const clickCollectionCover = (id: number): void => {
         fetchMusicsByCollectionId(id, musics => {
             // const musics = fetchedMusics as Music[];
             if (musics) {

@@ -21,7 +21,7 @@ export const LobbyPage: React.FC = () => {
         });
     }, []);
 
-    const clickCollectionCover = (name: string, id: number): void => {
+    const clickCollectionCover = (id: number): void => {
         const c = musicCollections.find(ms => {
             return ms.id === id;
         });

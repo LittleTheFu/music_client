@@ -6,7 +6,7 @@ import PlayCircleFilledWhiteOutlinedIcon from '@material-ui/icons/PlayCircleFill
 
 interface MusicCollectionProps {
     collection: MusicCollection;
-    coverClick: (name: string, id?: number) => void;
+    coverClick: (id: number) => void;
     bodyClick: (name: string, id?: number) => void;
 }
 
@@ -88,7 +88,7 @@ export const MusicCollectionComponent: React.FC<MusicCollectionProps> = (props: 
             <IconButton
                 className={classes.buttonBox}
                 onClick={(): void => {
-                    coverClick(collection.name, collection.id);
+                    coverClick(collection.id);
                 }}
             >
                 <PlayCircleFilledWhiteOutlinedIcon className={classes.playButton} />
