@@ -2,6 +2,7 @@ import React from 'react';
 import { MusicCollection } from '../../common/interface';
 import { MusicCollectionComponent } from './musicCollectionComponent';
 import Grid from '@material-ui/core/Grid';
+import { wrapFunc1 } from '../../common/common';
 
 interface MusicCollectionsProps {
     collections: MusicCollection[];
@@ -19,8 +20,8 @@ export const MusicCollectionsComponent: React.FC<MusicCollectionsProps> = (props
                     return (
                         <Grid item xs={6} sm={4} md={3} lg={2} key={index}>
                             <MusicCollectionComponent
-                                bodyClick={bodyClick}
-                                coverClick={coverClick}
+                                bodyClick={wrapFunc1(bodyClick, c.id)}
+                                coverClick={wrapFunc1(coverClick, c.id)}
                                 collection={c}
                             ></MusicCollectionComponent>
                         </Grid>
