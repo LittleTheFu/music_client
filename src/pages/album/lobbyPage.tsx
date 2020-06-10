@@ -32,7 +32,7 @@ export const LobbyPage: React.FC = () => {
         }
     };
 
-    const bodyClick = (name: string, id: number): void => {
+    const bodyClick = (id: number): void => {
         // history.push(`/main/collection_detail/` + id);
         history.push(`/main/album/` + id);
     };

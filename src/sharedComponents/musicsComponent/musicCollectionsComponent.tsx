@@ -6,7 +6,7 @@ import Grid from '@material-ui/core/Grid';
 interface MusicCollectionsProps {
     collections: MusicCollection[];
     coverClick: (id: number) => void;
-    bodyClick: (name: string, id?: number) => void;
+    bodyClick: (id: number) => void;
 }
 
 export const MusicCollectionsComponent: React.FC<MusicCollectionsProps> = (props: MusicCollectionsProps) => {

@@ -98,7 +98,7 @@ export const UserDetailPage: React.FC = () => {
         );
     };
 
-    const bodyClick = (name: string, id: number): void => {
+    const bodyClick = (id: number): void => {
         history.push(`/main/collection_detail/` + id);
     };
 
