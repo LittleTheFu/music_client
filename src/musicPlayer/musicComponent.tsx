@@ -8,6 +8,7 @@ import { postLikeMusic, postDislikeMusic } from '../common/service';
 import { updateMusic, updateCurrentMusic, updateToNextMusic } from '../globals';
 import Grid from '@material-ui/core/Grid';
 import { MusicListDrawer } from './musicListDrawer';
+import { getMusicCommentUrl } from '../common/routeName';
 
 interface MusicComponentProps {
     audioElement: HTMLAudioElement;
@@ -127,7 +128,7 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
 
     const currentMusicCommentClick = (): void => {
         if (currentTheMusic) {
-            history.push(`/main/music_comment/` + currentTheMusic.id);
+            history.push(getMusicCommentUrl(currentTheMusic.id));
         }
     };
 

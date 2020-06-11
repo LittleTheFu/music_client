@@ -7,6 +7,7 @@ import { useHistory } from 'react-router-dom';
 import { MyCollectionsModal } from './myCollectionsModal';
 import { MixDetail } from './mixDetailComponent';
 import { addMusicToCollection } from '../../common/service';
+import { getMusicCommentUrl } from '../../common/routeName';
 
 interface MusicsDetailProps {
     initData: (
@@ -75,7 +76,7 @@ export const MusicsDetail: React.FC<MusicsDetailProps> = (props: MusicsDetailPro
     };
 
     const commentClick = (id: number): void => {
-        history.push(`/main/music_comment/` + id);
+        history.push(getMusicCommentUrl(id));
     };
 
     return (

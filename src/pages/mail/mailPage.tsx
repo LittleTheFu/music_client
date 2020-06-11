@@ -11,6 +11,7 @@ import { ContentCard } from '../../sharedComponents/basicComponents/contentCard'
 import { wrapFunc1, wrapName } from '../../common/common';
 import { useIsMount } from '../../common/isMount';
 import MuiAlert from '@material-ui/lab/Alert';
+import { getMailDetailUrl } from '../../common/routeName';
 
 // const useStyles = makeStyles(() =>
 //     createStyles({
@@ -63,7 +64,7 @@ export const MailPage: React.FC = () => {
             _decUnreadMailCnt();
         }
 
-        history.push(`/main/mail_detail/` + id);
+        history.push(getMailDetailUrl(id));
     };
 
     const alertClick = (): void => {

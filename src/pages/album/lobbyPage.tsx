@@ -5,6 +5,7 @@ import { MusicCollection } from '../../common/interface';
 import { useHistory } from 'react-router-dom';
 import { updateMusics, updateCurrentMusic } from '../../globals';
 import { useDispatch } from 'reactn';
+import { getAlbumUrl } from 'common/routeName';
 
 export const LobbyPage: React.FC = () => {
     // const [albums, setAlbums] = useState<Album[]>([]);
@@ -34,7 +35,7 @@ export const LobbyPage: React.FC = () => {
 
     const bodyClick = (id: number): void => {
         // history.push(`/main/collection_detail/` + id);
-        history.push(`/main/album/` + id);
+        history.push(getAlbumUrl(id));
     };
 
     return (

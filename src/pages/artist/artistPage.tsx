@@ -6,6 +6,7 @@ import { useDispatch } from 'reactn';
 import { updateMusics, updateCurrentMusic } from '../../globals';
 import { MusicCollectionsComponent } from '../../sharedComponents/musicsComponent/musicCollectionsComponent';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
+import { getAlbumUrl } from 'common/routeName';
 
 const useStyles = makeStyles(() =>
     createStyles({
@@ -53,7 +54,7 @@ export const ArtistPage: React.FC = () => {
 
     const bodyClick = (id: number): void => {
         // history.push(`/main/collection_detail/` + id);
-        history.push(`/main/album/` + id);
+        history.push(getAlbumUrl(id));
     };
 
     return (

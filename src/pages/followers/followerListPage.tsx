@@ -9,6 +9,7 @@ import Grid from '@material-ui/core/Grid';
 import { useDispatch } from 'reactn';
 import { FollowerCard } from './followerCard';
 import { wrapFunc1 } from '../../common/common';
+import { getUserDetailUrl } from '../../common/routeName';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -76,7 +77,7 @@ export const FollowerListPage: React.FC = () => {
     };
 
     const avatarClick = (userId: number): void => {
-        history.push(`/main/userdetail/` + userId);
+        history.push(getUserDetailUrl(userId));
     };
 
     const followerElements = followers.map((f: Follower, index: number) => {

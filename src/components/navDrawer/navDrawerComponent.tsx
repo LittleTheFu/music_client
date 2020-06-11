@@ -30,6 +30,7 @@ import {
     getProfileUrl,
     getSourceCodeUrl,
     getEditPasswordUrl,
+    getUserDetailUrl,
 } from '../../common/routeName';
 
 // const useStyles = makeStyles(() =>
@@ -67,7 +68,7 @@ export const TemporaryDrawer: React.FC = () => {
     };
 
     const meClick = (): void => {
-        history.push(`/main/userdetail/` + getMeId());
+        history.push(getUserDetailUrl(getMeId()));
     };
 
     const editClick = (): void => {

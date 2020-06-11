@@ -13,7 +13,7 @@ import { updateMusics, updateCurrentMusic } from '../../globals';
 import { useDispatch } from 'reactn';
 import { UserInfoCard } from './userInfoCard';
 import { wrapName } from '../../common/common';
-import { getProfileUrl } from '../../common/routeName';
+import { getProfileUrl, getFollowersUrl, getCollectionDetailUrl } from '../../common/routeName';
 // const useStyles = makeStyles(() => createStyles({}));
 
 export const UserDetailPage: React.FC = () => {
@@ -56,7 +56,7 @@ export const UserDetailPage: React.FC = () => {
     };
 
     const followerClick = (): void => {
-        history.push(`/main/followers/` + id);
+        history.push(getFollowersUrl(id));
     };
 
     const followClick = (): void => {
@@ -99,7 +99,7 @@ export const UserDetailPage: React.FC = () => {
     };
 
     const bodyClick = (id: number): void => {
-        history.push(`/main/collection_detail/` + id);
+        history.push(getCollectionDetailUrl(id));
     };
 
     return (

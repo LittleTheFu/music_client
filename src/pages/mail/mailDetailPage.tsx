@@ -14,7 +14,7 @@ import { BackButton } from '../../sharedComponents/basicComponents/backButton';
 import { useDispatch } from 'reactn';
 import { UserHead } from '../../sharedComponents/basicComponents/userHead';
 import { wrapFunc1, wrapName } from '../../common/common';
-import { getMailUrl } from '../../common/routeName';
+import { getMailUrl, getUserDetailUrl } from '../../common/routeName';
 
 const useStyles = makeStyles(() =>
     createStyles({
@@ -76,7 +76,7 @@ export const MailDetailPage: React.FC = () => {
     };
 
     const fromNameClick = (fromId: number): void => {
-        history.push(`/main/userdetail/` + fromId);
+        history.push(getUserDetailUrl(fromId));
     };
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {

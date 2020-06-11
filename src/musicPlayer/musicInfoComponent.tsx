@@ -11,6 +11,7 @@ import { parseLyric, getLine, LyricLine } from '../common/lyricParser';
 import CommentIcon from '@material-ui/icons/Comment';
 import { useHistory } from 'react-router-dom';
 import Link from '@material-ui/core/Link';
+import { getAlbumUrl, getArtistUrl } from 'common/routeName';
 
 interface MusicInfoProps {
     music: Music;
@@ -114,11 +115,11 @@ export const MusicInfoComponent: React.FC<MusicInfoProps> = (props: MusicInfoPro
     }, [musicId]);
 
     const artistClick = (artistId: number): void => {
-        history.push(`/main/artist/` + artistId);
+        history.push(getArtistUrl(artistId));
     };
 
     const albumClick = (albumId: number): void => {
-        history.push(`/main/album/` + albumId);
+        history.push(getAlbumUrl(albumId));
     };
 
     return (

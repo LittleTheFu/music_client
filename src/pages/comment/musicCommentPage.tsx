@@ -16,6 +16,7 @@ import { ContentCard } from '../../sharedComponents/basicComponents/contentCard'
 import Pagination from '@material-ui/lab/Pagination';
 import { useGlobal } from 'reactn';
 import { wrapFunc1, wrapName } from '../../common/common';
+import { getMusicCommentUrl, getUserDetailUrl } from '../../common/routeName';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -88,7 +89,7 @@ export const MusicCommentPage: React.FC = () => {
 
     useEffect(() => {
         if (currentTheMusicId > 0) {
-            history.push(`/main/music_comment/` + currentTheMusicId);
+            history.push(getMusicCommentUrl(currentTheMusicId));
         }
     }, [currentTheMusicId, history]);
 
@@ -97,7 +98,7 @@ export const MusicCommentPage: React.FC = () => {
     };
 
     const detailClick = (userId: number): void => {
-        history.push(`/main/userdetail/` + userId);
+        history.push(getUserDetailUrl(userId));
     };
 
     const deleteClick = (commentId: number): void => {

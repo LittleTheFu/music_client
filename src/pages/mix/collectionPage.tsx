@@ -10,6 +10,7 @@ import { useDispatch } from 'reactn';
 import { updateMusics, updateCurrentMusic } from '../../globals';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
+import { getCollectionDetailUrl } from 'common/routeName';
 
 const useStyles = makeStyles(() =>
     createStyles({
@@ -46,7 +47,7 @@ export const MusicCollectionPage: React.FC = () => {
     };
 
     const bodyClick = (id: number): void => {
-        history.push(`/main/collection_detail/` + id);
+        history.push(getCollectionDetailUrl(id));
     };
 
     const closeModal = (): void => {

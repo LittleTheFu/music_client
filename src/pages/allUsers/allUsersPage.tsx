@@ -5,6 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { useHistory } from 'react-router-dom';
 import { wrapName, wrapFunc1 } from '../../common/common';
 import { UserHead } from '../../sharedComponents/basicComponents/userHead';
+import { getUserDetailUrl } from 'common/routeName';
 
 const useStyles = makeStyles({
     root: {
@@ -21,7 +22,7 @@ export const AllUsersPage: React.FC = () => {
     const classes = useStyles({});
 
     const avatarClick = (userId: number): void => {
-        history.push(`/main/userdetail/` + userId);
+        history.push(getUserDetailUrl(userId));
     };
 
     // const avatarClickWrapper = (userId: number) => {
