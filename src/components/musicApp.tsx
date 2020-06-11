@@ -26,6 +26,7 @@ import Backdrop from '@material-ui/core/Backdrop';
 import { makeStyles } from '@material-ui/core/styles';
 import { setLoginFlag } from '../globals';
 import { useHistory } from 'react-router-dom';
+import { getLoginUrl } from '../common/routeName';
 
 const useStyles = makeStyles(theme => ({
     backdrop: {
@@ -49,7 +50,7 @@ export const MusicApp: React.FC = () => {
     const handleClose = (): void => {
         setShowBannedMask(false);
         setLoginFlag(false);
-        history.push('/login');
+        history.push(getLoginUrl());
     };
 
     return (
@@ -105,7 +106,7 @@ export const MusicApp: React.FC = () => {
                         <Route path={`${path}/source_code`}>
                             <SourceCodePage></SourceCodePage>
                         </Route>
-                        <Route path={`${path}/eidt_password`}>
+                        <Route path={`${path}/edit_password`}>
                             <ChangePasswordPage></ChangePasswordPage>
                         </Route>
                     </Switch>

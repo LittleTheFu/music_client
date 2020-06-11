@@ -5,6 +5,7 @@ import { useDispatch } from 'reactn';
 // import { openHint } from '../../globals';
 import { useHistory } from 'react-router-dom';
 import { MusicsDetail } from '../../sharedComponents/musicsComponent/musicsDetail';
+import { getCollectionsUrl } from '../../common/routeName';
 
 export const CollectionDetailPage: React.FC = () => {
     const { id } = useParams();
@@ -18,7 +19,7 @@ export const CollectionDetailPage: React.FC = () => {
             intId,
             (o): void => {
                 openTheHint(o.msg);
-                history.push(`/main/collections/`);
+                history.push(getCollectionsUrl());
             },
             console.log,
         );

@@ -13,7 +13,7 @@ import { updateMusics, updateCurrentMusic } from '../../globals';
 import { useDispatch } from 'reactn';
 import { UserInfoCard } from './userInfoCard';
 import { wrapName } from '../../common/common';
-
+import { getProfileUrl } from '../../common/routeName';
 // const useStyles = makeStyles(() => createStyles({}));
 
 export const UserDetailPage: React.FC = () => {
@@ -82,7 +82,7 @@ export const UserDetailPage: React.FC = () => {
     };
 
     const editClick = (): void => {
-        history.push(`/main/profile`);
+        history.push(getProfileUrl());
     };
 
     const clickCollectionCover = (id: number): void => {

@@ -15,6 +15,14 @@ import SearchIcon from '@material-ui/icons/Search';
 import PeopleIcon from '@material-ui/icons/People';
 import { emitLogoutSocketMsg } from '../../common/socket';
 import Badge from '@material-ui/core/Badge';
+import {
+    getLoginUrl,
+    getMailUrl,
+    getCollectionsUrl,
+    getSearchUrl,
+    getAllUsersUrl,
+    getLobbyUrl,
+} from '../../common/routeName';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -47,29 +55,29 @@ export const AppBarComponent: React.FC = () => {
     };
 
     const musicClick = (): void => {
-        history.push(`/main/lobby`);
+        history.push(getLobbyUrl());
     };
 
     const mailClick = (): void => {
-        history.push(`/main/mail`);
+        history.push(getMailUrl());
     };
 
     const collectionsClick = (): void => {
-        history.push(`/main/collections`);
+        history.push(getCollectionsUrl());
     };
 
     const searchClick = (): void => {
-        history.push(`/main/search`);
+        history.push(getSearchUrl());
     };
 
     const peopleClick = (): void => {
-        history.push(`/main/all_users`);
+        history.push(getAllUsersUrl());
     };
 
     const exitClick = (): void => {
         setLoginFlag(false);
         emitLogoutSocketMsg(getMeId());
-        history.push('/login');
+        history.push(getLoginUrl());
     };
 
     return (

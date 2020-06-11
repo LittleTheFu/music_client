@@ -20,6 +20,17 @@ import { emitLogoutSocketMsg } from '../../common/socket';
 import Badge from '@material-ui/core/Badge';
 import { UserHead } from '../../sharedComponents/basicComponents/userHead';
 import VpnKeyIcon from '@material-ui/icons/VpnKey';
+import {
+    getLoginUrl,
+    getAllUsersUrl,
+    getSearchUrl,
+    getLobbyUrl,
+    getCollectionsUrl,
+    getMailUrl,
+    getProfileUrl,
+    getSourceCodeUrl,
+    getEditPasswordUrl,
+} from '../../common/routeName';
 
 // const useStyles = makeStyles(() =>
 //     createStyles({
@@ -48,11 +59,11 @@ export const TemporaryDrawer: React.FC = () => {
     const logoutClick = (): void => {
         setLoginFlag(false);
         emitLogoutSocketMsg(getMeId());
-        history.push('/login');
+        history.push(getLoginUrl());
     };
 
     const peopleClick = (): void => {
-        history.push(`/main/all_users`);
+        history.push(getAllUsersUrl());
     };
 
     const meClick = (): void => {
@@ -60,31 +71,31 @@ export const TemporaryDrawer: React.FC = () => {
     };
 
     const editClick = (): void => {
-        history.push(`/main/profile`);
+        history.push(getProfileUrl());
     };
 
     const passwordClick = (): void => {
-        history.push(`/main/eidt_password`);
+        history.push(getEditPasswordUrl());
     };
 
     const searchClick = (): void => {
-        history.push(`/main/search`);
+        history.push(getSearchUrl());
     };
 
     const collectionsClick = (): void => {
-        history.push(`/main/collections`);
+        history.push(getCollectionsUrl());
     };
 
     const mailClick = (): void => {
-        history.push(`/main/mail`);
+        history.push(getMailUrl());
     };
 
     const musicClick = (): void => {
-        history.push(`/main/lobby`);
+        history.push(getLobbyUrl());
     };
 
     const projectClick = (): void => {
-        history.push(`/main/source_code`);
+        history.push(getSourceCodeUrl());
     };
 
     return (

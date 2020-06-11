@@ -10,6 +10,7 @@ import { setLoginFlag, setMeAvatar } from '../../globals';
 import { useDispatch } from 'reactn';
 import { AccessData } from '../../common/interface';
 import { emitLoginSocketMsg } from '../../common/socket';
+import { getLobbyUrl } from '../../common/routeName';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -69,7 +70,7 @@ export const LoginComponent: React.FC = () => {
         setLoginFlag(true);
         loadAvatarAndId();
 
-        history.push('/main/lobby');
+        history.push(getLobbyUrl());
         // }
     };
 

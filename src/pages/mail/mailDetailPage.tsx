@@ -14,6 +14,7 @@ import { BackButton } from '../../sharedComponents/basicComponents/backButton';
 import { useDispatch } from 'reactn';
 import { UserHead } from '../../sharedComponents/basicComponents/userHead';
 import { wrapFunc1, wrapName } from '../../common/common';
+import { getMailUrl } from '../../common/routeName';
 
 const useStyles = makeStyles(() =>
     createStyles({
@@ -68,7 +69,7 @@ export const MailDetailPage: React.FC = () => {
             intId,
             o => {
                 openTheHint(o.msg);
-                history.push(`/main/mail/`);
+                history.push(getMailUrl());
             },
             console.log,
         );

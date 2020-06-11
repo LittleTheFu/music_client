@@ -16,6 +16,7 @@ import {
     isValidEmail,
     getEmailHelpText,
 } from '../../common/common';
+import { getLoginUrl } from '../../common/routeName';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -52,7 +53,7 @@ export const RegisterComponent: React.FC = () => {
 
     const resolveData = (data: RetMsgObj): void => {
         openTheHint(data.msg);
-        history.push('/login');
+        history.push(getLoginUrl());
     };
 
     function isCorrectEmail(email: string): boolean {
