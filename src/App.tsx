@@ -8,14 +8,23 @@ import { ForgetPasswordPage } from './pages/auth/forget';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import { getLoginFlag } from './globals';
 import Snackbar from '@material-ui/core/Snackbar';
-import { useGlobal } from 'reactn';
+// import { useGlobal } from 'reactn';
 import { initSocket } from './common/socket';
+import { useSelector, useDispatch } from 'react-redux';
+import { selectHintState, selectHintMsg } from 'reducer/rootReducer';
+import { SystemActionTypes, CLOSE_HINT } from 'reducer/system/types';
+import { Dispatch } from 'redux';
 
 initSocket();
 
 const App: React.FC = () => {
-    const [hintOpen, setHintOpen] = useGlobal('hintOpen');
-    const [hintMsg] = useGlobal('hintMsg');
+    // const [hintOpen, setHintOpen] = useGlobal('hintOpen');
+    // const [hintMsg] = useGlobal('hintMsg');
+
+    const hintState = useSelector(selectHintState);
+    const hintMsg = useSelector(selectHintMsg);
+
+    const dispatch = useDispatch<Dispatch<SystemActionTypes>>();
 
     return (
         <Router>
@@ -24,10 +33,11 @@ const App: React.FC = () => {
                     vertical: 'top',
                     horizontal: 'center',
                 }}
-                open={hintOpen}
+                open={hintState}
                 autoHideDuration={1000}
                 onClose={(): void => {
-                    setHintOpen(false);
+                    // setHintOpen(false);
+                    dispatch({ type: CLOSE_HINT });
                 }}
                 message={hintMsg}
             />

@@ -15,4 +15,12 @@ export const selectName = (state: RootState): string => {
     return state.system.userName;
 };
 
+export const selectHintState = (state: RootState): boolean => {
+    return state.system.hintOpen;
+};
+
+export const selectHintMsg = (state: RootState): string => {
+    return state.system.hintMsg;
+};
+
 export const store = createStore(rootReducer);

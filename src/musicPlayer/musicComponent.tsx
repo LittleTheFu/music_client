@@ -23,6 +23,9 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
     const updateToTheNextMusic = useDispatch(updateToNextMusic);
     const openTheHint = useCallback(useDispatch('openHint'), []);
 
+    // const hintState = useSelector(selectHintState);
+    // const dispatch = useDispatch<Dispatch<SystemActionTypes>>();
+
     const [currentTheMusic] = useGlobal('currentMusic');
     const [currentMusics] = useGlobal('musics');
     const [currentTheMusicId] = useGlobal('currentMusicId');
