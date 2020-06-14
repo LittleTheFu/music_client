@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Dispatch } from 'react';
 import CardMedia from '@material-ui/core/CardMedia';
 import Card from '@material-ui/core/Card';
 import { makeStyles } from '@material-ui/core/styles';
@@ -12,6 +12,11 @@ import CommentIcon from '@material-ui/icons/Comment';
 import { useHistory } from 'react-router-dom';
 import Link from '@material-ui/core/Link';
 import { getAlbumUrl, getArtistUrl } from 'common/routeName';
+import { selectName } from '../reducer/rootReducer';
+import { useSelector, useDispatch } from 'react-redux';
+// import { useDispatch } from 'reactn';
+import { SystemActionTypes } from 'reducer/system/types';
+import { UPDATE_SESSION } from 'reducer/system/types';
 
 interface MusicInfoProps {
     music: Music;
@@ -83,6 +88,9 @@ export const MusicInfoComponent: React.FC<MusicInfoProps> = (props: MusicInfoPro
     const [lyricLine, setLyricLine] = useState('');
     const [lines, setLines] = useState<LyricLine[]>([]);
 
+    const sName = useSelector(selectName);
+    const dispatch = useDispatch<Dispatch<SystemActionTypes>>();
+
     const history = useHistory();
 
     useEffect(() => {
@@ -119,6 +127,7 @@ export const MusicInfoComponent: React.FC<MusicInfoProps> = (props: MusicInfoPro
     };
 
     const albumClick = (albumId: number): void => {
+        dispatch({ type: UPDATE_SESSION, payload: { loggedIn: false, session: 'SS', userName: 'US' } });
         history.push(getAlbumUrl(albumId));
     };
 
@@ -164,9 +173,10 @@ export const MusicInfoComponent: React.FC<MusicInfoProps> = (props: MusicInfoPro
                         {/* --- */}
                     </div>
                     <CardMedia image={music.cover} className={classes.cover}></CardMedia>
+                    <div>{sName}</div>
                 </div>
             ) : (
-                <div></div>
+                <div>{sName}</div>
             )}
         </Card>
     );

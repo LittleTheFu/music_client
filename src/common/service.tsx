@@ -15,7 +15,9 @@ import {
     RetMsgObj,
     RetComments,
 } from './interface';
-import { getDispatch } from 'reactn';
+// import { getDispatch } from 'reactn';
+import { store } from '../reducer/rootReducer';
+import { UPDATE_SESSION } from 'reducer/system/types';
 
 // const hostPrefix = 'http://localhost:9999/';
 // const hostPrefix = 'http://192.168.0.101:9999/';
@@ -57,7 +59,7 @@ function rawObjectPost<T>(
                     if (reject) {
                         reject(new Error(err.response.data.error));
                     } else {
-                        getDispatch().openHint(err.response.data.error);
+                        // getDispatch().openHint(err.response.data.error);
                     }
                 }
             } else if (err.request) {
@@ -90,6 +92,8 @@ export const postLogin = (
     resolve: (data: AccessData) => void,
     reject?: (data: Error) => void,
 ): Promise<AccessData> => {
+    store.dispatch({ type: UPDATE_SESSION, payload: { loggedIn: false, session: 'AAA', userName: 'AAA' } });
+
     return rawObjectPost(loginUrl, { username: username, password: password }, resolve, {}, reject);
 };
 
