@@ -139,8 +139,8 @@ export function systemReducer(state = initialState, action: SystemActionTypes): 
                 ...state,
                 musics: action.payload.musics,
                 musicIndex: 0,
-                currentMusic: state.musics[0] ? state.musics[0] : dummyMusic,
-                currentMusicId: state.musics[0] ? state.musics[0].id : dummyMusic.id,
+                currentMusic: action.payload.musics[0] ? action.payload.musics[0] : dummyMusic,
+                currentMusicId: action.payload.musics[0] ? action.payload.musics[0].id : dummyMusic.id,
                 refreshMusicFlag: true,
             };
         }
