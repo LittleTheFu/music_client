@@ -134,14 +134,13 @@ export const updateMusics = (
     global: State,
     dispatch: Dispatch,
     musics: Music[],
-): Pick<State, 'musics' | 'musicIndex' | 'musicLength' | 'currentMusic' | 'currentMusicId' | 'refreshMusicFlag'> => ({
+): Pick<State, 'musics' | 'musicIndex' | 'currentMusic' | 'currentMusicId' | 'refreshMusicFlag'> => ({
     musics: musics.map(m => {
         m.isInPlayList = false;
 
         return m;
     }),
     musicIndex: 0,
-    musicLength: musics.length,
     currentMusic: musics[0] ? musics[0] : dummyMusic,
     currentMusicId: musics[0] ? musics[0].id : dummyMusic.id,
     refreshMusicFlag: true,

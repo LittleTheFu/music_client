@@ -39,7 +39,6 @@ declare module 'reactn/default' {
         currentMusic: Music;
         musics: Music[];
         musicIndex: number;
-        musicLength: number;
 
         Collections: MusicCollection[];
         currentCollection: MusicCollection;
