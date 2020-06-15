@@ -19,11 +19,17 @@ export interface DrawerState {
     drawerOpen: boolean;
 }
 
+export interface PlayState {
+    isPlaying: boolean;
+}
+
+///////////////////
+
 export interface HintMsg {
     hintMsg: string;
 }
 
-export interface AllState extends SystemState, HintState, MaskState, DrawerState {}
+export interface AllState extends SystemState, HintState, MaskState, DrawerState, PlayState {}
 
 // src/store/system/types.ts
 export const UPDATE_SESSION = 'UPDATE_SESSION';
@@ -63,6 +69,14 @@ interface CloseDrawerAction {
     type: typeof CLOSE_DRAWER;
 }
 
+export const UPDATE_PLAY_STATE = 'UPDATE_PLAY_STATE';
+interface UpdatePlayStateAction {
+    type: typeof UPDATE_PLAY_STATE;
+    payload: {
+        isPlaying: boolean;
+    };
+}
+
 export type SystemActionTypes =
     | UpdateSessionAction
     | OpenHintAction
@@ -70,4 +84,5 @@ export type SystemActionTypes =
     | OpenMaskAction
     | CloseMaskAction
     | OpenDrawerAction
-    | CloseDrawerAction;
+    | CloseDrawerAction
+    | UpdatePlayStateAction;

@@ -31,4 +31,8 @@ export const selectDrawerState = (state: RootState): boolean => {
     return state.system.drawerOpen;
 };
 
+export const selectPlayState = (state: RootState): boolean => {
+    return state.system.isPlaying;
+};
+
 export const store = createStore(rootReducer);

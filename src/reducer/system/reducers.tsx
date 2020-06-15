@@ -10,6 +10,7 @@ import {
     CLOSE_MASK,
     OPEN_DRAWER,
     CLOSE_DRAWER,
+    UPDATE_PLAY_STATE,
 } from './types';
 
 const initialState: AllState = {
@@ -22,6 +23,8 @@ const initialState: AllState = {
 
     showBannedMask: false,
     drawerOpen: false,
+
+    isPlaying: false,
 };
 
 export function systemReducer(state = initialState, action: SystemActionTypes): AllState {
@@ -67,6 +70,12 @@ export function systemReducer(state = initialState, action: SystemActionTypes): 
             return {
                 ...state,
                 drawerOpen: false,
+            };
+        }
+        case UPDATE_PLAY_STATE: {
+            return {
+                ...state,
+                ...action.payload,
             };
         }
         default:

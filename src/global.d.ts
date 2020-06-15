@@ -46,8 +46,6 @@ declare module 'reactn/default' {
         Collections: MusicCollection[];
         currentCollection: MusicCollection;
 
-        isPlaying: boolean;
-
         hintOpen: boolean;
         hintMsg: string;
     }

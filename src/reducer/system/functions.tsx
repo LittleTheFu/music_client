@@ -1,4 +1,12 @@
-import { OPEN_HINT, OPEN_MASK, CLOSE_MASK, SystemActionTypes, OPEN_DRAWER, CLOSE_DRAWER } from './types';
+import {
+    OPEN_HINT,
+    OPEN_MASK,
+    CLOSE_MASK,
+    SystemActionTypes,
+    OPEN_DRAWER,
+    CLOSE_DRAWER,
+    UPDATE_PLAY_STATE,
+} from './types';
 import { Dispatch } from 'redux';
 
 export const openHint = (dispatch: Dispatch<SystemActionTypes>, message: string): void => {
@@ -19,4 +27,8 @@ export const openDrawer = (dispatch: Dispatch<SystemActionTypes>): void => {
 
 export const closeDrawer = (dispatch: Dispatch<SystemActionTypes>): void => {
     dispatch({ type: CLOSE_DRAWER });
+};
+
+export const updatePlayState = (dispatch: Dispatch<SystemActionTypes>, isPlaying: boolean): void => {
+    dispatch({ type: UPDATE_PLAY_STATE, payload: { isPlaying: isPlaying } });
 };

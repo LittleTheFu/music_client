@@ -9,6 +9,11 @@ import { updateMusic, updateCurrentMusic, updateToNextMusic } from '../globals';
 import Grid from '@material-ui/core/Grid';
 import { MusicListDrawer } from './musicListDrawer';
 import { getMusicCommentUrl } from '../common/routeName';
+import { useSelector, useDispatch as _useDispatch } from 'react-redux';
+import { selectPlayState, selectHintState } from 'reducer/rootReducer';
+import { SystemActionTypes } from 'reducer/system/types';
+import { Dispatch } from 'redux';
+import { updatePlayState } from 'reducer/system/functions';
 
 interface MusicComponentProps {
     audioElement: HTMLAudioElement;
@@ -22,9 +27,6 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
     const updateCurerntMusicInfo = useDispatch(updateCurrentMusic);
     const updateToTheNextMusic = useDispatch(updateToNextMusic);
     const openTheHint = useCallback(useDispatch('openHint'), []);
-
-    // const hintState = useSelector(selectHintState);
-    // const dispatch = useDispatch<Dispatch<SystemActionTypes>>();
 
     const [currentTheMusic] = useGlobal('currentMusic');
     const [currentMusics] = useGlobal('musics');
@@ -45,7 +47,9 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
     const [volume, setVolume] = useState(0.5);
     audioElement.volume = volume;
 
-    const [isPlaying, setIsPlaying] = useState(false);
+    const dispatch = _useDispatch<Dispatch<SystemActionTypes>>();
+    const hintState = useSelector(selectHintState);
+    const isPlaying = useSelector(selectPlayState);
 
     useEffect(() => {
         if (refresher && currentTheMusic && currentTheMusicId > 0) {
@@ -54,7 +58,8 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
             audioElement.src = currentTheMusic.address;
             audioElement.autoplay = true;
 
-            setIsPlaying(true);
+            updatePlayState(dispatch, true);
+            // setIsPlaying(true);
 
             setLikeButtunGuard(false);
         }
@@ -154,10 +159,10 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
 
         if (isPlaying) {
             audioElement.pause();
-            setIsPlaying(false);
+            updatePlayState(dispatch, false);
         } else {
             audioElement.play();
-            setIsPlaying(true);
+            updatePlayState(dispatch, true);
         }
     };
 

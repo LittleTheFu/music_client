@@ -84,8 +84,6 @@ setGlobal({
 
     Collections: [],
 
-    isPlaying: false,
-
     hintOpen: false,
     hintMsg: '',
 });
