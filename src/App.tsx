@@ -8,7 +8,6 @@ import { ForgetPasswordPage } from './pages/auth/forget';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import { getLoginFlag } from './globals';
 import Snackbar from '@material-ui/core/Snackbar';
-// import { useGlobal } from 'reactn';
 import { initSocket } from './common/socket';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectHintState, selectHintMsg } from 'reducer/rootReducer';

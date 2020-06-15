@@ -3,17 +3,16 @@ import InputBase from '@material-ui/core/InputBase';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import { fetchMusicsByKeyword } from '../../common/service';
-import { useGlobal, useDispatch } from 'reactn';
 import { Music } from '../../common/interface';
 import { MyCollectionsModal } from '../../sharedComponents/musicsComponent/myCollectionsModal';
-import { updateMusics, updateCurrentMusic } from '../../globals';
 import { addMusicToCollection } from '../../common/service';
 import { useDebounce } from '../../common/debounce';
 import { MixDetail } from '../../sharedComponents/musicsComponent/mixDetailComponent';
-import { useDispatch as _useDispatch } from 'react-redux';
-import { openHint } from 'reducer/system/functions';
+import { useDispatch, useSelector } from 'react-redux';
+import { openHint, updateMusics, updateCurrentMusic } from 'reducer/system/functions';
 import { SystemActionTypes } from 'reducer/system/types';
 import { Dispatch } from 'redux';
+import { selectCurrentMusicId } from 'reducer/rootReducer';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -36,12 +35,9 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export const SearchPage: React.FC = () => {
-    const [currentTheMusicId] = useGlobal('currentMusicId');
+    const currentTheMusicId = useSelector(selectCurrentMusicId);
 
-    const updatePlayingMusics = useDispatch(updateMusics);
-    const updateTheCurrentMusic = useDispatch(updateCurrentMusic);
-
-    const dispatch = _useDispatch<Dispatch<SystemActionTypes>>();
+    const dispatch = useDispatch<Dispatch<SystemActionTypes>>();
 
     const [content, setContent] = useState('');
     const [musics, setMusics] = useState<Music[]>([]);
@@ -68,8 +64,8 @@ export const SearchPage: React.FC = () => {
     }, [debouncedContent]);
 
     const clickMusic = (music: Music): void => {
-        updatePlayingMusics(musics);
-        updateTheCurrentMusic(music);
+        updateMusics(dispatch, musics);
+        updateCurrentMusic(dispatch, music);
     };
 
     const addMusicClick = (id: number): void => {

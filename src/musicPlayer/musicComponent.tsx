@@ -2,18 +2,29 @@ import React, { useState, useEffect } from 'react';
 import { MusicInfoComponent } from './musicInfoComponent';
 import { Music } from '../common/interface';
 import { PlayBarComponent } from './playBarComponent';
-import { useGlobal, useDispatch } from 'reactn';
 import { useHistory } from 'react-router-dom';
 import { postLikeMusic, postDislikeMusic } from '../common/service';
-import { updateMusic, updateCurrentMusic, updateToNextMusic } from '../globals';
 import Grid from '@material-ui/core/Grid';
 import { MusicListDrawer } from './musicListDrawer';
 import { getMusicCommentUrl } from '../common/routeName';
-import { useSelector, useDispatch as _useDispatch } from 'react-redux';
-import { selectPlayState } from 'reducer/rootReducer';
+import { useSelector, useDispatch } from 'react-redux';
+import {
+    selectPlayState,
+    selectCurrentMusic,
+    selectMusics,
+    selectRefreshMusicFlag,
+    selectCurrentMusicId,
+} from 'reducer/rootReducer';
 import { SystemActionTypes } from 'reducer/system/types';
 import { Dispatch } from 'redux';
-import { updatePlayState, openHint } from 'reducer/system/functions';
+import {
+    updatePlayState,
+    openHint,
+    jumpToNextMusic,
+    updateMusic,
+    updateCurrentMusic,
+    updateMusicRefresher,
+} from 'reducer/system/functions';
 
 interface MusicComponentProps {
     audioElement: HTMLAudioElement;
@@ -22,15 +33,13 @@ interface MusicComponentProps {
 
 export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicComponentProps) => {
     const { audioElement } = props;
+    const currentTheMusic = useSelector(selectCurrentMusic);
 
-    const updateMusicAfterClickHeartIcon = useDispatch(updateMusic);
-    const updateCurerntMusicInfo = useDispatch(updateCurrentMusic);
-    const updateToTheNextMusic = useDispatch(updateToNextMusic);
+    const currentMusics = useSelector(selectMusics);
 
-    const [currentTheMusic] = useGlobal('currentMusic');
-    const [currentMusics] = useGlobal('musics');
-    const [currentTheMusicId] = useGlobal('currentMusicId');
-    const [refresher, setRefresher] = useGlobal('refreshMusicFlag');
+    const currentTheMusicId = useSelector(selectCurrentMusicId);
+
+    const refresher = useSelector(selectRefreshMusicFlag);
 
     const [currentTime, setCurrentTime] = useState(0);
     const [duration, setDuration] = useState(0);
@@ -46,30 +55,21 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
     const [volume, setVolume] = useState(0.5);
     audioElement.volume = volume;
 
-    const dispatch = _useDispatch<Dispatch<SystemActionTypes>>();
+    const dispatch = useDispatch<Dispatch<SystemActionTypes>>();
     const isPlaying = useSelector(selectPlayState);
 
     useEffect(() => {
         if (refresher && currentTheMusic && currentTheMusicId > 0) {
-            setRefresher(false);
+            updateMusicRefresher(dispatch, false);
 
             audioElement.src = currentTheMusic.address;
             audioElement.autoplay = true;
 
             updatePlayState(dispatch, true);
-            // setIsPlaying(true);
 
             setLikeButtunGuard(false);
         }
-    }, [
-        refresher,
-        setRefresher,
-        audioElement.autoplay,
-        audioElement.src,
-        currentTheMusic,
-        currentTheMusicId,
-        dispatch,
-    ]);
+    }, [refresher, audioElement.autoplay, audioElement.src, currentTheMusic, currentTheMusicId, dispatch]);
 
     useEffect(() => {
         if (duration !== 0) {
@@ -120,7 +120,7 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
                 postAct(
                     currentTheMusic.id,
                     (data): void => {
-                        updateMusicAfterClickHeartIcon(data);
+                        updateMusic(dispatch, data);
                         setLikeButtunGuard(false);
                     },
                     e => {
@@ -187,12 +187,13 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
     };
 
     const playMusic = (m: Music): void => {
-        updateCurerntMusicInfo(m);
+        updateCurrentMusic(dispatch, m);
     };
 
     const skipToNext = (): void => {
+        console.log(currentMusics);
         if (currentMusics && currentMusics.length > 0) {
-            updateToTheNextMusic();
+            jumpToNextMusic(dispatch);
         }
     };
 

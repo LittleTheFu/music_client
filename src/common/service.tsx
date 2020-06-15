@@ -15,7 +15,6 @@ import {
     RetMsgObj,
     RetComments,
 } from './interface';
-// import { getDispatch } from 'reactn';
 import { store } from '../reducer/rootReducer';
 import { OPEN_HINT } from 'reducer/system/types';
 
@@ -60,7 +59,6 @@ function rawObjectPost<T>(
                         reject(new Error(err.response.data.error));
                     } else {
                         store.dispatch({ type: OPEN_HINT, payload: { hintMsg: err.response.data.error } });
-                        // getDispatch().openHint(err.response.data.error);
                     }
                 }
             } else if (err.request) {
@@ -93,8 +91,6 @@ export const postLogin = (
     resolve: (data: AccessData) => void,
     reject?: (data: Error) => void,
 ): Promise<AccessData> => {
-    // store.dispatch({ type: OPEN_HINT, payload: { hintMsg: false, session: 'AAA', userName: 'AAA' } });
-
     return rawObjectPost(loginUrl, { username: username, password: password }, resolve, {}, reject);
 };
 

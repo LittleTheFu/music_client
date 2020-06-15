@@ -1,6 +1,5 @@
 import React from 'react';
 import Drawer from '@material-ui/core/Drawer';
-import { useGlobal } from 'reactn';
 import List from '@material-ui/core/List';
 import MailIcon from '@material-ui/icons/Mail';
 import { useHistory } from 'react-router-dom';
@@ -32,7 +31,7 @@ import {
     getEditPasswordUrl,
     getUserDetailUrl,
 } from '../../common/routeName';
-import { selectDrawerState } from 'reducer/rootReducer';
+import { selectDrawerState, selectUnreadMailCount } from 'reducer/rootReducer';
 import { useSelector, useDispatch } from 'react-redux';
 import { SystemActionTypes } from 'reducer/system/types';
 import { Dispatch } from 'redux';
@@ -61,7 +60,7 @@ export const TemporaryDrawer: React.FC = () => {
 
     // const classes = useStyles({});
     const history = useHistory();
-    const [_unreadMailCnt] = useGlobal('unreadMailCnt');
+    const _unreadMailCnt = useSelector(selectUnreadMailCount);
 
     const logoutClick = (): void => {
         setLoginFlag(false);

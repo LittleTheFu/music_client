@@ -1,9 +1,13 @@
 import io from 'socket.io-client';
-import { getDispatch } from 'reactn';
 import { getLoginFlag, getMeId, setLoginFlag } from '../globals';
 import { getUnreadMailNum } from './service';
 import { store } from '../reducer/rootReducer';
-import { OPEN_MASK } from 'reducer/system/types';
+import {
+    OPEN_MASK,
+    UPDATE_UNREAD_MAIL_COUNT,
+    INCREASE_UNREAD_MAIL_COUNT,
+    REFRESH_MAIL_PAGE,
+} from 'reducer/system/types';
 
 const host = process.env.REACT_APP_HOST;
 
@@ -33,8 +37,8 @@ export const initSocket = (): void => {
     });
 
     socket.on('new_mail', function() {
-        getDispatch().incUnreadMailCnt();
-        getDispatch().setRefreshMailPageFlag();
+        store.dispatch({ type: INCREASE_UNREAD_MAIL_COUNT });
+        store.dispatch({ type: REFRESH_MAIL_PAGE });
     });
 
     socket.on('login', function(data: unknown) {
@@ -62,7 +66,7 @@ export const initSocket = (): void => {
         if (id > 0) {
             emitLoginSocketMsg(id);
             getUnreadMailNum(num => {
-                getDispatch().updateUnreadMailCnt(num);
+                store.dispatch({ type: UPDATE_UNREAD_MAIL_COUNT, payload: { unreadMailCnt: num } });
                 console.log('mails ' + num);
             });
         }

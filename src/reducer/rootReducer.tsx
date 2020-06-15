@@ -3,6 +3,8 @@
 import { systemReducer } from './system/reducers';
 import { chatReducer } from './chat/reducers';
 import { combineReducers, createStore } from 'redux';
+import { Music } from 'common/interface';
+import { composeWithDevTools } from 'redux-devtools-extension';
 
 const rootReducer = combineReducers({
     system: systemReducer,
@@ -35,4 +37,28 @@ export const selectPlayState = (state: RootState): boolean => {
     return state.system.isPlaying;
 };
 
-export const store = createStore(rootReducer);
+export const selectUnreadMailCount = (state: RootState): number => {
+    return state.system.unreadMailCnt;
+};
+
+export const selectMailRefresher = (state: RootState): boolean => {
+    return state.system.refreshMailPage;
+};
+
+export const selectMusics = (state: RootState): Music[] => {
+    return state.system.musics;
+};
+
+export const selectCurrentMusic = (state: RootState): Music => {
+    return state.system.currentMusic;
+};
+
+export const selectCurrentMusicId = (state: RootState): number => {
+    return state.system.currentMusicId;
+};
+
+export const selectRefreshMusicFlag = (state: RootState): boolean => {
+    return state.system.refreshMusicFlag;
+};
+
+export const store = createStore(rootReducer, composeWithDevTools());

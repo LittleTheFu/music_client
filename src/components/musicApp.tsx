@@ -3,7 +3,6 @@ import { MusicComponent } from '../musicPlayer/musicComponent';
 import { getAudioPlayer } from '../musicPlayer/audioPlayer';
 import { TemporaryDrawer } from './navDrawer/navDrawerComponent';
 import { AppBarComponent } from './appBar/appBarComponent';
-import { useGlobal } from 'reactn';
 import Grid from '@material-ui/core/Grid';
 import { Switch, Route, useRouteMatch } from 'react-router-dom';
 import { ProfilePage } from '../pages/profile/profile';
@@ -27,7 +26,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { setLoginFlag } from '../globals';
 import { useHistory } from 'react-router-dom';
 import { getLoginUrl } from '../common/routeName';
-import { selectMaskState } from 'reducer/rootReducer';
+import { selectMaskState, selectMusics } from 'reducer/rootReducer';
 import { useSelector, useDispatch } from 'react-redux';
 import { closeMask } from 'reducer/system/functions';
 import { SystemActionTypes } from 'reducer/system/types';
@@ -44,7 +43,7 @@ const useStyles = makeStyles(theme => ({
 const audioElement = getAudioPlayer();
 
 export const MusicApp: React.FC = () => {
-    const [musics] = useGlobal('musics');
+    const musics = useSelector(selectMusics);
     const { path } = useRouteMatch();
 
     const dispatch = useDispatch<Dispatch<SystemActionTypes>>();

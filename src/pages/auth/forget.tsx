@@ -43,7 +43,6 @@ export const ForgetPasswordPage: React.FC = () => {
     const classes = useStyles({});
 
     const resolve = (r: RetMsgObj): void => {
-        // history.push('/main/lobby');
         setMessage(r.msg);
     };
 

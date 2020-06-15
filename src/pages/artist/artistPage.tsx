@@ -2,11 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { getArtistInfo } from '../../common/service';
 import { useHistory, useParams } from 'react-router-dom';
 import { Artist } from '../../common/interface';
-import { useDispatch } from 'reactn';
-import { updateMusics, updateCurrentMusic } from '../../globals';
 import { MusicCollectionsComponent } from '../../sharedComponents/musicsComponent/musicCollectionsComponent';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 import { getAlbumUrl } from 'common/routeName';
+import { updateMusics, updateCurrentMusic } from 'reducer/system/functions';
+import { useDispatch } from 'react-redux';
+import { SystemActionTypes } from 'reducer/system/types';
+import { Dispatch } from 'redux';
 
 const useStyles = makeStyles(() =>
     createStyles({
@@ -23,8 +25,8 @@ const useStyles = makeStyles(() =>
 
 export const ArtistPage: React.FC = () => {
     const [artist, setArtist] = useState<Artist>(null);
-    const updatePlayingMusics = useDispatch(updateMusics);
-    const updateTheCurrentMusic = useDispatch(updateCurrentMusic);
+
+    const dispatch = useDispatch<Dispatch<SystemActionTypes>>();
 
     const history = useHistory();
 
@@ -46,14 +48,13 @@ export const ArtistPage: React.FC = () => {
     const clickCollectionCover = (id: number): void => {
         artist.albums.forEach(c => {
             if (c.id === id) {
-                updatePlayingMusics(c.musics);
-                updateTheCurrentMusic(c.musics[0]);
+                updateMusics(dispatch, c.musics);
+                updateCurrentMusic(dispatch, c.musics[0]);
             }
         });
     };
 
     const bodyClick = (id: number): void => {
-        // history.push(`/main/collection_detail/` + id);
         history.push(getAlbumUrl(id));
     };
 

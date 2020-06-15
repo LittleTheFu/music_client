@@ -14,7 +14,6 @@ import Link from '@material-ui/core/Link';
 import { getAlbumUrl, getArtistUrl } from 'common/routeName';
 import { selectName } from '../reducer/rootReducer';
 import { useSelector, useDispatch } from 'react-redux';
-// import { useDispatch } from 'reactn';
 import { SystemActionTypes } from 'reducer/system/types';
 import { UPDATE_SESSION } from 'reducer/system/types';
 

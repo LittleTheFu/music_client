@@ -3,15 +3,16 @@ import { getAlbums } from '../../common/service';
 import { MusicCollectionsComponent } from '../../sharedComponents/musicsComponent/musicCollectionsComponent';
 import { MusicCollection } from '../../common/interface';
 import { useHistory } from 'react-router-dom';
-import { updateMusics, updateCurrentMusic } from '../../globals';
-import { useDispatch } from 'reactn';
 import { getAlbumUrl } from 'common/routeName';
+import { useDispatch } from 'react-redux';
+import { Dispatch } from 'redux';
+import { SystemActionTypes } from 'reducer/system/types';
+import { updateMusics, updateCurrentMusic } from 'reducer/system/functions';
 
 export const LobbyPage: React.FC = () => {
-    // const [albums, setAlbums] = useState<Album[]>([]);
     const [musicCollections, setMusicCollections] = useState<MusicCollection[]>([]);
-    const updatePlayingMusics = useDispatch(updateMusics);
-    const updateTheCurrentMusic = useDispatch(updateCurrentMusic);
+
+    const dispatch = useDispatch<Dispatch<SystemActionTypes>>();
 
     const history = useHistory();
 
@@ -28,13 +29,12 @@ export const LobbyPage: React.FC = () => {
         });
 
         if (c && c.musics && c.musics.length > 0) {
-            updatePlayingMusics(c.musics);
-            updateTheCurrentMusic(c.musics[0]);
+            updateMusics(dispatch, c.musics);
+            updateCurrentMusic(dispatch, c.musics[0]);
         }
     };
 
     const bodyClick = (id: number): void => {
-        // history.push(`/main/collection_detail/` + id);
         history.push(getAlbumUrl(id));
     };
 

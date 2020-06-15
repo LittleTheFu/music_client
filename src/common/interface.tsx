@@ -9,7 +9,6 @@ export class Music {
     albumId: number;
     like: number;
     likedByCurrentUser: boolean;
-    isInPlayList: boolean;
 }
 
 export class Artist {
@@ -30,7 +29,6 @@ export const dummyMusic: Music = {
     albumId: 0,
     like: 0,
     likedByCurrentUser: false,
-    isInPlayList: false,
 };
 
 export class MusicCollection {
@@ -118,10 +116,3 @@ export class RetMeData {
 export class AccessData {
     accessToken: string;
 }
-
-//----------------------
-// export class RetSimpleUser {
-//     id: number;
-//     name: string;
-//     avatarUrl: string;
-// }

@@ -12,13 +12,13 @@ import ListItem from '@material-ui/core/ListItem';
 import { BackButton } from '../../sharedComponents/basicComponents/backButton';
 import { ContentCard } from '../../sharedComponents/basicComponents/contentCard';
 import Pagination from '@material-ui/lab/Pagination';
-import { useGlobal } from 'reactn';
 import { wrapFunc1, wrapName } from '../../common/common';
 import { getMusicCommentUrl, getUserDetailUrl } from '../../common/routeName';
 import { Dispatch } from 'redux';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { SystemActionTypes } from 'reducer/system/types';
 import { openHint } from 'reducer/system/functions';
+import { selectCurrentMusicId } from 'reducer/rootReducer';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -58,7 +58,7 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export const MusicCommentPage: React.FC = () => {
-    const [currentTheMusicId] = useGlobal('currentMusicId');
+    const currentTheMusicId = useSelector(selectCurrentMusicId);
 
     const [comments, setComments] = useState<MusicComment[]>([]);
     const [content, setContent] = useState('');

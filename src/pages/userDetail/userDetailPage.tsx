@@ -9,14 +9,12 @@ import { WriteMailModal } from './writeMailModal';
 import { getMeId } from '../../globals';
 import { BackButton } from '../../sharedComponents/basicComponents/backButton';
 import { MusicCollectionsComponent } from '../../sharedComponents/musicsComponent/musicCollectionsComponent';
-import { updateMusics, updateCurrentMusic } from '../../globals';
-import { useDispatch } from 'reactn';
 import { UserInfoCard } from './userInfoCard';
 import { wrapName } from '../../common/common';
 import { getProfileUrl, getFollowersUrl, getCollectionDetailUrl } from '../../common/routeName';
 
-import { useDispatch as _useDispatch } from 'react-redux';
-import { openHint } from 'reducer/system/functions';
+import { useDispatch } from 'react-redux';
+import { openHint, updateMusics, updateCurrentMusic } from 'reducer/system/functions';
 import { SystemActionTypes } from 'reducer/system/types';
 import { Dispatch } from 'redux';
 
@@ -26,10 +24,8 @@ export const UserDetailPage: React.FC = () => {
     const [detail, setDetail] = useState<UserDetail>(null);
     const [mailModalOpen, setMailModalOpen] = useState(false);
     const history = useHistory();
-    const updatePlayingMusics = useDispatch(updateMusics);
-    const updateTheCurrentMusic = useDispatch(updateCurrentMusic);
 
-    const dispatch = _useDispatch<Dispatch<SystemActionTypes>>();
+    const dispatch = useDispatch<Dispatch<SystemActionTypes>>();
 
     const { id } = useParams();
     const intId = parseInt(id);
@@ -97,8 +93,8 @@ export const UserDetailPage: React.FC = () => {
             id,
             musics => {
                 if (musics && musics.length > 0) {
-                    updatePlayingMusics(musics);
-                    updateTheCurrentMusic(musics[0]);
+                    updateMusics(dispatch, musics);
+                    updateCurrentMusic(dispatch, musics[0]);
                 }
             },
             console.log,

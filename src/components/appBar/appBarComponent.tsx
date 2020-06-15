@@ -5,7 +5,6 @@ import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import MailOutlinedIcon from '@material-ui/icons/MailOutlined';
-import { useGlobal } from 'reactn';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { useHistory } from 'react-router-dom';
 import MusicNoteIcon from '@material-ui/icons/MusicNote';
@@ -26,7 +25,8 @@ import {
 import { openDrawer } from 'reducer/system/functions';
 import { SystemActionTypes } from 'reducer/system/types';
 import { Dispatch } from 'redux';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectUnreadMailCount } from 'reducer/rootReducer';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -47,7 +47,7 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export const AppBarComponent: React.FC = () => {
-    const [_unreadMailCnt] = useGlobal('unreadMailCnt');
+    const _unreadMailCnt = useSelector(selectUnreadMailCount);
     const dispatch = useDispatch<Dispatch<SystemActionTypes>>();
 
     const history = useHistory();

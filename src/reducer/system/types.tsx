@@ -1,5 +1,7 @@
 // src/store/system/types.ts
 
+import { Music } from 'common/interface';
+
 export interface SystemState {
     loggedIn: boolean;
     session: string;
@@ -23,13 +25,23 @@ export interface PlayState {
     isPlaying: boolean;
 }
 
-///////////////////
-
-export interface HintMsg {
-    hintMsg: string;
+export interface MailState {
+    refreshMailPage: boolean;
+    unreadMailCnt: number;
 }
 
-export interface AllState extends SystemState, HintState, MaskState, DrawerState, PlayState {}
+export interface MusicState {
+    refreshMusicFlag: boolean;
+
+    currentMusicId: number;
+    currentMusic: Music;
+    musics: Music[];
+    musicIndex: number;
+}
+
+///////////////////
+
+export interface AllState extends SystemState, HintState, MaskState, DrawerState, PlayState, MailState, MusicState {}
 
 // src/store/system/types.ts
 export const UPDATE_SESSION = 'UPDATE_SESSION';
@@ -43,7 +55,7 @@ export const OPEN_HINT = 'OPEN_HINT';
 
 interface OpenHintAction {
     type: typeof OPEN_HINT;
-    payload: HintMsg;
+    payload: { hintMsg: string };
 }
 
 export const CLOSE_HINT = 'CLOSE_HINT';
@@ -77,6 +89,66 @@ interface UpdatePlayStateAction {
     };
 }
 
+export const UPDATE_UNREAD_MAIL_COUNT = 'UPDATE_UNREAD_MAIL_COUNT';
+interface UpdateUnreadMailCountAction {
+    type: typeof UPDATE_UNREAD_MAIL_COUNT;
+    payload: {
+        unreadMailCnt: number;
+    };
+}
+
+export const INCREASE_UNREAD_MAIL_COUNT = 'INCREASE_UNREAD_MAIL_COUNT';
+interface IncreaseUnreadMailCountAction {
+    type: typeof INCREASE_UNREAD_MAIL_COUNT;
+}
+
+export const DECREASE_UNREAD_MAIL_COUNT = 'DECREASE_UNREAD_MAIL_COUNT';
+interface DecreaseUnreadMailCountAction {
+    type: typeof DECREASE_UNREAD_MAIL_COUNT;
+}
+
+export const REFRESH_MAIL_PAGE = 'REFRESH_MAIL_PAGE';
+interface RefreashMailPageAction {
+    type: typeof REFRESH_MAIL_PAGE;
+}
+
+export const UPDATE_MUSIC = 'UPDATE_MUSIC';
+interface UpdateMusicAction {
+    type: typeof UPDATE_MUSIC;
+    payload: {
+        music: Music;
+    };
+}
+
+export const UPDATE_CURRENT_MUSIC = 'UPDATE_CURRENT_MUSIC';
+interface UpdateCurrentMusicAction {
+    type: typeof UPDATE_CURRENT_MUSIC;
+    payload: {
+        music: Music;
+    };
+}
+
+export const UPDATE_MUSICS = 'UPDATE_MUSICS';
+interface UpdateMusicsAction {
+    type: typeof UPDATE_MUSICS;
+    payload: {
+        musics: Music[];
+    };
+}
+
+export const JUMP_TO_NEXT_MUSIC = 'JUMP_TO_NEXT_MUSIC';
+interface JumpToNextMusicAction {
+    type: typeof JUMP_TO_NEXT_MUSIC;
+}
+
+export const UPDATE_MUSIC_REFRESHER = 'UPDATE_MUSIC_REFRESHER';
+interface UpdateMusicRefresherAction {
+    type: typeof UPDATE_MUSIC_REFRESHER;
+    payload: {
+        refreshMusicFlag: boolean;
+    };
+}
+
 export type SystemActionTypes =
     | UpdateSessionAction
     | OpenHintAction
@@ -85,4 +157,13 @@ export type SystemActionTypes =
     | CloseMaskAction
     | OpenDrawerAction
     | CloseDrawerAction
-    | UpdatePlayStateAction;
+    | UpdatePlayStateAction
+    | UpdateUnreadMailCountAction
+    | IncreaseUnreadMailCountAction
+    | DecreaseUnreadMailCountAction
+    | RefreashMailPageAction
+    | UpdateMusicAction
+    | UpdateCurrentMusicAction
+    | UpdateMusicsAction
+    | JumpToNextMusicAction
+    | UpdateMusicRefresherAction;

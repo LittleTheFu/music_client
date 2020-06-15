@@ -4,18 +4,17 @@ import { Mail } from '../../common/interface';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import { useHistory } from 'react-router-dom';
-import { decUnreadMailCnt } from '../../globals';
-import { useDispatch, useGlobal } from 'reactn';
 // import { makeStyles, createStyles } from '@material-ui/core/styles';
 import { ContentCard } from '../../sharedComponents/basicComponents/contentCard';
 import { wrapFunc1, wrapName } from '../../common/common';
 import { useIsMount } from '../../common/isMount';
 import MuiAlert from '@material-ui/lab/Alert';
 import { getMailDetailUrl } from '../../common/routeName';
-import { useDispatch as _useDispatch } from 'react-redux';
-import { openHint } from 'reducer/system/functions';
+import { useDispatch, useSelector } from 'react-redux';
+import { openHint, decreaseUnreadMailCount } from 'reducer/system/functions';
 import { SystemActionTypes } from 'reducer/system/types';
 import { Dispatch } from 'redux';
+import { selectMailRefresher } from 'reducer/rootReducer';
 
 // const useStyles = makeStyles(() =>
 //     createStyles({
@@ -24,11 +23,10 @@ import { Dispatch } from 'redux';
 
 export const MailPage: React.FC = () => {
     const [mails, setMails] = useState<Mail[]>([]);
-    const _decUnreadMailCnt = useDispatch(decUnreadMailCnt);
-    const [refreshMailPage] = useGlobal('refreshMailPage');
+    const refreshMailPage = useSelector(selectMailRefresher);
     const [showAlert, setShowAlert] = useState(false);
 
-    const dispatch = _useDispatch<Dispatch<SystemActionTypes>>();
+    const dispatch = useDispatch<Dispatch<SystemActionTypes>>();
 
     // const classes = useStyles({});
     const isMount = useIsMount();
@@ -67,7 +65,7 @@ export const MailPage: React.FC = () => {
             return mail.id === id;
         });
         if (m.read === false) {
-            _decUnreadMailCnt();
+            decreaseUnreadMailCount(dispatch);
         }
 
         history.push(getMailDetailUrl(id));
@@ -90,7 +88,7 @@ export const MailPage: React.FC = () => {
                 }),
             );
             if (mail.read === false) {
-                _decUnreadMailCnt();
+                decreaseUnreadMailCount(dispatch);
             }
         });
     };

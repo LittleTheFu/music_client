@@ -7,10 +7,13 @@ import { setToken, setMeId, setMeName } from '../../globals';
 import { useHistory, Link } from 'react-router-dom';
 import Container from '@material-ui/core/Container';
 import { setLoginFlag, setMeAvatar } from '../../globals';
-import { useDispatch } from 'reactn';
 import { AccessData } from '../../common/interface';
 import { emitLoginSocketMsg } from '../../common/socket';
 import { getLobbyUrl } from '../../common/routeName';
+import { SystemActionTypes } from 'reducer/system/types';
+import { Dispatch } from 'redux';
+import { useDispatch } from 'react-redux';
+import { updateUnreadMailCount } from 'reducer/system/functions';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -39,7 +42,7 @@ const useStyles = makeStyles((theme: Theme) =>
 export const LoginComponent: React.FC = () => {
     const [username, setUser] = useState('');
     const [password, setPassword] = useState('');
-    const _updateUnreadMailCnt = useDispatch('updateUnreadMailCnt');
+    const dispatch = useDispatch<Dispatch<SystemActionTypes>>();
 
     const history = useHistory();
 
@@ -51,7 +54,7 @@ export const LoginComponent: React.FC = () => {
                 setMeAvatar(info.avatarUrl);
                 setMeName(info.name);
                 setMeId(info.id);
-                _updateUnreadMailCnt(info.unreadMailNum);
+                updateUnreadMailCount(dispatch, info.unreadMailNum);
                 // setMeUnreadMailNum(info.unreadMailNum);
                 emitLoginSocketMsg(info.id);
             },

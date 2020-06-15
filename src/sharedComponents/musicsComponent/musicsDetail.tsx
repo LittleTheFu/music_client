@@ -1,17 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Music, CollectionDetail } from '../../common/interface';
-import { useGlobal, useDispatch } from 'reactn';
-import { updateMusics, updateCurrentMusic } from '../../globals';
 import { useHistory } from 'react-router-dom';
 import { MyCollectionsModal } from './myCollectionsModal';
 import { MixDetail } from './mixDetailComponent';
 import { addMusicToCollection } from '../../common/service';
 import { getMusicCommentUrl } from '../../common/routeName';
-import { useDispatch as _useDispatch } from 'react-redux';
-import { openHint } from 'reducer/system/functions';
+import { useDispatch, useSelector } from 'react-redux';
+import { openHint, updateMusics, updateCurrentMusic } from 'reducer/system/functions';
 import { SystemActionTypes } from 'reducer/system/types';
 import { Dispatch } from 'redux';
+import { selectCurrentMusicId } from 'reducer/rootReducer';
 
 interface MusicsDetailProps {
     initData: (
@@ -30,12 +29,9 @@ export const MusicsDetail: React.FC<MusicsDetailProps> = (props: MusicsDetailPro
     const [modalOpen, setModalOpen] = useState(false);
 
     const [detail, setDetail] = useState<CollectionDetail>(null);
-    const [currentTheMusicId] = useGlobal('currentMusicId');
+    const currentTheMusicId = useSelector(selectCurrentMusicId);
 
-    const updatePlayingMusics = useDispatch(updateMusics);
-    const updateTheCurrentMusic = useDispatch(updateCurrentMusic);
-
-    const dispatch = _useDispatch<Dispatch<SystemActionTypes>>();
+    const dispatch = useDispatch<Dispatch<SystemActionTypes>>();
 
     const history = useHistory();
 
@@ -65,8 +61,8 @@ export const MusicsDetail: React.FC<MusicsDetailProps> = (props: MusicsDetailPro
     };
 
     const clickMusic = (music: Music): void => {
-        updatePlayingMusics(detail.musics);
-        updateTheCurrentMusic(music);
+        updateMusics(dispatch, detail.musics);
+        updateCurrentMusic(dispatch, music);
     };
 
     const mixClick = (collectionId: number): void => {
