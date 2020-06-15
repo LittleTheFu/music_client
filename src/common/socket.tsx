@@ -2,6 +2,8 @@ import io from 'socket.io-client';
 import { getDispatch } from 'reactn';
 import { getLoginFlag, getMeId, setLoginFlag } from '../globals';
 import { getUnreadMailNum } from './service';
+import { store } from '../reducer/rootReducer';
+import { OPEN_MASK } from 'reducer/system/types';
 
 const host = process.env.REACT_APP_HOST;
 
@@ -27,7 +29,7 @@ export const initSocket = (): void => {
 
     socket.on('banned', function() {
         setLoginFlag(false);
-        getDispatch().activeBanFlag();
+        store.dispatch({ type: OPEN_MASK });
     });
 
     socket.on('new_mail', function() {

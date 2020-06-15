@@ -27,13 +27,9 @@ declare module 'reactn/default' {
         incUnreadMailCnt: (global: State) => Pick<State, 'unreadMailCnt'>;
 
         setRefreshMailPageFlag: (global: State) => Pick<State, 'refreshMailPage'>;
-
-        activeBanFlag: () => Pick<State, 'showBannedMask'>;
     }
 
     export interface State {
-        showBannedMask: boolean;
-
         refreshMailPage: boolean;
         unreadMailCnt: number;
 

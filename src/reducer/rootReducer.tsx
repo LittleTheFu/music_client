@@ -23,4 +23,8 @@ export const selectHintMsg = (state: RootState): string => {
     return state.system.hintMsg;
 };
 
+export const selectMaskState = (state: RootState): boolean => {
+    return state.system.showBannedMask;
+};
+
 export const store = createStore(rootReducer);

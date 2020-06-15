@@ -27,6 +27,11 @@ import { makeStyles } from '@material-ui/core/styles';
 import { setLoginFlag } from '../globals';
 import { useHistory } from 'react-router-dom';
 import { getLoginUrl } from '../common/routeName';
+import { selectMaskState } from 'reducer/rootReducer';
+import { useSelector, useDispatch } from 'react-redux';
+import { closeMask } from 'reducer/system/functions';
+import { SystemActionTypes } from 'reducer/system/types';
+import { Dispatch } from 'redux';
 
 const useStyles = makeStyles(theme => ({
     backdrop: {
@@ -39,16 +44,18 @@ const useStyles = makeStyles(theme => ({
 const audioElement = getAudioPlayer();
 
 export const MusicApp: React.FC = () => {
-    const [showBannedMask, setShowBannedMask] = useGlobal('showBannedMask');
     const [musics] = useGlobal('musics');
     const { path } = useRouteMatch();
+
+    const dispatch = useDispatch<Dispatch<SystemActionTypes>>();
+    const maskState = useSelector(selectMaskState);
 
     const history = useHistory();
 
     const classes = useStyles();
 
     const handleClose = (): void => {
-        setShowBannedMask(false);
+        closeMask(dispatch);
         setLoginFlag(false);
         history.push(getLoginUrl());
     };
@@ -112,7 +119,7 @@ export const MusicApp: React.FC = () => {
                     </Switch>
                 </Grid>
             </Grid>
-            <Backdrop className={classes.backdrop} open={showBannedMask} onClick={handleClose}>
+            <Backdrop className={classes.backdrop} open={maskState} onClick={handleClose}>
                 <h1>You have been banned, click to redirect to login page!</h1>
             </Backdrop>
         </div>

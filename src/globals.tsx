@@ -67,8 +67,6 @@ export const getMeUnreadMailNum = (): number => {
 };
 
 setGlobal({
-    showBannedMask: false,
-
     refreshMailPage: false,
     unreadMailCnt: 0,
 
@@ -103,10 +101,6 @@ addReducer('openHint', (global: State, dispatch: Dispatch, msg: string) => ({
 //     hintMsg: msg,
 //     hintOpen: true,
 // });
-
-addReducer('activeBanFlag', () => ({
-    showBannedMask: true,
-}));
 
 addReducer('updateUnreadMailCnt', (global: State, dispatch: Dispatch, cnt: number) => ({
     unreadMailCnt: cnt,

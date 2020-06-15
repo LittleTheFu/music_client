@@ -11,11 +11,15 @@ export interface HintState {
     hintMsg: string;
 }
 
+export interface MaskState {
+    showBannedMask: boolean;
+}
+
 export interface HintMsg {
     hintMsg: string;
 }
 
-export interface AllState extends SystemState, HintState {}
+export interface AllState extends SystemState, HintState, MaskState {}
 
 // src/store/system/types.ts
 export const UPDATE_SESSION = 'UPDATE_SESSION';
@@ -37,4 +41,18 @@ interface CloseHintAction {
     type: typeof CLOSE_HINT;
 }
 
-export type SystemActionTypes = UpdateSessionAction | OpenHintAction | CloseHintAction;
+export const OPEN_MASK = 'OPEN_MASK';
+export const CLOSE_MASK = 'CLOSE_MASK';
+interface OpenMaskAction {
+    type: typeof OPEN_MASK;
+}
+interface CloseMaskAction {
+    type: typeof CLOSE_MASK;
+}
+
+export type SystemActionTypes =
+    | UpdateSessionAction
+    | OpenHintAction
+    | CloseHintAction
+    | OpenMaskAction
+    | CloseMaskAction;
