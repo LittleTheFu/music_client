@@ -5,7 +5,6 @@ import Button from '@material-ui/core/Button';
 import { postRegister } from '../../common/service';
 import { useHistory, Link } from 'react-router-dom';
 import Container from '@material-ui/core/Container';
-// import { useDispatch } from 'reactn';
 import { RetMsgObj } from '../../common/interface';
 import { validate } from 'email-validator';
 import {
@@ -18,8 +17,9 @@ import {
 } from '../../common/common';
 import { getLoginUrl } from '../../common/routeName';
 import { useDispatch } from 'react-redux';
-import { SystemActionTypes, OPEN_HINT } from 'reducer/system/types';
+import { SystemActionTypes } from 'reducer/system/types';
 import { Dispatch } from 'redux';
+import { openHint } from 'reducer/system/functions';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -47,9 +47,7 @@ export const RegisterComponent: React.FC = () => {
     const [user, setUser] = useState('');
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
-    // const openTheHint = useDispatch('openHint');
 
-    // const hintState = useSelector(selectHintState);
     const dispatch = useDispatch<Dispatch<SystemActionTypes>>();
 
     const MAX_EMAIL_LEN = 30;
@@ -58,8 +56,7 @@ export const RegisterComponent: React.FC = () => {
     const classes = useStyles({});
 
     const resolveData = (data: RetMsgObj): void => {
-        // openTheHint(data.msg);
-        dispatch({ type: OPEN_HINT, payload: { hintMsg: data.msg } });
+        openHint(dispatch, data.msg);
         history.push(getLoginUrl());
     };
 
@@ -73,23 +70,17 @@ export const RegisterComponent: React.FC = () => {
         event.preventDefault();
 
         if (!isValidUserName(user)) {
-            dispatch({ type: OPEN_HINT, payload: { hintMsg: 'invalid user name!' } });
-
-            // openTheHint('invalid user name!');
+            openHint(dispatch, 'invalid user name!');
             return;
         }
 
         if (!isValidPassowrd(password)) {
-            dispatch({ type: OPEN_HINT, payload: { hintMsg: 'invalid password!' } });
-
-            // openTheHint('invalid password!');
+            openHint(dispatch, 'invalid password!');
             return;
         }
 
         if (!isCorrectEmail(email)) {
-            dispatch({ type: OPEN_HINT, payload: { hintMsg: 'please check your email!' } });
-
-            // openTheHint('please check your email!');
+            openHint(dispatch, 'please check your email!');
             return;
         }
 

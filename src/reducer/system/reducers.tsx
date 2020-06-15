@@ -1,6 +1,6 @@
 // src/store/system/reducers.ts
 
-import { AllState, SystemState, SystemActionTypes, UPDATE_SESSION, CLOSE_HINT, OPEN_HINT } from './types';
+import { AllState, SystemActionTypes, UPDATE_SESSION, CLOSE_HINT, OPEN_HINT } from './types';
 
 const initialState: AllState = {
     loggedIn: false,

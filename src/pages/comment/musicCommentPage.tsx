@@ -10,13 +10,15 @@ import Grid from '@material-ui/core/Grid';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import { BackButton } from '../../sharedComponents/basicComponents/backButton';
-// import { openHint } from '../../globals';
-import { useDispatch } from 'reactn';
 import { ContentCard } from '../../sharedComponents/basicComponents/contentCard';
 import Pagination from '@material-ui/lab/Pagination';
 import { useGlobal } from 'reactn';
 import { wrapFunc1, wrapName } from '../../common/common';
 import { getMusicCommentUrl, getUserDetailUrl } from '../../common/routeName';
+import { Dispatch } from 'redux';
+import { useDispatch } from 'react-redux';
+import { SystemActionTypes } from 'reducer/system/types';
+import { openHint } from 'reducer/system/functions';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -65,9 +67,10 @@ export const MusicCommentPage: React.FC = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [refresher, setRefresher] = useState(false);
 
+    const dispatch = useDispatch<Dispatch<SystemActionTypes>>();
+
     const textInput = useRef(null);
 
-    const openTheHint = useDispatch('openHint');
     const history = useHistory();
 
     const classes = useStyles({});
@@ -105,7 +108,7 @@ export const MusicCommentPage: React.FC = () => {
         deleteMusicComment(
             commentId,
             o => {
-                openTheHint(o.msg);
+                openHint(dispatch, o.msg);
                 const newComments = comments.map(c => {
                     if (c.id === commentId) {
                         c.content = '[removed]';
@@ -143,7 +146,7 @@ export const MusicCommentPage: React.FC = () => {
         event.preventDefault();
 
         if (content.length < 5) {
-            openTheHint('need more words!!!!');
+            openHint(dispatch, 'need more words!!!!');
             return;
         }
 
@@ -153,7 +156,7 @@ export const MusicCommentPage: React.FC = () => {
             o => {
                 setContent('');
                 textInput.current.value = '';
-                openTheHint(o.msg);
+                openHint(dispatch, o.msg);
                 if (currentPage === 1) {
                     triggerRefresher();
                 }

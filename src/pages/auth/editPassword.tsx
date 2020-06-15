@@ -4,8 +4,11 @@ import Button from '@material-ui/core/Button';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 import { editPassword } from '../../common/service';
 import { RetMsgObj } from '../../common/interface';
-import { useDispatch } from 'reactn';
 import { isValidPassowrd, getPassowrdHelpText } from '../../common/common';
+import { SystemActionTypes } from 'reducer/system/types';
+import { Dispatch } from 'redux';
+import { openHint } from 'reducer/system/functions';
+import { useDispatch } from 'react-redux';
 
 const useStyles = makeStyles(() =>
     createStyles({
@@ -38,19 +41,19 @@ const useStyles = makeStyles(() =>
 
 export const ChangePasswordPage: React.FC = () => {
     const [password, setPassword] = useState('');
-    const openTheHint = useDispatch('openHint');
+    const dispatch = useDispatch<Dispatch<SystemActionTypes>>();
 
     const classes = useStyles({});
 
     const resolve = (r: RetMsgObj): void => {
-        openTheHint(r.msg);
+        openHint(dispatch, r.msg);
     };
 
     function handleSubmit(event: React.FormEvent<HTMLFormElement>): void {
         event.preventDefault();
 
         if (!isValidPassowrd(password)) {
-            openTheHint('invalid length!');
+            openHint(dispatch, 'invalid length!');
             return;
         }
 

@@ -10,11 +10,13 @@ import Button from '@material-ui/core/Button';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import { BackButton } from '../../sharedComponents/basicComponents/backButton';
-// import { openHint } from '../../globals';
-import { useDispatch } from 'reactn';
 import { UserHead } from '../../sharedComponents/basicComponents/userHead';
 import { wrapFunc1, wrapName } from '../../common/common';
 import { getMailUrl, getUserDetailUrl } from '../../common/routeName';
+import { openHint } from 'reducer/system/functions';
+import { SystemActionTypes } from 'reducer/system/types';
+import { Dispatch } from 'redux';
+import { useDispatch } from 'react-redux';
 
 const useStyles = makeStyles(() =>
     createStyles({
@@ -44,7 +46,7 @@ const useStyles = makeStyles(() =>
 
 export const MailDetailPage: React.FC = () => {
     const { id } = useParams();
-    const openTheHint = useDispatch('openHint');
+    const dispatch = useDispatch<Dispatch<SystemActionTypes>>();
 
     const [mail, setMail] = useState<Mail>(null);
     const [content, setContent] = useState('');
@@ -68,7 +70,7 @@ export const MailDetailPage: React.FC = () => {
         deleteMail(
             intId,
             o => {
-                openTheHint(o.msg);
+                openHint(dispatch, o.msg);
                 history.push(getMailUrl());
             },
             console.log,
@@ -85,7 +87,7 @@ export const MailDetailPage: React.FC = () => {
             mail.fromId,
             content,
             o => {
-                openTheHint(o.msg);
+                openHint(dispatch, o.msg);
             },
             console.log,
         );

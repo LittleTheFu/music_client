@@ -5,11 +5,13 @@ import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import { useHistory, useParams } from 'react-router-dom';
 import { BackButton } from '../../sharedComponents/basicComponents/backButton';
 import Grid from '@material-ui/core/Grid';
-// import { openHint } from '../../globals';
-import { useDispatch } from 'reactn';
 import { FollowerCard } from './followerCard';
 import { wrapFunc1 } from '../../common/common';
 import { getUserDetailUrl } from '../../common/routeName';
+import { openHint } from 'reducer/system/functions';
+import { SystemActionTypes } from 'reducer/system/types';
+import { Dispatch } from 'redux';
+import { useDispatch } from 'react-redux';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -28,7 +30,7 @@ export const FollowerListPage: React.FC = () => {
     const { id } = useParams();
     const intId = parseInt(id);
 
-    const openTheHint = useDispatch('openHint');
+    const dispatch = useDispatch<Dispatch<SystemActionTypes>>();
 
     useEffect(() => {
         getUserFollowers(
@@ -52,7 +54,7 @@ export const FollowerListPage: React.FC = () => {
                     return f;
                 });
                 setFollowers(retFollowers);
-                openTheHint(o.msg);
+                openHint(dispatch, o.msg);
             },
             console.log,
         );
@@ -70,7 +72,7 @@ export const FollowerListPage: React.FC = () => {
                     return f;
                 });
                 setFollowers(retFollowers);
-                openTheHint(o.msg);
+                openHint(dispatch, o.msg);
             },
             console.log,
         );

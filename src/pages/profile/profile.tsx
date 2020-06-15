@@ -5,8 +5,11 @@ import { setMeAvatar, getMeAvatar } from '../../globals';
 import { RetAvatar } from '../../common/interface';
 import IconButton from '@material-ui/core/IconButton';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
-import { useDispatch } from 'reactn';
 import AddPhotoAlternateIcon from '@material-ui/icons/AddPhotoAlternate';
+import { openHint } from 'reducer/system/functions';
+import { SystemActionTypes } from 'reducer/system/types';
+import { Dispatch } from 'redux';
+import { useDispatch } from 'react-redux';
 
 const useStyles = makeStyles(() =>
     createStyles({
@@ -50,7 +53,8 @@ export const ProfilePage: React.FC = () => {
     const [preview, setPreview] = useState(getMeAvatar());
     const [size, setSize] = useState(0);
 
-    const openTheHint = useDispatch('openHint');
+    const dispatch = useDispatch<Dispatch<SystemActionTypes>>();
+
     const classes = useStyles({});
 
     const MAX_SIZE = 10 * 1024;
@@ -81,7 +85,7 @@ export const ProfilePage: React.FC = () => {
         if (!selectedFile) return;
 
         if (size > MAX_SIZE) {
-            openTheHint('file too large');
+            openHint(dispatch, 'file too large');
             return;
         }
 
@@ -90,7 +94,7 @@ export const ProfilePage: React.FC = () => {
 
         uploadAvatar(formData, (o: RetAvatar): void => {
             setMeAvatar(o.remoteUrl);
-            openTheHint('successed!');
+            openHint(dispatch, 'successed!');
         });
     };
 
