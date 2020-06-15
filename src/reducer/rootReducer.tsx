@@ -11,10 +11,6 @@ const rootReducer = combineReducers({
 
 export type RootState = ReturnType<typeof rootReducer>;
 
-export const selectName = (state: RootState): string => {
-    return state.system.userName;
-};
-
 export const selectHintState = (state: RootState): boolean => {
     return state.system.hintOpen;
 };

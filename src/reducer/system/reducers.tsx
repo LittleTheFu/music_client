@@ -3,7 +3,6 @@
 import {
     AllState,
     SystemActionTypes,
-    UPDATE_SESSION,
     CLOSE_HINT,
     OPEN_HINT,
     OPEN_MASK,
@@ -24,10 +23,6 @@ import {
 import { dummyMusic } from 'common/interface';
 
 const initialState: AllState = {
-    loggedIn: false,
-    session: 'ssion',
-    userName: 'usrname',
-
     hintOpen: false,
     hintMsg: 'msg',
 
@@ -51,7 +46,6 @@ const initialState: AllState = {
 export function systemReducer(state = initialState, action: SystemActionTypes): AllState {
     console.log(action);
     switch (action.type) {
-        case UPDATE_SESSION:
         case UPDATE_UNREAD_MAIL_COUNT:
         case UPDATE_PLAY_STATE:
         case UPDATE_MUSIC_REFRESHER: {

@@ -2,12 +2,6 @@
 
 import { Music } from 'common/interface';
 
-export interface SystemState {
-    loggedIn: boolean;
-    session: string;
-    userName: string;
-}
-
 export interface HintState {
     hintOpen: boolean;
     hintMsg: string;
@@ -41,15 +35,7 @@ export interface MusicState {
 
 ///////////////////
 
-export interface AllState extends SystemState, HintState, MaskState, DrawerState, PlayState, MailState, MusicState {}
-
-// src/store/system/types.ts
-export const UPDATE_SESSION = 'UPDATE_SESSION';
-
-interface UpdateSessionAction {
-    type: typeof UPDATE_SESSION;
-    payload: SystemState;
-}
+export interface AllState extends HintState, MaskState, DrawerState, PlayState, MailState, MusicState {}
 
 export const OPEN_HINT = 'OPEN_HINT';
 
@@ -150,7 +136,6 @@ interface UpdateMusicRefresherAction {
 }
 
 export type SystemActionTypes =
-    | UpdateSessionAction
     | OpenHintAction
     | CloseHintAction
     | OpenMaskAction
