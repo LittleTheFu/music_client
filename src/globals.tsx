@@ -80,7 +80,6 @@ setGlobal({
 
     musics: [],
     musicIndex: -1,
-    musicLength: 0,
 
     Collections: [],
 

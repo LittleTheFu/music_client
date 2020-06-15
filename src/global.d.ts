@@ -16,7 +16,7 @@ declare module 'reactn/default' {
             global: State,
             dispatch: Dispatch,
             musics: Music[],
-        ) => Pick<State, 'musics' | 'musicIndex' | 'musicLength' | 'currentMusic'>;
+        ) => Pick<State, 'musics' | 'musicIndex' | 'currentMusic'>;
 
         updateToNextMusic: (global: State, dispatch: Dispatch) => Pick<State, 'currentMusic' | 'musicIndex'>;
 
