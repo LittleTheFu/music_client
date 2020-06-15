@@ -1,14 +1,12 @@
 // src/store/index.ts
 
 import { systemReducer } from './system/reducers';
-import { chatReducer } from './chat/reducers';
 import { combineReducers, createStore } from 'redux';
 import { Music } from 'common/interface';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
 const rootReducer = combineReducers({
     system: systemReducer,
-    chat: chatReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;
