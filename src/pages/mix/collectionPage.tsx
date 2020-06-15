@@ -11,6 +11,10 @@ import { updateMusics, updateCurrentMusic } from '../../globals';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 import { getCollectionDetailUrl } from 'common/routeName';
+import { useDispatch as _useDispatch } from 'react-redux';
+import { openHint } from 'reducer/system/functions';
+import { SystemActionTypes } from 'reducer/system/types';
+import { Dispatch } from 'redux';
 
 const useStyles = makeStyles(() =>
     createStyles({
@@ -26,7 +30,8 @@ export const MusicCollectionPage: React.FC = () => {
     const [modalOpen, setModalOpen] = useState(false);
     const updatePlayingMusics = useDispatch(updateMusics);
     const updateTheCurrentMusic = useDispatch(updateCurrentMusic);
-    const openHint = useDispatch('openHint');
+
+    const dispatch = _useDispatch<Dispatch<SystemActionTypes>>();
 
     const history = useHistory();
 
@@ -40,7 +45,7 @@ export const MusicCollectionPage: React.FC = () => {
                     updatePlayingMusics(musics);
                     updateTheCurrentMusic(musics[0]);
                 } else {
-                    openHint('empty!');
+                    openHint(dispatch, 'empty!');
                 }
             }
         });
