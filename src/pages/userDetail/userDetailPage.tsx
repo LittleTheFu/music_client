@@ -14,6 +14,12 @@ import { useDispatch } from 'reactn';
 import { UserInfoCard } from './userInfoCard';
 import { wrapName } from '../../common/common';
 import { getProfileUrl, getFollowersUrl, getCollectionDetailUrl } from '../../common/routeName';
+
+import { useDispatch as _useDispatch } from 'react-redux';
+import { openHint } from 'reducer/system/functions';
+import { SystemActionTypes } from 'reducer/system/types';
+import { Dispatch } from 'redux';
+
 // const useStyles = makeStyles(() => createStyles({}));
 
 export const UserDetailPage: React.FC = () => {
@@ -22,7 +28,8 @@ export const UserDetailPage: React.FC = () => {
     const history = useHistory();
     const updatePlayingMusics = useDispatch(updateMusics);
     const updateTheCurrentMusic = useDispatch(updateCurrentMusic);
-    const openTheHint = useDispatch('openHint');
+
+    const dispatch = _useDispatch<Dispatch<SystemActionTypes>>();
 
     const { id } = useParams();
     const intId = parseInt(id);
@@ -48,7 +55,7 @@ export const UserDetailPage: React.FC = () => {
             intId,
             content,
             o => {
-                openTheHint(o.msg);
+                openHint(dispatch, o.msg);
                 setMailModalOpen(false);
             },
             console.log,
@@ -63,7 +70,7 @@ export const UserDetailPage: React.FC = () => {
         followUser(
             intId,
             (o): void => {
-                openTheHint(o.msg);
+                openHint(dispatch, o.msg);
                 setDetail({ ...detail, isFollowed: true });
             },
             console.log,
@@ -74,7 +81,7 @@ export const UserDetailPage: React.FC = () => {
         unfollowUser(
             intId,
             (o): void => {
-                openTheHint(o.msg);
+                openHint(dispatch, o.msg);
                 setDetail({ ...detail, isFollowed: false });
             },
             console.log,

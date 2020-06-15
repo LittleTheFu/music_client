@@ -12,6 +12,10 @@ import { wrapFunc1, wrapName } from '../../common/common';
 import { useIsMount } from '../../common/isMount';
 import MuiAlert from '@material-ui/lab/Alert';
 import { getMailDetailUrl } from '../../common/routeName';
+import { useDispatch as _useDispatch } from 'react-redux';
+import { openHint } from 'reducer/system/functions';
+import { SystemActionTypes } from 'reducer/system/types';
+import { Dispatch } from 'redux';
 
 // const useStyles = makeStyles(() =>
 //     createStyles({
@@ -20,10 +24,12 @@ import { getMailDetailUrl } from '../../common/routeName';
 
 export const MailPage: React.FC = () => {
     const [mails, setMails] = useState<Mail[]>([]);
-    const openTheHint = useDispatch('openHint');
     const _decUnreadMailCnt = useDispatch(decUnreadMailCnt);
     const [refreshMailPage] = useGlobal('refreshMailPage');
     const [showAlert, setShowAlert] = useState(false);
+
+    const dispatch = _useDispatch<Dispatch<SystemActionTypes>>();
+
     // const classes = useStyles({});
     const isMount = useIsMount();
 
@@ -77,7 +83,7 @@ export const MailPage: React.FC = () => {
 
     const deleteCLick = (mail: Mail): void => {
         deleteMail(mail.id, o => {
-            openTheHint(o.msg);
+            openHint(dispatch, o.msg);
             setMails(
                 mails.filter(m => {
                     return m.id !== mail.id;

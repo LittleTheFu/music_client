@@ -10,6 +10,10 @@ import { updateMusics, updateCurrentMusic } from '../../globals';
 import { addMusicToCollection } from '../../common/service';
 import { useDebounce } from '../../common/debounce';
 import { MixDetail } from '../../sharedComponents/musicsComponent/mixDetailComponent';
+import { useDispatch as _useDispatch } from 'react-redux';
+import { openHint } from 'reducer/system/functions';
+import { SystemActionTypes } from 'reducer/system/types';
+import { Dispatch } from 'redux';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -36,7 +40,8 @@ export const SearchPage: React.FC = () => {
 
     const updatePlayingMusics = useDispatch(updateMusics);
     const updateTheCurrentMusic = useDispatch(updateCurrentMusic);
-    const openTheHint = useDispatch('openHint');
+
+    const dispatch = _useDispatch<Dispatch<SystemActionTypes>>();
 
     const [content, setContent] = useState('');
     const [musics, setMusics] = useState<Music[]>([]);
@@ -74,7 +79,7 @@ export const SearchPage: React.FC = () => {
 
     const mixClick = (collectionId: number): void => {
         addMusicToCollection(collectionId, wantAddMusicId, (o): void => {
-            openTheHint(o.msg);
+            openHint(dispatch, o.msg);
         });
     };
 

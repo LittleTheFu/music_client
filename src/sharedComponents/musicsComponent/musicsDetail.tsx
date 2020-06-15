@@ -8,6 +8,10 @@ import { MyCollectionsModal } from './myCollectionsModal';
 import { MixDetail } from './mixDetailComponent';
 import { addMusicToCollection } from '../../common/service';
 import { getMusicCommentUrl } from '../../common/routeName';
+import { useDispatch as _useDispatch } from 'react-redux';
+import { openHint } from 'reducer/system/functions';
+import { SystemActionTypes } from 'reducer/system/types';
+import { Dispatch } from 'redux';
 
 interface MusicsDetailProps {
     initData: (
@@ -30,7 +34,8 @@ export const MusicsDetail: React.FC<MusicsDetailProps> = (props: MusicsDetailPro
 
     const updatePlayingMusics = useDispatch(updateMusics);
     const updateTheCurrentMusic = useDispatch(updateCurrentMusic);
-    const openTheHint = useDispatch('openHint');
+
+    const dispatch = _useDispatch<Dispatch<SystemActionTypes>>();
 
     const history = useHistory();
 
@@ -66,7 +71,7 @@ export const MusicsDetail: React.FC<MusicsDetailProps> = (props: MusicsDetailPro
 
     const mixClick = (collectionId: number): void => {
         addMusicToCollection(collectionId, wantAddMusicId, (o): void => {
-            openTheHint(o.msg);
+            openHint(dispatch, o.msg);
         });
     };
 

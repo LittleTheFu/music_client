@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import { MusicInfoComponent } from './musicInfoComponent';
 import { Music } from '../common/interface';
 import { PlayBarComponent } from './playBarComponent';
@@ -10,10 +10,10 @@ import Grid from '@material-ui/core/Grid';
 import { MusicListDrawer } from './musicListDrawer';
 import { getMusicCommentUrl } from '../common/routeName';
 import { useSelector, useDispatch as _useDispatch } from 'react-redux';
-import { selectPlayState, selectHintState } from 'reducer/rootReducer';
+import { selectPlayState } from 'reducer/rootReducer';
 import { SystemActionTypes } from 'reducer/system/types';
 import { Dispatch } from 'redux';
-import { updatePlayState } from 'reducer/system/functions';
+import { updatePlayState, openHint } from 'reducer/system/functions';
 
 interface MusicComponentProps {
     audioElement: HTMLAudioElement;
@@ -26,7 +26,6 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
     const updateMusicAfterClickHeartIcon = useDispatch(updateMusic);
     const updateCurerntMusicInfo = useDispatch(updateCurrentMusic);
     const updateToTheNextMusic = useDispatch(updateToNextMusic);
-    const openTheHint = useCallback(useDispatch('openHint'), []);
 
     const [currentTheMusic] = useGlobal('currentMusic');
     const [currentMusics] = useGlobal('musics');
@@ -48,7 +47,6 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
     audioElement.volume = volume;
 
     const dispatch = _useDispatch<Dispatch<SystemActionTypes>>();
-    const hintState = useSelector(selectHintState);
     const isPlaying = useSelector(selectPlayState);
 
     useEffect(() => {
@@ -63,7 +61,15 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
 
             setLikeButtunGuard(false);
         }
-    }, [refresher, setRefresher, audioElement.autoplay, audioElement.src, currentTheMusic, currentTheMusicId]);
+    }, [
+        refresher,
+        setRefresher,
+        audioElement.autoplay,
+        audioElement.src,
+        currentTheMusic,
+        currentTheMusicId,
+        dispatch,
+    ]);
 
     useEffect(() => {
         if (duration !== 0) {
@@ -72,8 +78,8 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
     }, [currentTime, duration]);
 
     useEffect(() => {
-        openTheHint('volume : ' + Math.round(volume * 100) + '%');
-    }, [volume, openTheHint]);
+        openHint(dispatch, 'volume : ' + Math.round(volume * 100) + '%');
+    }, [volume, dispatch]);
 
     useEffect(() => {
         return (): void => {
@@ -108,7 +114,7 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
     ): void => {
         if (currentTheMusic) {
             if (likeButtunGuard) {
-                openTheHint('too busy!!!');
+                openHint(dispatch, 'too busy!!!');
             } else {
                 setLikeButtunGuard(true);
                 postAct(
@@ -153,7 +159,7 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
 
     const pausePlay = (): void => {
         if (audioElement.src === '') {
-            openTheHint('choose a music first!');
+            openHint(dispatch, 'choose a music first!');
             return;
         }
 

@@ -20,8 +20,6 @@ declare module 'reactn/default' {
 
         updateToNextMusic: (global: State, dispatch: Dispatch) => Pick<State, 'currentMusic' | 'musicIndex'>;
 
-        openHint: (global: State, dispatch: Dispatch, msg: string) => Pick<State, 'hintMsg' | 'hintOpen'>;
-
         updateUnreadMailCnt: (global: State, dispatch: Dispatch, cnt: number) => Pick<State, 'unreadMailCnt'>;
 
         incUnreadMailCnt: (global: State) => Pick<State, 'unreadMailCnt'>;
@@ -45,8 +43,5 @@ declare module 'reactn/default' {
 
         Collections: MusicCollection[];
         currentCollection: MusicCollection;
-
-        hintOpen: boolean;
-        hintMsg: string;
     }
 }

@@ -18,9 +18,6 @@ import { Dispatch } from 'redux';
 initSocket();
 
 const App: React.FC = () => {
-    // const [hintOpen, setHintOpen] = useGlobal('hintOpen');
-    // const [hintMsg] = useGlobal('hintMsg');
-
     const hintState = useSelector(selectHintState);
     const hintMsg = useSelector(selectHintMsg);
 
@@ -36,7 +33,6 @@ const App: React.FC = () => {
                 open={hintState}
                 autoHideDuration={1000}
                 onClose={(): void => {
-                    // setHintOpen(false);
                     dispatch({ type: CLOSE_HINT });
                 }}
                 message={hintMsg}
