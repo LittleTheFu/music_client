@@ -72,8 +72,6 @@ setGlobal({
 
     meId: 0,
 
-    drawerOpen: false,
-
     refreshMusicFlag: false,
 
     currentMusicId: 0,
@@ -117,10 +115,6 @@ addReducer('incUnreadMailCnt', (global: State) => ({
 addReducer('setRefreshMailPageFlag', (global: State) => ({
     refreshMailPage: !global.refreshMailPage,
 }));
-
-export const openMenuDrawer = (): Pick<State, 'drawerOpen'> => ({
-    drawerOpen: true,
-});
 
 export const updateMusic = (
     global: State,

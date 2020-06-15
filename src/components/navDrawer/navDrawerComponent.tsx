@@ -32,6 +32,11 @@ import {
     getEditPasswordUrl,
     getUserDetailUrl,
 } from '../../common/routeName';
+import { selectDrawerState } from 'reducer/rootReducer';
+import { useSelector, useDispatch } from 'react-redux';
+import { SystemActionTypes } from 'reducer/system/types';
+import { Dispatch } from 'redux';
+import { closeDrawer } from 'reducer/system/functions';
 
 // const useStyles = makeStyles(() =>
 //     createStyles({
@@ -51,7 +56,8 @@ import {
 // );
 
 export const TemporaryDrawer: React.FC = () => {
-    const [drawerOpen, setDrawerOpen] = useGlobal('drawerOpen');
+    const drawerState = useSelector(selectDrawerState);
+    const dispatch = useDispatch<Dispatch<SystemActionTypes>>();
 
     // const classes = useStyles({});
     const history = useHistory();
@@ -103,9 +109,9 @@ export const TemporaryDrawer: React.FC = () => {
         <div>
             <Drawer
                 anchor="left"
-                open={drawerOpen}
+                open={drawerState}
                 onClose={(): void => {
-                    setDrawerOpen(false);
+                    closeDrawer(dispatch);
                 }}
             >
                 <List>

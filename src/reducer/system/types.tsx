@@ -15,11 +15,15 @@ export interface MaskState {
     showBannedMask: boolean;
 }
 
+export interface DrawerState {
+    drawerOpen: boolean;
+}
+
 export interface HintMsg {
     hintMsg: string;
 }
 
-export interface AllState extends SystemState, HintState, MaskState {}
+export interface AllState extends SystemState, HintState, MaskState, DrawerState {}
 
 // src/store/system/types.ts
 export const UPDATE_SESSION = 'UPDATE_SESSION';
@@ -50,9 +54,20 @@ interface CloseMaskAction {
     type: typeof CLOSE_MASK;
 }
 
+export const OPEN_DRAWER = 'OPEN_DRAWER';
+export const CLOSE_DRAWER = 'CLOSE_DRAWER';
+interface OpenDrawerAction {
+    type: typeof OPEN_DRAWER;
+}
+interface CloseDrawerAction {
+    type: typeof CLOSE_DRAWER;
+}
+
 export type SystemActionTypes =
     | UpdateSessionAction
     | OpenHintAction
     | CloseHintAction
     | OpenMaskAction
-    | CloseMaskAction;
+    | CloseMaskAction
+    | OpenDrawerAction
+    | CloseDrawerAction;

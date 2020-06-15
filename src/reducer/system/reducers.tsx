@@ -1,6 +1,16 @@
 // src/store/system/reducers.ts
 
-import { AllState, SystemActionTypes, UPDATE_SESSION, CLOSE_HINT, OPEN_HINT, OPEN_MASK, CLOSE_MASK } from './types';
+import {
+    AllState,
+    SystemActionTypes,
+    UPDATE_SESSION,
+    CLOSE_HINT,
+    OPEN_HINT,
+    OPEN_MASK,
+    CLOSE_MASK,
+    OPEN_DRAWER,
+    CLOSE_DRAWER,
+} from './types';
 
 const initialState: AllState = {
     loggedIn: false,
@@ -11,6 +21,7 @@ const initialState: AllState = {
     hintMsg: 'msg',
 
     showBannedMask: false,
+    drawerOpen: false,
 };
 
 export function systemReducer(state = initialState, action: SystemActionTypes): AllState {
@@ -44,6 +55,18 @@ export function systemReducer(state = initialState, action: SystemActionTypes): 
             return {
                 ...state,
                 showBannedMask: false,
+            };
+        }
+        case OPEN_DRAWER: {
+            return {
+                ...state,
+                drawerOpen: true,
+            };
+        }
+        case CLOSE_DRAWER: {
+            return {
+                ...state,
+                drawerOpen: false,
             };
         }
         default:

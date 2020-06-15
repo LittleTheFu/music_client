@@ -27,4 +27,8 @@ export const selectMaskState = (state: RootState): boolean => {
     return state.system.showBannedMask;
 };
 
+export const selectDrawerState = (state: RootState): boolean => {
+    return state.system.drawerOpen;
+};
+
 export const store = createStore(rootReducer);

@@ -5,12 +5,12 @@ import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import MailOutlinedIcon from '@material-ui/icons/MailOutlined';
-import { useDispatch, useGlobal } from 'reactn';
+import { useGlobal } from 'reactn';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { useHistory } from 'react-router-dom';
 import MusicNoteIcon from '@material-ui/icons/MusicNote';
 import AlbumIcon from '@material-ui/icons/Album';
-import { setLoginFlag, openMenuDrawer, getMeId } from '../../globals';
+import { setLoginFlag, getMeId } from '../../globals';
 import SearchIcon from '@material-ui/icons/Search';
 import PeopleIcon from '@material-ui/icons/People';
 import { emitLogoutSocketMsg } from '../../common/socket';
@@ -23,6 +23,10 @@ import {
     getAllUsersUrl,
     getLobbyUrl,
 } from '../../common/routeName';
+import { openDrawer } from 'reducer/system/functions';
+import { SystemActionTypes } from 'reducer/system/types';
+import { Dispatch } from 'redux';
+import { useDispatch } from 'react-redux';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -43,15 +47,15 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export const AppBarComponent: React.FC = () => {
-    const openTheMenuDrawer = useDispatch(openMenuDrawer);
     const [_unreadMailCnt] = useGlobal('unreadMailCnt');
+    const dispatch = useDispatch<Dispatch<SystemActionTypes>>();
 
     const history = useHistory();
 
     const classes = useStyles();
 
     const menuClick = (): void => {
-        openTheMenuDrawer();
+        openDrawer(dispatch);
     };
 
     const musicClick = (): void => {
