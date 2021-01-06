@@ -18,7 +18,7 @@
     "@types/socket.io": "^2.1.6",
     "@types/socket.io-client": "^1.4.33",
     "acorn": "^7.2.0",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "email-validator": "^2.0.4",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
