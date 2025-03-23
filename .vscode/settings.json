@@ -1,7 +1,7 @@
 {
     // "eslint.autoFixOnSave": true, // has been deprecated, use editor.codeActionsOnSave instead
     "editor.codeActionsOnSave": {
-        "source.fixAll.eslint": true
+        "source.fixAll.eslint": "explicit"
     },
     // "editor.formatOnSave": true,
     // "editor.renderWhitespace": "boundary",
@@ -10,7 +10,8 @@
         "javascriptreact",
         "typescript",
         "typescriptreact"
-    ]
+    ],
+    "marscode.chatLanguage": "cn"
 }
 // {
 //     "editor.formatOnSave": true,
