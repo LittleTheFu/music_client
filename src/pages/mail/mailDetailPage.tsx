@@ -3,12 +3,15 @@ import { useParams } from 'react-router-dom';
 import { Mail } from '../../common/interface';
 import { getMailDetail, deleteMail, sendMail } from '../../common/service';
 import { IconButton } from '@material-ui/core';
-import DeleteIcon from '@material-ui/icons/Delete';
-import { useHistory } from 'react-router-dom';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-import { makeStyles, createStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
+// 修改前
+// import * as Mui from '@material-ui/core';
+// 修改后
+import * as Mui from '@mui/material';
+import DeleteIcon from '@mui/icons-material/Delete';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import { makeStyles } from '@mui/styles';
+import Grid from '@mui/material/Grid';
 import { BackButton } from '../../sharedComponents/basicComponents/backButton';
 import { UserHead } from '../../sharedComponents/basicComponents/userHead';
 import { wrapFunc1, wrapName } from '../../common/common';

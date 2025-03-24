@@ -1,9 +1,14 @@
 import React, { useState } from 'react';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-import { Link } from 'react-router-dom';
-import Container from '@material-ui/core/Container';
+// 修改前
+// import TextField from '@material-ui/core/TextField';
+// import Button from '@material-ui/core/Button';
+// import { makeStyles } from '@material-ui/core/styles';
+// import Container from '@material-ui/core/Container';
+// 修改后
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import { makeStyles } from '@mui/styles';
+import Container from '@mui/material/Container';
 import { isValidUserName, getUsernameHelpText, isValidEmail, getEmailHelpText } from '../../common/common';
 import { postForgetPassword } from '../../common/service';
 import { RetMsgObj } from '../../common/interface';

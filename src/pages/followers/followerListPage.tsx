@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { getUserFollowers, followUser, unfollowUser } from '../../common/service';
 import { Follower } from '../../common/interface';
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-import { useHistory, useParams } from 'react-router-dom';
+import { makeStyles } from '@mui/styles';
+import { useNavigate, useParams } from 'react-router-dom';
 import { BackButton } from '../../sharedComponents/basicComponents/backButton';
-import Grid from '@material-ui/core/Grid';
+import Grid from '@mui/material/Grid';
 import { FollowerCard } from './followerCard';
 import { wrapFunc1 } from '../../common/common';
 import { getUserDetailUrl } from '../../common/routeName';
@@ -23,7 +23,10 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export const FollowerListPage: React.FC = () => {
     const [followers, setFollowers] = useState<Follower[]>([]);
-    const history = useHistory();
+    // 修改前
+    // const history = useHistory();
+    // 修改后
+    const navigate = useNavigate();
 
     const classes = useStyles({});
 
@@ -79,7 +82,10 @@ export const FollowerListPage: React.FC = () => {
     };
 
     const avatarClick = (userId: number): void => {
-        history.push(getUserDetailUrl(userId));
+        // 修改前
+        // history.push(getUserDetailUrl(userId));
+        // 修改后
+        navigate(getUserDetailUrl(userId));
     };
 
     const followerElements = followers.map((f: Follower, index: number) => {

@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import { makeStyles, Theme, createStyles } from '@mui/styles';
 import { postLogin, getMe } from '../../common/service';
 import { setToken, setMeId, setMeName } from '../../globals';
-import { useHistory, Link } from 'react-router-dom';
-import Container from '@material-ui/core/Container';
+// 修改前
+// import { useHistory, Link } from 'react-router-dom';
+// 修改后
+import { useNavigate, Link } from 'react-router-dom';
+import Container from '@mui/material/Container';
 import { setLoginFlag, setMeAvatar } from '../../globals';
 import { AccessData } from '../../common/interface';
 import { emitLoginSocketMsg } from '../../common/socket';
@@ -36,7 +39,7 @@ const useStyles = makeStyles((theme: Theme) =>
                 width: 200,
             },
         },
-    }),
+    })
 );
 
 export const LoginComponent: React.FC = () => {
@@ -44,13 +47,16 @@ export const LoginComponent: React.FC = () => {
     const [password, setPassword] = useState('');
     const dispatch = useDispatch<Dispatch<SystemActionTypes>>();
 
-    const history = useHistory();
+    // 修改前
+    // const history = useHistory();
+    // 修改后
+    const navigate = useNavigate();
 
     const classes = useStyles({});
 
     const loadAvatarAndId = (): void => {
         getMe(
-            info => {
+            (info) => {
                 setMeAvatar(info.avatarUrl);
                 setMeName(info.name);
                 setMeId(info.id);
@@ -58,9 +64,9 @@ export const LoginComponent: React.FC = () => {
                 // setMeUnreadMailNum(info.unreadMailNum);
                 emitLoginSocketMsg(info.id);
             },
-            e => {
+            (e) => {
                 console.log(e);
-            },
+            }
         );
     };
 
@@ -73,7 +79,10 @@ export const LoginComponent: React.FC = () => {
         setLoginFlag(true);
         loadAvatarAndId();
 
-        history.push(getLobbyUrl());
+        // 修改前
+        // history.push(getLobbyUrl());
+        // 修改后
+        navigate(getLobbyUrl());
         // }
     };
 

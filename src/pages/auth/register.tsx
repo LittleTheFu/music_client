@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
+import { makeStyles } from '@mui/styles';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import Container from '@mui/material/Container';
 import { postRegister } from '../../common/service';
-import { useHistory, Link } from 'react-router-dom';
-import Container from '@material-ui/core/Container';
+// 修改前
+// import { useHistory, Link } from 'react-router-dom';
+// 修改后
+import { useNavigate, Link } from 'react-router-dom';
 import { RetMsgObj } from '../../common/interface';
 import { validate } from 'email-validator';
 import {
@@ -52,12 +55,18 @@ export const RegisterComponent: React.FC = () => {
 
     const MAX_EMAIL_LEN = 30;
 
-    const history = useHistory();
+    // 修改前
+    // const history = useHistory();
+    // 修改后
+    const navigate = useNavigate();
     const classes = useStyles({});
 
     const resolveData = (data: RetMsgObj): void => {
         openHint(dispatch, data.msg);
-        history.push(getLoginUrl());
+        // 修改前
+        // history.push(getLoginUrl());
+        // 修改后
+        navigate(getLoginUrl());
     };
 
     function isCorrectEmail(email: string): boolean {

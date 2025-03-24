@@ -2,16 +2,26 @@ import React, { useEffect, useState, useRef } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import { getMusicComments, postMusicComments, deleteMusicComment } from '../../common/service';
 import { MusicComment } from '../../common/interface';
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-import Divider from '@material-ui/core/Divider';
-import Grid from '@material-ui/core/Grid';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
+// 修改前
+// import Button from '@material-ui/core/Button';
+// import TextField from '@material-ui/core/TextField';
+// import { makeStyles } from '@material-ui/core/styles';
+// import Divider from '@material-ui/core/Divider';
+// import Grid from '@material-ui/core/Grid';
+// import List from '@material-ui/core/List';
+// import ListItem from '@material-ui/core/ListItem';
+// import Pagination from '@material-ui/lab/Pagination';
+// 修改后
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+import { makeStyles } from '@mui/styles';
+import Divider from '@mui/material/Divider';
+import Grid from '@mui/material/Grid';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import Pagination from '@mui/lab/Pagination';
 import { BackButton } from '../../sharedComponents/basicComponents/backButton';
 import { ContentCard } from '../../sharedComponents/basicComponents/contentCard';
-import Pagination from '@material-ui/lab/Pagination';
 import { wrapFunc1, wrapName } from '../../common/common';
 import { getMusicCommentUrl, getUserDetailUrl } from '../../common/routeName';
 import { Dispatch } from 'redux';
@@ -71,7 +81,10 @@ export const MusicCommentPage: React.FC = () => {
 
     const textInput = useRef(null);
 
-    const history = useHistory();
+    // 修改前
+    // const history = useHistory();
+    // 修改后
+    const navigate = useNavigate();
 
     const classes = useStyles({});
 
@@ -92,16 +105,22 @@ export const MusicCommentPage: React.FC = () => {
 
     useEffect(() => {
         if (currentTheMusicId > 0) {
-            history.push(getMusicCommentUrl(currentTheMusicId));
+            // 修改前
+            // history.push(getMusicCommentUrl(currentTheMusicId));
+            // 修改后
+            navigate(getMusicCommentUrl(currentTheMusicId));
         }
-    }, [currentTheMusicId, history]);
+    }, [currentTheMusicId, navigate]);
 
     const triggerRefresher = (): void => {
         setRefresher(!refresher);
     };
 
     const detailClick = (userId: number): void => {
-        history.push(getUserDetailUrl(userId));
+        // 修改前
+        // history.push(getUserDetailUrl(userId));
+        // 修改后
+        navigate(getUserDetailUrl(userId));
     };
 
     const deleteClick = (commentId: number): void => {

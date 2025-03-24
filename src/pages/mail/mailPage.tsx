@@ -1,8 +1,15 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { getUserMails, deleteMail } from '../../common/service';
 import { Mail } from '../../common/interface';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
+// 修改前
+// import List from '@material-ui/core/List';
+// import ListItem from '@material-ui/core/ListItem';
+// import Alert from '@material-ui/lab/Alert';
+// 修改后
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import Alert from '@mui/lab/Alert';
+
 import { useHistory } from 'react-router-dom';
 // import { makeStyles, createStyles } from '@material-ui/core/styles';
 import { ContentCard } from '../../sharedComponents/basicComponents/contentCard';

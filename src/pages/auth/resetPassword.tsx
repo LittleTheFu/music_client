@@ -2,9 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { resetPassword } from '../../common/service';
 import { RetMsgObj } from '../../common/interface';
-import Button from '@material-ui/core/Button';
-import { Link } from 'react-router-dom';
-import { makeStyles, createStyles } from '@material-ui/core/styles';
+// 修改前
+// import Button from '@material-ui/core/Button';
+// import { makeStyles } from '@material-ui/core/styles';
+// 修改后
+import Button from '@mui/material/Button';
+import { makeStyles } from '@mui/styles';
 
 const useStyles = makeStyles(() =>
     createStyles({

@@ -1,10 +1,10 @@
 import React from 'react';
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
+import { makeStyles } from '@mui/styles';
+import Card from '@mui/material/Card';
 import { Follower } from '../../common/interface';
-import IconButton from '@material-ui/core/IconButton';
-import RemoveCircleOutlineIcon from '@material-ui/icons/RemoveCircleOutline';
-import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
+import IconButton from '@mui/material/IconButton';
+import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import { UserHead } from '../../sharedComponents/basicComponents/userHead';
 import { wrapName } from '../../common/common';
 
