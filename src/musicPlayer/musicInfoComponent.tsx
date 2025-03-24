@@ -10,8 +10,7 @@ import Card from '@mui/material/Card';
 // 修改前
 // import { makeStyles } from '@material-ui/core/styles';
 // 修改后
-import { makeStyles } from '@mui/styles';
-import { Music, dummyMusic } from '../common/interface';
+import { dummyMusic } from '../common/interface';
 // 修改前
 // import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 // 修改后
@@ -34,6 +33,7 @@ import CommentIcon from '@mui/icons-material/Comment';
 // import { useHistory } from 'react-router-dom';
 // 修改后
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export const MusicInfoComponent: React.FC<MusicInfoProps> = (props: MusicInfoProps) => {
     const [cssProps, setCssProps] = useState({ playState: 'paused' });

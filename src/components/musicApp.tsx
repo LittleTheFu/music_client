@@ -8,10 +8,15 @@ import { AppBarComponent } from './appBar/appBarComponent';
 // import Grid from '@material-ui/core/Grid';
 // 修改后
 import Grid from '@mui/material/Grid';
-import { Switch, Route, useMatch, useNavigate } from 'react-router-dom';
+import { Route, Routes, useMatch, useNavigate } from 'react-router-dom';
 import { ProfilePage } from '../pages/profile/profile';
 import { MailPage } from '../pages/mail/mailPage';
-import { MailDetailPage } from '../pages/mail/mailDetailPage';
+// import { MailDetailPage } from '../pages/mail/mailDetailPage';
+// 修改前
+// import { MailDetailPage } from '../pages/mail/mailDetailPage';
+
+// 修改后
+import MailDetailPage from '../pages/mail/mailDetailPage';
 import { UserDetailPage } from '../pages/userDetail/userDetailPage';
 import { SearchPage } from '../pages/search/searchPage';
 import { FollowerListPage } from '../pages/followers/followerListPage';
@@ -36,7 +41,6 @@ import Backdrop from '@mui/material/Backdrop';
 // 修改后
 import { makeStyles } from '@mui/styles';
 import { setLoginFlag } from '../globals';
-import { useHistory } from 'react-router-dom';
 import { getLoginUrl } from '../common/routeName';
 import { selectMaskState, selectMusics } from 'reducer/rootReducer';
 import { useSelector, useDispatch } from 'react-redux';

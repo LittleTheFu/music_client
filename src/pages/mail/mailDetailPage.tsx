@@ -47,7 +47,7 @@ const useStyles = makeStyles(() =>
     }),
 );
 
-export const MailDetailPage: React.FC = () => {
+const MailDetailPage: React.FC = () => {
     const { id } = useParams();
     const dispatch = useDispatch<Dispatch<SystemActionTypes>>();
 
@@ -147,4 +147,7 @@ export const MailDetailPage: React.FC = () => {
             )}
         </div>
     );
+
 };
+
+export default MailDetailPage;
