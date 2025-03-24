@@ -61,6 +61,8 @@ import { SystemActionTypes } from 'reducer/system/types';
 import { Dispatch } from 'redux';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectUnreadMailCount } from 'reducer/rootReducer';
+import { setLoginFlag } from '../../globals';
+import { useNavigate } from 'react-router-dom';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -83,9 +85,7 @@ const useStyles = makeStyles((theme: Theme) =>
 export const AppBarComponent: React.FC = () => {
     const _unreadMailCnt = useSelector(selectUnreadMailCount);
     const dispatch = useDispatch<Dispatch<SystemActionTypes>>();
-
-    const history = useHistory();
-
+    const navigate = useNavigate();
     const classes = useStyles();
 
     const menuClick = (): void => {
@@ -93,29 +93,29 @@ export const AppBarComponent: React.FC = () => {
     };
 
     const musicClick = (): void => {
-        history.push(getLobbyUrl());
+        navigate(getLobbyUrl());
     };
 
     const mailClick = (): void => {
-        history.push(getMailUrl());
+        navigate(getMailUrl());
     };
 
     const collectionsClick = (): void => {
-        history.push(getCollectionsUrl());
+        navigate(getCollectionsUrl());
     };
 
     const searchClick = (): void => {
-        history.push(getSearchUrl());
+        navigate(getSearchUrl());
     };
 
     const peopleClick = (): void => {
-        history.push(getAllUsersUrl());
+        navigate(getAllUsersUrl());
     };
 
     const exitClick = (): void => {
         setLoginFlag(false);
         emitLogoutSocketMsg(getMeId());
-        history.push(getLoginUrl());
+        navigate(getLoginUrl());
     };
 
     return (

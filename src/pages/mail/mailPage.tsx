@@ -5,7 +5,12 @@ import { useNavigate } from 'react-router-dom';
 import { ContentCard } from '../../sharedComponents/basicComponents/contentCard';
 import { wrapFunc1, wrapName } from '../../common/common';
 import { useIsMount } from '../../common/isMount';
-import { Alert } from '@mui/lab';
+// 移除未使用的导入
+// import { Alert } from '@mui/material';
+
+// 添加缺失的导入
+import { List, ListItem } from '@mui/material';
+import MuiAlert from '@mui/material/Alert';
 import { getMailDetailUrl } from '../../common/routeName';
 import { useDispatch, useSelector } from 'react-redux';
 import { openHint, decreaseUnreadMailCount } from 'reducer/system/functions';

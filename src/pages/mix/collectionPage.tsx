@@ -2,8 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { getPrivateMusicCollections, fetchMusicsByCollectionId } from '../../common/service';
 import { MusicCollectionsComponent } from '../../sharedComponents/musicsComponent/musicCollectionsComponent';
 import { MusicCollection } from '../../common/interface';
-import AddCircleOutline from '@mui/icons-material/AddCircleOutline';
-import { Button } from '@mui/material';
 import { Grid } from '@mui/material';
 import { makeStyles, createStyles } from '@mui/styles'; // 注意：如果使用的是 emotion 作为样式引擎，可能需要调整为 @mui/system
 import { getCollectionDetailUrl } from 'common/routeName';
@@ -11,6 +9,10 @@ import { useDispatch } from 'react-redux';
 import { openHint, updateMusics, updateCurrentMusic } from 'reducer/system/functions';
 import { SystemActionTypes } from 'reducer/system/types';
 import { Dispatch } from 'redux';
+import { IconButton } from '@mui/material';
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+// 修改导入方式
+import { CreateCollectionModal } from '../../pages/mix/createCollectionModal';
 
 const useStyles = makeStyles(() =>
     createStyles({

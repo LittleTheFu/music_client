@@ -5,7 +5,7 @@ import { LoginComponent } from './pages/auth/login';
 import { ResetPasswordPage } from './pages/auth/resetPassword';
 import { RegisterComponent } from './pages/auth/register';
 import { ForgetPasswordPage } from './pages/auth/forget';
-import { BrowserRouter as Router, Route, Navigate } from 'react-router-dom'; // 修改导入
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import { getLoginFlag } from './globals';
 import Snackbar from '@mui/material/Snackbar';
 import { initSocket } from './common/socket';
@@ -13,8 +13,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { selectHintState, selectHintMsg } from 'reducer/rootReducer';
 import { SystemActionTypes, CLOSE_HINT } from 'reducer/system/types';
 import { Dispatch } from 'redux';
-
-import { Routes } from 'react-router-dom';
 
 initSocket();
 
@@ -72,15 +70,8 @@ const PrivateRoute = ({ children, ...rest }: PrivateRouteProps): JSX.Element => 
     return (
         <Route
             {...rest}
-            render={(): React.ReactNode =>
-                getLoginFlag() ? (
-                    children
-                ) : (
-                    <Navigate
-                        to="/login" // 修改为 Navigate 组件
-                    />
-                )
-            }
+            // 将 render 属性替换为 element 属性
+            element={getLoginFlag() ? children : <Navigate to="/login" replace />}
         />
     );
 };

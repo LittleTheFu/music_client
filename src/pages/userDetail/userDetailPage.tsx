@@ -4,7 +4,9 @@ import { UserDetail } from '../../common/interface';
 import { followUser, unfollowUser } from '../../common/service';
 import { Grid } from '@mui/material';
 // import { makeStyles, createStyles } from '@material-ui/core/styles';
-import { useNavigate, useParams } from 'react-router-dom';
+// 移除未使用的 useNavigate 导入
+// import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { WriteMailModal } from './writeMailModal';
 import { getMeId } from '../../globals';
 import { BackButton } from '../../sharedComponents/basicComponents/backButton';
@@ -23,7 +25,8 @@ import { Dispatch } from 'redux';
 export const UserDetailPage: React.FC = () => {
     const [detail, setDetail] = useState<UserDetail>(null);
     const [mailModalOpen, setMailModalOpen] = useState(false);
-    const navigate = useNavigate();
+    // 移除未使用的 navigate 变量声明和赋值
+    // const navigate = useNavigate();
 
     const dispatch = useDispatch<Dispatch<SystemActionTypes>>();
 

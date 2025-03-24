@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Music, CollectionDetail } from '../../common/interface';
-import { useNavigate } from 'react-router-dom';
 import { MyCollectionsModal } from './myCollectionsModal';
 import { MixDetail } from './mixDetailComponent';
 import { addMusicToCollection } from '../../common/service';
@@ -33,7 +32,8 @@ export const MusicsDetail: React.FC<MusicsDetailProps> = (props: MusicsDetailPro
 
     const dispatch = useDispatch<Dispatch<SystemActionTypes>>();
 
-    const navigate = useNavigate();
+    // 移除未使用的 navigate 变量声明和赋值
+    // const navigate = useNavigate();
 
     const intId = parseInt(id);
 

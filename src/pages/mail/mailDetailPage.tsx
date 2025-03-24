@@ -6,7 +6,8 @@ import { getMailDetail, deleteMail, sendMail } from '../../common/service';
 // import { IconButton } from '@material-ui/core';
 // 确保使用 @mui/material 中的 IconButton
 import { IconButton } from '@mui/material';
-import * as Mui from '@mui/material';
+// 移除未使用的导入
+// import * as Mui from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';

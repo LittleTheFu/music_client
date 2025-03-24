@@ -2,7 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { Button } from '@mui/material';
 import { IconButton } from '@mui/material';
 import { makeStyles, createStyles } from '@mui/styles';
-import AddPhotoAlternate from '@mui/icons-material/AddPhotoAlternate';
+// 移除未使用的导入
+// import AddPhotoAlternate from '@mui/icons-material/AddPhotoAlternate';
+
+// 添加缺失的导入
+import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 import { uploadAvatar } from '../../common/service';
 import { setMeAvatar, getMeAvatar } from '../../globals';
 import { RetAvatar } from '../../common/interface';

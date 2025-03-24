@@ -5,8 +5,13 @@ import { useNavigate } from 'react-router-dom';
 // import ArrowBack from '@material-ui/icons/ArrowBack';
 
 // 修改后
-import { Button } from '@mui/material';
-import ArrowBack from '@mui/icons-material/ArrowBack';
+// 移除未使用的导入
+// import { Button } from '@mui/material';
+// import ArrowBack from '@mui/icons-material/ArrowBack';
+
+// 添加缺失的导入
+import { IconButton } from '@mui/material';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 export const BackButton: React.FC = () => {
     const navigate = useNavigate();

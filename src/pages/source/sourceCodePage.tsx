@@ -5,7 +5,10 @@ import React from 'react';
 
 // 修改后
 import { Link } from '@mui/material';
-import { makeStyles, createStyles } from '@mui/styles';
+// 移除未使用的导入
+// import { makeStyles, createStyles } from '@mui/styles';
+// 若只需要 makeStyles，保留下面这行
+import { makeStyles } from '@mui/styles';
 
 const useStyles = makeStyles({
     text: {

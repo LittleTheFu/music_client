@@ -8,7 +8,11 @@ import { MusicCollection } from '../../common/interface';
 // 修改后
 import { makeStyles, createStyles } from '@mui/styles';
 import { IconButton } from '@mui/material';
-import PlayCircleFilledWhiteOutlined from '@mui/icons-material/PlayCircleFilledWhiteOutlined';
+// 移除未使用的导入
+// import PlayCircleFilledWhiteOutlined from '@mui/icons-material/PlayCircleFilledWhiteOutlined';
+
+// 添加缺失的导入
+import PlayCircleFilledWhiteOutlinedIcon from '@mui/icons-material/PlayCircleFilledWhiteOutlined';
 
 interface MusicCollectionProps {
     collection: MusicCollection;

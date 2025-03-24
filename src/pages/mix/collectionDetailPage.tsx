@@ -3,7 +3,8 @@ import { useParams } from 'react-router-dom';
 import { deleteCollection, getCollectionDetailById, removeMusicFromCollection } from '../../common/service';
 import { useNavigate } from 'react-router-dom';
 import { MusicsDetail } from '../../sharedComponents/musicsComponent/musicsDetail';
-import { getCollectionsUrl } from '../../common/routeName';
+// 移除未使用的导入
+// import { getCollectionsUrl } from '../../common/routeName';
 import { SystemActionTypes } from 'reducer/system/types';
 import { openHint } from 'reducer/system/functions';
 import { Dispatch } from 'redux';

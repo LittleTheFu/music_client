@@ -1,23 +1,21 @@
 import React, { useState } from 'react';
-import Dialog from '@material-ui/core/Dialog';
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
+import Dialog from '@mui/material/Dialog';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+import Grid from '@mui/material/Grid';
+import { styled } from '@mui/material/styles'; // 引入 styled 函数
 import { createCollection } from '../../common/service';
 import { MusicCollection } from '../../common/interface';
-import Grid from '@material-ui/core/Grid';
 
-import { makeStyles, createStyles } from '@material-ui/core/styles';
+// 使用 styled 组件替换 makeStyles
+const StyledTextField = styled(TextField)({
+  width: '100%',
+});
 
-const useStyles = makeStyles(() =>
-    createStyles({
-        inputBox: {
-            width: '100%',
-        },
-        createButton: {
-            width: '100%',
-        },
-    }),
-);
+const StyledButton = styled(Button)({
+  width: '100%',
+});
+
 interface CreateCollectionModalProps {
     modalOpen: boolean;
     modalClose: () => void;
@@ -27,8 +25,6 @@ interface CreateCollectionModalProps {
 export const CreateCollectionModal: React.FC<CreateCollectionModalProps> = (props: CreateCollectionModalProps) => {
     const [content, setContent] = useState('');
     const { modalOpen, modalClose, addToCollections } = props;
-
-    const classes = useStyles({});
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
         event.preventDefault();
@@ -53,17 +49,16 @@ export const CreateCollectionModal: React.FC<CreateCollectionModalProps> = (prop
             <Grid container>
                 <Grid item xs={12}>
                     <form onSubmit={handleSubmit} noValidate autoComplete="off">
-                        <TextField
-                            className={classes.inputBox}
+                        <StyledTextField
                             id="standard-basic"
                             label="name"
                             onChange={(e): void => {
                                 setContent(e.target.value);
                             }}
                         />
-                        <Button type="submit" variant="contained" color="primary" className={classes.createButton}>
+                        <StyledButton type="submit" variant="contained" color="primary">
                             create
-                        </Button>
+                        </StyledButton>
                     </form>
                 </Grid>
             </Grid>

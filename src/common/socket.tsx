@@ -1,4 +1,4 @@
-import io from 'socket.io-client';
+import io, { type Socket } from 'socket.io-client';
 import { getLoginFlag, getMeId, setLoginFlag } from '../globals';
 import { getUnreadMailNum } from './service';
 import { store } from '../reducer/rootReducer';
@@ -11,10 +11,17 @@ import {
 
 const host = process.env.REACT_APP_HOST;
 
-let socket: SocketIOClient.Socket = null;
+let socket: Socket | null = null;
+
+// 初始化 socket
+if (host) {
+    socket = io(host);
+}
 
 export const emitLoginSocketMsg = (id: number): void => {
-    socket.emit('login', id, (response: unknown) => console.log('login:', response));
+    if (socket) {
+        socket.emit('login', id, (response: unknown) => console.log('login:', response));
+    }
 };
 
 export const emitLogoutSocketMsg = (id: number): void => {

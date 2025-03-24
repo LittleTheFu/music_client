@@ -15,11 +15,19 @@ import { makeStyles, createStyles } from '@mui/styles';
 import { Grid } from '@mui/material';
 import { Card } from '@mui/material';
 import { IconButton } from '@mui/material';
-import MailOutlined from '@mui/icons-material/MailOutlined';
-import RemoveCircleOutline from '@mui/icons-material/RemoveCircleOutline';
-import AddCircleOutline from '@mui/icons-material/AddCircleOutline';
-import People from '@mui/icons-material/People';
-import Edit from '@mui/icons-material/Edit';
+// 移除未使用的导入
+// import MailOutlined from '@mui/icons-material/MailOutlined';
+// import RemoveCircleOutline from '@mui/icons-material/RemoveCircleOutline';
+// import AddCircleOutline from '@mui/icons-material/AddCircleOutline';
+// import People from '@mui/icons-material/People';
+// import Edit from '@mui/icons-material/Edit';
+
+// 添加缺失的导入
+import MailOutlinedIcon from '@mui/icons-material/MailOutlined';
+import PeopleIcon from '@mui/icons-material/People';
+import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import EditIcon from '@mui/icons-material/Edit';
 import { UserHead } from '../../sharedComponents/basicComponents/userHead';
 
 const useStyles = makeStyles(() =>
