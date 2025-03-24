@@ -8,7 +8,7 @@ import { AppBarComponent } from './appBar/appBarComponent';
 // import Grid from '@material-ui/core/Grid';
 // 修改后
 import Grid from '@mui/material/Grid';
-import { Switch, Route, useRouteMatch } from 'react-router-dom';
+import { Switch, Route, useMatch, useNavigate } from 'react-router-dom';
 import { ProfilePage } from '../pages/profile/profile';
 import { MailPage } from '../pages/mail/mailPage';
 import { MailDetailPage } from '../pages/mail/mailDetailPage';
@@ -56,19 +56,26 @@ const audioElement = getAudioPlayer();
 
 export const MusicApp: React.FC = () => {
     const musics = useSelector(selectMusics);
-    const { path } = useRouteMatch();
+    const match = useMatch('/'); 
+    const path = match ? match.pathname : '';
 
     const dispatch = useDispatch<Dispatch<SystemActionTypes>>();
     const maskState = useSelector(selectMaskState);
 
-    const history = useHistory();
+    // 修改前
+    // const history = useHistory();
+    // 修改后
+    const navigate = useNavigate();
 
     const classes = useStyles();
 
     const handleClose = (): void => {
         closeMask(dispatch);
         setLoginFlag(false);
-        history.push(getLoginUrl());
+        // 修改前
+        // history.push(getLoginUrl());
+        // 修改后
+        navigate(getLoginUrl());
     };
 
     return (

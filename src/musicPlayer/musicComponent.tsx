@@ -2,9 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { MusicInfoComponent } from './musicInfoComponent';
 import { Music } from '../common/interface';
 import { PlayBarComponent } from './playBarComponent';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { postLikeMusic, postDislikeMusic } from '../common/service';
-import Grid from '@material-ui/core/Grid';
+// 修改前
+// import Grid from '@material-ui/core/Grid';
+// 修改后
+import Grid from '@mui/material/Grid';
 import { MusicListDrawer } from './musicListDrawer';
 import { getMusicCommentUrl } from '../common/routeName';
 import { useSelector, useDispatch } from 'react-redux';
@@ -50,8 +53,10 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
 
     const [musicListDrawerOpen, setMusicListDrawerOpen] = useState(false);
 
-    const history = useHistory();
-
+    // 修改前
+    // const history = useHistory();
+    // 修改后
+    const navigate = useNavigate();
     const [volume, setVolume] = useState(0.5);
     audioElement.volume = volume;
 
@@ -142,7 +147,10 @@ export const MusicComponent: React.FC<MusicComponentProps> = (props: MusicCompon
 
     const currentMusicCommentClick = (): void => {
         if (currentTheMusic) {
-            history.push(getMusicCommentUrl(currentTheMusic.id));
+            // 修改前
+            // history.push(getMusicCommentUrl(currentTheMusic.id));
+            // 修改后
+            navigate(getMusicCommentUrl(currentTheMusic.id));
         }
     };
 
