@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { getAlbums } from '../../common/service';
 import { MusicCollectionsComponent } from '../../sharedComponents/musicsComponent/musicCollectionsComponent';
 import { MusicCollection } from '../../common/interface';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { getAlbumUrl } from 'common/routeName';
 import { useDispatch } from 'react-redux';
 import { Dispatch } from 'redux';
@@ -14,7 +14,7 @@ export const LobbyPage: React.FC = () => {
 
     const dispatch = useDispatch<Dispatch<SystemActionTypes>>();
 
-    const history = useHistory();
+    const navigate = useNavigate();
 
     useEffect(() => {
         getAlbums(collections => {
@@ -49,3 +49,5 @@ export const LobbyPage: React.FC = () => {
         </div>
     );
 };
+
+export default LobbyPage;

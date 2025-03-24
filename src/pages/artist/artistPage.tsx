@@ -1,9 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { getArtistInfo } from '../../common/service';
-import { useHistory, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+// 修改前
+// import { useHistory } from 'react-router-dom';
+// 修改后
+import { useNavigate } from 'react-router-dom';
 import { Artist } from '../../common/interface';
 import { MusicCollectionsComponent } from '../../sharedComponents/musicsComponent/musicCollectionsComponent';
-import { makeStyles, createStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@mui/styles';
+import { createStyles } from '@mui/styles';
 import { getAlbumUrl } from 'common/routeName';
 import { updateMusics, updateCurrentMusic } from 'reducer/system/functions';
 import { useDispatch } from 'react-redux';
@@ -20,19 +25,18 @@ const useStyles = makeStyles(() =>
         name: {
             paddingLeft: 40,
         },
-    }),
+    })
 );
 
 export const ArtistPage: React.FC = () => {
     const [artist, setArtist] = useState<Artist>(null);
-
     const dispatch = useDispatch<Dispatch<SystemActionTypes>>();
-
-    const history = useHistory();
-
+    // 修改前
+    // const history = useHistory();
+    // 修改后
+    const navigate = useNavigate();
     const { id } = useParams();
     const intId = parseInt(id);
-
     const classes = useStyles();
 
     useEffect(() => {
@@ -41,12 +45,12 @@ export const ArtistPage: React.FC = () => {
             (o): void => {
                 setArtist(o);
             },
-            console.log,
+            console.log
         );
     }, [intId]);
 
     const clickCollectionCover = (id: number): void => {
-        artist.albums.forEach(c => {
+        artist.albums.forEach((c) => {
             if (c.id === id) {
                 updateMusics(dispatch, c.musics);
                 updateCurrentMusic(dispatch, c.musics[0]);
@@ -55,7 +59,10 @@ export const ArtistPage: React.FC = () => {
     };
 
     const bodyClick = (id: number): void => {
-        history.push(getAlbumUrl(id));
+        // 修改前
+        // history.push(getAlbumUrl(id));
+        // 修改后
+        navigate(getAlbumUrl(id));
     };
 
     return (
