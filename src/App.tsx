@@ -7,7 +7,7 @@ import { RegisterComponent } from './pages/auth/register';
 import { ForgetPasswordPage } from './pages/auth/forget';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import { getLoginFlag } from './globals';
-import Snackbar from '@material-ui/core/Snackbar';
+import Snackbar from '@mui/material/Snackbar';
 import { initSocket } from './common/socket';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectHintState, selectHintMsg } from 'reducer/rootReducer';
