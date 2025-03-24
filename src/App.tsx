@@ -5,7 +5,7 @@ import { LoginComponent } from './pages/auth/login';
 import { ResetPasswordPage } from './pages/auth/resetPassword';
 import { RegisterComponent } from './pages/auth/register';
 import { ForgetPasswordPage } from './pages/auth/forget';
-import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Navigate } from 'react-router-dom'; // 修改导入
 import { getLoginFlag } from './globals';
 import Snackbar from '@mui/material/Snackbar';
 import { initSocket } from './common/socket';
@@ -37,7 +37,8 @@ const App: React.FC = () => {
                 message={hintMsg}
             />
             <div>
-                <Switch>
+                {/* 将 Switch 替换为 Routes */}
+                <Routes>
                     <Route path="/register">
                         <Register />
                     </Route>
@@ -53,7 +54,8 @@ const App: React.FC = () => {
                     <Route path="/">
                         <Home />
                     </Route>
-                </Switch>
+
+                </Routes>
             </div>
         </Router>
     );
@@ -72,10 +74,8 @@ const PrivateRoute = ({ children, ...rest }: PrivateRouteProps): JSX.Element => 
                 getLoginFlag() ? (
                     children
                 ) : (
-                    <Redirect
-                        to={{
-                            pathname: '/login',
-                        }}
+                    <Navigate
+                        to="/login" // 修改为 Navigate 组件
                     />
                 )
             }

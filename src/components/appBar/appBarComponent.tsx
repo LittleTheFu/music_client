@@ -1,19 +1,53 @@
 import React from 'react';
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-import MailOutlinedIcon from '@material-ui/icons/MailOutlined';
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import { useHistory } from 'react-router-dom';
-import MusicNoteIcon from '@material-ui/icons/MusicNote';
-import AlbumIcon from '@material-ui/icons/Album';
-import { setLoginFlag, getMeId } from '../../globals';
-import SearchIcon from '@material-ui/icons/Search';
-import PeopleIcon from '@material-ui/icons/People';
-import { emitLogoutSocketMsg } from '../../common/socket';
-import Badge from '@material-ui/core/Badge';
+import { makeStyles } from '@mui/styles'; // 或者使用 @mui/system 中的样式功能
+import AppBar from '@mui/material/AppBar';
+// 修改前
+// import Toolbar from '@material-ui/core/Toolbar';
+// 修改后
+import Toolbar from '@mui/material/Toolbar';
+// 修改前
+// import IconButton from '@material-ui/core/IconButton';
+// 修改后
+import IconButton from '@mui/material/IconButton';
+// 修改前
+// import MenuIcon from '@material-ui/icons/Menu';
+// 修改后
+import MenuIcon from '@mui/icons-material/Menu';
+
+// 修改前
+// import MailOutlinedIcon from '@material-ui/icons/MailOutlined';
+// 修改后
+import MailOutlinedIcon from '@mui/icons-material/MailOutlined';
+
+// 修改前
+// import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+// 修改后
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
+
+// 修改前
+// import MusicNoteIcon from '@material-ui/icons/MusicNote';
+// 修改后
+import MusicNoteIcon from '@mui/icons-material/MusicNote';
+
+// 修改前
+// import AlbumIcon from '@material-ui/icons/Album';
+// 修改后
+import AlbumIcon from '@mui/icons-material/Album';
+
+// 修改前
+// import SearchIcon from '@material-ui/icons/Search';
+// 修改后
+import SearchIcon from '@mui/icons-material/Search';
+
+// 修改前
+// import PeopleIcon from '@material-ui/icons/People';
+// 修改后
+import PeopleIcon from '@mui/icons-material/People';
+
+// 修改前
+// import Badge from '@material-ui/core/Badge';
+// 修改后
+import Badge from '@mui/material/Badge';
 import {
     getLoginUrl,
     getMailUrl,

@@ -3,7 +3,11 @@ import { MusicComponent } from '../musicPlayer/musicComponent';
 import { getAudioPlayer } from '../musicPlayer/audioPlayer';
 import { TemporaryDrawer } from './navDrawer/navDrawerComponent';
 import { AppBarComponent } from './appBar/appBarComponent';
-import Grid from '@material-ui/core/Grid';
+// import Grid from '@material-ui/core/Grid';
+// 修改前
+// import Grid from '@material-ui/core/Grid';
+// 修改后
+import Grid from '@mui/material/Grid';
 import { Switch, Route, useRouteMatch } from 'react-router-dom';
 import { ProfilePage } from '../pages/profile/profile';
 import { MailPage } from '../pages/mail/mailPage';
@@ -21,8 +25,16 @@ import { AlbumDetailPage } from '../pages/album/albumDetailPage';
 import { AllUsersPage } from '../pages/allUsers/allUsersPage';
 import { SourceCodePage } from '../pages/source/sourceCodePage';
 import { ChangePasswordPage } from '../pages/auth/editPassword';
-import Backdrop from '@material-ui/core/Backdrop';
-import { makeStyles } from '@material-ui/core/styles';
+// import Backdrop from '@material-ui/core/Backdrop';
+// 修改前
+// import Backdrop from '@material-ui/core/Backdrop';
+// 修改后
+import Backdrop from '@mui/material/Backdrop';
+// import { makeStyles } from '@material-ui/core/styles';
+// 修改前
+// import { makeStyles } from '@material-ui/core/styles';
+// 修改后
+import { makeStyles } from '@mui/styles';
 import { setLoginFlag } from '../globals';
 import { useHistory } from 'react-router-dom';
 import { getLoginUrl } from '../common/routeName';
@@ -69,7 +81,7 @@ export const MusicApp: React.FC = () => {
             <MainDivider></MainDivider>
             <Grid container>
                 <Grid item xs={12}>
-                    <Switch>
+                    <Routes>
                         <Route path={`${path}/lobby`}>
                             <LobbyPage></LobbyPage>
                         </Route>
@@ -115,7 +127,10 @@ export const MusicApp: React.FC = () => {
                         <Route path={`${path}/edit_password`}>
                             <ChangePasswordPage></ChangePasswordPage>
                         </Route>
-                    </Switch>
+
+
+
+                    </Routes>
                 </Grid>
             </Grid>
             <Backdrop className={classes.backdrop} open={maskState} onClick={handleClose}>
