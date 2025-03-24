@@ -9,7 +9,6 @@ import { MusicListComponent } from './musicListComponent';
 import { Grid } from '@mui/material';
 import { makeStyles, createStyles } from '@mui/styles';
 import { BackButton } from '../basicComponents/backButton';
-import { makeStyles, createStyles } from '@material-ui/core/styles';
 import { DeleteButton } from '../basicComponents/deleteButton';
 
 const useStyles = makeStyles(() =>

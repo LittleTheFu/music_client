@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Music, CollectionDetail } from '../../common/interface';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { MyCollectionsModal } from './myCollectionsModal';
 import { MixDetail } from './mixDetailComponent';
 import { addMusicToCollection } from '../../common/service';
@@ -33,7 +33,7 @@ export const MusicsDetail: React.FC<MusicsDetailProps> = (props: MusicsDetailPro
 
     const dispatch = useDispatch<Dispatch<SystemActionTypes>>();
 
-    const history = useHistory();
+    const navigate = useNavigate();
 
     const intId = parseInt(id);
 
@@ -110,3 +110,5 @@ export const MusicsDetail: React.FC<MusicsDetailProps> = (props: MusicsDetailPro
         </div>
     );
 };
+
+export default MusicsDetail;

@@ -4,7 +4,7 @@ import { UserDetail } from '../../common/interface';
 import { followUser, unfollowUser } from '../../common/service';
 import { Grid } from '@mui/material';
 // import { makeStyles, createStyles } from '@material-ui/core/styles';
-import { useHistory, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { WriteMailModal } from './writeMailModal';
 import { getMeId } from '../../globals';
 import { BackButton } from '../../sharedComponents/basicComponents/backButton';
@@ -23,7 +23,7 @@ import { Dispatch } from 'redux';
 export const UserDetailPage: React.FC = () => {
     const [detail, setDetail] = useState<UserDetail>(null);
     const [mailModalOpen, setMailModalOpen] = useState(false);
-    const history = useHistory();
+    const navigate = useNavigate();
 
     const dispatch = useDispatch<Dispatch<SystemActionTypes>>();
 

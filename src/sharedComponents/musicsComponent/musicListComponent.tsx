@@ -1,30 +1,22 @@
 import React, { useState, useEffect } from 'react';
+import { Music } from '../../common/interface';
 // 修改前
-// import { makeStyles, createStyles } from '@material-ui/core/styles';
-// import { List } from '@material-ui/core/List';
-// import { ListItem } from '@material-ui/core/ListItem';
-// import { Button } from '@material-ui/core';
-// import VolumeUp from '@material-ui/icons/VolumeUp';
-// import AddCircleOutline from '@material-ui/icons/AddCircleOutline';
-// import RemoveCircleOutlineOutlined from '@material-ui/icons/RemoveCircleOutlineOutlined';
-// import Comment from '@material-ui/icons/Comment';
+// import { IconButton } from '@material-ui/core';
+// import VolumeUpIcon from '@material-ui/icons/VolumeUp';
+// import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
+// import RemoveCircleOutlineOutlinedIcon from '@material-ui/icons/RemoveCircleOutlineOutlined';
+// import CommentIcon from '@material-ui/icons/Comment';
 
 // 修改后
+import { IconButton } from '@mui/material';
+import VolumeUpIcon from '@mui/icons-material/VolumeUp';
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import RemoveCircleOutlineOutlinedIcon from '@mui/icons-material/RemoveCircleOutlineOutlined';
+import CommentIcon from '@mui/icons-material/Comment';
+
 import { makeStyles, createStyles } from '@mui/styles';
 import { List } from '@mui/material';
 import { ListItem } from '@mui/material';
-import { Button } from '@mui/material';
-import VolumeUp from '@mui/icons-material/VolumeUp';
-import AddCircleOutline from '@mui/icons-material/AddCircleOutline';
-import RemoveCircleOutlineOutlined from '@mui/icons-material/RemoveCircleOutlineOutlined';
-import Comment from '@mui/icons-material/Comment';
-
-import { Music } from '../../common/interface';
-import { IconButton } from '@material-ui/core';
-import VolumeUpIcon from '@material-ui/icons/VolumeUp';
-import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
-import RemoveCircleOutlineOutlinedIcon from '@material-ui/icons/RemoveCircleOutlineOutlined';
-import CommentIcon from '@material-ui/icons/Comment';
 
 interface MusicList {
     musics: Music[];

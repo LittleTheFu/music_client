@@ -33,6 +33,8 @@ import VpnKeyIcon from '@mui/icons-material/VpnKey';
 // import { useHistory } from 'react-router-dom';
 // 修改后
 import { useNavigate } from 'react-router-dom';
+// 确保 UserHead 组件被正确导入
+import { UserHead } from '../../sharedComponents/basicComponents/userHead';
 
 const NavDrawerComponent = () => {
     // 修改前

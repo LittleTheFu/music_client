@@ -14,6 +14,8 @@ import { selectHintState, selectHintMsg } from 'reducer/rootReducer';
 import { SystemActionTypes, CLOSE_HINT } from 'reducer/system/types';
 import { Dispatch } from 'redux';
 
+import { Routes } from 'react-router-dom';
+
 initSocket();
 
 const App: React.FC = () => {
