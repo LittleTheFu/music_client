@@ -1,80 +1,39 @@
 import React, { useState, useEffect } from 'react';
-import CardMedia from '@material-ui/core/CardMedia';
-import Card from '@material-ui/core/Card';
-import { makeStyles } from '@material-ui/core/styles';
+// 修改前
+// import CardMedia from '@material-ui/core/CardMedia';
+// 修改后
+import CardMedia from '@mui/material/CardMedia';
+// 修改前
+// import Card from '@material-ui/core/Card';
+// 修改后
+import Card from '@mui/material/Card';
+// 修改前
+// import { makeStyles } from '@material-ui/core/styles';
+// 修改后
+import { makeStyles } from '@mui/styles';
 import { Music, dummyMusic } from '../common/interface';
-import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import { IconButton } from '@material-ui/core';
+// 修改前
+// import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+// 修改后
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+// 修改前
+// import FavoriteIcon from '@material-ui/icons/Favorite';
+// 修改后
+import FavoriteIcon from '@mui/icons-material/Favorite';
+// 修改前
+// import { IconButton } from '@material-ui/core';
+// 修改后
+import { IconButton } from '@mui/material';
 import { getLyric } from '../common/service';
 import { parseLyric, getLine, LyricLine } from '../common/lyricParser';
-import CommentIcon from '@material-ui/icons/Comment';
-import { useHistory } from 'react-router-dom';
-import Link from '@material-ui/core/Link';
-import { getAlbumUrl, getArtistUrl } from 'common/routeName';
-
-interface MusicInfoProps {
-    music: Music;
-    musicId: number;
-    currentTime: number;
-    likeClick: () => void;
-    dislikeClick: () => void;
-    commentClick: () => void;
-    isPlaying: boolean;
-}
-
-interface StyleProps {
-    playState: string;
-}
-
-const useStyles = makeStyles({
-    card: {
-        height: 430,
-    },
-    lyricText: {
-        height: 20,
-        textAlign: 'center',
-        color: 'red',
-    },
-    '@keyframes spin': {
-        from: {
-            transform: 'rotate(0deg)',
-        },
-        to: {
-            transform: 'rotate(360deg)',
-        },
-    },
-    cover: {
-        marginLeft: 'auto',
-        marginRight: 'auto',
-        width: 200,
-        height: 200,
-        borderRadius: '50%',
-        animationName: '$spin',
-        animationDuration: '12000ms',
-        animationIterationCount: 'infinite',
-        animationTimingFunction: 'linear',
-        animationPlayState: (props: StyleProps): string => props.playState,
-    },
-    likeIcon: {
-        color: 'red',
-    },
-    text: {
-        padding: 5,
-    },
-    infoText: {
-        textAlign: 'center',
-    },
-    btnGroup: {
-        paddingLeft: 10,
-        width: 140,
-        marginLeft: 'auto',
-        marginRight: 'auto',
-    },
-    root: {
-        width: 350,
-    },
-});
+// 修改前
+// import CommentIcon from '@material-ui/icons/Comment';
+// 修改后
+import CommentIcon from '@mui/icons-material/Comment';
+// 修改前
+// import { useHistory } from 'react-router-dom';
+// 修改后
+import { useNavigate } from 'react-router-dom';
 
 export const MusicInfoComponent: React.FC<MusicInfoProps> = (props: MusicInfoProps) => {
     const [cssProps, setCssProps] = useState({ playState: 'paused' });
@@ -83,7 +42,10 @@ export const MusicInfoComponent: React.FC<MusicInfoProps> = (props: MusicInfoPro
     const [lyricLine, setLyricLine] = useState('');
     const [lines, setLines] = useState<LyricLine[]>([]);
 
-    const history = useHistory();
+    // 修改前
+    // const history = useHistory();
+    // 修改后
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (props.isPlaying) {
@@ -115,11 +77,17 @@ export const MusicInfoComponent: React.FC<MusicInfoProps> = (props: MusicInfoPro
     }, [musicId]);
 
     const artistClick = (artistId: number): void => {
-        history.push(getArtistUrl(artistId));
+        // 修改前
+        // history.push(getArtistUrl(artistId));
+        // 修改后
+        navigate(getArtistUrl(artistId));
     };
 
     const albumClick = (albumId: number): void => {
-        history.push(getAlbumUrl(albumId));
+        // 修改前
+        // history.push(getAlbumUrl(albumId));
+        // 修改后
+        navigate(getAlbumUrl(albumId));
     };
 
     return (

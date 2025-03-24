@@ -1,17 +1,34 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
-import IconButton from '@material-ui/core/IconButton';
-import PlayArrowIcon from '@material-ui/icons/PlayArrow';
-import PauseIcon from '@material-ui/icons/Pause';
-import SkipNextIcon from '@material-ui/icons/SkipNext';
-import Slider from '@material-ui/core/Slider';
-import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
-import VisibilityIcon from '@material-ui/icons/Visibility';
-import ListIcon from '@material-ui/icons/List';
-import Card from '@material-ui/core/Card';
-import AddIcon from '@material-ui/icons/Add';
-import RemoveIcon from '@material-ui/icons/Remove';
+// 修改前
+// import { makeStyles } from '@material-ui/core/styles';
+// import Grid from '@material-ui/core/Grid';
+// 修改后
+import { makeStyles } from '@mui/styles';
+import Grid from '@mui/material/Grid';
+// 修改前
+// import IconButton from '@material-ui/core/IconButton';
+// import PlayArrowIcon from '@material-ui/icons/PlayArrow';
+// import PauseIcon from '@material-ui/icons/Pause';
+// import SkipNextIcon from '@material-ui/icons/SkipNext';
+// import Slider from '@material-ui/core/Slider';
+// import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
+// import VisibilityIcon from '@material-ui/icons/Visibility';
+// import ListIcon from '@material-ui/icons/List';
+// import Card from '@material-ui/core/Card';
+// import AddIcon from '@material-ui/icons/Add';
+// import RemoveIcon from '@material-ui/icons/Remove';
+// 修改后
+import IconButton from '@mui/material/IconButton';
+import PlayArrowIcon from '@mui/icons-material/PlayArrow';
+import PauseIcon from '@mui/icons-material/Pause';
+import SkipNextIcon from '@mui/icons-material/SkipNext';
+import Slider from '@mui/material/Slider';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import ListIcon from '@mui/icons-material/List';
+import Card from '@mui/material/Card';
+import AddIcon from '@mui/icons-material/Add';
+import RemoveIcon from '@mui/icons-material/Remove';
 
 const useStyles = makeStyles({
     musicFunctionIcon: {

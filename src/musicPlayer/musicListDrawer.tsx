@@ -1,10 +1,16 @@
 import React from 'react';
-import Drawer from '@material-ui/core/Drawer';
-import { makeStyles } from '@material-ui/core/styles';
-import { Music } from '../common/interface';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import VolumeUpIcon from '@material-ui/icons/VolumeUp';
+// 修改前
+// import Drawer from '@material-ui/core/Drawer';
+// import { makeStyles } from '@material-ui/core/styles';
+// import List from '@material-ui/core/List';
+// import ListItem from '@material-ui/core/ListItem';
+// import VolumeUpIcon from '@material-ui/icons/VolumeUp';
+// 修改后
+import Drawer from '@mui/material/Drawer';
+import { makeStyles } from '@mui/styles';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import VolumeUpIcon from '@mui/icons-material/VolumeUp';
 
 const useStyles = makeStyles({
     list: {
