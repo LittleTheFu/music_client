@@ -1,21 +1,11 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { getUserMails, deleteMail } from '../../common/service';
 import { Mail } from '../../common/interface';
-// 修改前
-// import List from '@material-ui/core/List';
-// import ListItem from '@material-ui/core/ListItem';
-// import Alert from '@material-ui/lab/Alert';
-// 修改后
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import Alert from '@mui/lab/Alert';
-
-import { useHistory } from 'react-router-dom';
-// import { makeStyles, createStyles } from '@material-ui/core/styles';
+import { useNavigate } from 'react-router-dom';
 import { ContentCard } from '../../sharedComponents/basicComponents/contentCard';
 import { wrapFunc1, wrapName } from '../../common/common';
 import { useIsMount } from '../../common/isMount';
-import MuiAlert from '@material-ui/lab/Alert';
+import { Alert } from '@mui/lab';
 import { getMailDetailUrl } from '../../common/routeName';
 import { useDispatch, useSelector } from 'react-redux';
 import { openHint, decreaseUnreadMailCount } from 'reducer/system/functions';
@@ -23,22 +13,16 @@ import { SystemActionTypes } from 'reducer/system/types';
 import { Dispatch } from 'redux';
 import { selectMailRefresher } from 'reducer/rootReducer';
 
-// const useStyles = makeStyles(() =>
-//     createStyles({
-//     }),
-// );
+const dispatch = useDispatch<Dispatch<SystemActionTypes>>();
+const isMount = useIsMount();
 
+// 将组件定义和导出移到顶层
 export const MailPage: React.FC = () => {
     const [mails, setMails] = useState<Mail[]>([]);
     const refreshMailPage = useSelector(selectMailRefresher);
     const [showAlert, setShowAlert] = useState(false);
 
-    const dispatch = useDispatch<Dispatch<SystemActionTypes>>();
-
-    // const classes = useStyles({});
-    const isMount = useIsMount();
-
-    const history = useHistory();
+    const navigate = useNavigate();
 
     const getFixedMail = (m: Mail): Mail => {
         let r = new Mail();
@@ -74,8 +58,9 @@ export const MailPage: React.FC = () => {
         if (m.read === false) {
             decreaseUnreadMailCount(dispatch);
         }
-
-        history.push(getMailDetailUrl(id));
+        // 修改跳转方式
+        // history.push(getMailDetailUrl(id));
+        navigate(getMailDetailUrl(id));
     };
 
     const alertClick = (): void => {
@@ -126,7 +111,7 @@ export const MailPage: React.FC = () => {
             ) : (
                 <div></div>
             )}
-
+    
             <List component="nav">
                 {mails && mails.length > 0 ? <React.Fragment>{mailElements}</React.Fragment> : <div></div>}
             </List>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import InputBase from '@material-ui/core/InputBase';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
+import { InputBase } from '@mui/material';
+import { makeStyles, createStyles } from '@mui/styles';
+import { Grid } from '@mui/material';
 import { fetchMusicsByKeyword } from '../../common/service';
 import { Music } from '../../common/interface';
 import { MyCollectionsModal } from '../../sharedComponents/musicsComponent/myCollectionsModal';

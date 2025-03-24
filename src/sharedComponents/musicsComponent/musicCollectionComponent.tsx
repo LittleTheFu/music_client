@@ -1,8 +1,14 @@
 import React from 'react';
 import { MusicCollection } from '../../common/interface';
-import { makeStyles, createStyles } from '@material-ui/core/styles';
-import IconButton from '@material-ui/core/IconButton';
-import PlayCircleFilledWhiteOutlinedIcon from '@material-ui/icons/PlayCircleFilledWhiteOutlined';
+// 修改前
+// import { makeStyles, createStyles } from '@material-ui/core/styles';
+// import { IconButton } from '@material-ui/core/IconButton';
+// import PlayCircleFilledWhiteOutlined from '@material-ui/icons/PlayCircleFilledWhiteOutlined';
+
+// 修改后
+import { makeStyles, createStyles } from '@mui/styles';
+import { IconButton } from '@mui/material';
+import PlayCircleFilledWhiteOutlined from '@mui/icons-material/PlayCircleFilledWhiteOutlined';
 
 interface MusicCollectionProps {
     collection: MusicCollection;

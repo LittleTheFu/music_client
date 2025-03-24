@@ -1,7 +1,13 @@
 import React from 'react';
-import { makeStyles, createStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
-import Card from '@material-ui/core/Card';
+// 修改前
+// import { makeStyles, createStyles } from '@material-ui/core/styles';
+// import { Grid } from '@material-ui/core/Grid';
+// import { Card } from '@material-ui/core/Card';
+
+// 修改后
+import { makeStyles, createStyles } from '@mui/styles';
+import { Grid } from '@mui/material';
+import { Card } from '@mui/material';
 import { DeleteButton } from './deleteButton';
 import { UserHead } from './userHead';
 

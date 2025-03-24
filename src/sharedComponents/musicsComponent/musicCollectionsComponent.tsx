@@ -1,7 +1,11 @@
 import React from 'react';
 import { MusicCollection } from '../../common/interface';
 import { MusicCollectionComponent } from './musicCollectionComponent';
-import Grid from '@material-ui/core/Grid';
+// 修改前
+// import { Grid } from '@material-ui/core/Grid';
+
+// 修改后
+import { Grid } from '@mui/material';
 import { wrapFunc1 } from '../../common/common';
 
 interface MusicCollectionsProps {

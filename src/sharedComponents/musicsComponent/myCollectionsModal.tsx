@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import Dialog from '@material-ui/core/Dialog';
-import { MusicCollection } from '../../common/interface';
-import { getPrivateMusicCollections } from '../../common/service';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import { makeStyles, createStyles } from '@material-ui/core/styles';
+// import { Dialog } from '@material-ui/core/Dialog';
+// import { List } from '@material-ui/core/List';
+// import { ListItem } from '@material-ui/core/ListItem';
+// import { makeStyles, createStyles } from '@material-ui/core/styles';
+
+// 修改后
+import { Dialog } from '@mui/material';
+import { List } from '@mui/material';
+import { ListItem } from '@mui/material';
+import { makeStyles, createStyles } from '@mui/styles';
 
 const useStyles = makeStyles(() =>
     createStyles({

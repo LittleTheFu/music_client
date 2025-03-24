@@ -1,6 +1,11 @@
 import React from 'react';
-import { makeStyles, createStyles } from '@material-ui/core/styles';
-import Link from '@material-ui/core/Link';
+// 修改前
+// import { makeStyles, createStyles } from '@material-ui/core/styles';
+// import { Link } from '@material-ui/core/Link';
+
+// 修改后
+import { makeStyles, createStyles } from '@mui/styles';
+import { Link } from '@mui/material';
 
 interface BoundProps {
     size: number;

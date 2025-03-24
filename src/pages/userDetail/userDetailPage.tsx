@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { getDetail, sendMail, fetchMusicsByCollectionId } from 'common/service';
 import { UserDetail } from '../../common/interface';
 import { followUser, unfollowUser } from '../../common/service';
-import Grid from '@material-ui/core/Grid';
+import { Grid } from '@mui/material';
 // import { makeStyles, createStyles } from '@material-ui/core/styles';
 import { useHistory, useParams } from 'react-router-dom';
 import { WriteMailModal } from './writeMailModal';

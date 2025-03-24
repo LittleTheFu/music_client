@@ -1,6 +1,10 @@
-import React from 'react';
-import { IconButton } from '@material-ui/core';
-import DeleteIcon from '@material-ui/icons/Delete';
+// 修改前
+// import { Button } from '@material-ui/core';
+// import Delete from '@material-ui/icons/Delete';
+
+// 修改后
+import { Button } from '@mui/material';
+import Delete from '@mui/icons-material/Delete';
 
 interface DeleteButtonProps {
     clickDelete: (e?: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;

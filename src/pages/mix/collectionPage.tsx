@@ -2,12 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { getPrivateMusicCollections, fetchMusicsByCollectionId } from '../../common/service';
 import { MusicCollectionsComponent } from '../../sharedComponents/musicsComponent/musicCollectionsComponent';
 import { MusicCollection } from '../../common/interface';
-import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
-import { IconButton } from '@material-ui/core';
-import { CreateCollectionModal } from './createCollectionModal';
-import { useHistory } from 'react-router-dom';
-import Grid from '@material-ui/core/Grid';
-import { makeStyles, createStyles } from '@material-ui/core/styles';
+import AddCircleOutline from '@mui/icons-material/AddCircleOutline';
+import { Button } from '@mui/material';
+import { Grid } from '@mui/material';
+import { makeStyles, createStyles } from '@mui/styles'; // 注意：如果使用的是 emotion 作为样式引擎，可能需要调整为 @mui/system
 import { getCollectionDetailUrl } from 'common/routeName';
 import { useDispatch } from 'react-redux';
 import { openHint, updateMusics, updateCurrentMusic } from 'reducer/system/functions';

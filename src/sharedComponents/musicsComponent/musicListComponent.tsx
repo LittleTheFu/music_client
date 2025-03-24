@@ -1,7 +1,24 @@
 import React, { useState, useEffect } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
+// 修改前
+// import { makeStyles, createStyles } from '@material-ui/core/styles';
+// import { List } from '@material-ui/core/List';
+// import { ListItem } from '@material-ui/core/ListItem';
+// import { Button } from '@material-ui/core';
+// import VolumeUp from '@material-ui/icons/VolumeUp';
+// import AddCircleOutline from '@material-ui/icons/AddCircleOutline';
+// import RemoveCircleOutlineOutlined from '@material-ui/icons/RemoveCircleOutlineOutlined';
+// import Comment from '@material-ui/icons/Comment';
+
+// 修改后
+import { makeStyles, createStyles } from '@mui/styles';
+import { List } from '@mui/material';
+import { ListItem } from '@mui/material';
+import { Button } from '@mui/material';
+import VolumeUp from '@mui/icons-material/VolumeUp';
+import AddCircleOutline from '@mui/icons-material/AddCircleOutline';
+import RemoveCircleOutlineOutlined from '@mui/icons-material/RemoveCircleOutlineOutlined';
+import Comment from '@mui/icons-material/Comment';
+
 import { Music } from '../../common/interface';
 import { IconButton } from '@material-ui/core';
 import VolumeUpIcon from '@material-ui/icons/VolumeUp';

@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Mail } from '../../common/interface';
 import { getMailDetail, deleteMail, sendMail } from '../../common/service';
-import { IconButton } from '@material-ui/core';
-// 修改前
-// import * as Mui from '@material-ui/core';
-// 修改后
+// 删除以下导入
+// import { IconButton } from '@material-ui/core';
+// 确保使用 @mui/material 中的 IconButton
+import { IconButton } from '@mui/material';
 import * as Mui from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import TextField from '@mui/material/TextField';

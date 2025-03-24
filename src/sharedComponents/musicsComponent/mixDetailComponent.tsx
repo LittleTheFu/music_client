@@ -1,7 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Music } from '../../common/interface';
 import { MusicListComponent } from './musicListComponent';
-import Grid from '@material-ui/core/Grid';
+// 修改前
+// import { Grid } from '@material-ui/core/Grid';
+// import { makeStyles, createStyles } from '@material-ui/core/styles';
+
+// 修改后
+import { Grid } from '@mui/material';
+import { makeStyles, createStyles } from '@mui/styles';
 import { BackButton } from '../basicComponents/backButton';
 import { makeStyles, createStyles } from '@material-ui/core/styles';
 import { DeleteButton } from '../basicComponents/deleteButton';

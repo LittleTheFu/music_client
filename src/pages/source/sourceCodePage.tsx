@@ -1,6 +1,11 @@
 import React from 'react';
-import Link from '@material-ui/core/Link';
-import { makeStyles } from '@material-ui/core/styles';
+// 修改前
+// import { Link } from '@material-ui/core/Link';
+// import { makeStyles, createStyles } from '@material-ui/core/styles';
+
+// 修改后
+import { Link } from '@mui/material';
+import { makeStyles, createStyles } from '@mui/styles';
 
 const useStyles = makeStyles({
     text: {

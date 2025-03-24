@@ -1,11 +1,19 @@
 import React, { useState } from 'react';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import Dialog from '@material-ui/core/Dialog';
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
-import Grid from '@material-ui/core/Grid';
+// 修改前
+// import { DialogTitle } from '@material-ui/core/DialogTitle';
+// import { Dialog } from '@material-ui/core/Dialog';
+// import { Button } from '@material-ui/core/Button';
+// import { TextField } from '@material-ui/core/TextField';
+// import { Grid } from '@material-ui/core/Grid';
+// import { makeStyles, createStyles } from '@material-ui/core/styles';
 
-import { makeStyles, createStyles } from '@material-ui/core/styles';
+// 修改后
+import { DialogTitle } from '@mui/material';
+import { Dialog } from '@mui/material';
+import { Button } from '@mui/material';
+import { TextField } from '@mui/material';
+import { Grid } from '@mui/material';
+import { makeStyles, createStyles } from '@mui/styles';
 
 const useStyles = makeStyles(() =>
     createStyles({

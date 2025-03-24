@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import Button from '@material-ui/core/Button';
+import { Button } from '@mui/material';
+import { IconButton } from '@mui/material';
+import { makeStyles, createStyles } from '@mui/styles';
+import AddPhotoAlternate from '@mui/icons-material/AddPhotoAlternate';
 import { uploadAvatar } from '../../common/service';
 import { setMeAvatar, getMeAvatar } from '../../globals';
 import { RetAvatar } from '../../common/interface';
-import IconButton from '@material-ui/core/IconButton';
-import { makeStyles, createStyles } from '@material-ui/core/styles';
-import AddPhotoAlternateIcon from '@material-ui/icons/AddPhotoAlternate';
 import { openHint } from 'reducer/system/functions';
 import { SystemActionTypes } from 'reducer/system/types';
 import { Dispatch } from 'redux';
