@@ -35,6 +35,16 @@ import CommentIcon from '@mui/icons-material/Comment';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
+interface MusicInfoProps {
+    music: Music;
+    musicId: number;
+    currentTime: number;
+    likeClick: () => void;
+    dislikeClick: () => void;
+    commentClick: () => void;
+    isPlaying: boolean;
+}
+
 export const MusicInfoComponent: React.FC<MusicInfoProps> = (props: MusicInfoProps) => {
     const [cssProps, setCssProps] = useState({ playState: 'paused' });
     const classes = useStyles(cssProps);
