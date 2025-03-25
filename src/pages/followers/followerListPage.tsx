@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { getUserFollowers, followUser, unfollowUser } from '../../common/service';
 import { Follower } from '../../common/interface';
-import { makeStyles } from '@mui/styles';
 import { useNavigate, useParams } from 'react-router-dom';
 import { BackButton } from '../../sharedComponents/basicComponents/backButton';
 import Grid from '@mui/material/Grid';
@@ -12,6 +11,9 @@ import { openHint } from 'reducer/system/functions';
 import { SystemActionTypes } from 'reducer/system/types';
 import { Dispatch } from 'redux';
 import { useDispatch } from 'react-redux';
+// 新增导入 Theme
+import { Theme } from '@mui/material/styles';
+import { makeStyles, createStyles } from '@mui/styles';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({

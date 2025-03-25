@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { Mail } from '../../common/interface';
 import { getMailDetail, deleteMail, sendMail } from '../../common/service';
 // 删除以下导入
@@ -12,6 +12,9 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { makeStyles } from '@mui/styles';
+// 新增导入 createStyles
+import { createStyles } from '@mui/styles';
+
 import Grid from '@mui/material/Grid';
 import { BackButton } from '../../sharedComponents/basicComponents/backButton';
 import { UserHead } from '../../sharedComponents/basicComponents/userHead';
@@ -58,7 +61,8 @@ const MailDetailPage: React.FC = () => {
     const classes = useStyles({});
 
     const intId = parseInt(id);
-    const history = useHistory();
+    // 修改为 useNavigate
+    const navigate = useNavigate();
 
     useEffect(() => {
         getMailDetail(
@@ -75,14 +79,16 @@ const MailDetailPage: React.FC = () => {
             intId,
             o => {
                 openHint(dispatch, o.msg);
-                history.push(getMailUrl());
+                // 修改为 navigate
+                navigate(getMailUrl());
             },
             console.log,
         );
     };
 
     const fromNameClick = (fromId: number): void => {
-        history.push(getUserDetailUrl(fromId));
+        // 修改为 navigate
+        navigate(getUserDetailUrl(fromId));
     };
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {

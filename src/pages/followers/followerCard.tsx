@@ -1,5 +1,4 @@
 import React from 'react';
-import { makeStyles } from '@mui/styles';
 import Card from '@mui/material/Card';
 import { Follower } from '../../common/interface';
 import IconButton from '@mui/material/IconButton';
@@ -7,6 +6,9 @@ import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import { UserHead } from '../../sharedComponents/basicComponents/userHead';
 import { wrapName } from '../../common/common';
+// 新增导入 Theme
+import { Theme } from '@mui/material/styles';
+import { makeStyles, createStyles } from '@mui/styles';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom'; // Import Link
 import { resetPassword } from '../../common/service';
 import { RetMsgObj } from '../../common/interface';
 // 修改前
@@ -8,6 +8,8 @@ import { RetMsgObj } from '../../common/interface';
 // 修改后
 import Button from '@mui/material/Button';
 import { makeStyles } from '@mui/styles';
+// 新增导入 createStyles
+import { createStyles } from '@mui/styles';
 
 const useStyles = makeStyles(() =>
     createStyles({

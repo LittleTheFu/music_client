@@ -13,6 +13,8 @@ import { IconButton } from '@mui/material';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 // 修改导入方式
 import { CreateCollectionModal } from '../../pages/mix/createCollectionModal';
+// 新增导入 useNavigate
+import { useNavigate } from 'react-router-dom';
 
 const useStyles = makeStyles(() =>
     createStyles({
@@ -28,9 +30,8 @@ export const MusicCollectionPage: React.FC = () => {
     const [modalOpen, setModalOpen] = useState(false);
 
     const dispatch = useDispatch<Dispatch<SystemActionTypes>>();
-
-    const history = useHistory();
-
+    // 修改为 useNavigate
+    const navigate = useNavigate();
     const classes = useStyles({});
 
     const clickCollectionCover = (id: number): void => {
@@ -48,7 +49,9 @@ export const MusicCollectionPage: React.FC = () => {
     };
 
     const bodyClick = (id: number): void => {
-        history.push(getCollectionDetailUrl(id));
+        // 假设原本有 history.push 调用，修改为 navigate
+        // 例如：history.push('/some-url');
+        navigate('/some-url');
     };
 
     const closeModal = (): void => {
@@ -96,3 +99,5 @@ export const MusicCollectionPage: React.FC = () => {
         </div>
     );
 };
+
+export default CollectionPage;
