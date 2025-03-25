@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { getToken } from '../globals';
+import { getToken } from '../helpers';
 import {
     AccessData,
     RetSimpleUser,

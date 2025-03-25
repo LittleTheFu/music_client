@@ -32,7 +32,7 @@ import VpnKeyIcon from '@mui/icons-material/VpnKey';
 // 修改前
 // import { useHistory } from 'react-router-dom';
 // 修改后
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'; // 导入 useNavigate
 // 确保 UserHead 组件被正确导入
 import { UserHead } from '../../sharedComponents/basicComponents/userHead';
 
@@ -58,7 +58,7 @@ const NavDrawerComponent = () => {
 
 export default NavDrawerComponent;
 
-import { getMeId, setLoginFlag, getMeAvatar, getMeName } from '../../globals';
+import { getMeId, setLoginFlag, getMeAvatar, getMeName } from '../../helpers';
 import { NavListIconButton } from './NavListIconButton';
 import {
     getLoginUrl,
@@ -77,6 +77,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { SystemActionTypes } from 'reducer/system/types';
 import { Dispatch } from 'redux';
 import { closeDrawer } from 'reducer/system/functions';
+import { emitLogoutSocketMsg } from '../../common/socket'; // 导入 emitLogoutSocketMsg 函数
 
 // const useStyles = makeStyles(() =>
 //     createStyles({
@@ -98,51 +99,83 @@ import { closeDrawer } from 'reducer/system/functions';
 export const TemporaryDrawer: React.FC = () => {
     const drawerState = useSelector(selectDrawerState);
     const dispatch = useDispatch<Dispatch<SystemActionTypes>>();
-
     // const classes = useStyles({});
-    const history = useHistory();
+    // 修改前
+    // const history = useHistory();
+    // 修改后
+    const navigate = useNavigate();
     const _unreadMailCnt = useSelector(selectUnreadMailCount);
 
     const logoutClick = (): void => {
         setLoginFlag(false);
         emitLogoutSocketMsg(getMeId());
-        history.push(getLoginUrl());
+        // 修改前
+        // history.push(getLoginUrl());
+        // 修改后
+        navigate(getLoginUrl());
     };
 
     const peopleClick = (): void => {
-        history.push(getAllUsersUrl());
+        // 修改前
+        // history.push(getAllUsersUrl());
+        // 修改后
+        navigate(getAllUsersUrl());
     };
 
     const meClick = (): void => {
-        history.push(getUserDetailUrl(getMeId()));
+        // 修改前
+        // history.push(getUserDetailUrl(getMeId()));
+        // 修改后
+        navigate(getUserDetailUrl(getMeId()));
     };
 
     const editClick = (): void => {
-        history.push(getProfileUrl());
+        // 修改前
+        // history.push(getProfileUrl());
+        // 修改后
+        navigate(getProfileUrl());
     };
 
     const passwordClick = (): void => {
-        history.push(getEditPasswordUrl());
+        // 修改前
+        // history.push(getEditPasswordUrl());
+        // 修改后
+        navigate(getEditPasswordUrl());
     };
 
     const searchClick = (): void => {
-        history.push(getSearchUrl());
+        // 修改前
+        // history.push(getSearchUrl());
+        // 修改后
+        navigate(getSearchUrl());
     };
 
     const collectionsClick = (): void => {
-        history.push(getCollectionsUrl());
+        // 修改前
+        // history.push(getCollectionsUrl());
+        // 修改后
+        navigate(getCollectionsUrl());
     };
 
     const mailClick = (): void => {
-        history.push(getMailUrl());
+        // 修改前
+        // history.push(getMailUrl());
+        // 修改后
+        navigate(getMailUrl());
     };
 
     const musicClick = (): void => {
-        history.push(getLobbyUrl());
+        // 修改前
+        // history.push(getLobbyUrl());
+        // 修改后
+        navigate(getLobbyUrl());
     };
 
     const projectClick = (): void => {
-        history.push(getSourceCodeUrl());
+        // 修改前
+        // history.push(getSourceCodeUrl());
+        // 修改后
+        navigate(getSourceCodeUrl());
     };
 
     return (

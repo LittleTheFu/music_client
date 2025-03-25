@@ -6,7 +6,7 @@ import { ResetPasswordPage } from './pages/auth/resetPassword';
 import { RegisterComponent } from './pages/auth/register';
 import { ForgetPasswordPage } from './pages/auth/forget';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
-import { getLoginFlag } from './globals';
+import { getLoginFlag } from './helpers';
 import Snackbar from '@mui/material/Snackbar';
 import { initSocket } from './common/socket';
 import { useSelector, useDispatch } from 'react-redux';

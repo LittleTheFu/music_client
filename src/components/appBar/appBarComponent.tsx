@@ -61,14 +61,24 @@ import { SystemActionTypes } from 'reducer/system/types';
 import { Dispatch } from 'redux';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectUnreadMailCount } from 'reducer/rootReducer';
-import { setLoginFlag } from '../../globals';
+import { setLoginFlag } from '../../helpers';
 import { useNavigate } from 'react-router-dom';
-import { emitLogoutSocketMsg } from '../../common/socket'; // 导入 emitLogoutSocketMsg 函数
+import { emitLogoutSocketMsg } from '../../common/socket';
+import { getMeId } from '../../helpers'; // 导入 getMeId 函数
 
 const useStyles = makeStyles(() =>
     createStyles({
         root: {
             flexGrow: 1
+        },
+        menuButton: {
+            // 这里可以添加 menuButton 的样式
+            marginRight: '1rem' // 示例样式
+        },
+        appButton: {
+            // 这里可以添加 appButton 的样式
+            // 例如：
+            marginLeft: '0.5rem' 
         }
     })
 );

@@ -9,6 +9,7 @@ import { AppBarComponent } from './appBar/appBarComponent';
 // 修改后
 import Grid from '@mui/material/Grid';
 import { Route, Routes, useMatch, useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux'; // 导入 useDispatch
 import { ProfilePage } from '../pages/profile/profile';
 import { MailPage } from '../pages/mail/mailPage';
 // import { MailDetailPage } from '../pages/mail/mailDetailPage';
@@ -40,17 +41,14 @@ import Backdrop from '@mui/material/Backdrop';
 // import { makeStyles } from '@material-ui/core/styles';
 // 修改后
 import { makeStyles } from '@mui/styles';
-import { setLoginFlag } from '../globals';
-import { getLoginUrl } from '../common/routeName';
-import { selectMaskState, selectMusics } from 'reducer/rootReducer';
-import { useSelector, useDispatch } from 'react-redux';
-import { closeMask } from 'reducer/system/functions';
-import { SystemActionTypes } from 'reducer/system/types';
-import { Dispatch } from 'redux';
+// 修改前
+// import { zIndex } from '@mui/material/styles';
+// 修改后
+// import { zIndex } from '@mui/material';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles(() => ({
     backdrop: {
-        zIndex: theme.zIndex.drawer + 1,
+        // zIndex: zIndex.drawer + 1,
         color: '#fff',
         textAlign: 'center',
     },
@@ -58,13 +56,21 @@ const useStyles = makeStyles(theme => ({
 
 const audioElement = getAudioPlayer();
 
+import { selectMaskState } from 'reducer/rootReducer';
+import { SystemActionTypes } from 'reducer/system/types';
+import { Dispatch } from 'redux';
+import { closeMask } from 'reducer/system/functions';
+import { setLoginFlag } from 'helpers';
+import { getLoginUrl } from 'common/routeName';
+import { selectMusics } from 'reducer/rootReducer'; // 假设这是你的选择器
+
 export const MusicApp: React.FC = () => {
-    const musics = useSelector(selectMusics);
     const match = useMatch('/'); 
     const path = match ? match.pathname : '';
 
     const dispatch = useDispatch<Dispatch<SystemActionTypes>>();
     const maskState = useSelector(selectMaskState);
+    const musics = useSelector(selectMusics); // 获取 musics 状态
 
     // 修改前
     // const history = useHistory();

@@ -8,7 +8,7 @@ import { makeStyles, createStyles } from '@mui/styles';
 // 添加缺失的导入
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 import { uploadAvatar } from '../../common/service';
-import { setMeAvatar, getMeAvatar } from '../../globals';
+import { setMeAvatar, getMeAvatar } from '../../helpers';
 import { RetAvatar } from '../../common/interface';
 import { openHint } from 'reducer/system/functions';
 import { SystemActionTypes } from 'reducer/system/types';

@@ -1,5 +1,5 @@
 import io from 'socket.io-client';
-import { getLoginFlag, getMeId, setLoginFlag } from '../globals';
+import { getLoginFlag, getMeId, setLoginFlag } from '../helpers';
 import { getUnreadMailNum } from './service';
 import { store } from '../reducer/rootReducer';
 import {

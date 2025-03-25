@@ -3,13 +3,13 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { makeStyles, Theme, createStyles } from '@mui/styles';
 import { postLogin, getMe } from '../../common/service';
-import { setToken, setMeId, setMeName } from '../../globals';
+import { setToken, setMeId, setMeName } from '../../helpers';
 // 修改前
 // import { useHistory, Link } from 'react-router-dom';
 // 修改后
 import { useNavigate, Link } from 'react-router-dom';
 import Container from '@mui/material/Container';
-import { setLoginFlag, setMeAvatar } from '../../globals';
+import { setLoginFlag, setMeAvatar } from '../../helpers';
 import { AccessData } from '../../common/interface';
 import { emitLoginSocketMsg } from '../../common/socket';
 import { getLobbyUrl } from '../../common/routeName';

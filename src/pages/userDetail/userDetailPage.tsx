@@ -8,7 +8,7 @@ import { Grid } from '@mui/material';
 // import { useNavigate, useParams } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import { WriteMailModal } from './writeMailModal';
-import { getMeId } from '../../globals';
+import { getMeId } from '../../helpers';
 import { BackButton } from '../../sharedComponents/basicComponents/backButton';
 import { MusicCollectionsComponent } from '../../sharedComponents/musicsComponent/musicCollectionsComponent';
 import { UserInfoCard } from './userInfoCard';

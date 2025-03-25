@@ -1,4 +1,4 @@
-import { getMeId } from '../globals';
+import { getMeId } from '../helpers';
 import { validate } from 'email-validator';
 
 export const PASSWORD_MIN_LEN = 4;
