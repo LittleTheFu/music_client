@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { Music, CollectionDetail } from '../../common/interface';
 import { MyCollectionsModal } from './myCollectionsModal';
 import { MixDetail } from './mixDetailComponent';
@@ -23,6 +23,8 @@ interface MusicsDetailProps {
 
 export const MusicsDetail: React.FC<MusicsDetailProps> = (props: MusicsDetailProps) => {
     const { id } = useParams();
+    // 新增：使用 useNavigate 钩子
+    const navigate = useNavigate(); 
 
     const [wantAddMusicId, setWantAddMusicId] = useState(1);
     const [modalOpen, setModalOpen] = useState(false);
@@ -31,9 +33,6 @@ export const MusicsDetail: React.FC<MusicsDetailProps> = (props: MusicsDetailPro
     const currentTheMusicId = useSelector(selectCurrentMusicId);
 
     const dispatch = useDispatch<Dispatch<SystemActionTypes>>();
-
-    // 移除未使用的 navigate 变量声明和赋值
-    // const navigate = useNavigate();
 
     const intId = parseInt(id);
 
@@ -77,7 +76,8 @@ export const MusicsDetail: React.FC<MusicsDetailProps> = (props: MusicsDetailPro
     };
 
     const commentClick = (id: number): void => {
-        history.push(getMusicCommentUrl(id));
+        // 使用 navigate 替代 history.push
+        navigate(getMusicCommentUrl(id));
     };
 
     return (

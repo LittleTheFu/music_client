@@ -28,6 +28,10 @@ interface MyCollectionsModalProps {
     mixClick: (collectionId: number) => void;
 }
 
+// 导入 MusicCollection 类型
+import { MusicCollection } from '../../common/interface';
+import { getPrivateMusicCollections } from 'common/service';
+
 export const MyCollectionsModal: React.FC<MyCollectionsModalProps> = (props: MyCollectionsModalProps) => {
     const [musicCollections, setMusicCollections] = useState<MusicCollection[]>([]);
     const { modalOpen, modalClose, mixClick } = props;
@@ -64,4 +68,7 @@ export const MyCollectionsModal: React.FC<MyCollectionsModalProps> = (props: MyC
             </div>
         </Dialog>
     );
+
 };
+
+export default MyCollectionsModal;
