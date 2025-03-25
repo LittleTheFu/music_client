@@ -1,27 +1,21 @@
-import React, { useState, useEffect } from 'react';
-import { getAlbums } from '../../common/service';
-import { MusicCollectionsComponent } from '../../sharedComponents/musicsComponent/musicCollectionsComponent';
-import { MusicCollection } from '../../common/interface';
-import { getAlbumUrl } from 'common/routeName';
-import { useDispatch } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Dispatch } from 'redux';
 import { SystemActionTypes } from 'reducer/system/types';
-import { updateMusics, updateCurrentMusic } from 'reducer/system/functions';
-import { useNavigate } from 'react-router-dom'; // 导入 useNavigate
+import { loadAlbumList } from 'reducer/system/functions';
+import { getAlbumUrl } from 'common/routeName';
+import { useNavigate } from 'react-router-dom';
+import { selectAlbumList, selectAlbumLoading } from 'reducer/rootReducer';
+import PageHeader from '../path/to/PageHeader'; // 替换为实际的导入路径
+import AlbumList from '../path/to/AlbumList'; // 替换为实际的导入路径
 
 export const LobbyPage: React.FC = () => {
-    const [musicCollections, setMusicCollections] = useState<MusicCollection[]>([]);
-
     const dispatch = useDispatch<Dispatch<SystemActionTypes>>();
     const albumList = useSelector(selectAlbumList);
     const loading = useSelector(selectAlbumLoading);
-    // const history = useHistory(); // 移除这行代码
-    const navigate = useNavigate(); // 使用 useNavigate 钩子
+    const navigate = useNavigate();
 
     const bodyClick = (id: number): void => {
-        // 修改前
-        // history.push(getAlbumUrl(id));
-        // 修改后
         navigate(getAlbumUrl(id));
     };
 
