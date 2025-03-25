@@ -1,14 +1,10 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { getUserMails, deleteMail } from '../../common/service';
-import { Mail } from '../../common/interface';
+import { Mail, RetMsgObj } from '../../common/interface';
 import { useNavigate } from 'react-router-dom';
 import { ContentCard } from '../../sharedComponents/basicComponents/contentCard';
 import { wrapFunc1, wrapName } from '../../common/common';
 import { useIsMount } from '../../common/isMount';
-// 移除未使用的导入
-// import { Alert } from '@mui/material';
-
-// 添加缺失的导入
 import { List, ListItem } from '@mui/material';
 import MuiAlert from '@mui/material/Alert';
 import { getMailDetailUrl } from '../../common/routeName';
@@ -21,7 +17,6 @@ import { selectMailRefresher } from 'reducer/rootReducer';
 const dispatch = useDispatch<Dispatch<SystemActionTypes>>();
 const isMount = useIsMount();
 
-// 将组件定义和导出移到顶层
 export const MailPage: React.FC = () => {
     const [mails, setMails] = useState<Mail[]>([]);
     const refreshMailPage = useSelector(selectMailRefresher);
@@ -30,21 +25,34 @@ export const MailPage: React.FC = () => {
     const navigate = useNavigate();
 
     const getFixedMail = (m: Mail): Mail => {
-        let r = new Mail();
-        r = { ...m, date: new Date(m.date) };
-        return r;
+        return { ...m, date: new Date(m.date) };
     };
 
     const getFixedMails = useCallback((ms: Mail[]): Mail[] => {
-        return ms.map(m => {
-            return getFixedMail(m);
-        });
+        return ms.map(getFixedMail);
     }, []);
 
-    useEffect(() => {
-        getUserMails(fetchedMails => {
+    const fetchMails = async () => {
+        try {
+            const fetchedMails = await new Promise<Mail[]>((resolve, reject) => {
+                getUserMails(
+                    (data: Mail[]) => {
+                        resolve(data);
+                    },
+                    (error: object) => {
+                        reject(error);
+                    }
+                );
+            });
             setMails(getFixedMails(fetchedMails));
-        });
+        } catch (error) {
+            // 处理错误
+            console.error('Failed to fetch mails:', error);
+        }
+    };
+
+    useEffect(() => {
+        fetchMails();
     }, [getFixedMails]);
 
     useEffect(() => {
@@ -57,42 +65,35 @@ export const MailPage: React.FC = () => {
     }, [refreshMailPage]);
 
     const mailClick = (id: number): void => {
-        const m = mails.find(mail => {
-            return mail.id === id;
-        });
-        if (m.read === false) {
+        const m = mails.find(mail => mail.id === id);
+        if (m && !m.read) {
             decreaseUnreadMailCount(dispatch);
         }
-        // 修改跳转方式
-        // history.push(getMailDetailUrl(id));
         navigate(getMailDetailUrl(id));
     };
 
     const alertClick = (): void => {
         setShowAlert(false);
-
-        getUserMails(fetchedMails => {
-            setMails(getFixedMails(fetchedMails));
-        });
+        fetchMails();
     };
 
     const deleteCLick = (mail: Mail): void => {
-        deleteMail(mail.id, o => {
-            openHint(dispatch, o.msg);
-            setMails(
-                mails.filter(m => {
-                    return m.id !== mail.id;
-                }),
-            );
-            if (mail.read === false) {
-                decreaseUnreadMailCount(dispatch);
+        deleteMail(mail.id, (data: RetMsgObj) => {
+            if (data && data.error) { // 检查是否存在错误
+                console.error('Failed to delete mail:', data.error);
+            } else {
+                openHint(dispatch, data.msg);
+                setMails(mails.filter(m => m.id !== mail.id));
+                if (!mail.read) {
+                    decreaseUnreadMailCount(dispatch);
+                }
             }
         });
     };
 
-    const mailElements = mails.map((m: Mail, index: number) => {
+    const mailElements = mails.map((m: Mail) => {
         return (
-            <ListItem divider button key={index}>
+            <ListItem divider button key={m.id}>
                 <ContentCard
                     cardClick={wrapFunc1(mailClick, m.id)}
                     deleteClick={wrapFunc1(deleteCLick, m)}
@@ -102,7 +103,7 @@ export const MailPage: React.FC = () => {
                     username={wrapName(m.fromId, m.fromName)}
                     date={m.date}
                     boldText={!m.read}
-                ></ContentCard>
+                />
             </ListItem>
         );
     });
@@ -116,9 +117,8 @@ export const MailPage: React.FC = () => {
             ) : (
                 <div></div>
             )}
-    
             <List component="nav">
-                {mails && mails.length > 0 ? <React.Fragment>{mailElements}</React.Fragment> : <div></div>}
+                {mails.length > 0 ? <React.Fragment>{mailElements}</React.Fragment> : <div></div>}
             </List>
         </div>
     );
