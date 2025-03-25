@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
-// import TextField from '@material-ui/core/TextField';
-// import Button from '@material-ui/core/Button';
-// import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import { makeStyles } from '@mui/styles';
+import { makeStyles, createStyles } from '@mui/styles';
 import { editPassword } from '../../common/service';
 import { RetMsgObj } from '../../common/interface';
 import { isValidPassowrd, getPassowrdHelpText } from '../../common/common';
@@ -26,15 +23,9 @@ const useStyles = makeStyles(() =>
             paddingBottom: 30,
         },
         btnRoot: {
-            // width: 200,
-            // display: 'block',
-            // marginLeft: 'auto',
-            // marginRight: 'auto',
         },
         btn: {
-            // width: 200,
             display: 'block',
-
             marginLeft: 'auto',
             marginRight: 'auto',
             width: 200,
