@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles } from '@mui/styles'; // 或者使用 @mui/system 中的样式功能
+import { makeStyles, createStyles } from '@mui/styles'; // 或者使用 @mui/system 中的样式功能
 import AppBar from '@mui/material/AppBar';
 // 修改前
 // import Toolbar from '@material-ui/core/Toolbar';
@@ -63,23 +63,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectUnreadMailCount } from 'reducer/rootReducer';
 import { setLoginFlag } from '../../globals';
 import { useNavigate } from 'react-router-dom';
+import { emitLogoutSocketMsg } from '../../common/socket'; // 导入 emitLogoutSocketMsg 函数
 
-const useStyles = makeStyles((theme: Theme) =>
+const useStyles = makeStyles(() =>
     createStyles({
         root: {
-            flexGrow: 1,
-        },
-        menuButton: {
-            marginRight: theme.spacing(2),
-        },
-        appButton: {
-            color: 'white',
-            marginRight: theme.spacing(2),
-        },
-        title: {
-            flexGrow: 1,
-        },
-    }),
+            flexGrow: 1
+        }
+    })
 );
 
 export const AppBarComponent: React.FC = () => {

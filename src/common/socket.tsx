@@ -1,4 +1,4 @@
-import io, { type Socket } from 'socket.io-client';
+import io from 'socket.io-client';
 import { getLoginFlag, getMeId, setLoginFlag } from '../globals';
 import { getUnreadMailNum } from './service';
 import { store } from '../reducer/rootReducer';
@@ -11,7 +11,7 @@ import {
 
 const host = process.env.REACT_APP_HOST;
 
-let socket: Socket | null = null;
+let socket: typeof io.Socket | null = null;
 
 // 初始化 socket
 if (host) {
