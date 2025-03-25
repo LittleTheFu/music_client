@@ -1,48 +1,51 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { getAlbums } from '../../common/service';
+import { MusicCollectionsComponent } from '../../sharedComponents/musicsComponent/musicCollectionsComponent';
+import { MusicCollection } from '../../common/interface';
+import { useHistory } from 'react-router-dom';
+import { getAlbumUrl } from 'common/routeName';
+import { useDispatch } from 'react-redux';
 import { Dispatch } from 'redux';
 import { SystemActionTypes } from 'reducer/system/types';
-import { loadAlbumList } from 'reducer/system/functions';
-import { getAlbumUrl } from 'common/routeName';
-import { useNavigate } from 'react-router-dom';
-import { selectAlbumList, selectAlbumLoading } from 'reducer/rootReducer';
-import PageHeader from '../path/to/PageHeader'; // 替换为实际的导入路径
-import AlbumList from '../path/to/AlbumList'; // 替换为实际的导入路径
+import { updateMusics, updateCurrentMusic } from 'reducer/system/functions';
 
 export const LobbyPage: React.FC = () => {
-    const dispatch = useDispatch<Dispatch<SystemActionTypes>>();
-    const albumList = useSelector(selectAlbumList);
-    const loading = useSelector(selectAlbumLoading);
-    const navigate = useNavigate();
+    const [musicCollections, setMusicCollections] = useState<MusicCollection[]>([]);
 
-    const bodyClick = (id: number): void => {
-        navigate(getAlbumUrl(id));
-    };
+    const dispatch = useDispatch<Dispatch<SystemActionTypes>>();
+
+    const history = useHistory();
 
     useEffect(() => {
-        if (albumList.length === 0) {
-            dispatch(loadAlbumList());
+        getAlbums(collections => {
+            setMusicCollections(collections);
+            // console.log(collections);
+        });
+    }, []);
+
+    const clickCollectionCover = (id: number): void => {
+        const c = musicCollections.find(ms => {
+            return ms.id === id;
+        });
+
+        if (c && c.musics && c.musics.length > 0) {
+            updateMusics(dispatch, c.musics);
+            updateCurrentMusic(dispatch, c.musics[0]);
         }
-    }, [dispatch, albumList]);
+    };
+
+    const bodyClick = (id: number): void => {
+        history.push(getAlbumUrl(id));
+    };
 
     return (
         <div>
-            <PageHeader
-                title={'Albums'}
-                searchBar={true}
-                searchCallback={(str: string) => {
-                    dispatch(loadAlbumList({ keyword: str }));
-                }}
-            ></PageHeader>
-            <div className={classes.content}>
-                <AlbumList
-                    albumList={albumList}
-                    bodyClick={bodyClick}
-                    loading={loading}
-                ></AlbumList>
-            </div>
+            {' '}
+            <MusicCollectionsComponent
+                coverClick={clickCollectionCover}
+                collections={musicCollections}
+                bodyClick={bodyClick}
+            ></MusicCollectionsComponent>
         </div>
     );
 };
-
-export default LobbyPage;
