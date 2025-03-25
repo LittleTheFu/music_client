@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import { makeStyles, Theme, createStyles } from '@mui/styles';
+import { makeStyles, createStyles } from '@mui/styles';
+import { Theme } from '@mui/material/styles'; // 从 @mui/material/styles 导入 Theme
 import { postLogin, getMe } from '../../common/service';
 import { setToken, setMeId, setMeName } from '../../helpers';
 // 修改前

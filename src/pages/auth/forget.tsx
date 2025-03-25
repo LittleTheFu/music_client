@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import TextField from '@mui/material/TextField';
 import { Button } from '@mui/material'; // 确认导入路径正确
-import { makeStyles, createStyles, Theme } from '@mui/styles'; // Import Theme
+import { makeStyles, createStyles } from '@mui/styles';
+import { Theme } from '@mui/material/styles'; // 修改导入路径
 import Container from '@mui/material/Container';
 import { isValidUserName, getUsernameHelpText, isValidEmail, getEmailHelpText } from '../../common/common';
 import { postForgetPassword } from '../../common/service';
 import { RetMsgObj } from '../../common/interface';
-import { Link } from 'react-router-dom'; // 导入 Link 组件
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -129,9 +129,6 @@ export const ForgetPage: React.FC = () => {
                     />
                     <Button type="submit" variant="contained" color="primary">
                         submit
-                    </Button>
-                    <Button component={Link} to="/login" type="submit" variant="contained" color="primary">
-                        go to login page
                     </Button>
                 </form>
             </div>
