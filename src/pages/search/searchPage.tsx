@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { InputBase } from '@mui/material';
-import { makeStyles, createStyles } from '@mui/styles';
 import { Grid } from '@mui/material';
 import { fetchMusicsByKeyword } from '../../common/service';
 import { Music } from '../../common/interface';
@@ -13,6 +12,9 @@ import { openHint, updateMusics, updateCurrentMusic } from 'reducer/system/funct
 import { SystemActionTypes } from 'reducer/system/types';
 import { Dispatch } from 'redux';
 import { selectCurrentMusicId } from 'reducer/rootReducer';
+// 新增导入 Theme
+import { Theme } from '@mui/material/styles';
+import { makeStyles, createStyles } from '@mui/styles';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({

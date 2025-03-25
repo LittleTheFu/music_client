@@ -4,16 +4,15 @@ import { MusicCollectionsComponent } from '../../sharedComponents/musicsComponen
 import { MusicCollection } from '../../common/interface';
 import { Grid } from '@mui/material';
 import { makeStyles, createStyles } from '@mui/styles'; // 注意：如果使用的是 emotion 作为样式引擎，可能需要调整为 @mui/system
-import { getCollectionDetailUrl } from 'common/routeName';
+// 移除未使用的导入
+// import { getCollectionDetailUrl } from 'common/routeName';
 import { useDispatch } from 'react-redux';
 import { openHint, updateMusics, updateCurrentMusic } from 'reducer/system/functions';
 import { SystemActionTypes } from 'reducer/system/types';
 import { Dispatch } from 'redux';
 import { IconButton } from '@mui/material';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
-// 修改导入方式
 import { CreateCollectionModal } from '../../pages/mix/createCollectionModal';
-// 新增导入 useNavigate
 import { useNavigate } from 'react-router-dom';
 
 const useStyles = makeStyles(() =>
@@ -30,13 +29,11 @@ export const MusicCollectionPage: React.FC = () => {
     const [modalOpen, setModalOpen] = useState(false);
 
     const dispatch = useDispatch<Dispatch<SystemActionTypes>>();
-    // 修改为 useNavigate
     const navigate = useNavigate();
     const classes = useStyles({});
 
     const clickCollectionCover = (id: number): void => {
         fetchMusicsByCollectionId(id, musics => {
-            // const musics = fetchedMusics as Music[];
             if (musics) {
                 if (musics.length > 0) {
                     updateMusics(dispatch, musics);
@@ -48,9 +45,8 @@ export const MusicCollectionPage: React.FC = () => {
         });
     };
 
-    const bodyClick = (id: number): void => {
-        // 假设原本有 history.push 调用，修改为 navigate
-        // 例如：history.push('/some-url');
+    // 如果 id 参数未使用，可以移除它
+    const bodyClick = (): void => {
         navigate('/some-url');
     };
 
@@ -100,4 +96,4 @@ export const MusicCollectionPage: React.FC = () => {
     );
 };
 
-export default CollectionPage;
+export default MusicCollectionPage;

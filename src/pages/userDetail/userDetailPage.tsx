@@ -4,9 +4,7 @@ import { UserDetail } from '../../common/interface';
 import { followUser, unfollowUser } from '../../common/service';
 import { Grid } from '@mui/material';
 // import { makeStyles, createStyles } from '@material-ui/core/styles';
-// 移除未使用的 useNavigate 导入
-// import { useNavigate, useParams } from 'react-router-dom';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { WriteMailModal } from './writeMailModal';
 import { getMeId } from '../../helpers';
 import { BackButton } from '../../sharedComponents/basicComponents/backButton';
@@ -25,15 +23,14 @@ import { Dispatch } from 'redux';
 export const UserDetailPage: React.FC = () => {
     const [detail, setDetail] = useState<UserDetail>(null);
     const [mailModalOpen, setMailModalOpen] = useState(false);
-    // 移除未使用的 navigate 变量声明和赋值
-    // const navigate = useNavigate();
+    // 移除未使用的 classes 变量
+    // const classes = useStyles({});
+    const navigate = useNavigate();
 
     const dispatch = useDispatch<Dispatch<SystemActionTypes>>();
 
     const { id } = useParams();
     const intId = parseInt(id);
-
-    // const classes = useStyles({});
 
     useEffect(() => {
         getDetail(
@@ -62,7 +59,8 @@ export const UserDetailPage: React.FC = () => {
     };
 
     const followerClick = (): void => {
-        history.push(getFollowersUrl(id));
+        // 使用 intId 替代 id
+        navigate(getFollowersUrl(intId));
     };
 
     const followClick = (): void => {
@@ -88,7 +86,7 @@ export const UserDetailPage: React.FC = () => {
     };
 
     const editClick = (): void => {
-        history.push(getProfileUrl());
+        navigate(getProfileUrl());
     };
 
     const clickCollectionCover = (id: number): void => {
@@ -105,7 +103,7 @@ export const UserDetailPage: React.FC = () => {
     };
 
     const bodyClick = (id: number): void => {
-        history.push(getCollectionDetailUrl(id));
+        navigate(getCollectionDetailUrl(id));
     };
 
     return (
@@ -144,3 +142,5 @@ export const UserDetailPage: React.FC = () => {
         </div>
     );
 };
+
+export default UserDetailPage;
