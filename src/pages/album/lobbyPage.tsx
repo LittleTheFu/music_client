@@ -7,43 +7,46 @@ import { useDispatch } from 'react-redux';
 import { Dispatch } from 'redux';
 import { SystemActionTypes } from 'reducer/system/types';
 import { updateMusics, updateCurrentMusic } from 'reducer/system/functions';
+import { useNavigate } from 'react-router-dom'; // 导入 useNavigate
 
 export const LobbyPage: React.FC = () => {
     const [musicCollections, setMusicCollections] = useState<MusicCollection[]>([]);
 
     const dispatch = useDispatch<Dispatch<SystemActionTypes>>();
-
-
-    useEffect(() => {
-        getAlbums(collections => {
-            setMusicCollections(collections);
-            // console.log(collections);
-        });
-    }, []);
-
-    const clickCollectionCover = (id: number): void => {
-        const c = musicCollections.find(ms => {
-            return ms.id === id;
-        });
-
-        if (c && c.musics && c.musics.length > 0) {
-            updateMusics(dispatch, c.musics);
-            updateCurrentMusic(dispatch, c.musics[0]);
-        }
-    };
+    const albumList = useSelector(selectAlbumList);
+    const loading = useSelector(selectAlbumLoading);
+    // const history = useHistory(); // 移除这行代码
+    const navigate = useNavigate(); // 使用 useNavigate 钩子
 
     const bodyClick = (id: number): void => {
-        history.push(getAlbumUrl(id));
+        // 修改前
+        // history.push(getAlbumUrl(id));
+        // 修改后
+        navigate(getAlbumUrl(id));
     };
+
+    useEffect(() => {
+        if (albumList.length === 0) {
+            dispatch(loadAlbumList());
+        }
+    }, [dispatch, albumList]);
 
     return (
         <div>
-            {' '}
-            <MusicCollectionsComponent
-                coverClick={clickCollectionCover}
-                collections={musicCollections}
-                bodyClick={bodyClick}
-            ></MusicCollectionsComponent>
+            <PageHeader
+                title={'Albums'}
+                searchBar={true}
+                searchCallback={(str: string) => {
+                    dispatch(loadAlbumList({ keyword: str }));
+                }}
+            ></PageHeader>
+            <div className={classes.content}>
+                <AlbumList
+                    albumList={albumList}
+                    bodyClick={bodyClick}
+                    loading={loading}
+                ></AlbumList>
+            </div>
         </div>
     );
 };
