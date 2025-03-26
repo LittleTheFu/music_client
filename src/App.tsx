@@ -98,6 +98,6 @@ const Main = (): JSX.Element => {
             <MusicApp></MusicApp>
         </div>
     );
-};
+};// ... existing code ...
 
 export default App;

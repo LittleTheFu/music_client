@@ -3,20 +3,14 @@ import { MusicComponent } from '../musicPlayer/musicComponent';
 import { getAudioPlayer } from '../musicPlayer/audioPlayer';
 import { TemporaryDrawer } from './navDrawer/navDrawerComponent';
 import { AppBarComponent } from './appBar/appBarComponent';
-// import Grid from '@material-ui/core/Grid';
-// 修改前
-// import Grid from '@material-ui/core/Grid';
-// 修改后
+
 import Grid from '@mui/material/Grid';
 import { Route, Routes, useMatch, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux'; // 导入 useDispatch
 import { ProfilePage } from '../pages/profile/profile';
-import { MailPage } from '../pages/mail/mailPage';
-// import { MailDetailPage } from '../pages/mail/mailDetailPage';
-// 修改前
-// import { MailDetailPage } from '../pages/mail/mailDetailPage';
+// import { MailPage } from '../pages/mail/mailPage';
 
-// 修改后
+
 import MailDetailPage from '../pages/mail/mailDetailPage';
 import { UserDetailPage } from '../pages/userDetail/userDetailPage';
 import { SearchPage } from '../pages/search/searchPage';
@@ -31,15 +25,9 @@ import { AlbumDetailPage } from '../pages/album/albumDetailPage';
 import { AllUsersPage } from '../pages/allUsers/allUsersPage';
 import { SourceCodePage } from '../pages/source/sourceCodePage';
 import { ChangePasswordPage } from '../pages/auth/editPassword';
-// import Backdrop from '@material-ui/core/Backdrop';
-// 修改前
-// import Backdrop from '@material-ui/core/Backdrop';
-// 修改后
+
 import Backdrop from '@mui/material/Backdrop';
-// import { makeStyles } from '@material-ui/core/styles';
-// 修改前
-// import { makeStyles } from '@material-ui/core/styles';
-// 修改后
+
 import { makeStyles } from '@mui/styles';
 // 修改前
 // import { zIndex } from '@mui/material/styles';
@@ -105,9 +93,9 @@ export const MusicApp: React.FC = () => {
                         <Route path={`${path}/profile`}>
                             <ProfilePage></ProfilePage>
                         </Route>
-                        <Route path={`${path}/mail`}>
+                        {/* <Route path={`${path}/mail`}>
                             <MailPage></MailPage>
-                        </Route>
+                        </Route> */}
                         <Route path={`${path}/all_users`}>
                             <AllUsersPage></AllUsersPage>
                         </Route>
