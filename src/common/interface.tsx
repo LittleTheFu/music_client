@@ -65,6 +65,7 @@ export class RetAvatar {
 
 export class RetMsgObj {
     msg: string;
+    error?: string; // 添加 error 属性
 }
 
 export class Mail {
