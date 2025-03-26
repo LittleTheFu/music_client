@@ -17,44 +17,21 @@ import { Dispatch } from 'redux';
 initSocket();
 
 const App: React.FC = () => {
-    const hintState = useSelector(selectHintState);
-    const hintMsg = useSelector(selectHintMsg);
+    // const hintState = useSelector(selectHintState);
+    // const hintMsg = useSelector(selectHintMsg);
 
-    const dispatch = useDispatch<Dispatch<SystemActionTypes>>();
+    // const dispatch = useDispatch<Dispatch<SystemActionTypes>>();
 
     return (
         <Router>
-            <Snackbar
-                anchorOrigin={{
-                    vertical: 'top',
-                    horizontal: 'center',
-                }}
-                open={hintState}
-                autoHideDuration={1000}
-                onClose={(): void => {
-                    dispatch({ type: CLOSE_HINT });
-                }}
-                message={hintMsg}
-            />
             <div>
-                {/* 将 Switch 替换为 Routes */}
                 <Routes>
-                    <Route path="/register">
-                        <Register />
-                    </Route>
-                    <Route path="/reset/:id">
-                        <Reset />
-                    </Route>
-                    <Route path="/forget_password">
-                        <ForgetPassword />
-                    </Route>
-                    <PrivateRoute path="/main">
-                        <Main />
-                    </PrivateRoute>
-                    <Route path="/">
-                        <Home />
-                    </Route>
-
+                    <Route path="/register" element={<Register />} />
+                    <Route path="/reset/:id" element={<Reset />} />
+                    <Route path="/forget_password" element={<ForgetPassword />} />
+                    <Route path="/main" element={<Main />} />
+                    {/* 将 Home 组件包裹在 Route 中 */}
+                    <Route path="/" element={<Home />} /> 
                 </Routes>
             </div>
         </Router>
@@ -66,11 +43,10 @@ interface PrivateRouteProps {
     path: string;
 }
 
-const PrivateRoute = ({ children, ...rest }: PrivateRouteProps): JSX.Element => {
+const PrivateRoute = ({ children, path }: PrivateRouteProps) => {
     return (
         <Route
-            {...rest}
-            // 将 render 属性替换为 element 属性
+            path={path}
             element={getLoginFlag() ? children : <Navigate to="/login" replace />}
         />
     );
@@ -98,6 +74,6 @@ const Main = (): JSX.Element => {
             <MusicApp></MusicApp>
         </div>
     );
-};// ... existing code ...
+};
 
 export default App;
